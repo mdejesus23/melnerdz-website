@@ -1,0 +1,14 @@
+---
+
+---
+
+<footer class="mx-auto max-w-5xl bg-transparent px-3 py-8 text-xs xl:px-0">
+  <div class="border-t border-gray-500 pt-5">
+    Copyright &copy; <span id="copyright"></span> By Astro framework.
+  </div>
+</footer>
+
+<script>
+  const copyRight = document.querySelector('#copyright')!;
+  copyRight.textContent = new Date().getFullYear().toString();
+</script>

@@ -1,0 +1,26 @@
+---
+import MainHead from '../components/MainHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+import '@fontsource/pacifico';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <MainHead title={title} description={description} />
+  <body class="bg-pblue text-white min-h-screen">
+    <Header />
+    <main class="max-w-5xl mx-auto min-h-screen my-10 md:my-20 px-3 xl:px-0">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
