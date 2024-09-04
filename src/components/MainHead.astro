@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 // component imports
 import Seo from './Seo.astro';
 
@@ -14,6 +16,7 @@ const {
 ---
 
 <head>
+  <ViewTransitions />
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />

@@ -8,5 +8,5 @@ export default defineConfig({
   image: {
     service: passthroughImageService(),
   },
-  site: 'https://melnerdz.com',
+  site: 'https://melnerdz.netlify.app/',
 });
