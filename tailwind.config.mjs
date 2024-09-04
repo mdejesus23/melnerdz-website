@@ -10,9 +10,13 @@ export default {
       pblue: '#12263a',
       lblue: '#06bcc1',
       lorange: '#f4d1ae',
+      project: '#1e293b',
+      projectDesc: '#a3b8cc',
     },
     fontFamily: {
       logofont: ['Pacifico', 'cursive;'],
+      headfont: ['Montagu Slab Variable', 'serif;'],
+      bodyfont: ['Open Sans Variable', 'sans-serif;'],
     },
     screens: {
       xs: '480px', // Extra small screens

@@ -1,0 +1,14 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+import MainLayout from '../../layouts/MainLayout.astro';
+
+const title: string = 'Tetst';
+const description: string = 'test';
+---
+
+<MainLayout title={title} description={description}>
+  <section></section>
+</MainLayout>

@@ -1,0 +1,57 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+// projects md
+const allProjects: CollectionEntry<'projects'>[] = (
+  await getCollection('projects')
+)
+  .sort(
+    (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  )
+  .slice(0, 3);
+---
+
+<section class="mt-10 min-h-full w-full md:mt-20">
+  <h2 class="mb-6 text-2xl font-bold">
+    Recent <span class="text-lblue">Projects</span>
+  </h2>
+  <ul class="flex flex-col gap-y-8">
+    {
+      allProjects.map((project) => (
+        <li class="flex flex-col items-center gap-x-8 gap-y-8 rounded-md bg-project py-3 md:flex-row">
+          <figure class="w-full shrink-0 cursor-pointer hover:translate-y-1 sm:w-3/5 md:h-44 md:w-44">
+            <a href={`/projects/${project.slug}`}>
+              <Image
+                class="min-h-full w-full"
+                src={project.data.image.src}
+                alt={project.data.image.alt}
+              />
+            </a>
+          </figure>
+          <article>
+            <div class="flex flex-col items-center gap-x-5 gap-y-5 md:flex-row">
+              <a href={`/projects/${project.slug}`}>
+                <h3 class="font-headfont text-lg font-bold text-white hover:text-lblue">
+                  {project.data.title}
+                </h3>
+              </a>
+              <ul class="flex gap-x-1">
+                {project.data.technology.map((tech) => (
+                  <li class="h-9 w-9 cursor-pointer hover:translate-y-1">
+                    <Image src={tech.src} alt={tech.alt} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p class="text-projectDesc mt-3 font-medium">
+              {project.data.description}
+            </p>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</section>

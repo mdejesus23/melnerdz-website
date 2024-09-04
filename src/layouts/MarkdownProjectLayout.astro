@@ -1,0 +1,37 @@
+---
+import MainLayout from './MainLayout.astro';
+import type { Project } from '../types/dataTypes';
+import { Image } from 'astro:assets';
+
+interface Props {
+  project: Project;
+}
+
+const { project }: Props = Astro.props;
+const title: string = project.title;
+const description: string = project.description;
+
+console.log(project);
+---
+
+<MainLayout title={title} description={description}>
+  <section class="mx-auto flex max-w-2xl flex-col gap-y-6">
+    <h1 class="font-headfont text-3xl font-bold md:text-4xl">{title}</h1>
+    <figure class="max-w-xl">
+      <Image src={project.image.src} alt={project.image.alt} />
+    </figure>
+    <article class="text-projectDesc mt-3 text-base font-medium leading-8">
+      <slot />
+    </article>
+  </section>
+
+  <style>
+    li {
+      list-style: disc;
+    }
+
+    p {
+      font-size: 80px;
+    }
+  </style>
+</MainLayout>

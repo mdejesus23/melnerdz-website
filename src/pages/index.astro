@@ -4,11 +4,13 @@ import type { CollectionEntry } from 'astro:content';
 
 import MainLayout from '../layouts/MainLayout.astro';
 import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
 
-const title: string = 'Melnerdz';
+const title: string = 'nerdz';
 const description: string = 'Melnerdz website';
 ---
 
 <MainLayout title={title} description={description}>
   <Hero />
+  <Projects />
 </MainLayout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  disablePrevious: boolean;
+  disableNext: boolean;
+  next?: string;
+  prev?: string;
+}
+
+const { currentPage, disablePrevious, disableNext, prev, next } = Astro.props;
+---
+
+<div class="mt-10 flex justify-between">
+  <a href={prev} class={disablePrevious ? 'disabled' : ''}>
+    &#8249; PREVIOUS
+  </a>
+  <a href={next} href={next} class={disableNext ? 'disabled' : ''}>
+    NEXT PAGE &#8250;
+  </a>
+</div>

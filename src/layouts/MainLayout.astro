@@ -3,6 +3,13 @@ import MainHead from '../components/MainHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
+// fonts
+// Supports weights 100-700
+import '@fontsource-variable/montagu-slab';
+import '@fontsource/merriweather';
+// Supports weights 300-800
+import '@fontsource-variable/open-sans';
+
 import '@fontsource/pacifico';
 
 interface Props {
@@ -16,9 +23,9 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="en">
   <MainHead title={title} description={description} />
-  <body class="bg-pblue text-white min-h-screen">
+  <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
     <Header />
-    <main class="max-w-5xl mx-auto min-h-screen my-10 md:my-20 px-3 xl:px-0">
+    <main class="mx-auto my-10 min-h-screen max-w-5xl px-3 md:my-20 xl:px-0">
       <slot />
     </main>
     <Footer />

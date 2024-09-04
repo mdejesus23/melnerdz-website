@@ -1,6 +1,6 @@
 //Schemas enforce consistent frontmatter or entry data within a collection.
 import { defineCollection, z } from 'astro:content';
-const newsletterCollection = defineCollection({
+const projectsCollections = defineCollection({
   type: 'content', // is for markdown file
   schema: ({ image }) =>
     z.object({
@@ -12,10 +12,18 @@ const newsletterCollection = defineCollection({
         alt: z.string(),
       }),
       description: z.string(),
+      technology: z.array(
+        z.object({
+          src: image(), // image() is used to ensure valid image references
+          alt: z.string(),
+        }),
+      ),
       tags: z.array(z.string()),
+      link: z.string(),
+      repo: z.string(),
     }),
 });
 
 export const collections = {
-  newsletter: newsletterCollection,
+  projects: projectsCollections,
 };

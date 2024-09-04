@@ -1,0 +1,93 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import Logo from '../../public/logo.png';
+import { Image } from 'astro:assets';
+
+const title: string = 'Contact Me';
+const description: string =
+  'Contact page. Send me a message for any inquiries or job offer.';
+
+const isDev = import.meta.env.DEV;
+const redirectLink = isDev ? 'http://localhost:4321' : 'https://melnerdz.com';
+
+const autoResponseMessage: string = 'Thank you for your message!';
+---
+
+<MainLayout title={title} description={description}>
+  <section>
+    <h1
+      class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"
+    >
+      Contact <Image class="ml-3 mr-1" src={Logo} alt="logo image" width={30} />
+      e
+    </h1>
+    <form
+      class="mx-auto max-w-lg p-2 md:p-6"
+      action=`https://formsubmit.co/dejesusmelnard@gmail.com`
+      method="POST"
+    >
+      <!-- subject field -->
+      <input
+        id="formSubject"
+        type="hidden"
+        name="_subject"
+        value="User Message - Melnerdz Contact Form"
+      />
+
+      <!-- for redirecting to thank you page -->
+      <input type="hidden" name="_next" value=`${redirectLink}/thanks/` />
+
+      <!-- auto response  -->
+      <input
+        type="hidden"
+        name="_autoresponse"
+        value=`${autoResponseMessage}`
+      />
+
+      <div class="mb-4">
+        <label for="name" class="text-projectDesc mb-2 block font-bodyfont"
+          >Name</label
+        >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          class="border-projectDesc text-projectDesc w-full rounded-lg border bg-pblue px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lblue"
+          placeholder="Your Name"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="email" class="text-projectDesc mb-2 block font-bodyfont"
+          >Email</label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="border-projectDesc text-projectDesc w-full rounded-lg border bg-pblue px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lblue"
+          placeholder="Your Email"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="message" class="text-projectDesc mb-2 block font-bodyfont"
+          >Message</label
+        >
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          class="border-projectDesc text-projectDesc w-full rounded-lg border bg-pblue px-4 py-2 focus:outline-none focus:ring-2 focus:ring-lblue"
+          placeholder="Your Message"></textarea>
+      </div>
+
+      <button
+        type="submit"
+        class="text-projectDesc border-projectDesc w-full rounded-lg px-4 py-2 font-semibold transition-colors duration-300 hover:text-lblue"
+      >
+        Send Message
+      </button>
+    </form>
+  </section>
+</MainLayout>
