@@ -4,9 +4,10 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 import MainLayout from '../../layouts/MainLayout.astro';
+import Pagination from '../../components/Pagination.astro';
 import Logo from '../../../public/logo.png';
+
 import type { Page } from '../../types/dataTypes';
-import { promise } from 'astro:schema';
 
 interface Props {
   page: Page;
@@ -33,9 +34,6 @@ const title: string = 'My Projects';
 const description: string = 'This is my project page.';
 
 const projectList = page.data;
-console.log(projectList);
-
-// console.log(page);
 ---
 
 <MainLayout title={title} description={description}>
@@ -46,7 +44,13 @@ console.log(projectList);
       <Image class="ml-3 mr-1" src={Logo} alt="logo image" width={35} />
       y Project
     </h1>
-    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+    <p class="mt-6 text-center font-medium text-white">
+      Here’s a showcase of my work, featuring a range of projects I've crafted
+      for both personal and client needs.
+    </p>
+    <div
+      class="mt-12 grid grid-cols-1 gap-6 gap-y-9 sm:grid-cols-2 md:grid-cols-3"
+    >
       {
         projectList.map((project) => (
           <a
@@ -61,10 +65,10 @@ console.log(projectList);
               />
             </figure>
             <article class="mt-4 flex flex-col items-center justify-center">
-              <h2 class="font-headfont text-lg font-bold text-white hover:text-lblue">
+              <h2 class="font-headfont text-xl font-bold text-white hover:text-lblue">
                 {project.data.title}
               </h2>
-              <p class="mt-3 text-left font-medium text-projectDesc">
+              <p class="mx-1 mt-3 text-left font-medium text-projectDesc">
                 {project.data.shortDesc}
               </p>
             </article>
@@ -72,5 +76,13 @@ console.log(projectList);
         ))
       }
     </div>
+    <Pagination
+      currentPage={page.currentPage}
+      totalPages={2}
+      disablePrevious={page.url.prev === undefined}
+      disableNext={page.url.next === undefined}
+      next={page.url.next}
+      prev={page.url.prev}
+    />
   </section>
 </MainLayout>

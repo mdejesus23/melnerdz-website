@@ -1,0 +1,75 @@
+---
+const isDev = import.meta.env.DEV;
+const redirectLink = isDev ? 'http://localhost:4321' : 'https://melnerdz.com';
+
+const emailString: string = '92f9ba1bf37a6955c561f117c41cbe9c ';
+const autoResponseMessage: string = 'Thank you for your message!';
+---
+
+<form
+  class="mx-auto max-w-lg p-2 md:p-6"
+  action=`https://formsubmit.co/${emailString}`
+  method="POST"
+>
+  <!-- subject field -->
+  <input
+    id="formSubject"
+    type="hidden"
+    name="_subject"
+    value="User Message - Melnerdz Contact Form"
+  />
+
+  <!-- for redirecting to thank you page -->
+  <input type="hidden" name="_next" value=`${redirectLink}/thanks/` />
+
+  <!-- auto response  -->
+  <input type="hidden" name="_autoresponse" value=`${autoResponseMessage}` />
+
+  <div class="mb-4">
+    <label for="name" class="mb-2 block font-bodyfont text-projectDesc"
+      >Name</label
+    >
+    <input
+      required
+      type="text"
+      id="name"
+      name="name"
+      class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
+      placeholder="Your Name"
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="email" class="mb-2 block font-bodyfont text-projectDesc"
+      >Email</label
+    >
+    <input
+      required
+      type="email"
+      id="email"
+      name="email"
+      class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
+      placeholder="Your Email"
+    />
+  </div>
+
+  <div class="mb-4">
+    <label for="message" class="mb-2 block font-bodyfont text-projectDesc"
+      >Message</label
+    >
+    <textarea
+      required
+      id="message"
+      name="message"
+      rows="5"
+      class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
+      placeholder="Your Message"></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="w-full rounded-md border-2 border-projectDesc px-4 py-2 font-semibold text-projectDesc transition-colors duration-300 hover:text-lblue"
+  >
+    Send Message
+  </button>
+</form>

@@ -18,7 +18,7 @@ const allProjects: CollectionEntry<'projects'>[] = (
   <h2 class="mb-6 text-2xl font-bold">
     Recent <span class="text-lblue">Projects</span>
   </h2>
-  <ul class="flex flex-col gap-y-8">
+  <ul class="flex flex-col gap-y-10">
     {
       allProjects.map((project) => (
         <li class="flex flex-col items-center gap-x-8 gap-y-8 rounded-md bg-project py-3 md:flex-row">
@@ -34,19 +34,19 @@ const allProjects: CollectionEntry<'projects'>[] = (
           <article>
             <div class="flex flex-col items-center gap-x-5 gap-y-5 md:flex-row">
               <a href={`/projects/${project.slug}`}>
-                <h3 class="font-headfont text-lg font-bold text-white hover:text-lblue">
+                <h3 class="font-headfont text-xl font-bold text-white hover:text-lblue">
                   {project.data.title}
                 </h3>
               </a>
               <ul class="flex gap-x-1">
-                {project.data.technology.map((tech) => (
+                {project.data.technology.map((tech: any) => (
                   <li class="h-9 w-9 cursor-pointer hover:translate-y-1">
                     <Image src={tech.src} alt={tech.alt} />
                   </li>
                 ))}
               </ul>
             </div>
-            <p class="mt-3 font-medium text-projectDesc">
+            <p class="mx-1 mt-3 font-medium text-projectDesc">
               {project.data.description}
             </p>
           </article>
