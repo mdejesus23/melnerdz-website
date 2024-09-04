@@ -21,6 +21,7 @@ const projectsCollections = defineCollection({
       tags: z.array(z.string()),
       link: z.string(),
       repo: z.string(),
+      shortDesc: z.string(),
     }),
 });
 

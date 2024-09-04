@@ -10,8 +10,6 @@ interface Props {
 const { project }: Props = Astro.props;
 const title: string = project.title;
 const description: string = project.description;
-
-console.log(project);
 ---
 
 <MainLayout title={title} description={description}>
@@ -20,7 +18,7 @@ console.log(project);
     <figure class="max-w-xl">
       <Image src={project.image.src} alt={project.image.alt} />
     </figure>
-    <article class="text-projectDesc mt-3 text-base font-medium leading-8">
+    <article class="mt-3 text-base font-medium leading-8 text-projectDesc">
       <slot />
     </article>
   </section>

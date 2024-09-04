@@ -22,6 +22,7 @@ technology:
     alt: 'React logo'
 link: 'https://jayandmikka-wedding.netlify.app/'
 repo: 'https://github.com/mdejesus23/jay-mikka-wedding'
+shortDesc: Welcome to the Wedding of the Year website, crafted with Astro SSG. Every design element, including the custom logo, reflects my vision for an engaging guest experience.
 ---
 
 Welcome to the **Wedding of the Year** website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests. Here are some of the standout features:

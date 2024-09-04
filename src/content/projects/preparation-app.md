@@ -23,6 +23,9 @@ technology:
     alt: 'CSS logo'
 link: 'https://preparation-app.onrender.com/'
 repo: 'https://github.com/mdejesus23/preparation-app'
+shortDesc: Full-stack web app for our church to streamline preparation for
+  activities, featuring user authentication, session management,
+  and secure data handling
 ---
 
 I've developed a simple **Preparation App** for our church organization. This full-stack web application is designed to streamline the process of preparation for various church activities. Below are some of the key features of the app:

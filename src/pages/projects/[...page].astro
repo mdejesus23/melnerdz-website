@@ -4,11 +4,73 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 import MainLayout from '../../layouts/MainLayout.astro';
+import Logo from '../../../public/logo.png';
+import type { Page } from '../../types/dataTypes';
+import { promise } from 'astro:schema';
 
-const title: string = 'Tetst';
-const description: string = 'test';
+interface Props {
+  page: Page;
+}
+
+export async function getStaticPaths({ paginate }: any) {
+  const PROJECT_PER_PAGE: number = 3;
+  const allProjects: CollectionEntry<'projects'>[] = (
+    await getCollection('projects')
+  ).sort(
+    (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+  // Return a paginated collection of paths
+  return paginate(allProjects || [], {
+    pageSize: PROJECT_PER_PAGE,
+  });
+}
+
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props;
+const title: string = 'My Projects';
+const description: string = 'This is my project page.';
+
+const projectList = page.data;
+console.log(projectList);
+
+// console.log(page);
 ---
 
 <MainLayout title={title} description={description}>
-  <section></section>
+  <section>
+    <h1
+      class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"
+    >
+      <Image class="ml-3 mr-1" src={Logo} alt="logo image" width={35} />
+      y Project
+    </h1>
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3">
+      {
+        projectList.map((project) => (
+          <a
+            href={`/projects/${project.slug}`}
+            class="cursor-pointer overflow-hidden rounded-sm bg-project hover:translate-y-1"
+          >
+            <figure class="aspect-w-3 aspect-h-2">
+              <Image
+                class="h-64 w-full sm:h-64 md:h-52"
+                src={project.data.image.src}
+                alt={project.data.image.alt}
+              />
+            </figure>
+            <article class="mt-4 flex flex-col items-center justify-center">
+              <h2 class="font-headfont text-lg font-bold text-white hover:text-lblue">
+                {project.data.title}
+              </h2>
+              <p class="mt-3 text-left font-medium text-projectDesc">
+                {project.data.shortDesc}
+              </p>
+            </article>
+          </a>
+        ))
+      }
+    </div>
+  </section>
 </MainLayout>

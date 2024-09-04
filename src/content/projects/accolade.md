@@ -21,6 +21,7 @@ technology:
     alt: 'TypeScript logo'
 link: 'accolade.ai'
 repo: 'https://github.com/mdejesus23'
+shortDesc: I developed the Accolade AI website using Astro, TypeScript, and BEM CSS, focusing on a modern, responsive, and user-friendly design that's easy to maintain.
 ---
 
 I developed the **Accolade AI website** for a client using the Astro framework, TypeScript, and CSS with BEM methodology. The project focused on creating a modern and responsive web presence that is both user-friendly and easy to maintain. Here are some of the key features of the website:
