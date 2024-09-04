@@ -1,6 +1,6 @@
 ---
 title: Wedding Website
-pubDate: 2023-01-15
+pubDate: 2024-03-15
 author: Melnard De Jesus
 image:
   src: './images/wedding.JPG'
