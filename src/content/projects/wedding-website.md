@@ -5,7 +5,7 @@ author: Melnard De Jesus
 image:
   src: './images/wedding.JPG'
   alt: 'A beautiful wedding scene'
-description: Welcome to the Wedding of the Year website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests. Here are some of the standout features
+description: Welcome to the Wedding of the Year website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests.
 technology:
   - src: './tech/astro.svg'
     alt: 'Astro logo'
@@ -25,12 +25,13 @@ repo: 'https://github.com/mdejesus23/jay-mikka-wedding'
 shortDesc: Welcome to the Wedding of the Year website, crafted with Astro SSG. Every design element, including the custom logo, reflects my vision for an engaging guest experience.
 ---
 
-Welcome to the **Wedding of the Year** website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests. Here are some of the standout features:
-<br>
-<br>
 <a href="https://jayandmikka-wedding.netlify.app/" target="_blank" class="text-lblue">Live site</a>
 <br>
 <a href="https://github.com/mdejesus23/jay-mikka-wedding" target="_blank"  class="text-lblue">Github Repo</a>
+<br>
+<br>
+
+Welcome to the **Wedding of the Year** website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests. Here are some of the standout features:
 <br>
 <br>
 

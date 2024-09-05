@@ -18,27 +18,26 @@ repo: ''
 shortDesc: REST API backend for the Preparation App, featuring secure user authentication, session participation, and data management using Node.js and MongoDB.
 ---
 
-The **Preparation App REST API** serves as the backend for the Preparation App, allowing users to authenticate, participate in themed sessions, and manage relevant data. Built with Node.js and Express, this API uses MongoDB for data storage, ensuring a secure and efficient backend solution.
-<br>
-<br>
-
 <a href="https://github.com/mdejesus23/prep-app" target="_black" class="text-lblue">Github Repo</a>
 <br>
 <br>
 
-- **User Authentication:** 🔐 Secure sign-up, login, and logout functionalities with JWT tokens.
-- **Session Participation:** 🗳️ Allows users to participate in themed sessions, with results stored in MongoDB.
-- **API Security:** 🛡️ Includes error handling, CSRF protection, and secure headers via Helmet.
-- **Data Management:** 📊 CRUD operations for themes and session data.
-- **Session Management:** 🧑‍💻 Uses Express-session for managing user sessions.
+The Preparation App REST API serves as the backend for the Preparation App, allowing users to authenticate, participate in themed sessions, and manage relevant data. Built with Node.js and Express, this API uses MongoDB for data storage, ensuring a secure and efficient backend solution.
+<br>
+<br>
 
-**Tech Stack 🛠️**
+- <i class="fab fa-node-js text-lblue"></i> User Authentication: Secure sign-up, login, and logout functionalities with JWT tokens.
+- <i class="fas fa-vote-yea text-lblue"></i> Session Participation: Allows users to participate in themed sessions, with results stored in MongoDB.
+- <i class="fas fa-shield-alt text-lblue"></i> API Security: Includes error handling, CSRF protection, and secure headers via Helmet.
+- <i class="fas fa-database text-lblue"></i> Data Management: CRUD operations for themes and session data.
+- <i class="fas fa-user-cog text-lblue"></i> Session Management: Uses Express-session for managing user sessions.
+  <br>
+  <br>
+  Tech Stack 🛠️
 
-- Node.js
-- Express.js
-- Mongoose (MongoDB)
-- JWT for Authentication 🔑
-- Helmet for Security 🪖
-- CSRF Protection ❌🛡️
-
-Explore the Preparation App REST API to see how it effectively manages user authentication, session participation, and data security.
+- <i class="fab fa-node-js text-lblue"></i> Node.js
+- <i class="fas fa-server text-lblue"></i> Express.js
+- <i class="fas fa-database text-lblue"></i> Mongoose (MongoDB)
+- <i class="fas fa-key text-lblue"></i> JWT for Authentication
+- <i class="fas fa-shield-alt text-lblue"></i> Helmet for Security
+- <i class="fas fa-ban text-lblue"></i> CSRF Protection

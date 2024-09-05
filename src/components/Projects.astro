@@ -21,7 +21,7 @@ const allProjects: CollectionEntry<'projects'>[] = (
   <ul class="flex flex-col gap-y-10">
     {
       allProjects.map((project) => (
-        <li class="mb-2 flex flex-col items-center gap-x-8 gap-y-8 overflow-hidden rounded-md bg-project md:mb-0 md:flex-row md:py-3">
+        <li class="mb-2 flex flex-col items-center gap-x-8 gap-y-8 overflow-hidden rounded-md bg-project md:mb-0 md:flex-row md:p-3">
           <figure class="w-full shrink-0 cursor-pointer hover:translate-y-1 sm:h-96 sm:w-3/5 md:h-44 md:w-44">
             <a href={`/projects/${project.slug}`}>
               <Image
