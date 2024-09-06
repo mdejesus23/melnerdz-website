@@ -4,9 +4,9 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://melnerdz.com',
   integrations: [sitemap(), tailwind()],
   image: {
     service: passthroughImageService(),
   },
-  site: 'https://melnerdz.com',
 });
