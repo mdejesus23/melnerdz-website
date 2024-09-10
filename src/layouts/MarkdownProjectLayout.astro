@@ -13,14 +13,18 @@ const description: string = project.description;
 ---
 
 <MainLayout title={title} description={description}>
-  <section class="mx-auto flex max-w-2xl flex-col gap-y-6">
-    <h1 class="font-headfont text-3xl font-bold md:text-4xl">{title}</h1>
-    <figure class="max-w-xl">
-      <Image src={project.image.src} alt={project.image.alt} />
-    </figure>
-    <article class="mt-3 text-base font-medium leading-8 text-projectDesc">
-      <slot />
-    </article>
+  <section class="mx-auto max-w-screen-lg py-6">
+    <h1 class="text-center font-headfont text-3xl font-bold">
+      {title}
+    </h1>
+    <div class="mx-auto mt-8 max-w-prose">
+      <figure class="aspect-w-3 aspect-h-2">
+        <Image src={project.image.src} alt={project.image.alt} />
+      </figure>
+      <article class="mt-8 text-base font-medium leading-8 text-projectDesc">
+        <slot />
+      </article>
+    </div>
   </section>
 
   <style>

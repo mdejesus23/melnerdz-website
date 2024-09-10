@@ -31,9 +31,11 @@ shortDesc: Welcome to the Wedding of the Year website, crafted with Astro SSG. E
 <br>
 <br>
 
-Welcome to the **Wedding of the Year** website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests. Here are some of the standout features:
+Welcome to the **Wedding of the Year** website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests.
 <br>
 <br>
+
+**Features:**
 
 - **<i class="fas fa-cogs text-lblue"></i> Astro Island Architecture:** The website utilizes Astro’s island architecture, allowing for a fast and optimized user experience with minimal JavaScript.
 - **<i class="fab fa-react text-lblue"></i> Interactive Components with React.js:** React components are integrated for interactive elements, enhancing user engagement across the site.

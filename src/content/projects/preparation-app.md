@@ -34,9 +34,11 @@ shortDesc: Full-stack web app for our church to streamline preparation for
 <br>
 <br>
 
-I've developed a simple **Preparation App** for our church organization. This full-stack web application is designed to streamline the process of preparation for various church activities. Below are some of the key features of the app:
+I've developed a simple **Preparation App** for our church organization. This full-stack web application is designed to streamline the process of preparation for various church activities.
 <br>
 <br>
+
+**Features:**
 
 - **<i class="fab fa-node-js text-lblue"></i> Node.js with Express Backend:** The backend is powered by Node.js with Express, providing a robust and scalable environment for handling server-side operations.
 - **<i class="fas fa-database text-lblue"></i> MongoDB for Data Storage:** All data, including user information and preparation themes, is securely stored in a MongoDB database, ensuring efficient data retrieval and management.
