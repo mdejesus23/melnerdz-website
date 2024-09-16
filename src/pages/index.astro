@@ -16,11 +16,10 @@ const description: string =
     // Call the Netlify serverless function to log the IP address
     async function test() {
       try {
-        const res = await fetch('/netlify/functions/log-ip');
-        if (!res) {
+        const res = await fetch('/.netlify/functions/log-ip');
+        if (!res.ok) {
           throw new Error('Error on fetching ip address!');
         }
-
         const data = await res.json();
 
         console.log('data', data);
