@@ -18,10 +18,6 @@ repo: ''
 shortDesc: REST API backend for the Preparation App, featuring secure user authentication, session participation, and data management using Node.js and MongoDB.
 ---
 
-<a href="https://github.com/mdejesus23/prep-app" target="_black" class="text-lblue">Github Repo</a>
-<br>
-<br>
-
 The Preparation App REST API serves as the backend for the Preparation App, allowing users to authenticate, participate in themed sessions, and manage relevant data. Built with Node.js and Express, this API uses MongoDB for data storage, ensuring a secure and efficient backend solution.
 <br>
 <br>
@@ -41,3 +37,6 @@ The Preparation App REST API serves as the backend for the Preparation App, allo
 - <i class="fas fa-key text-lblue"></i> JWT for Authentication
 - <i class="fas fa-shield-alt text-lblue"></i> Helmet for Security
 - <i class="fas fa-ban text-lblue"></i> CSRF Protection
+
+<br>
+<a href="https://github.com/mdejesus23/prep-app" target="_black" class="text-lblue">Github Repo</a>

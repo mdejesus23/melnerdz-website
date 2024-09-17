@@ -25,12 +25,6 @@ repo: 'https://github.com/mdejesus23/jay-mikka-wedding'
 shortDesc: Welcome to the Wedding of the Year website, crafted with Astro SSG. Every design element, including the custom logo, reflects my vision for an engaging guest experience.
 ---
 
-<a href="https://jayandmikka-wedding.netlify.app/" target="_blank" class="text-lblue">Live site</a>
-<br>
-<a href="https://github.com/mdejesus23/jay-mikka-wedding" target="_blank"  class="text-lblue">Github Repo</a>
-<br>
-<br>
-
 Welcome to the **Wedding of the Year** website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests.
 <br>
 <br>
@@ -45,3 +39,9 @@ Welcome to the **Wedding of the Year** website, a digital celebration meticulous
 - **<i class="fas fa-images text-lblue"></i> Carousel on "Our Story" Page:** A dynamic carousel is included on the "Our Story" page, presenting the couple's history in a visually appealing way.
 
 Explore and enjoy the celebration of this special occasion through the features and design elements that make this website unique and memorable.
+
+<a href="https://jayandmikka-wedding.netlify.app/" target="_blank" class="text-lblue">Live Site</a>
+<br>
+<a href="https://github.com/mdejesus23/jay-mikka-wedding" target="_blank"  class="text-lblue">Github Repo</a>
+<br>
+<br>

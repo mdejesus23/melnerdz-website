@@ -28,12 +28,6 @@ shortDesc: Full-stack web app for our church to streamline preparation for
   and secure data handling
 ---
 
-<a href="https://preparation-app.onrender.com/" target="_blank" class="text-lblue">Live site</a>
-<br>
-<a href="https://github.com/mdejesus23/preparation-app" target="_blank" class="text-lblue">Github Repo</a>
-<br>
-<br>
-
 I've developed a simple **Preparation App** for our church organization. This full-stack web application is designed to streamline the process of preparation for various church activities.
 <br>
 <br>
@@ -59,3 +53,9 @@ I've developed a simple **Preparation App** for our church organization. This fu
     <br>
     <br>
     This app serves as a helpful tool for our church community, simplifying the preparation process while ensuring secure and efficient management of user data.
+
+<a href="https://preparation-app.onrender.com/" target="_blank" class="text-lblue">Live Site</a>
+<br>
+<a href="https://github.com/mdejesus23/preparation-app" target="_blank" class="text-lblue">Github Repo</a>
+<br>
+<br>
