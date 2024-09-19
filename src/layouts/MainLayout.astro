@@ -1,6 +1,8 @@
 ---
 import MainHead from '../components/MainHead.astro';
-import Header from '../components/Header.astro';
+// import Header from '../components/Header.astro';
+
+import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.astro';
 
 // fonts
@@ -24,8 +26,8 @@ const { title, description } = Astro.props;
 <html lang="en">
   <MainHead title={title} description={description} />
   <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
-    <Header />
-    <main class="mx-auto my-10 min-h-screen max-w-5xl px-3 md:my-20 xl:px-0">
+    <Header client:load />
+    <main class="mx-auto my-10 min-h-screen max-w-5xl px-5 md:my-20 xl:px-0">
       <slot />
     </main>
     <Footer />
