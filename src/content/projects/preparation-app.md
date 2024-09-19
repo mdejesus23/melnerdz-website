@@ -5,7 +5,7 @@ author: Melnard De Jesus
 image:
   src: './images/prepApp.jpg'
   alt: 'A person coding on a laptop'
-description: I've developed a simple Preparation App for our church organization. This full-stack web application is designed to streamline the process of preparation for various church activities. Below are some of the key features of the app
+description: A full-stack web application for managing Bible themes within our church. It offers secure CRUD functionality, allowing users to create, update, and explore themes in a collaborative environment.
 slug: preparation-app
 tags: ['coding', 'tips', 'technology']
 technology:

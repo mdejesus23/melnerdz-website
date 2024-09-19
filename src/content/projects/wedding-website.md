@@ -5,7 +5,7 @@ author: Melnard De Jesus
 image:
   src: './images/wedding.JPG'
   alt: 'A beautiful wedding scene'
-description: Welcome to the Wedding of the Year website, a digital celebration meticulously crafted using the Astro SSG framework. Every design element and layout, including the custom logo, reflects my vision and creativity. This website is built to provide a seamless and engaging experience for guests.
+description: Welcome to the Wedding of the Year website, designed to provide guests with a seamless and creative experience.
 technology:
   - src: './tech/astro.svg'
     alt: 'Astro logo'

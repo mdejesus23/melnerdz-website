@@ -5,7 +5,7 @@ author: Melnard De Jesus
 image:
   src: './images/accolade.JPG'
   alt: 'A person coding on a laptop'
-description: I developed the Accolade AI website for a client using the Astro framework, TypeScript, and CSS with BEM methodology, with a focus on technical SEO and creating a modern, responsive, and user-friendly web presence.
+description: I developed the Accolade AI website for a client using the Astro framework, with a focus on technical SEO and creating a modern, responsive, and user-friendly web presence.
 slug: accolade-ai
 tags: ['coding', 'tips', 'technology']
 technology:
