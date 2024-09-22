@@ -1,6 +1,6 @@
 ---
 title: Blog and Newsarticle Website
-pubDate: 2024-04-15
+pubDate: 2024-09-20
 author: Melnard De Jesus
 image:
   src: './images/accolade.JPG'
