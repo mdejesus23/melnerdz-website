@@ -10,7 +10,7 @@
 // };
 
 // netlify/functions/log-ip.js
-export const handler = async (event, context) => {
+export const handler = async (event) => {
   // Get the visitor's IP address from the request headers
   const visitorIp =
     event.headers['x-nf-client-connection-ip'] ||
