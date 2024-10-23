@@ -1,7 +1,8 @@
 ---
-import MainLayout from './MainLayout.astro';
-import type { Project } from '../types/dataTypes';
 import { Image } from 'astro:assets';
+import type { Project } from '../types/dataTypes';
+import MainLayout from './MainLayout.astro';
+import Prose from '../components/Prose.astro';
 
 interface Props {
   project: Project;
@@ -17,27 +18,17 @@ const description: string = project.description;
     <h1 class="text-center font-headfont text-3xl font-bold">
       {title}
     </h1>
-    <div class="mx-auto mt-8 max-w-prose">
-      <figure class="aspect-w-3 aspect-h-2">
-        <Image src={project.image.src} alt={project.image.alt} />
+    <div class="mx-auto mt-8 flex max-w-prose flex-col gap-5">
+      <figure class="h-auto w-full overflow-hidden rounded-md">
+        <Image
+          class="h-[400px] w-full object-cover"
+          src={project.image.src}
+          alt={project.image.alt}
+        />
       </figure>
-      <article class="mt-8 text-base font-medium leading-8 text-projectDesc">
+      <Prose>
         <slot />
-      </article>
+      </Prose>
     </div>
   </section>
-
-  <style>
-    li {
-      list-style: disc;
-    }
-
-    a {
-      text-decoration: underline;
-    }
-
-    p {
-      font-size: 80px;
-    }
-  </style>
 </MainLayout>

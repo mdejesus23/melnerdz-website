@@ -2,21 +2,30 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
-    extend: {},
-    colors: {
-      transparent: 'transparent',
-      current: 'currentColor',
-      white: '#f4edea',
-      pblue: '#12263a',
-      lblue: '#06bcc1',
-      lorange: '#f4d1ae',
-      project: '#1e293b',
-      projectDesc: '#a3b8cc',
-    },
-    fontFamily: {
-      logofont: ['Pacifico', 'cursive;'],
-      headfont: ['Montagu Slab Variable', 'serif;'],
-      bodyfont: ['Open Sans Variable', 'sans-serif;'],
+    extend: {
+      colors: {
+        transparent: 'transparent',
+        current: 'currentColor',
+        white: 'var(--color-white)',
+        pblue: 'var(--color-pblue)',
+        lblue: 'var(--color-lblue)',
+        lorange: 'var(--color-lorange)',
+        project: 'var(--color-project)',
+        projectDesc: 'var(--color-projectDesc)',
+      },
+      fontFamily: {
+        logofont: ['var(--font-logofont)'],
+        headfont: ['var(--font-headfont)'],
+        bodyfont: ['var(--font-bodyfont)'],
+      },
+
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            maxWidth: '80ch',
+          },
+        },
+      }),
     },
     screens: {
       xs: '480px', // Extra small screens
@@ -28,5 +37,5 @@ export default {
       '3xl': '1920px', // Custom 3x large screens
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 };

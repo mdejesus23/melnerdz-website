@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-white: #f4edea;
+    --color-pblue: #12263a;
+    --color-lblue: #06bcc1;
+    --color-lorange: #f4d1ae;
+    --color-project: #1e293b;
+    --color-projectDesc: #a3b8cc;
+
+    --font-logofont: 'Pacifico', cursive;
+    --font-headfont: 'Montagu Slab Variable', serif;
+    --font-bodyfont: 'Open Sans Variable', sans-serif;
+  }
+}
