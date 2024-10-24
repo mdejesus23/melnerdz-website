@@ -62,7 +62,7 @@ const projectList = page.data;
         projectList.map((project) => (
           <a
             href={`/projects/${project.slug}`}
-            class="cursor-pointer overflow-hidden rounded-sm bg-project hover:translate-y-1"
+            class="shadow-projectCard cursor-pointer overflow-hidden rounded-sm bg-project transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
           >
             <figure class="aspect-w-3 aspect-h-2">
               <Image
@@ -71,8 +71,8 @@ const projectList = page.data;
                 alt={project.data.image.alt}
               />
             </figure>
-            <article class="mt-4 flex flex-col items-center justify-center">
-              <h2 class="font-headfont text-xl font-bold text-white hover:text-lblue">
+            <article class="flex flex-col items-center justify-center px-4 py-6">
+              <h2 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
                 {project.data.title}
               </h2>
               <p class="mx-1 mt-3 text-left font-medium text-projectDesc">

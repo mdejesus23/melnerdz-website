@@ -19,9 +19,11 @@ const description: string = project.description;
       {title}
     </h1>
     <div class="mx-auto mt-8 flex max-w-prose flex-col gap-5">
-      <figure class="h-auto w-full overflow-hidden rounded-md">
+      <figure
+        class="flex h-full w-full justify-center overflow-hidden rounded-md"
+      >
         <Image
-          class="h-[400px] w-full object-cover"
+          class="h-60 w-80 object-cover md:h-96 md:w-full"
           src={project.image.src}
           alt={project.image.alt}
         />

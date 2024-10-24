@@ -18,7 +18,10 @@ export default {
         headfont: ['var(--font-headfont)'],
         bodyfont: ['var(--font-bodyfont)'],
       },
-
+      boxShadow: {
+        projectCard:
+          '0 4px 8px rgba(6, 188, 193, 0.3), 0 2px 4px rgba(18, 38, 58, 0.2)',
+      },
       typography: () => ({
         DEFAULT: {
           css: {
