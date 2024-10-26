@@ -6,7 +6,7 @@ function Header() {
 
   return (
     <>
-      <header className="mx-auto flex w-full max-w-5xl items-center justify-between bg-transparent px-4 py-4 xl:px-0">
+      <header className="mx-auto flex w-full max-w-5xl items-center justify-between bg-transparent px-6 py-4 xl:px-0">
         <a
           href="/"
           className="flex flex-row items-end gap-x-1 font-headfont text-2xl font-bold tracking-wide xs:text-3xl"

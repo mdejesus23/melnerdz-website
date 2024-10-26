@@ -62,11 +62,11 @@ const projectList = page.data;
         projectList.map((project) => (
           <a
             href={`/projects/${project.slug}`}
-            class="shadow-projectCard cursor-pointer overflow-hidden rounded-sm bg-project transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
+            class="cursor-pointer overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
           >
             <figure class="aspect-w-3 aspect-h-2">
               <Image
-                class="h-64 w-full sm:h-64 md:h-52"
+                class="h-60 w-full sm:h-64 md:h-52"
                 src={project.data.image.src}
                 alt={project.data.image.alt}
               />
