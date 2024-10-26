@@ -22,17 +22,17 @@ const allProjects: CollectionEntry<'projects'>[] = (
     {
       allProjects.map((project) => (
         // project card
-        <li class="shadow-projectCard flex flex-col items-center gap-x-8 gap-y-8 overflow-hidden rounded-md bg-project p-3 transition-transform duration-300 hover:translate-y-1 hover:shadow-lg md:flex-row">
-          <figure class="flex w-full shrink-0 cursor-pointer items-center justify-center hover:translate-y-1 sm:h-96 sm:w-3/5 md:h-44 md:w-44">
+        <li class="flex flex-col items-center gap-x-8 gap-y-8 overflow-hidden rounded-md bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg sm:flex-row sm:p-3">
+          <figure class="flex w-full shrink-0 cursor-pointer items-center justify-center hover:translate-y-1 sm:h-44 sm:w-44">
             <a href={`/projects/${project.slug}`}>
               <Image
-                class="h-44 w-[230px] md:h-44 md:w-full"
+                class="h-64 w-full sm:h-44 sm:w-full"
                 src={project.data.image.src}
                 alt={project.data.image.alt}
               />
             </a>
           </figure>
-          <article>
+          <article class="p-3 md:p-0">
             <div class="flex flex-col items-center gap-x-5 gap-y-5 md:flex-row">
               <a href={`/projects/${project.slug}`}>
                 <h3 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
