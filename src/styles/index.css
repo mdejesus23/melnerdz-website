@@ -15,4 +15,45 @@
     --font-headfont: 'Montagu Slab Variable', serif;
     --font-bodyfont: 'Open Sans Variable', sans-serif;
   }
+
+  h1 {
+    @apply text-3xl; /* Default font size */
+  }
+
+  h2 {
+    @apply text-2xl; /* Default font size */
+  }
+
+  h3 {
+    @apply text-xl; /* Default font size */
+  }
+
+  @media (min-width: 768px) {
+    h1 {
+      @apply text-4xl; /* Larger font size for medium screens */
+    }
+
+    h2 {
+      @apply text-3xl; /* Larger font size for medium screens */
+    }
+
+    h3 {
+      @apply text-2xl; /* Larger font size for medium screens */
+    }
+
+    .prose h1 {
+      @apply text-4xl;
+    }
+    .prose h2 {
+      @apply text-3xl;
+    }
+
+    .prose h3 {
+      @apply text-2xl;
+    }
+    .prose p,
+    .prose li {
+      @apply text-lg;
+    }
+  }
 }
