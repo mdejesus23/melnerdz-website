@@ -17,7 +17,7 @@ technology:
     alt: 'JavaScript logo'
   - src: './tech/typescript.svg'
     alt: 'TypeScript logo'
-link: 'https://development.studentathletezone.com/'
+link: 'https://studentathletezone.com/'
 repo: 'https://github.com/mdejesus23'
 shortDesc: I developed the Student Athlete Zone for a client.
 ---
