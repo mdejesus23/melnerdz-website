@@ -8,30 +8,26 @@ interface Props {
   prev?: string;
 }
 
-const { prev, next } = Astro.props;
+const { prev, next, currentPage, totalPages, disablePrevious, disableNext } =
+  Astro.props;
 ---
 
-<div class="mx-auto mt-20 flex w-80 justify-center gap-x-9">
-  {
-    prev && (
-      <a
-        href={prev}
-        href={prev}
-        class="cursor-pointer text-center font-semibold text-lblue"
-      >
-        PREVIOUS
-      </a>
-    )
-  }
-  {
-    next && (
-      <a
-        href={next}
-        href={next}
-        class="cursor-pointer text-center font-semibold text-lblue"
-      >
-        NEXT
-      </a>
-    )
-  }
+<div class="mx-auto mt-20 flex w-80 items-center justify-center gap-x-9">
+  <a
+    href={prev || '#'}
+    class={`cursor-pointer text-center font-semibold text-lblue ${disablePrevious ? 'pointer-events-none text-gray-400' : ''}`}
+    aria-disabled={disablePrevious}
+  >
+    PREVIOUS
+  </a>
+  <span class="text-center text-sm font-medium text-gray-600">
+    Page {currentPage} of {totalPages}
+  </span>
+  <a
+    href={next || '#'}
+    class={`cursor-pointer text-center font-semibold text-lblue ${disableNext ? 'pointer-events-none text-gray-400' : ''}`}
+    aria-disabled={disableNext}
+  >
+    NEXT
+  </a>
 </div>

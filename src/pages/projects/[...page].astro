@@ -1,12 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
 
 import MainLayout from '../../layouts/MainLayout.astro';
 import Pagination from '../../components/Pagination.astro';
 import Logo from '../../../public/logo.png';
-
+import type { CollectionEntry } from 'astro:content';
 import type { Page } from '../../types/dataTypes';
 
 interface Props {
@@ -34,6 +33,7 @@ const title: string = 'My Projects';
 const description: string = 'This is my project page.';
 
 const projectList = page.data;
+const totalPages = Math.ceil(page.total / 3);
 ---
 
 <MainLayout title={title} description={description}>
@@ -85,7 +85,7 @@ const projectList = page.data;
     </div>
     <Pagination
       currentPage={page.currentPage}
-      totalPages={2}
+      totalPages={totalPages}
       disablePrevious={page.url.prev === undefined}
       disableNext={page.url.next === undefined}
       next={page.url.next}

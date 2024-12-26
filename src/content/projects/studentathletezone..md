@@ -11,12 +11,14 @@ tags: ['coding', 'tips', 'technology']
 technology:
   - src: './tech/astro.svg'
     alt: 'Astro logo'
-  - src: './tech/html.svg'
-    alt: 'HTML logo'
   - src: './tech/js.svg'
     alt: 'JavaScript logo'
   - src: './tech/typescript.svg'
     alt: 'TypeScript logo'
+  - src: './tech/html.svg'
+    alt: 'HTML logo'
+  - src: './tech/tailwindcss.svg'
+    alt: 'tailwindcss logo'
 link: 'https://studentathletezone.com/'
 repo: 'https://github.com/mdejesus23'
 shortDesc: I developed the Student Athlete Zone for a client.
