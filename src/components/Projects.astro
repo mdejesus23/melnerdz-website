@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
-// projects md
+// Fetch projects data
 const allProjects: CollectionEntry<'projects'>[] = (
   await getCollection('projects')
 )
@@ -12,6 +12,37 @@ const allProjects: CollectionEntry<'projects'>[] = (
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   )
   .slice(0, 3);
+
+const getTechColor = (tech: string) => {
+  switch (tech.toLowerCase()) {
+    case 'mongodb':
+      return 'bg-green-600 text-white';
+    case 'express':
+      return 'bg-gray-700 text-white';
+    case 'react':
+      return 'bg-blue-500 text-white';
+    case 'node.js':
+      return 'bg-green-700 text-white';
+    case 'zustand':
+      return 'bg-indigo-600 text-white';
+    case 'react query':
+      return 'bg-teal-600 text-white';
+    case 'tailwindcss':
+      return 'bg-blue-700 text-white';
+    case 'jwt':
+      return 'bg-yellow-500 text-black';
+    case 'astrojs':
+      return 'bg-indigo-400 text-white';
+    case 'typescript':
+      return 'bg-blue-600 text-white';
+    case 'supabase':
+      return 'bg-green-500 text-white';
+    case 'netlify':
+      return 'bg-blue-800 text-white';
+    default:
+      return 'bg-gray-300 text-black'; // fallback for unknown techs
+  }
+};
 ---
 
 <section class="mt-10 min-h-full w-full md:mt-20">
@@ -21,7 +52,6 @@ const allProjects: CollectionEntry<'projects'>[] = (
   <ul class="flex flex-col gap-y-10">
     {
       allProjects.map((project) => (
-        // project card
         <li class="flex flex-col items-center gap-x-8 gap-y-8 overflow-hidden rounded-md bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg sm:flex-row sm:p-3">
           <figure class="flex w-full shrink-0 cursor-pointer items-center justify-center hover:translate-y-1 sm:h-44 sm:w-44">
             <a href={`/projects/${project.slug}`}>
@@ -39,10 +69,14 @@ const allProjects: CollectionEntry<'projects'>[] = (
                   {project.data.title}
                 </h3>
               </a>
-              <ul class="flex gap-x-1">
-                {project.data.technology.map((tech: any) => (
-                  <li class="h-9 w-9 cursor-pointer hover:translate-y-1">
-                    <Image src={tech.src} alt={tech.alt} />
+
+              {/* Tech stack */}
+              <ul class="flex max-w-[30rem] flex-wrap items-center justify-center gap-2">
+                {project.data.technology.map((tech) => (
+                  <li
+                    class={`rounded-full px-3 py-1 text-xs font-medium ${getTechColor(tech)}`}
+                  >
+                    {tech}
                   </li>
                 ))}
               </ul>

@@ -12,12 +12,7 @@ const projectsCollections = defineCollection({
         alt: z.string(),
       }),
       description: z.string(),
-      technology: z.array(
-        z.object({
-          src: image(), // image() is used to ensure valid image references
-          alt: z.string(),
-        }),
-      ),
+      technology: z.array(z.string()),
       tags: z.array(z.string()),
       link: z.string(),
       repo: z.string(),

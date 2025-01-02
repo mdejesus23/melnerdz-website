@@ -57,3 +57,7 @@
     }
   }
 }
+
+.prose strong {
+  color: #f4d1ae; /* Tailwind's blue-600 color */
+}

@@ -7,10 +7,7 @@ export interface Project {
     alt: string;
   };
   description: string;
-  technology: Array<{
-    src: any;
-    alt: string;
-  }>;
+  technology: string[];
   tags: string[];
 }
 
@@ -43,4 +40,3 @@ export interface Page<T = any> {
     last: string | undefined;
   };
 }
-

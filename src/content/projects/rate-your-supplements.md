@@ -8,15 +8,7 @@ image:
 description: Rate your supplements website is a SSR Astro website with integration of Supabase.
 slug: rate-your-supplements
 tags: ['coding', 'tips', 'technology']
-technology:
-  - src: './tech/astro.svg'
-    alt: 'Astro logo'
-  - src: './tech/typescript.svg'
-    alt: 'TypeScript logo'
-  - src: './tech/html.svg'
-    alt: 'HTML logo'
-  - src: './tech/tailwindcss.svg'
-    alt: 'tailwindcss logo'
+technology: ['Astro', 'Typescript', 'TailwindCSS', 'Supabase', 'Netlify']
 link: 'https://rateyoursupplements.com/'
 repo: ''
 shortDesc: Rate your supplements website is a SSR Astro website with integration of Supabase.
@@ -42,6 +34,6 @@ Rate Your Supplements is a cutting-edge SSR (Server-Side Rendered) website built
 
 ## Live Site and Repository:
 
-- Visit the live site: <a href="https://rateyoursupplements.com/" target="_blank" class="text-lblue"><u>Rate Your Supplements</u></a>
+Visit the live site: <a href="https://rateyoursupplements.com/" target="_blank" class="text-lblue"><u>Rate Your Supplements</u></a>
 
 This project showcases the potential of integrating modern frameworks like Astro with backend services like Supabase to create dynamic and scalable web applications.

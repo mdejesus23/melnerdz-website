@@ -8,15 +8,7 @@ image:
 description: I developed the Explore Family Chiropractic Website for a client converting their existing wordpress website to Astro to achieve faster LCP and better SEO result.💥
 slug: explore-family-chiropractic
 tags: ['coding', 'tips', 'technology']
-technology:
-  - src: './tech/astro.svg'
-    alt: 'Astro logo'
-  - src: './tech/html.svg'
-    alt: 'HTML logo'
-  - src: './tech/js.svg'
-    alt: 'JavaScript logo'
-  - src: './tech/typescript.svg'
-    alt: 'TypeScript logo'
+technology: [Astro, TaiwindCss, Typescript]
 link: 'https://dvmexplorefamilychiro.netlify.app/'
 repo: 'https://github.com/mdejesus23'
 shortDesc: I developed the Explore Family Chiropractic Website using Astro, TypeScript, TailwindCSS, Markdown file with Fastest LCP💥

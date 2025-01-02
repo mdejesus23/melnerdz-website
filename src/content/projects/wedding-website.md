@@ -6,19 +6,7 @@ image:
   src: './images/wedding.JPG'
   alt: 'A beautiful wedding scene'
 description: Welcome to the Wedding of the Year website, designed to provide guests with a seamless and creative experience.
-technology:
-  - src: './tech/astro.svg'
-    alt: 'Astro logo'
-  - src: './tech/html.svg'
-    alt: 'HTML logo'
-  - src: './tech/css.svg'
-    alt: 'CSS logo'
-  - src: './tech/js.svg'
-    alt: 'JavaScript logo'
-  - src: './tech/typescript.svg'
-    alt: 'TypeScript logo'
-  - src: './tech/react.svg'
-    alt: 'React logo'
+technology: ['Astro', 'Typescript', 'CSS', 'HTML', 'Preact']
 tags: ['coding', 'tips', 'technology']
 link: 'https://jayandmikka-wedding.netlify.app/'
 repo: 'https://github.com/mdejesus23/jay-mikka-wedding'
