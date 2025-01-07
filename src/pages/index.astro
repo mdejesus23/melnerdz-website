@@ -11,23 +11,4 @@ const description: string =
 <MainLayout title={title} description={description}>
   <Hero />
   <Projects />
-
-  <script>
-    // Call the Netlify serverless function to log the IP address
-    async function test() {
-      try {
-        const res = await fetch('/.netlify/functions/log-ip');
-        if (!res.ok) {
-          throw new Error('Error on fetching ip address!');
-        }
-        const data = await res.json();
-
-        console.log('data', data);
-      } catch (error) {
-        console.log(JSON.stringify(error));
-      }
-    }
-
-    test();
-  </script>
 </MainLayout>

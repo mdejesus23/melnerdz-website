@@ -5,9 +5,18 @@ author: Melnard De Jesus
 image:
   src: './images/preparation-app.jpg'
   alt: 'Preparation app login page'
-description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, and a responsive design.
+description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, and email notifications using SendGrid.
 slug: preparation-app
-tags: ['MERN', 'web development', 'technology', 'React', 'Node.js', 'REST API']
+tags:
+  [
+    'MERN',
+    'web development',
+    'technology',
+    'React',
+    'Node.js',
+    'REST API',
+    'SendGrid',
+  ]
 technology:
   [
     'MongoDB',
@@ -19,10 +28,11 @@ technology:
     'TailwindCSS',
     'JWT',
     'REST API',
+    'SendGrid',
   ]
 link: 'https://scriptures-app.netlify.app/'
 repo: 'https://github.com/mdejesus23/preparation-app'
-shortDesc: MERN stack web app for managing church preparation activities, featuring authentication, REST API integration, JWT-based security, and secure data handling.
+shortDesc: MERN stack web app for managing church preparation activities, featuring authentication, REST API integration, JWT-based security, SendGrid email notifications, and secure data handling.
 ---
 
 I've developed a full-stack <strong>Preparation App</strong> for our church organization, built using the **MERN stack**. This application streamlines preparation activities, making collaboration easier and more efficient.
@@ -47,9 +57,7 @@ I've developed a full-stack <strong>Preparation App</strong> for our church orga
 
 - <i class="fas fa-lock text-lblue"></i> JWT-Based Authentication: Authentication is enhanced with JSON Web Tokens (JWT), enabling secure, stateless user sessions and API communication.
 
-- <i class="fas fa-user-clock text-lblue"></i> Session Management: For seamless user experiences, session management is handled via Express-session with persistent cookies.
-
-- <i class="fas fa-shield-alt text-lblue"></i> Enhanced Security: Features like JWT, Content Security Policy (CSP) via Node Helmet, and CSRF protection add robust security layers.
+- <i class="fas fa-envelope text-lblue"></i> SendGrid Integration for Email Notifications: The app utilizes **SendGrid** to send automated email notifications for user actions such as account creation, password recovery, and other essential updates.
 
 - <i class="fas fa-user-check text-lblue"></i> Test Credentials for Easy Access:
 
@@ -61,6 +69,6 @@ I've developed a full-stack <strong>Preparation App</strong> for our church orga
 
 ## Explore the App
 
-- <i class="fas fa-globe text-lblue"></i> **Live Site**: [Preparation App](https://scriptures-app.netlify.app/)
-- <i class="fab fa-github text-lblue"></i> **React App Source Code**: [GitHub Repository](https://github.com/mdejesus23/themes-preparation-app)
-- <i class="fab fa-github text-lblue"></i> **REST API Source Code**: [GitHub Repository](https://github.com/mdejesus23/prep-app)
+- <i class="fas fa-globe text-lblue"></i> **Live Site**: <a href="https://scriptures-app.netlify.app/" target="_blank">Preparation App</a>
+- <i class="fab fa-github text-lblue"></i> **React App Source Code**: <a href="https://github.com/mdejesus23/themes-preparation-app" target="_blank">GitHub Repository</a>
+- <i class="fab fa-github text-lblue"></i> **REST API Source Code**: <a href="https://github.com/mdejesus23/prep-app" target="_blank">GitHub Repository</a>
