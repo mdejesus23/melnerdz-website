@@ -7,6 +7,7 @@ import Pagination from '../../components/Pagination.astro';
 import Logo from '../../../public/logo.png';
 import type { CollectionEntry } from 'astro:content';
 import type { Page } from '../../types/dataTypes';
+import { SITE, ISPARTOF } from '../../data/constant';
 
 interface Props {
   page: Page;
@@ -29,14 +30,27 @@ export async function getStaticPaths({ paginate }: any) {
 
 // All paginated data is passed on the "page" prop
 const { page } = Astro.props;
-const title: string = 'My Projects';
+const title: string = `My Projects | ${SITE.title}`;
 const description: string = 'This is my project page.';
 
 const projectList = page.data;
 const totalPages = Math.ceil(page.total / 3);
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout
+  title={title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://melnerdz.com/projects',
+    url: 'https://melnerdz.com/projects',
+    name: 'My Projects | Melnerdz website',
+    description: description,
+    isPartOf: ISPARTOF,
+    inLanguage: 'en-US',
+  }}
+  meta={description}
+>
   <section>
     <h1
       class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"

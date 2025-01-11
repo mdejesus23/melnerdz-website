@@ -1,13 +1,27 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { SITE, ISPARTOF } from '../data/constant';
 
-const title: string = 'Contact Me';
+const title: string = `Contact Us | ${SITE.title}`;
 const description: string =
   'Contact page. Send me a message for any inquiries or job offer.';
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout
+  title={title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://melnerdz.com/contact',
+    url: 'https://melnerdz.com/contact',
+    name: 'Contact Us | Melnerdz website',
+    description: description,
+    isPartOf: ISPARTOF,
+    inLanguage: 'en-US',
+  }}
+  meta={description}
+>
   <section>
     <h1
       class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"

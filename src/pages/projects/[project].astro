@@ -24,6 +24,6 @@ const project: Project = entry.data; // ensure the data conforms to the Project 
 const { Content } = await entry.render();
 ---
 
-<MarkdownProjectLayout project={project}>
+<MarkdownProjectLayout slug={entry.slug} project={project}>
   <Content />
 </MarkdownProjectLayout>

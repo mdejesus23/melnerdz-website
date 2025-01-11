@@ -40,6 +40,6 @@ Rate Your Supplements is a cutting-edge SSR (Server-Side Rendered) website built
 
 ## Live Site:
 
-Visit the live site: <a href="https://development.rateyoursupplements.com/" target="_blank" class="text-lblue"><u>Rate Your Supplements</u></a>
+Visit the live site: <a href="https://rateyoursupplements.com/" target="_blank" class="text-lblue"><u>Rate Your Supplements</u></a>
 
 This project showcases the potential of integrating modern frameworks like Astro with backend services like Supabase to create dynamic, scalable, and high-performance web applications. The combination of advanced caching, ISR, and server-side pagination ensures that the application handles both a large dataset and user traffic efficiently.

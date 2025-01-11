@@ -1,17 +1,22 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import Meta from './Meta.astro';
 
 // component imports
-import Seo from './Seo.astro';
+// import Seo from './Seo.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  meta?: string;
+  structuredData?: object;
 }
 
 const {
   title = 'Melnerdz Website',
   description = 'A versatile Full-Stack Web Developer with deep expertise in HTML, CSS, JavaScript, and hands-on experience with Node.js, Express.js, React, and Astro.',
+  meta,
+  structuredData,
 } = Astro.props;
 ---
 
@@ -34,5 +39,6 @@ const {
   <meta name="description" content={description} />
   <title>{title}</title>
 
-  <Seo title={title} description={description} url={Astro.url} />
+  <!-- Adding metadata to the HTML document -->
+  <Meta meta={meta} structuredData={structuredData} />
 </head>

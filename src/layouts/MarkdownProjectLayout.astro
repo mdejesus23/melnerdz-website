@@ -3,20 +3,35 @@ import { Image } from 'astro:assets';
 import type { Project } from '../types/dataTypes';
 import MainLayout from './MainLayout.astro';
 import Prose from '../components/Prose.astro';
+import { SITE, ISPARTOF } from '../data/constant';
 
 interface Props {
   project: Project;
+  slug: string;
 }
 
-const { project }: Props = Astro.props;
-const title: string = project.title;
+const { project, slug }: Props = Astro.props;
+const title: string = `${project.title} | ${SITE.title}`;
 const description: string = project.description;
 ---
 
-<MainLayout title={title} description={description}>
+<MainLayout
+  title={title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `https://melnerdz.com/projects/${slug}`,
+    url: `https://melnerdz.com/projects/${slug}`,
+    name: `${project.title} | Melnerdz website`,
+    description: description,
+    isPartOf: ISPARTOF,
+    inLanguage: 'en-US',
+  }}
+  meta={description}
+>
   <section class="mx-auto max-w-screen-lg py-6">
     <h1 class="text-center font-headfont text-3xl font-bold">
-      {title}
+      {project.title}
     </h1>
     <div class="mx-auto mt-8 flex max-w-prose flex-col gap-5">
       <figure
