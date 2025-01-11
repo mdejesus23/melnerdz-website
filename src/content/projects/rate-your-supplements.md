@@ -5,13 +5,13 @@ author: Melnard De Jesus
 image:
   src: './images/rateyoursupplements.jpg'
   alt: 'A person coding on a laptop'
-description: Rate your supplements website is a SSR Astro website with integration of Supabase.
+description: Rate Your Supplements is a powerful SSR Astro website integrated with Supabase, enabling users to review and rate supplements. Featuring a vast database of over 200,000 supplement records, advanced caching, server-side pagination, and responsive design with TailwindCSS, this platform delivers a seamless, secure, and high-performance user experience.
 slug: rate-your-supplements
 tags: ['coding', 'tips', 'technology']
 technology: ['Astro', 'TypeScript', 'TailwindCSS', 'Supabase', 'Netlify']
 link: 'https://rateyoursupplements.com/'
 repo: ''
-shortDesc: Rate your supplements website is a SSR Astro website with integration of Supabase.
+shortDesc: Rate Your Supplements is a powerful SSR Astro website integrated with Supabase, enabling users to review and rate supplements. Featuring a vast database of over 200,000 supplement records, advanced caching, server-side pagination, and responsive design with TailwindCSS, this platform delivers a seamless, secure, and high-performance user experience.
 ---
 
 Rate Your Supplements is a cutting-edge SSR (Server-Side Rendered) website built using the Astro framework, seamlessly integrated with Supabase for efficient data management and backend services. This platform allows users to rate and review their supplements, ensuring a comprehensive and user-friendly experience. The database houses over **200,000 supplement records**, providing a vast resource for users.
