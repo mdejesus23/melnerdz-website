@@ -54,7 +54,7 @@ const getTechColor = (tech: string) => {
       allProjects.map((project) => (
         <li class="grid cursor-pointer items-center overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg md:grid-cols-[13rem_1fr] md:flex-row md:gap-4 md:p-4">
           <figure class="aspect-w-3 aspect-h-2">
-            <a href={`/projects/${project.slug}`}>
+            <a href={`/projects/${project.id}`}>
               <Image
                 class="h-60 w-full sm:h-64 md:h-52"
                 src={project.data.image.src}
@@ -64,7 +64,7 @@ const getTechColor = (tech: string) => {
           </figure>
           <article class="p-3 md:p-0">
             <div class="flex flex-col items-center gap-x-5 gap-y-5 md:flex-row">
-              <a href={`/projects/${project.slug}`}>
+              <a href={`/projects/${project.id}`}>
                 <h3 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
                   {project.data.title}
                 </h3>

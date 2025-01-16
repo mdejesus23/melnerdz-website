@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import type { Project } from '../../types/dataTypes';
-
+import { render } from 'astro:content';
 import MarkdownProjectLayout from '../../layouts/MarkdownProjectLayout.astro';
 
 export async function getStaticPaths() {
@@ -14,16 +14,16 @@ export async function getStaticPaths() {
   );
 
   return allProjects.map((entry) => ({
-    params: { project: entry.slug },
+    params: { id: entry.id },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
 const project: Project = entry.data; // ensure the data conforms to the Project interface
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 ---
 
-<MarkdownProjectLayout slug={entry.slug} project={project}>
+<MarkdownProjectLayout slug={entry.id} project={project}>
   <Content />
 </MarkdownProjectLayout>
