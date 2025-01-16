@@ -1,12 +1,12 @@
 ---
-title: Preparation App
+title: Bible themes App
 pubDate: 2024-12-31
 author: Melnard De Jesus
 image:
   src: './images/preparation-app.jpg'
-  alt: 'Preparation app login page'
+  alt: 'Bible themes app login page'
 description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, and email notifications using SendGrid.
-slug: preparation-app
+slug: bible-themes-app
 tags:
   [
     'MERN',
@@ -32,10 +32,10 @@ technology:
   ]
 link: 'https://scriptures-app.netlify.app/'
 repo: 'https://github.com/mdejesus23/preparation-app'
-shortDesc: MERN stack web app for managing church preparation activities, featuring authentication, REST API integration, JWT-based security, SendGrid email notifications, and secure data handling.
+shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, SendGrid email notifications, and secure data handling.
 ---
 
-I've developed a full-stack <strong>Preparation App</strong> for our church organization, built using the **MERN stack**. This application streamlines preparation activities, making collaboration easier and more efficient.
+I've developed a full-stack <strong>Bible themes App</strong> for our church organization, built using the **MERN stack**. This application streamlines bible themes activities, making collaboration easier and more efficient.
 
 ## Features:
 
@@ -69,6 +69,6 @@ I've developed a full-stack <strong>Preparation App</strong> for our church orga
 
 ## Explore the App
 
-- <i class="fas fa-globe text-lblue"></i> **Live Site**: <a href="https://scriptures-app.netlify.app/" target="_blank">Preparation App</a>
+- <i class="fas fa-globe text-lblue"></i> **Live Site**: <a href="https://scriptures-app.netlify.app/" target="_blank">Bible themes app</a>
 - <i class="fab fa-github text-lblue"></i> **React App Source Code**: <a href="https://github.com/mdejesus23/themes-preparation-app" target="_blank">GitHub Repository</a>
 - <i class="fab fa-github text-lblue"></i> **REST API Source Code**: <a href="https://github.com/mdejesus23/prep-app" target="_blank">GitHub Repository</a>
