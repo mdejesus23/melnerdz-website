@@ -1,6 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "removeComments": true,
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   }

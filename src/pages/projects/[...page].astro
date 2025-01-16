@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-
 import MainLayout from '../../layouts/MainLayout.astro';
 import Pagination from '../../components/Pagination.astro';
 import Logo from '../../../public/logo.png';
 import type { CollectionEntry } from 'astro:content';
 import type { Page } from '../../types/dataTypes';
 import { SITE, ISPARTOF } from '../../data/constant';
+import turncateString from '../../utils/turncateString';
 
 interface Props {
   page: Page;
@@ -55,8 +55,7 @@ const totalPages = Math.ceil(page.total / 3);
     <h1
       class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"
     >
-      <Image class="ml-3 mr-1" src={Logo} alt="logo image" width={35} />
-      y Project
+      My Project
     </h1>
 
     <p class="mt-6 hidden text-center font-medium text-white md:block">
@@ -74,26 +73,28 @@ const totalPages = Math.ceil(page.total / 3);
     >
       {
         projectList.map((project) => (
-          <a
-            href={`/projects/${project.slug}`}
-            class="cursor-pointer overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
-          >
-            <figure class="aspect-w-3 aspect-h-2">
-              <Image
-                class="h-60 w-full sm:h-64 md:h-52"
-                src={project.data.image.src}
-                alt={project.data.image.alt}
-              />
-            </figure>
-            <article class="flex flex-col items-center justify-center px-4 py-6">
-              <h2 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
-                {project.data.title}
-              </h2>
-              <p class="mx-1 mt-3 text-left font-medium text-projectDesc">
-                {project.data.shortDesc}
-              </p>
-            </article>
-          </a>
+          <li class="cursor-pointer list-none overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg">
+            <a
+              href={`/projects/${project.slug}`}
+              class="cursor-pointer overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
+            >
+              <figure class="aspect-w-3 aspect-h-2">
+                <Image
+                  class="h-60 w-full sm:h-64 md:h-52"
+                  src={project.data.image.src}
+                  alt={project.data.image.alt}
+                />
+              </figure>
+              <article class="flex flex-col items-center justify-center px-2 py-6">
+                <h2 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
+                  {project.data.title}
+                </h2>
+                <p class="mx-1 mt-3 text-left font-medium text-projectDesc">
+                  {turncateString(project.data.shortDesc, 150)}
+                </p>
+              </article>
+            </a>
+          </li>
         ))
       }
     </div>
