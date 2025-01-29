@@ -9,6 +9,11 @@ function MobileNav() {
             </a>
           </li>
           <li className="py-2 font-medium text-white">
+            <a href="/blogs" class="hover:text-lblue">
+              Blogs
+            </a>
+          </li>
+          <li className="py-2 font-medium text-white">
             <a href="/contact" class="hover:text-lblue">
               Contact
             </a>

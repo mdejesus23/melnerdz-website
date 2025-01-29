@@ -1,11 +1,18 @@
+---
+import NewsletterForm from './forms/NewsletterFrom';
+import Divider from './ui/Divider.astro';
+---
+
+<Divider />
 <footer
-  class="mx-auto max-w-5xl bg-transparent px-3 py-8 text-sm text-white xl:px-0"
+  class="item mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 bg-transparent px-3 pb-10 text-sm text-white md:flex-row xl:px-0"
 >
-  <div class="border-gray-600 border-t pt-5">
+  <div class="">
     Copyright &copy; <span id="copyright"></span> Created By <span
       class="font-semibold text-lblue">melnerdz.com</span
     >
   </div>
+  <NewsletterForm />
 </footer>
 
 <script>

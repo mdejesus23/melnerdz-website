@@ -13,21 +13,19 @@ interface Props {
 }
 
 export async function getStaticPaths({ paginate }: any) {
-  const PROJECT_PER_PAGE: number = 3;
+  const PROJECT_PER_PAGE: number = 6;
   const posts = await getCollection('blog');
-  // Return a paginated collection of paths
   return paginate(posts || [], {
     pageSize: PROJECT_PER_PAGE,
   });
 }
 
-// All paginated data is passed on the "page" prop
 const { page } = Astro.props;
 const title: string = `Articles | ${SITE.title}`;
-const description: string = 'This is my article page.';
+const description: string = 'Explore my latest articles and insights.';
 
 const articles = page.data;
-const totalPages = Math.ceil(page.total / 3);
+const totalPages = Math.ceil(page.total / 6);
 ---
 
 <MainLayout
@@ -35,60 +33,62 @@ const totalPages = Math.ceil(page.total / 3);
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com/projects',
-    url: 'https://melnerdz.com/projects',
-    name: 'My Projects | Melnerdz website',
+    '@id': 'https://melnerdz.com/blog',
+    url: 'https://melnerdz.com/blog',
+    name: 'Blog | Melnerdz website',
     description: description,
     isPartOf: ISPARTOF,
     inLanguage: 'en-US',
   }}
   meta={description}
 >
-  <section>
+  <section class="container mx-auto px-4">
     <h1
-      class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"
+      class="text-center font-headfont text-4xl font-bold text-white md:text-5xl"
     >
-      Welcome to my Blog
+      Welcome to My Blog
     </h1>
 
-    <p class="mt-6 text-center font-medium text-white md:hidden">
-      Here are some of my articles. Click on the title to read more.
+    <p class="mt-4 text-center text-lg text-gray-300 md:block">
+      Read my latest insights and technical articles. Click on a title to learn
+      more.
     </p>
 
-    <div
-      class="mt-12 grid grid-cols-1 gap-6 gap-y-9 sm:grid-cols-2 md:grid-cols-3"
-    >
+    <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         articles.map((article) => (
-          <li class="cursor-pointer list-none overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg">
-            <a
-              href={`/projects/${article.id}`}
-              class="cursor-pointer overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
-            >
-              <figure>
+          <li class="flex flex-col gap-y-2 overflow-hidden rounded-md bg-project shadow-projectCard">
+            <a href={`/blog/${article.id}`} class="block">
+              <figure class="">
                 <Image
-                  class="h-48 w-full object-cover"
+                  class="h-56 w-full object-cover"
                   src={article.data.image.src}
                   alt={article.data.image.alt}
                 />
               </figure>
-              <article class="flex flex-col items-center justify-center px-2 py-6">
-                <h2 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
-                  {article.data.title}
-                </h2>
+              <article class="flex flex-col gap-y-2 p-2">
+                <h3 class="text-xl font-bold text-gray-200">
+                  <a href={`/blogs/${article.id}`}>{article.data.title}</a>
+                </h3>
+                <p class="text-gray-400">{article.data.description}</p>
               </article>
             </a>
           </li>
         ))
       }
-    </div>
-    <!-- <Pagination
-      currentPage={page.currentPage}
-      totalPages={totalPages}
-      disablePrevious={page.url.prev === undefined}
-      disableNext={page.url.next === undefined}
-      next={page.url.next}
-      prev={page.url.prev}
-    /> -->
+    </ul>
+
+    {
+      totalPages > 1 && (
+        <Pagination
+          currentPage={page.currentPage}
+          totalPages={totalPages}
+          disablePrevious={!page.url.prev}
+          disableNext={!page.url.next}
+          next={page.url.next}
+          prev={page.url.prev}
+        />
+      )
+    }
   </section>
 </MainLayout>

@@ -50,6 +50,11 @@ function Header() {
                   </a>
                 </li>
                 <li>
+                  <a href="/blogs" class="hover:text-lblue">
+                    Blogs
+                  </a>
+                </li>
+                <li>
                   <a href="/contact" class="hover:text-lblue">
                     Contact
                   </a>
