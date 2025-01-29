@@ -23,7 +23,7 @@ const latestBlogs: CollectionEntry<'blog'>[] = (await getCollection('blog'))
         latestBlogs.map((blog) => (
           <li class="flex flex-col gap-y-2 rounded-md bg-project shadow-projectCard">
             <a href={`/blogs/${blog.id}`}>
-              <figure class="aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
+              <figure class="aspect-w-3 aspect-h-2 overflow-hidden">
                 <Image
                   class="h-60 w-full sm:h-64 md:h-52"
                   src={blog.data.image.src}

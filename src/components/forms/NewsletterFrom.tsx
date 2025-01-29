@@ -1,34 +1,57 @@
 import { useState } from 'preact/hooks';
+import Toast from '../ui/Toast';
 
-interface NewsletterFormProps {}
+interface ToastMessage {
+  id: string;
+  type: 'success' | 'error' | 'info';
+  message: string;
+}
 
-export default function NewsletterForm({}: NewsletterFormProps) {
+export default function NewsletterForm() {
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [toasts, setToasts] = useState<ToastMessage[]>([]);
+
+  const addToast = (message: string, type: 'success' | 'error' | 'info') => {
+    const id = crypto.randomUUID();
+    setToasts((prev) => [...prev, { id, message, type }]);
+  };
+
+  const removeToast = (id: string) => {
+    setToasts((prev) => prev.filter((toast) => toast.id !== id));
+  };
 
   const handleSubmit = async (e: Event) => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
 
-    try {
-      const response = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setMessage('🎉 Subscription successful!');
-        setEmail('');
-      } else {
-        setMessage(data.error || '⚠️ Subscription failed.');
-      }
-    } catch (error) {
-      setMessage('❌ An error occurred. Please try again.');
+    if (!email) {
+      setMessage('⚠️ Please enter a valid email address.');
+      setLoading(false);
+      return;
     }
+
+    addToast('⚠️ This feature is under development..', 'info');
+
+    // try {
+    //   const response = await fetch('/api/subscribe', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({ email }),
+    //   });
+
+    //   const data = await response.json();
+    //   if (response.ok) {
+    //     setMessage('🎉 Subscription successful!');
+    //     setEmail('');
+    //   } else {
+    //     setMessage(data.error || '⚠️ Subscription failed.');
+    //   }
+    // } catch (error) {
+    //   setMessage('❌ An error occurred. Please try again.');
+    // }
 
     setLoading(false);
   };
@@ -37,7 +60,7 @@ export default function NewsletterForm({}: NewsletterFormProps) {
     <div class="w-full">
       <form
         onSubmit={handleSubmit}
-        class="items-centerrounded-md flex w-full rounded-lg bg-project p-2 shadow-projectCard"
+        class="items-centerrounded-md flex w-full rounded-md bg-project p-2"
       >
         <input
           type="email"
@@ -45,7 +68,6 @@ export default function NewsletterForm({}: NewsletterFormProps) {
           placeholder="Enter your email"
           value={email}
           onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-          required
         />
         <button
           type="submit"
@@ -54,8 +76,18 @@ export default function NewsletterForm({}: NewsletterFormProps) {
         >
           {loading ? 'Subscribing...' : 'Subscribe'}
         </button>
-        {message && <p class="text-sm text-gray-700">{message}</p>}
       </form>
+      {message && <p class="text-sm text-red-700">{message}</p>}
+      <div class="fixed left-1/2 top-4 min-w-80 -translate-x-1/2 space-y-2">
+        {toasts.map(({ id, message, type }) => (
+          <Toast
+            key={id}
+            message={message}
+            type={type}
+            onClose={() => removeToast(id)}
+          />
+        ))}
+      </div>
     </div>
   );
 }

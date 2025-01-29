@@ -7,6 +7,7 @@ import type { CollectionEntry } from 'astro:content';
 import type { Page } from '../../types/dataTypes';
 import { SITE, ISPARTOF } from '../../data/constant';
 import turncateString from '../../utils/turncateString';
+import Newsletter from '../../components/sections/Newsletter.astro';
 
 interface Props {
   page: Page;
@@ -90,5 +91,7 @@ const totalPages = Math.ceil(page.total / 6);
         />
       )
     }
+
+    <Newsletter />
   </section>
 </MainLayout>
