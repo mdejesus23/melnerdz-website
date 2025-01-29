@@ -2,8 +2,9 @@
 title: 'Mastering Web Development: Essential Tools and Techniques'
 pubDate: 2025-01-20
 author: 'Melnerdz'
+slug: 'mastering-web-development-essential-tools-and-techiniques'
 image:
-  src: 'laptop-code.jpg'
+  src: 'hero.jpg'
   alt: 'A laptop displaying code and web development tools'
 description: 'Explore the must-have tools and techniques every web developer should know to boost productivity and create stunning websites.'
 technology:

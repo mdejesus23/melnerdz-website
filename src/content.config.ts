@@ -22,12 +22,13 @@ const projectsCollections = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/blog' }),
+  loader: glob({ pattern: '**/index.md', base: './src/data/blogs' }), // Match 'index.md' in nested folders
   schema: ({ image }) =>
     z.object({
       title: z.string(),
       pubDate: z.date(),
       author: z.string(),
+      slug: z.string(),
       image: z.object({
         src: image(),
         alt: z.string(),

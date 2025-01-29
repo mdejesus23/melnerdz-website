@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import Divider from '../ui/Divider.astro';
+
+const latestBlogs: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .sort(
+    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  )
+  .slice(0, 3);
+---
+
+<>
+  <Divider />
+  <section class="mt-10 grid min-h-full w-full items-center">
+    <h2 class="mb-6 text-2xl font-bold">
+      Recent <span class="text-lblue">Blogs</span>
+    </h2>
+    <ul class="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
+      {
+        latestBlogs.map((blog) => (
+          <li class="flex flex-col gap-y-2 rounded-md bg-project shadow-projectCard">
+            <a href={`/blogs/${blog.id}`}>
+              <figure class="aspect-w-3 aspect-h-2 overflow-hidden rounded-md">
+                <Image
+                  class="h-60 w-full sm:h-64 md:h-52"
+                  src={blog.data.image.src}
+                  alt={blog.data.image.alt}
+                />
+              </figure>
+            </a>
+            <article class="flex flex-col gap-y-2 p-2">
+              <h3 class="text-xl font-bold text-gray-200">
+                <a href={`/blogs/${blog.id}`}>{blog.data.title}</a>
+              </h3>
+              <p class="text-gray-400">{blog.data.description}</p>
+            </article>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</>
