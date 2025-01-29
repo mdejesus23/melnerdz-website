@@ -34,26 +34,28 @@ export default function NewsletterForm({}: NewsletterFormProps) {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      class="items-centerrounded-md flex w-full max-w-[30rem] rounded-lg bg-project p-2 shadow-projectCard"
-    >
-      <input
-        type="email"
-        class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
-        placeholder="Enter your email"
-        value={email}
-        onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
-        required
-      />
-      <button
-        type="submit"
-        class="ml-2 rounded-lg bg-lblue px-5 py-3 text-sm font-medium text-white transition hover:bg-teal-400 disabled:opacity-50"
-        disabled={loading}
+    <div class="w-full">
+      <form
+        onSubmit={handleSubmit}
+        class="items-centerrounded-md flex w-full rounded-lg bg-project p-2 shadow-projectCard"
       >
-        {loading ? 'Subscribing...' : 'Subscribe'}
-      </button>
-      {message && <p class="text-sm text-gray-700">{message}</p>}
-    </form>
+        <input
+          type="email"
+          class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
+          placeholder="Enter your email"
+          value={email}
+          onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
+          required
+        />
+        <button
+          type="submit"
+          class="ml-2 rounded-lg bg-lblue px-5 py-3 text-sm font-medium text-white transition hover:bg-teal-400 disabled:opacity-50"
+          disabled={loading}
+        >
+          {loading ? 'Subscribing...' : 'Subscribe'}
+        </button>
+        {message && <p class="text-sm text-gray-700">{message}</p>}
+      </form>
+    </div>
   );
 }

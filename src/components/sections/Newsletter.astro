@@ -1,0 +1,17 @@
+---
+import NewsletterForm from '../forms/NewsletterFrom';
+---
+
+<section
+  class="min-h-ful mt-20 flex w-full flex-col items-center justify-between gap-4 md:flex-row"
+>
+  <div class="w-full">
+    <h2 class="mb-6 text-2xl font-bold">
+      Subscribe to my <span class="text-lblue">Newsletters</span>
+    </h2>
+    <p class="mt-6 text-base leading-7 md:leading-8">
+      Get the latest updates on my blog, projects, and other tech-related stuff.
+    </p>
+  </div>
+  <NewsletterForm client:load />
+</section>
