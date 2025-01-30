@@ -19,28 +19,20 @@ Rate Your Supplements is a cutting-edge SSR (Server-Side Rendered) website built
 
 > **Note:** This project is still in progress. Features and functionalities are continuously being added and improved.
 
-## Features:
+## Key Features
 
-- <i class="fab fa-astro text-lblue"></i> _Astro Framework_: The website leverages the Astro framework for a fast, scalable, and SEO-friendly user experience.
+- **Optimized Search with Stored Functions**: Utilizing Supabase stored functions and indexing to enhance search performance, enabling faster and more accurate query execution.
+- **Astro Framework**: The website leverages the Astro framework for a fast, scalable, and SEO-friendly user experience.
+- **Supabase Integration**: Supabase handles authentication, real-time data, and backend storage, ensuring secure and reliable operations for a large dataset.
+- **Server-Side Pagination**: Efficiently manage and display the extensive database of 200k records with server-side pagination powered by Supabase.
+- **Responsive Design with TailwindCSS**: Styled with TailwindCSS for a clean, modern, and fully responsive interface.
+- **Incremental Static Regeneration (ISR)**: Achieve a balance between dynamic and static content with ISR, ensuring optimal performance and up-to-date pages.
+- **Advanced Caching**: Leverages Astro's caching capabilities with Netlify for faster page loads and optimized performance.
+- **User Reviews and Ratings**: Users can rate and review supplements, providing a community-driven evaluation system.
+- **User Authentication**: Secure signup and login features are powered by Supabase's authentication services.
 
-- <i class="fas fa-database text-lblue"></i> _Supabase Integration_: Supabase handles authentication, real-time data, and backend storage, ensuring secure and reliable operations for a large dataset.
+## Live Site
 
-- <i class="fas fa-layer-group text-lblue"></i> _Server-Side Pagination_: Efficiently manage and display the extensive database of 200k records with server-side pagination powered by Supabase.
-
-- <i class="fab fa-html5 text-lblue"></i> _Responsive Design with TailwindCSS_: Styled with TailwindCSS for a clean, modern, and fully responsive interface.
-
-- <i class="fas fa-hourglass-half text-lblue"></i> _Incremental Static Regeneration (ISR)_: Achieve a balance between dynamic and static content with ISR, ensuring optimal performance and up-to-date pages.
-
-- <i class="fas fa-cogs text-lblue"></i> _Advanced Caching_: Leverages Astro's caching capabilities with Netlify for faster page loads and optimized performance.
-
-- <i class="fas fa-star text-lblue"></i> _User Reviews and Ratings_: Users can rate and review supplements, providing a community-driven evaluation system.
-
-- <i class="fas fa-user text-lblue"></i> _User Authentication_: Secure signup and login features are powered by Supabase's authentication services.
-
-- <i class="fas fa-search text-lblue"></i> _Search and Filter Options_: Easily find supplements and filter results based on categories, ratings, or keywords.
-
-## Live Site:
-
-Visit the live site: <a href="https://rateyoursupplements.com/" target="_blank" class="text-lblue"><u>Rate Your Supplements</u></a>
+Visit the live site: [Rate Your Supplements](https://rateyoursupplements.com/)
 
 This project showcases the potential of integrating modern frameworks like Astro with backend services like Supabase to create dynamic, scalable, and high-performance web applications. The combination of advanced caching, ISR, and server-side pagination ensures that the application handles both a large dataset and user traffic efficiently.
