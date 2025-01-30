@@ -6,8 +6,8 @@ import Pagination from '../../components/Pagination.astro';
 import type { CollectionEntry } from 'astro:content';
 import type { Page } from '../../types/dataTypes';
 import { SITE, ISPARTOF } from '../../data/constant';
-import turncateString from '../../utils/turncateString';
 import Newsletter from '../../components/sections/Newsletter.astro';
+import turncateString from '../../utils/turncateString';
 
 interface Props {
   page: Page;
@@ -15,7 +15,7 @@ interface Props {
 
 export async function getStaticPaths({ paginate }: any) {
   const PROJECT_PER_PAGE: number = 6;
-  const posts = await getCollection('blog');
+  const posts: CollectionEntry<'blog'>[] = await getCollection('blog');
   return paginate(posts || [], {
     pageSize: PROJECT_PER_PAGE,
   });
@@ -59,7 +59,7 @@ const totalPages = Math.ceil(page.total / 6);
       {
         articles.map((article) => (
           <li class="flex flex-col gap-y-2 overflow-hidden rounded-md bg-project shadow-projectCard">
-            <a href={`/blog/${article.id}`} class="block">
+            <a href={`/blogs/${article.id}`} class="block">
               <figure class="">
                 <Image
                   class="h-56 w-full object-cover"
@@ -71,7 +71,9 @@ const totalPages = Math.ceil(page.total / 6);
                 <h3 class="text-xl font-bold text-gray-200">
                   <a href={`/blogs/${article.id}`}>{article.data.title}</a>
                 </h3>
-                <p class="text-gray-400">{article.data.description}</p>
+                <p class="text-gray-400">
+                  {turncateString(article.data.description, 150)}
+                </p>
               </article>
             </a>
           </li>

@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-
+import turncateString from '../utils/turncateString';
 // Fetch projects data
 const allProjects: CollectionEntry<'projects'>[] = (
   await getCollection('projects')
@@ -81,7 +81,13 @@ const getTechColor = (tech: string) => {
                 ))}
               </ul>
             </div>
-            <p class="mx-1 mt-3 text-gray-400">{project.data.description}</p>
+            <p class="mx-1 mt-3 hidden text-gray-400 md:block">
+              {project.data.description}
+            </p>
+
+            <p class="mx-1 mt-3 text-gray-400 md:hidden">
+              {turncateString(project.data.shortDesc, 150)}
+            </p>
           </article>
         </li>
       ))
