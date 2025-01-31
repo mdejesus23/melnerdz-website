@@ -20,7 +20,7 @@ export default function Toast({
   const typeStyles = {
     success: 'bg-green-500 text-white',
     error: 'bg-red-500 text-white',
-    info: 'rounded-md bg-project border border-lblue text-white',
+    info: 'bg-project border border-lblue text-white',
   };
 
   return (
@@ -28,7 +28,7 @@ export default function Toast({
       class={`rounded-lg px-4 py-2 shadow-md transition-opacity duration-300 ${typeStyles[type]}`}
     >
       <div class="flex items-center justify-between">
-        <span>{message}</span>
+        <span className="text-sm md:text-base">{message}</span>
         <button
           onClick={onClose}
           class="ml-4 text-lg font-bold leading-none hover:text-gray-200"

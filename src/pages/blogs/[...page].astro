@@ -58,7 +58,7 @@ const totalPages = Math.ceil(page.total / 6);
     <ul class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         articles.map((article) => (
-          <li class="flex flex-col gap-y-2 overflow-hidden rounded-md bg-project shadow-projectCard">
+          <li class="cursor-pointer list-none overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg">
             <a href={`/blogs/${article.id}`} class="block">
               <figure class="">
                 <Image
