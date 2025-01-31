@@ -8,6 +8,7 @@ image:
   alt: 'An illustration of ash wednesday'
 description: 'Explore the significance of Ash Wednesday in the Catholic faith, its traditions, and its importance as the beginning of Lent.'
 tags: [Catholic, Lent, Ash Wednesday, Faith, Reflection]
+technology: []
 ---
 
 Ash Wednesday marks the beginning of **Lent**, a 40-day period of fasting, prayer, and almsgiving leading up to **Easter Sunday**. This solemn day reminds Catholics worldwide of their mortality and the need for repentance.

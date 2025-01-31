@@ -34,7 +34,7 @@ const blogCollection = defineCollection({
         alt: z.string(),
       }),
       description: z.string(),
-      technology: z.array(z.string()).optional(),
+      technology: z.array(z.string()),
       tags: z.array(z.string()),
     }),
 });
