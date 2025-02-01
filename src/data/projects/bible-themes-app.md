@@ -61,14 +61,14 @@ I've developed a full-stack <strong>Bible themes App</strong> for our church org
 
 - <i class="fas fa-user-check text-lblue"></i> Test Credentials for Easy Access:
 
-  - **Email**: <span class="text-lblue">test123@gmail.com</span>
-  - **Password**: <span class="text-lblue">Test1234</span>
-  - **Theme Passcode**: <span class="text-lblue">asdf</span>
+  - Email: <span class="text-lblue">test123@gmail.com</span>
+  - Password: <span class="text-lblue">Test1234</span>
+  - Theme Passcode: <span class="text-lblue">asdf</span>
 
   _Note: Hosted on the free tier of Render.com, so initial loading might take some time._
 
 ## Explore the App
 
-- <i class="fas fa-globe text-lblue"></i> **Live Site**: <a href="https://scriptures-app.netlify.app/" target="_blank">Bible themes app</a>
-- <i class="fab fa-github text-lblue"></i> **React App Source Code**: <a href="https://github.com/mdejesus23/themes-preparation-app" target="_blank">GitHub Repository</a>
-- <i class="fab fa-github text-lblue"></i> **REST API Source Code**: <a href="https://github.com/mdejesus23/prep-app" target="_blank">GitHub Repository</a>
+- Live Site: <a href="https://scriptures-app.netlify.app/" target="_blank">Bible themes app</a>
+- React App Source Code: <a href="https://github.com/mdejesus23/themes-preparation-app" target="_blank">GitHub Repository</a>
+- REST API Source Code: <a href="https://github.com/mdejesus23/prep-app" target="_blank">GitHub Repository</a>

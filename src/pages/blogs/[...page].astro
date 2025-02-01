@@ -15,7 +15,9 @@ interface Props {
 
 export async function getStaticPaths({ paginate }: any) {
   const PROJECT_PER_PAGE: number = 6;
-  const posts: CollectionEntry<'blog'>[] = await getCollection('blog');
+  const posts: CollectionEntry<'blog'>[] = (await getCollection('blog')).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
   return paginate(posts || [], {
     pageSize: PROJECT_PER_PAGE,
   });
@@ -26,6 +28,7 @@ const title: string = `Articles | ${SITE.title}`;
 const description: string = 'Explore my latest articles and insights.';
 
 const articles = page.data;
+console.log(page);
 const totalPages = Math.ceil(page.total / 6);
 ---
 

@@ -26,9 +26,9 @@ Unlike traditional CSS frameworks, Tailwind CSS provides utility classes that yo
 
 ### Why Developers Love Tailwind
 
-- **Speed**: Build UIs faster by combining predefined classes like `p-4`, `bg-blue-500`, and `text-center`.
-- **Consistency**: Enforce a consistent design language with a centralized configuration file.
-- **Customizability**: Tailwind’s `tailwind.config.js` makes it easy to extend styles or adjust defaults.
+- Speed: Build UIs faster by combining predefined classes like `p-4`, `bg-blue-500`, and `text-center`.
+- Consistency: Enforce a consistent design language with a centralized configuration file.
+- Customizability: Tailwind’s `tailwind.config.js` makes it easy to extend styles or adjust defaults.
 
 ### How to Use Tailwind CSS
 

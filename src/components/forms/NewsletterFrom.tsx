@@ -60,7 +60,7 @@ export default function NewsletterForm() {
     <div class="w-full">
       <form
         onSubmit={handleSubmit}
-        class="items-centerrounded-md flex w-full rounded-md bg-project p-2"
+        class="items-centerrounded-md flex w-full rounded-md bg-project"
       >
         <input
           type="email"
