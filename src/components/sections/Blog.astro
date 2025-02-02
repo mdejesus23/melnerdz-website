@@ -5,9 +5,9 @@ import type { CollectionEntry } from 'astro:content';
 import Divider from '../ui/Divider.astro';
 import Icon from '../../components/ui/icons/Icon.astro';
 
-const latestBlogs: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+const latestBlogs: CollectionEntry<'blogs'>[] = (await getCollection('blogs'))
   .sort(
-    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+    (a: CollectionEntry<'blogs'>, b: CollectionEntry<'blogs'>) =>
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   )
   .slice(0, 3);

@@ -1,18 +1,19 @@
 ---
 import { Image } from 'astro:assets';
-import type { Project } from '../types/dataTypes';
+import type { Project, Blog } from '../types/dataTypes';
 import MainLayout from './MainLayout.astro';
 import Prose from '../components/Prose.astro';
 import { SITE, ISPARTOF } from '../data/constant';
 
 interface Props {
-  project: Project;
+  data: Project | Blog;
   slug: string;
+  collection: string;
 }
 
-const { project, slug }: Props = Astro.props;
-const title: string = `${project.title} | ${SITE.title}`;
-const description: string = project.description;
+const { data, slug, collection }: Props = Astro.props;
+const title: string = `${data.title} | ${SITE.title}`;
+const description: string = data.description;
 ---
 
 <MainLayout
@@ -20,9 +21,9 @@ const description: string = project.description;
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': `https://melnerdz.com/projects/${slug}`,
-    url: `https://melnerdz.com/projects/${slug}`,
-    name: `${project.title} | Melnerdz website`,
+    '@id': `https://melnerdz.com/${collection}/${slug}`,
+    url: `https://melnerdz.com/${collection}/${slug}`,
+    name: `${data.title} | Melnerdz website`,
     description: description,
     isPartOf: ISPARTOF,
     inLanguage: 'en-US',
@@ -31,7 +32,7 @@ const description: string = project.description;
 >
   <section class="mx-auto max-w-screen-lg py-6">
     <h1 class="text-center font-headfont text-3xl font-bold">
-      {project.title}
+      {data.title}
     </h1>
     <div class="mx-auto mt-8 flex max-w-prose flex-col gap-5">
       <figure
@@ -39,8 +40,8 @@ const description: string = project.description;
       >
         <Image
           class="w-80 object-cover md:w-full"
-          src={project.image.src}
-          alt={project.image.alt}
+          src={data.image.src}
+          alt={data.image.alt}
         />
       </figure>
       <Prose>

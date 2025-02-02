@@ -11,6 +11,19 @@ export interface Project {
   tags: string[];
 }
 
+export interface Blog {
+  title: string;
+  pubDate: Date;
+  author: string;
+  image: {
+    src: any;
+    alt: string;
+  };
+  description: string;
+  technology: string[];
+  tags: string[];
+}
+
 export interface Page<T = any> {
   /** result */
   data: T[];

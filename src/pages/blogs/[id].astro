@@ -1,15 +1,15 @@
 ---
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import type { Project } from '../../types/dataTypes';
+import type { Blog } from '../../types/dataTypes';
 import { render } from 'astro:content';
 import MarkdownProjectLayout from '../../layouts/MarkdownProjectLayout.astro';
 
 export async function getStaticPaths() {
-  const allBlogs: CollectionEntry<'blog'>[] = (
-    await getCollection('blog')
+  const allBlogs: CollectionEntry<'blogs'>[] = (
+    await getCollection('blogs')
   ).sort(
-    (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) =>
+    (a: CollectionEntry<'blogs'>, b: CollectionEntry<'blogs'>) =>
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
 
@@ -20,11 +20,13 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
+const collection = entry.collection;
+console.log(collection);
 
-const project: Project = entry.data; // ensure the data conforms to the Project interface
+const data: Blog = entry.data; // ensure the data conforms to the Project interface
 const { Content } = await render(entry);
 ---
 
-<MarkdownProjectLayout slug={entry.id} project={project}>
+<MarkdownProjectLayout slug={entry.id} data={data} collection={collection}>
   <Content />
 </MarkdownProjectLayout>

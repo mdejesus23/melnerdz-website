@@ -15,7 +15,7 @@ interface Props {
 
 export async function getStaticPaths({ paginate }: any) {
   const PROJECT_PER_PAGE: number = 6;
-  const posts: CollectionEntry<'blog'>[] = (await getCollection('blog')).sort(
+  const posts: CollectionEntry<'blogs'>[] = (await getCollection('blogs')).sort(
     (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   );
   return paginate(posts || [], {
@@ -28,7 +28,7 @@ const title: string = `Articles | ${SITE.title}`;
 const description: string = 'Explore my latest articles and insights.';
 
 const articles = page.data;
-console.log(page);
+console.log(page.data[0].collection);
 const totalPages = Math.ceil(page.total / 6);
 ---
 
@@ -37,8 +37,8 @@ const totalPages = Math.ceil(page.total / 6);
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com/blog',
-    url: 'https://melnerdz.com/blog',
+    '@id': 'https://melnerdz.com/blogs',
+    url: 'https://melnerdz.com/blogs',
     name: 'Blog | Melnerdz website',
     description: description,
     isPartOf: ISPARTOF,
