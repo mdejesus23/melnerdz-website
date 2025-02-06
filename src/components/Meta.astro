@@ -32,33 +32,8 @@ const socialImageRes = await getImage({
   width: 1200,
   height: 600,
 });
+
 const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
-
-const languages: { [key: string]: string } = {
-  en: '',
-  fr: 'fr',
-};
-
-function createHref(lang: string, prefix: string, path: string): string {
-  const hasPrefix = path.startsWith(`/${prefix}/`);
-
-  const basePath = hasPrefix ? path : `/${prefix}${path}`;
-  const normalizedBasePath = basePath.replace(/\/\/+/g, '/');
-  return `${URL.slice(0, -1)}${normalizedBasePath}`;
-}
-
-const fullPath: string = Astro.url.pathname;
-
-const alternateLanguageLinks: string = Object.entries(languages)
-  .map(([lang, prefix]: [string, string]) => {
-    const basePath: string =
-      lang === 'en' ? fullPath.replace(/^\/fr\//, '/') : fullPath;
-
-    const href: string = createHref(lang, prefix, basePath);
-
-    return `<link rel="alternate" hreflang="${lang}" href="${href}" />`;
-  })
-  .join('\n');
 
 // Generate and optimize the favicon images
 const faviconSvg = await getImage({
@@ -93,7 +68,6 @@ const appleTouchIcon = await getImage({
 />
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <link rel="canonical" href={canonical} />
-<Fragment set:html={alternateLanguageLinks} />
 
 <!-- Facebook Meta Tags -->
 <meta property="og:locale" content="en_US" />

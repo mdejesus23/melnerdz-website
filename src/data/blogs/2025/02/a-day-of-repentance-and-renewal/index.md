@@ -13,19 +13,17 @@ technology: []
 
 Ash Wednesday marks the beginning of Lent, a 40-day period of fasting, prayer, and almsgiving leading up to Easter Sunday. This sacred time mirrors Jesus' 40-day fast and His temptation in the desert, calling us to spiritual renewal and deeper faith.
 
-## The Meaning Behind Ash Wednesday
-
 Ash Wednesday derives its name from the practice of placing ashes on the foreheads of the faithful in the shape of a cross. These ashes symbolize penance, humility, and a reminder of our mortality—echoing the biblical phrase:
 
-> _“Remember that you are dust, and to dust you shall return.”_ (Genesis 3:19)
+> _Remember that you are dust, and to dust you shall return._ (Genesis 3:19)
 
 This reminds us of our humble beginnings—how Adam, our ancestor, was formed from the dust of the earth. It also points to our inevitable return to dust, urging us to repent and seek God's mercy while we still have time.
 
-## What This Teaches Us
+## The Spiritual Meaning of Ash Wednesday
 
 First, Ash Wednesday reminds us that all things in life are temporary. I once heard in a homily:
 
-> _“Good things don’t last, and neither do bad times.”_
+> _Good things don’t last, and neither do bad times._
 
 We often become attached to earthly things—money, careers, possessions, and relationships—forgetting that everything we have ultimately comes from God. This realization should humble us before Him, recognizing our dependence on His grace.
 

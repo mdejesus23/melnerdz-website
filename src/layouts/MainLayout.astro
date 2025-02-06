@@ -16,22 +16,16 @@ import '@fontsource/pacifico';
 
 interface Props {
   title?: string;
-  description?: string;
   structuredData?: object;
   meta?: string;
 }
 
-const { title, description, meta, structuredData } = Astro.props;
+const { title, meta, structuredData } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <MainHead
-    title={title}
-    description={description}
-    meta={meta}
-    structuredData={structuredData}
-  />
+  <MainHead title={title} meta={meta} structuredData={structuredData} />
   <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
     <Header client:load />
     <main class="mx-auto my-10 min-h-screen max-w-5xl px-6 md:my-20 xl:px-0">

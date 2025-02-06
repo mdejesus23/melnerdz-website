@@ -6,17 +6,11 @@ import Meta from './Meta.astro';
 
 interface Props {
   title?: string;
-  description?: string;
   meta?: string;
   structuredData?: object;
 }
 
-const {
-  title = 'Melnerdz Website',
-  description = 'A versatile Full-Stack Web Developer with deep expertise in HTML, CSS, JavaScript, and hands-on experience with Node.js, Express.js, React, and Astro.',
-  meta,
-  structuredData,
-} = Astro.props;
+const { title = 'Melnerdz Website', meta, structuredData } = Astro.props;
 ---
 
 <head>
@@ -34,7 +28,6 @@ const {
   <link rel="sitemap" href="/sitemap-index.xml" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
-  <meta name="description" content={description} />
   <title>{title}</title>
 
   <!-- Adding metadata to the HTML document -->

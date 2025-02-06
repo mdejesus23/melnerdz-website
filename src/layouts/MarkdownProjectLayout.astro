@@ -14,6 +14,7 @@ interface Props {
 const { data, slug, collection }: Props = Astro.props;
 const title: string = `${data.title} | ${SITE.title}`;
 const description: string = data.description;
+console.log(description);
 ---
 
 <MainLayout
