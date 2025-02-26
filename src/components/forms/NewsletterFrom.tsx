@@ -1,4 +1,4 @@
-import { useState } from 'preact/hooks';
+import { useState } from 'react';
 import Toast from '../ui/Toast';
 
 interface ToastMessage {
@@ -57,28 +57,28 @@ export default function NewsletterForm() {
   };
 
   return (
-    <div class="w-full">
+    <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        class="items-centerrounded-md flex w-full rounded-md bg-project"
+        className="items-centerrounded-md flex w-full rounded-md bg-project"
       >
         <input
           type="email"
-          class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
+          className="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
           placeholder="Enter your email"
           value={email}
           onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
         />
         <button
           type="submit"
-          class="ml-2 rounded-lg bg-lblue px-5 py-3 text-sm font-medium text-white transition hover:bg-teal-400 disabled:opacity-50"
+          className="ml-2 rounded-lg bg-lblue px-5 py-3 text-sm font-medium text-white transition hover:bg-teal-400 disabled:opacity-50"
           disabled={loading}
         >
           {loading ? 'Subscribing...' : 'Subscribe'}
         </button>
       </form>
-      {message && <p class="text-sm text-red-700">{message}</p>}
-      <div class="fixed left-1/2 top-4 min-w-80 -translate-x-1/2 space-y-2">
+      {message && <p className="text-sm text-red-700">{message}</p>}
+      <div className="fixed left-1/2 top-4 min-w-80 -translate-x-1/2 space-y-2">
         {toasts.map(({ id, message, type }) => (
           <Toast
             key={id}

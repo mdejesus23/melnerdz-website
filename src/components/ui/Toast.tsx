@@ -1,5 +1,4 @@
-import { useEffect } from 'preact/hooks';
-import type { JSX } from 'preact/jsx-runtime';
+import { useEffect } from 'react';
 
 interface ToastProps {
   message: string;
@@ -7,11 +6,7 @@ interface ToastProps {
   onClose: () => void;
 }
 
-export default function Toast({
-  message,
-  type,
-  onClose,
-}: ToastProps): JSX.Element {
+export default function Toast({ message, type, onClose }: ToastProps) {
   useEffect(() => {
     const timer = setTimeout(onClose, 3000); // Auto close after 3 seconds
     return () => clearTimeout(timer);
@@ -25,13 +20,13 @@ export default function Toast({
 
   return (
     <div
-      class={`rounded-lg px-4 py-2 shadow-md transition-opacity duration-300 ${typeStyles[type]}`}
+      className={`rounded-lg px-4 py-2 shadow-md transition-opacity duration-300 ${typeStyles[type]}`}
     >
-      <div class="flex items-center justify-between">
+      <div className="flex items-center justify-between">
         <span className="text-sm md:text-base">{message}</span>
         <button
           onClick={onClose}
-          class="ml-4 text-lg font-bold leading-none hover:text-gray-200"
+          className="ml-4 text-lg font-bold leading-none hover:text-gray-200"
         >
           &times;
         </button>
