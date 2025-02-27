@@ -1,4 +1,4 @@
-import { Icons } from "./icons";
+import { Icons } from './icons';
 
 interface Path {
   d: string;
@@ -23,14 +23,14 @@ const Icon = ({
   let icon = (Icons as any)[name] || {};
   let paths: Path[] = icon.paths || [];
 
-  let strokeVal = stroke || icon.stroke || "currentColor";
-  let strokeWidthVal = strokeWidth || icon.strokeWidth || "2";
-  let fillVal = fill || icon.fill || "none";
-  let classVal = className || icon.class || "";
+  let strokeVal = stroke || icon.stroke || 'currentColor';
+  let strokeWidthVal = strokeWidth || icon.strokeWidth || '2';
+  let fillVal = fill || icon.fill || 'none';
+  let classVal = className || icon.class || '';
 
   return Object.keys(icon).length > 0 ? (
     <svg
-      class={classVal}
+      className={classVal}
       height={icon.height}
       viewBox={icon.viewBox}
       width={icon.width}
@@ -44,7 +44,7 @@ const Icon = ({
     >
       <title>{icon.title}</title>
       {paths.map((path, index) => (
-        <path key={index} d={path.d} class={path.class || ""} />
+        <path key={index} d={path.d} className={path.class || ''} />
       ))}
     </svg>
   ) : null;

@@ -22,7 +22,9 @@ export default function NewsletterForm() {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   };
 
-  const handleSubmit = async (e: Event) => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
@@ -34,24 +36,6 @@ export default function NewsletterForm() {
     }
 
     addToast('⚠️ This feature is under development..', 'info');
-
-    // try {
-    //   const response = await fetch('/api/subscribe', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({ email }),
-    //   });
-
-    //   const data = await response.json();
-    //   if (response.ok) {
-    //     setMessage('🎉 Subscription successful!');
-    //     setEmail('');
-    //   } else {
-    //     setMessage(data.error || '⚠️ Subscription failed.');
-    //   }
-    // } catch (error) {
-    //   setMessage('❌ An error occurred. Please try again.');
-    // }
 
     setLoading(false);
   };
