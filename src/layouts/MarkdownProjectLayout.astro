@@ -36,13 +36,13 @@ console.log(description);
       {data.title}
     </h1>
     <div class="mx-auto flex max-w-prose flex-col gap-5">
-      <figure
-        class="flex h-full w-full justify-center overflow-hidden rounded-md"
-      >
+      <figure class="mx-auto">
         <Image
-          class="w-80 object-cover md:w-full"
+          width={700}
+          height={600}
           src={data.image.src}
           alt={data.image.alt}
+          class="rounded-md"
         />
       </figure>
       <Prose>

@@ -56,7 +56,9 @@ const getTechColor = (tech: string) => {
           <figure class="aspect-w-3 aspect-h-2">
             <a href={`/projects/${project.id}`}>
               <Image
-                class="h-60 w-full sm:h-64 md:h-52"
+                class="mx-auto rounded-md"
+                width={400}
+                height={300}
                 src={project.data.image.src}
                 alt={project.data.image.alt}
               />

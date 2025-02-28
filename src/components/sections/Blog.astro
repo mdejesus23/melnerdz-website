@@ -35,7 +35,9 @@ const latestBlogs: CollectionEntry<'blogs'>[] = (await getCollection('blogs'))
             <a href={`/blogs/${blog.id}`}>
               <figure class="aspect-w-3 aspect-h-2 overflow-hidden">
                 <Image
-                  class="h-60 w-full sm:h-64 md:h-52"
+                  class="mx-auto rounded-t-md"
+                  width={400}
+                  height={200}
                   src={blog.data.image.src}
                   alt={blog.data.image.alt}
                 />
