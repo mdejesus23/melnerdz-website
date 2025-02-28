@@ -27,7 +27,7 @@ First, Ash Wednesday reminds us that all things in life are temporary. I once he
 
 > _Good things don’t last, and neither do bad times._
 
-We often become attached to earthly things—money, careers, possessions, and relationships—forgetting that everything we have ultimately comes from God. This realization should humble us before Him, recognizing our dependence on His grace.
+Humanly speaking we often become attached to earthly things—money, careers, possessions, and relationships—forgetting that everything we have ultimately comes from God. This realization should humble us before Him, recognizing our dependence on His grace.
 
 On the other hand, if we are facing hardships, Ash Wednesday offers hope. Just as struggles are temporary, so too is suffering. The Lenten season leads us toward the joy of Easter, where Jesus’ resurrection brings salvation and renewal. In the same way, we can trust that the Lord will guide us through our trials and lift us from despair.
 

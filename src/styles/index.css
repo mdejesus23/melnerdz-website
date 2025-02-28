@@ -12,25 +12,38 @@
     --color-projectDesc: #a3b8cc;
 
     --font-logofont: 'Pacifico', cursive;
-    --font-headfont: 'Montagu Slab Variable', serif;
-    --font-bodyfont: 'Open Sans Variable', sans-serif;
+    --font-headfont: 'Lora', serif;
+    --font-bodyfont: 'Poppins', sans-serif;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Lora', serif;
   }
 
   h1 {
-    @apply text-3xl; /* Default font size */
-  }
-
-  h2 {
     @apply text-2xl; /* Default font size */
   }
 
-  h3 {
+  h2 {
     @apply text-xl; /* Default font size */
+  }
+
+  h3 {
+    @apply text-lg; /* Default font size */
   }
 
   @media (min-width: 768px) {
     h1 {
-      @apply text-4xl; /* Larger font size for medium screens */
+      @apply text-3xl; /* Larger font size for medium screens */
     }
 
     h2 {
@@ -38,26 +51,32 @@
     }
 
     h3 {
-      @apply text-2xl; /* Larger font size for medium screens */
+      @apply text-xl; /* Larger font size for medium screens */
     }
 
     .prose h1 {
-      @apply text-4xl;
+      @apply text-3xl;
     }
     .prose h2 {
-      @apply text-3xl;
+      @apply text-2xl;
     }
 
     .prose h3 {
-      @apply text-2xl;
+      @apply text-xl;
     }
     .prose p,
     .prose li {
-      @apply text-lg;
+      @apply text-base;
     }
   }
 }
 
 .prose strong {
-  color: white; /* Tailwind's blue-600 color */
+  /* color: white;  */
+  @apply text-lblue;
+}
+
+.prose a {
+  /* color: white;  */
+  @apply text-lblue;
 }
