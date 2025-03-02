@@ -27,6 +27,15 @@ function MobileNav() {
               Github
             </a>
           </li>
+          <li className="py-2 font-medium text-white">
+            <a
+              className="hover:text-lblue"
+              href="https://github.com/mdejesus23"
+              target="_blank"
+            >
+              CV
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

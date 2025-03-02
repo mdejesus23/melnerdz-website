@@ -68,6 +68,15 @@ function Header() {
                     Github
                   </a>
                 </li>
+                <li>
+                  <a
+                    className="hover:text-lblue"
+                    href="/MDJesus-resume.pdf"
+                    target="_blank"
+                  >
+                    CV
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
