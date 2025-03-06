@@ -7,13 +7,7 @@ function Header() {
   return (
     <>
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between bg-transparent px-6 py-4 xl:px-0">
-        {/* <a
-          href="/"
-          className="flex flex-row items-end gap-x-1 font-headfont text-2xl font-bold tracking-wide xs:text-3xl"
-        >
-          <img className="w-8" src="/logo.png" alt="logo" />
-          <span>elnerdz</span>
-        </a> */}
+        {/* Logo */}
         <a
           href="/"
           className="flex flex-row items-end gap-x-1 font-headfont text-2xl font-bold tracking-wide text-lblue xs:text-3xl"
@@ -40,47 +34,49 @@ function Header() {
             ></path>
           </svg>
         </a>
+
+        {/* Desktop Navigation */}
         <nav>
           <div className="flex flex-row items-center justify-between gap-y-4 px-3 py-4 xl:px-0">
-            <div>
-              <ul className="hidden space-x-6 font-medium sm:flex">
-                <li>
-                  <a href="/projects" className="hover:text-lblue">
-                    Projects
-                  </a>
-                </li>
-                <li>
-                  <a href="/blogs" className="hover:text-lblue">
-                    Blogs
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="hover:text-lblue">
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="hover:text-lblue"
-                    href="https://github.com/mdejesus23"
-                    target="_blank"
-                  >
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="hover:text-lblue"
-                    href="/MDJesus-resume.pdf"
-                    target="_blank"
-                  >
-                    CV
-                  </a>
-                </li>
-              </ul>
-            </div>
+            <ul className="hidden space-x-6 font-medium sm:flex">
+              <li>
+                <a href="/projects" className="hover:text-lblue">
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a href="/blogs" className="hover:text-lblue">
+                  Blogs
+                </a>
+              </li>
+              <li>
+                <a href="/contact" className="hover:text-lblue">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover:text-lblue"
+                  href="https://github.com/mdejesus23"
+                  target="_blank"
+                >
+                  Github
+                </a>
+              </li>
+              <li>
+                <a
+                  className="hover:text-lblue"
+                  href="/mdejesus-resume.pdf"
+                  target="_blank"
+                >
+                  CV
+                </a>
+              </li>
+            </ul>
           </div>
         </nav>
+
+        {/* Mobile Menu Button */}
         <button
           className="sm:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
@@ -101,7 +97,17 @@ function Header() {
           )}
         </button>
       </header>
-      {isOpen && <MobileNav />}
+
+      {/* Mobile Navigation (with transition) */}
+      <div
+        className={`fixed inset-0 z-50 flex items-center justify-center bg-white shadow-md transition-all duration-300 ease-in-out ${
+          isOpen
+            ? 'translate-y-0 scale-100 opacity-100'
+            : 'translate-y-full scale-95 opacity-0'
+        }`}
+      >
+        <MobileNav />
+      </div>
     </>
   );
 }
