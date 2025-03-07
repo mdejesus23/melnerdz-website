@@ -1,3 +1,5 @@
+import { HiMiniArrowDownTray } from "react-icons/hi2";
+
 function MobileNav() {
   return (
     <nav>
@@ -27,15 +29,16 @@ function MobileNav() {
               Github
             </a>
           </li>
-          <li className="py-2 font-medium text-white">
-            <a
-              className="hover:text-lblue"
-              href="https://github.com/mdejesus23"
-              target="_blank"
-            >
-              CV
-            </a>
-          </li>
+             <li >
+                          <a
+                            className="flex items-center gap-1 hover:text-lblue"
+                            href="/mdejesus-resume.pdf"
+                            target="_blank"
+                          >
+                            CV
+                            <HiMiniArrowDownTray/>
+                          </a>
+                        </li>
         </ul>
       </div>
     </nav>

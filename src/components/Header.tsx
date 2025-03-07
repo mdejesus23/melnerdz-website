@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import MobileNav from './MobileNav';
+import { HiMiniArrowDownTray } from "react-icons/hi2";
 
 function Header() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -7,7 +8,13 @@ function Header() {
   return (
     <>
       <header className="mx-auto flex w-full max-w-5xl items-center justify-between bg-transparent px-6 py-4 xl:px-0">
-        {/* Logo */}
+        {/* <a
+          href="/"
+          className="flex flex-row items-end gap-x-1 font-headfont text-2xl font-bold tracking-wide xs:text-3xl"
+        >
+          <img className="w-8" src="/logo.png" alt="logo" />
+          <span>elnerdz</span>
+        </a> */}
         <a
           href="/"
           className="flex flex-row items-end gap-x-1 font-headfont text-2xl font-bold tracking-wide text-lblue xs:text-3xl"
@@ -34,49 +41,48 @@ function Header() {
             ></path>
           </svg>
         </a>
-
-        {/* Desktop Navigation */}
         <nav>
           <div className="flex flex-row items-center justify-between gap-y-4 px-3 py-4 xl:px-0">
-            <ul className="hidden space-x-6 font-medium sm:flex">
-              <li>
-                <a href="/projects" className="hover:text-lblue">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="/blogs" className="hover:text-lblue">
-                  Blogs
-                </a>
-              </li>
-              <li>
-                <a href="/contact" className="hover:text-lblue">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a
-                  className="hover:text-lblue"
-                  href="https://github.com/mdejesus23"
-                  target="_blank"
-                >
-                  Github
-                </a>
-              </li>
-              <li>
-                <a
-                  className="hover:text-lblue"
-                  href="/mdejesus-resume.pdf"
-                  target="_blank"
-                >
-                  CV
-                </a>
-              </li>
-            </ul>
+            <div>
+              <ul className="hidden space-x-6 font-medium sm:flex">
+                <li >
+                  <a href="/projects" className="hover:text-lblue">
+                    Projects
+                  </a>
+                </li>
+                <li >
+                  <a href="/blogs" className="hover:text-lblue">
+                    Blogs
+                  </a>
+                </li>
+                <li >
+                  <a href="/contact" className="hover:text-lblue">
+                    Contact
+                  </a>
+                </li>
+                <li >
+                  <a
+                    className="hover:text-lblue"
+                    href="https://github.com/mdejesus23"
+                    target="_blank"
+                  >
+                    Github
+                  </a>
+                </li>
+                <li >
+                  <a
+                    className="flex items-center gap-1 hover:text-lblue"
+                    href="/mdejesus-resume.pdf"
+                    target="_blank"
+                  >
+                    CV
+                    <HiMiniArrowDownTray/>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
-
-        {/* Mobile Menu Button */}
         <button
           className="sm:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
@@ -97,17 +103,7 @@ function Header() {
           )}
         </button>
       </header>
-
-      {/* Mobile Navigation (with transition) */}
-      <div
-        className={`fixed inset-0 z-50 flex items-center justify-center bg-white shadow-md transition-all duration-300 ease-in-out ${
-          isOpen
-            ? 'translate-y-0 scale-100 opacity-100'
-            : 'translate-y-full scale-95 opacity-0'
-        }`}
-      >
-        <MobileNav />
-      </div>
+      {isOpen && <MobileNav />}
     </>
   );
 }
