@@ -23,10 +23,10 @@ export default function Toast({ message, type, onClose }: ToastProps) {
       className={`rounded-lg px-4 py-2 shadow-md transition-opacity duration-300 ${typeStyles[type]}`}
     >
       <div className="flex items-center justify-between">
-        <span className="text-sm md:text-base">{message}</span>
+        <span className="text-center text-sm md:text-base">{message}</span>
         <button
           onClick={onClose}
-          className="ml-4 text-lg font-bold leading-none hover:text-gray-200"
+          className="ml-1 text-xs font-bold leading-none hover:text-gray-200"
         >
           &times;
         </button>

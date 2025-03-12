@@ -31,6 +31,7 @@ const { title, meta, structuredData } = Astro.props;
   <MainHead title={title} meta={meta} structuredData={structuredData} />
   <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
     <Header client:load />
+    <!-- <Header /> -->
     <main class="mx-auto my-10 min-h-screen max-w-5xl px-6 md:my-20 xl:px-0">
       <slot />
     </main>
