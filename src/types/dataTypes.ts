@@ -53,3 +53,8 @@ export interface Page<T = any> {
     last: string | undefined;
   };
 }
+
+export interface NavLink {
+  title: string;
+  url: string;
+}

@@ -1,0 +1,26 @@
+---
+import Download from './icons/Download.astro';
+import ExternalLink from './icons/ExternalLink.astro';
+
+interface NavLink {
+  title: string;
+  url: string;
+}
+
+const { title, url } = Astro.props;
+
+const isActive = Astro.url.pathname === url;
+---
+
+<li>
+  <a
+    href={title === 'Github' || title === 'CV' ? `${url}` : `${url}`}
+    class=`flex items-center gap-2 hover:text-lblue ${isActive ? 'text-lblue' : ''}`
+    aria-label={title}
+    target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
+  >
+    {title}
+    {title === 'CV' && <Download />}
+    {title === 'Github' && <ExternalLink />}
+  </a>
+</li>
