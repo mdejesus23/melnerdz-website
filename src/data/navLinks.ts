@@ -18,11 +18,22 @@ export const navLinks: NavLink[] = [
     url: '/contact',
   },
   {
-    title: 'Github',
-    url: 'https://github.com/mdejesus23',
-  },
-  {
     title: 'CV',
     url: '/mdejesus-resume.pdf',
+  },
+];
+
+export const footerLinks: NavLink[] = [
+  {
+    title: 'RSS',
+    url: '/rss.xml',
+  },
+  {
+    title: 'Facebook',
+    url: 'https://www.facebook.com/dejesusmelnard',
+  },
+  {
+    title: 'Github',
+    url: 'https://github.com/mdejesus23',
   },
 ];

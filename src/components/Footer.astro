@@ -1,9 +1,9 @@
 ---
-
+import { footerLinks } from '@/data/navLinks';
 ---
 
 <footer
-  class="item mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 border-t border-gray-600 bg-transparent px-3 pb-10 pt-5 text-sm text-white md:flex-row xl:px-0"
+  class="item mx-auto flex max-w-5xl flex-col items-center justify-between gap-2 border-t border-gray-600 bg-transparent px-3 py-10 pb-10 pt-5 text-sm text-white md:flex-row xl:px-0"
 >
   <div class="">
     Copyright &copy; <span id="copyright"></span> Created By <span
@@ -11,53 +11,19 @@
     >
   </div>
 
-  <div class="flex gap-4">
-    <a
-      class="cursor-pointer text-neutral-600 hover:text-lblue"
-      href="/rss.xml"
-      target="_blank"
-    >
-      <svg
-        width="1.4rem"
-        height="1.4rem"
-        version="1.1"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-      >
-        <path
-          d="m13.75 31.875c-2.0312 0-3.9062 0.15625-5.9375 0.3125v12.031c1.875-0.3125 3.9062-0.46875 5.9375-0.46875 23.281 0 42.344 18.906 42.344 42.344 0 2.0312-0.15625 4.0625-0.46875 5.9375h12.031c0.15625-2.0312 0.3125-4.0625 0.3125-5.9375 0.15625-29.844-24.219-54.219-54.219-54.219z"
-        ></path>
-        <path
-          d="m13.75 56.094c-2.0312 0-4.0625 0.15625-5.9375 0.625v12.344c1.875-0.625 3.9062-1.0938 5.9375-1.0938 10 0 18.125 8.125 18.125 18.125 0 2.0312-0.3125 4.0625-1.0938 5.9375h12.344c0.46875-1.875 0.625-3.9062 0.625-5.9375 0.15625-16.562-13.281-30-30-30z"
-        ></path>
-        <path
-          d="m13.75 7.8125c-2.0312 0-3.9062 0.15625-5.9375 0.3125v12.031c2.0312-0.15625 3.9062-0.3125 5.9375-0.3125 36.562 0 66.406 29.844 66.406 66.406 0 2.0312-0.15625 4.0625-0.3125 5.9375h12.031c0.15625-2.0312 0.3125-3.9062 0.3125-5.9375 0-43.281-35.156-78.438-78.438-78.438z"
-        ></path>
-        <path
-          d="m13.75 80.156c-3.2812 0-5.9375 2.6562-5.9375 5.9375s2.6562 6.0938 5.9375 6.0938 5.9375-2.6562 5.9375-5.9375-2.6562-6.0938-5.9375-6.0938z"
-        ></path>
-      </svg>
-    </a>
-    <a
-      class="cursor-pointer text-neutral-600 hover:text-lblue"
-      href="https://www.facebook.com/dejesusmelnard"
-      target="_blank"
-    >
-      <svg
-        width="1.4rem"
-        height="1.4rem"
-        version="1.1"
-        viewBox="0 0 100 100"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="currentColor"
-      >
-        <path
-          d="m66 28h8c1.1016 0 2-0.89844 2-2v-16c0-1.1016-0.89844-2-2-2h-12c-12.129 0-22 9.8711-22 22v10.16h-14c-1.1016 0-2 0.89844-2 2v15.84c0 1.1016 0.89844 2 2 2h12.609v30c0 1.1016 0.89844 2 2 2h16.699c1.1016 0 2-0.89844 2-2v-30h10.52c0.91016 0 1.7109-0.60938 1.9414-1.5l4.1719-16c0.16016-0.60156 0.03125-1.2383-0.35156-1.7305-0.37891-0.48828-0.96094-0.78125-1.5781-0.78125h-14v-6c0-3.3086 2.6914-6 6-6zm-8 16h13.41l-3.1289 12h-10.98c-1.1016 0-2 0.89844-2 2v30h-12.699v-30c0-1.1016-0.89844-2-2-2h-12.609v-11.84h14c1.1016 0 2-0.89844 2-2v-12.16c0-9.9219 8.0703-18 18-18h10v12h-6c-5.5117 0-10 4.4883-10 10v8c0 1.1016 0.89844 2 2 2z"
-        ></path>
-      </svg>
-    </a>
-  </div>
+  <nav class="flex gap-4">
+    {
+      footerLinks.map((link) => (
+        <a
+          class="cursor-pointer text-neutral-400 hover:text-lblue"
+          href={link.url}
+          target="_blank"
+        >
+          {link.title}
+        </a>
+      ))
+    }
+  </nav>
 </footer>
 
 <script>
