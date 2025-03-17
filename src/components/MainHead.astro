@@ -1,6 +1,6 @@
 ---
 import Meta from './Meta.astro';
-import { ClientRouter } from 'astro:transitions';
+// import { ClientRouter } from 'astro:transitions';
 
 // component imports
 // import Seo from './Seo.astro';
@@ -34,5 +34,5 @@ const { title = 'Melnerdz Website', meta, structuredData } = Astro.props;
   <!-- Adding metadata to the HTML document -->
   <Meta meta={meta} structuredData={structuredData} />
 
-  <ClientRouter />
+  <!-- <ClientRouter /> -->
 </head>
