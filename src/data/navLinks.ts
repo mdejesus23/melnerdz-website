@@ -36,4 +36,8 @@ export const footerLinks: NavLink[] = [
     title: 'Github',
     url: 'https://github.com/mdejesus23',
   },
+  {
+    title: 'Codewars',
+    url: 'https://www.codewars.com/users/mdejesus23',
+  },
 ];
