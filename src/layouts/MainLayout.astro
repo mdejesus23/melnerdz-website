@@ -21,9 +21,10 @@ interface Props {
   title?: string;
   structuredData?: object;
   meta?: string;
+  liturgy?: boolean;
 }
 
-const { title, meta, structuredData } = Astro.props;
+const { title, meta, structuredData, liturgy = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -31,10 +32,11 @@ const { title, meta, structuredData } = Astro.props;
   <MainHead title={title} meta={meta} structuredData={structuredData} />
   <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
     <!-- <Header client:load /> -->
-    <Header />
+    {!liturgy && <Header />}
+
     <main class="mx-auto my-10 min-h-screen max-w-5xl px-6 md:my-20 xl:px-0">
       <slot />
     </main>
-    <Footer />
+    {!liturgy && <Footer />}
   </body>
 </html>
