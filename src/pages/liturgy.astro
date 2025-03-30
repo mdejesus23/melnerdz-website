@@ -1,0 +1,33 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { SITE, ISPARTOF } from '../data/constant';
+import EpubViewer from '@/components/EpubViewer';
+
+const title: string = `Liturgy of the hours | ${SITE.title}`;
+const description: string =
+  'Contact page. Send me a message for any inquiries or job offer.';
+---
+
+<MainLayout
+  title={title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': 'https://melnerdz.com/liturgy-of-the-hours',
+    url: 'https://melnerdz.com/liturgy-of-the-hours',
+    name: 'Contact Us | Melnerdz website',
+    description: description,
+    isPartOf: ISPARTOF,
+    inLanguage: 'en-US',
+  }}
+  meta={description}
+>
+  <section class="mb-60">
+    <h1
+      class="mx-auto mb-20 flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"
+    >
+      Liturgy of the hours
+    </h1>
+    <EpubViewer client:load epubUrl="/liturgy-of-hours.epub" />
+  </section>
+</MainLayout>

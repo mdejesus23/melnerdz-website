@@ -28,6 +28,7 @@
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "astro": "^5.1.7",
+    "epubjs": "^0.3.93",
     "markdown-it": "^14.1.0",
     "marked": "^14.1.2",
     "react": "^19.0.0",
