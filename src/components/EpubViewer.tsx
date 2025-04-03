@@ -4,6 +4,7 @@ import type { Location } from 'epubjs';
 import { HiMiniTrash } from 'react-icons/hi2';
 import { HiArrowSmallRight } from 'react-icons/hi2';
 import { HiArrowSmallLeft } from 'react-icons/hi2';
+import Modal from './Modal';
 
 interface EpubViewerProps {
   epubUrl: string;
@@ -92,28 +93,43 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
 
   return (
     <>
-      <ul className="mb-4">
-        {bookmarks.length === 0 ? (
-          <p>No bookmarks yet</p>
-        ) : (
-          bookmarks.map((bookmark, index) => (
-            <li key={index} className="mb-2 flex items-center gap-2">
-              <button
-                className="text-gray-400 hover:underline"
-                onClick={() => goToBookmark(bookmark.cfi)}
-              >
-                {bookmark.name}
-              </button>
-              <button
-                className="text-red-500 hover:underline"
-                onClick={() => removeBookmark(bookmark.cfi)}
-              >
-                <HiMiniTrash />
-              </button>
-            </li>
-          ))
-        )}
-      </ul>
+      <Modal>
+        <Modal.Open opens="bookmarks">
+          <button className="mb-4 rounded-md bg-lblue p-2">
+            Open Bookmarks
+          </button>
+        </Modal.Open>
+        <Modal.Window name="bookmarks">
+          <div className="flex flex-col gap-4 p-4">
+            <h2 className="text-lg font-semibold text-gray-700">Bookmarks</h2>
+            {bookmarks.length === 0 ? (
+              <p className="text-gray-500">No bookmarks added yet.</p>
+            ) : (
+              <ul className="flex flex-col gap-2">
+                {bookmarks.map((bookmark) => (
+                  <li
+                    key={bookmark.cfi}
+                    className="flex items-center justify-between border-b border-gray-300 pb-2"
+                  >
+                    <button
+                      className="text-gray-600 hover:text-lblue"
+                      onClick={() => goToBookmark(bookmark.cfi)}
+                    >
+                      {bookmark.name}
+                    </button>
+                    <button
+                      className="text-red-600 hover:text-red-800"
+                      onClick={() => removeBookmark(bookmark.cfi)}
+                    >
+                      <HiMiniTrash />
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </Modal.Window>
+      </Modal>
 
       <div className="flex min-h-screen flex-col gap-4 overflow-hidden md:flex-row">
         {/* Sidebar for TOC and Bookmarks */}
