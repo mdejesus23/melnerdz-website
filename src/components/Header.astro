@@ -25,26 +25,31 @@ import NavLink from './ui/NavLink.astro';
           }
         </ul>
       </div>
-      <div class="md:hidden">
-        <button
-          id="menu-toggle"
-          type="button"
-          class="hs-collapse-toggle"
-          data-hs-collapse="#navbar-collapse-with-animation"
-          aria-controls="navbar-collapse-with-animation"
-          aria-label="Toggle navigation"
+      <button
+        id="mobile-menu"
+        aria-controls="navbar-collapse"
+        aria-label="Toggle navigation"
+        class="block md:hidden"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6 flex-shrink-0 fill-current"
+          width="24"
+          viewBox="0 0 448 512"
         >
-          <MenuOpen />
-        </button>
-      </div>
+          <path
+            d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+          ></path></svg
+        >
+      </button>
     </div>
   </nav>
 </header>
 
 <!-- mobile nav  -->
 <nav
-  id="navbar-collapse-with-animation"
-  class="hs-collapse hidden w-full overflow-hidden bg-project transition-[height] duration-300"
+  id="navbar-collapse"
+  class="transition-max-height bg-primary dark:bg-secondaryDark hidden max-h-0 w-full overflow-hidden duration-300"
   aria-labelledby="hs-unstyled-collapse"
 >
   <ul class="flex w-full flex-col items-center justify-between gap-10 py-4">
@@ -53,5 +58,29 @@ import NavLink from './ui/NavLink.astro';
 </nav>
 
 <script>
-  import '@preline/collapse/index.js';
+  // import '@preline/collapse/index.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById(
+      'mobile-menu'
+    ) as HTMLButtonElement;
+    const mobileNav = document.getElementById('navbar-collapse') as HTMLElement;
+
+    toggleButton.addEventListener('click', () => {
+      if (mobileNav.classList.contains('hidden')) {
+        mobileNav.classList.remove('hidden');
+        // Setting max-height to a large value to animate the opening
+        mobileNav.style.maxHeight = `${mobileNav.scrollHeight}px`;
+      } else {
+        // Animate closing by setting max-height to 0
+        mobileNav.style.maxHeight = '0px';
+        mobileNav.addEventListener(
+          'transitionend',
+          () => {
+            mobileNav.classList.add('hidden'); // Hide the element after the transition ends
+          },
+          { once: true }
+        );
+      }
+    });
+  });
 </script>

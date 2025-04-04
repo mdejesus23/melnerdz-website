@@ -93,55 +93,84 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
 
   return (
     <>
-      <Modal>
-        <Modal.Open opens="bookmarks">
-          <button className="mb-4 rounded-md bg-lblue p-2">
-            Open Bookmarks
-          </button>
-        </Modal.Open>
-        <Modal.Window name="bookmarks">
-          <div className="flex flex-col gap-4 p-4">
-            <h2 className="text-lg font-semibold text-gray-700">Bookmarks</h2>
-            {bookmarks.length === 0 ? (
-              <p className="text-gray-500">No bookmarks added yet.</p>
-            ) : (
-              <ul className="flex flex-col gap-2">
-                {bookmarks.map((bookmark) => (
-                  <li
-                    key={bookmark.cfi}
-                    className="flex items-center justify-between border-b border-gray-300 pb-2"
-                  >
-                    <button
-                      className="text-gray-600 hover:text-lblue"
-                      onClick={() => goToBookmark(bookmark.cfi)}
+      <div className="mb-4 flex items-center justify-between">
+        <Modal>
+          <Modal.Open opens="bookmarks">
+            <button className="rounded-md bg-lblue p-2">Open Bookmarks</button>
+          </Modal.Open>
+          <Modal.Window name="bookmarks">
+            <div className="flex flex-col gap-4 p-4">
+              <h2 className="text-lg font-semibold text-gray-700">Bookmarks</h2>
+              {bookmarks.length === 0 ? (
+                <p className="text-gray-500">No bookmarks added yet.</p>
+              ) : (
+                <ul className="flex flex-col gap-2">
+                  {bookmarks.map((bookmark) => (
+                    <li
+                      key={bookmark.cfi}
+                      className="flex items-center justify-between border-b border-gray-300 pb-2"
                     >
-                      {bookmark.name}
-                    </button>
-                    <button
-                      className="text-red-600 hover:text-red-800"
-                      onClick={() => removeBookmark(bookmark.cfi)}
-                    >
-                      <HiMiniTrash />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </Modal.Window>
-      </Modal>
+                      <button
+                        className="text-gray-600 hover:text-lblue"
+                        onClick={() => goToBookmark(bookmark.cfi)}
+                      >
+                        {bookmark.name}
+                      </button>
+                      <button
+                        className="text-red-600 hover:text-red-800"
+                        onClick={() => removeBookmark(bookmark.cfi)}
+                      >
+                        <HiMiniTrash />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </Modal.Window>
+        </Modal>
 
-      <div className="flex min-h-screen flex-col gap-4 overflow-hidden md:flex-row">
-        {/* Sidebar for TOC and Bookmarks */}
         <button
           onClick={toggleToc}
           className="rounded-md bg-lblue p-2 md:hidden"
         >
-          {showToc ? 'Close Table Of Contents' : 'Show Table Of Contents'}
+          {!showToc ? (
+            <svg
+              fill="none"
+              stroke-width="2"
+              xmlns="http://www.w3.org/2000/svg"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              viewBox="0 0 24 24"
+              height="1.5em"
+              width="1.5em"
+              // style="overflow: visible; color: currentcolor;"
+            >
+              <path d="M3 12 21 12"></path>
+              <path d="M3 6 21 6"></path>
+              <path d="M3 18 21 18"></path>
+            </svg>
+          ) : (
+            <svg
+              fill="currentColor"
+              stroke-width="0"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 384 512"
+              height="1.5em"
+              width="1.5em"
+            >
+              <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256l105.3-105.4z"></path>
+            </svg>
+          )}
         </button>
+      </div>
+
+      <div className="grid min-h-screen grid-cols-1 gap-4 overflow-hidden md:grid-cols-[1fr_2fr]">
+        {/* Sidebar for TOC and Bookmarks */}
 
         {showToc && (
-          <aside className="max-h-[25rem] min-h-[15rem] w-full overflow-y-auto rounded-md border-r border-gray-300 bg-white p-4 md:min-h-screen md:w-1/4">
+          <aside className="max-h-[25rem] min-h-[15rem] w-full overflow-y-auto rounded-md border-r border-gray-300 bg-white p-4 md:min-h-screen">
             <h2 className="w-full text-lg font-semibold text-gray-800">
               Table of Contents
             </h2>
@@ -162,7 +191,7 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
             </ul>
           </aside>
         )}
-        <aside className="hidden max-h-[25rem] min-h-[15rem] w-full overflow-y-auto rounded-md border-r border-gray-300 bg-white p-4 md:block md:min-h-screen md:w-1/4">
+        <aside className="hidden max-h-[25rem] min-h-[15rem] w-full overflow-y-auto rounded-md border-r border-gray-300 bg-white p-4 md:block md:min-h-screen">
           <h2 className="w-full text-lg font-semibold text-gray-800">
             Table of Contents
           </h2>
@@ -184,7 +213,7 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
         </aside>
 
         {/* EPUB Viewer */}
-        <div className="flex w-full flex-col overflow-hidden rounded-md md:w-3/4">
+        <div className="flex w-full flex-col overflow-hidden rounded-md">
           <div
             id="viewer"
             className="flex-1 border border-gray-300 bg-white"
