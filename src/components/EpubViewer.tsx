@@ -137,11 +137,11 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
           {!showToc ? (
             <svg
               fill="none"
-              stroke-width="2"
+              strokeWidth="2"
               xmlns="http://www.w3.org/2000/svg"
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               viewBox="0 0 24 24"
               height="1.5em"
               width="1.5em"

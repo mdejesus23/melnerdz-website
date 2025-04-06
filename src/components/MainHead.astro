@@ -8,9 +8,15 @@ interface Props {
   title?: string;
   meta?: string;
   structuredData?: object;
+  liturgy?: boolean;
 }
 
-const { title = 'Melnerdz Website', meta, structuredData } = Astro.props;
+const {
+  title = 'Melnerdz Website',
+  meta,
+  structuredData,
+  liturgy,
+} = Astro.props;
 ---
 
 <head>
@@ -31,5 +37,5 @@ const { title = 'Melnerdz Website', meta, structuredData } = Astro.props;
   <title>{title}</title>
 
   <!-- Adding metadata to the HTML document -->
-  <Meta meta={meta} structuredData={structuredData} />
+  <Meta liturgy meta={meta} structuredData={structuredData} />
 </head>
