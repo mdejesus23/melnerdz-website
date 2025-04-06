@@ -24,12 +24,17 @@ interface Props {
   liturgy?: boolean;
 }
 
-const { title, meta, structuredData, liturgy = false } = Astro.props;
+const { title, meta, structuredData, liturgy } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-  <MainHead title={title} meta={meta} structuredData={structuredData} />
+  <MainHead
+    liturgy={liturgy}
+    title={title}
+    meta={meta}
+    structuredData={structuredData}
+  />
   <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
     <!-- <Header client:load /> -->
     {!liturgy && <Header />}
