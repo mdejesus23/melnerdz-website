@@ -5,6 +5,7 @@ import { HiMiniTrash } from 'react-icons/hi2';
 import { HiArrowSmallRight } from 'react-icons/hi2';
 import { HiArrowSmallLeft } from 'react-icons/hi2';
 import Modal from './Modal';
+import AddBookmarkForm from './AddBookmarkForm';
 
 interface EpubViewerProps {
   epubUrl: string;
@@ -67,20 +68,6 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
   const handlePrev = () => renditionRef.current?.prev();
   const handleNext = () => renditionRef.current?.next();
 
-  const addBookmark = () => {
-    if (currentLocation) {
-      const bookmarkName = prompt('Enter a name for your bookmark:');
-      if (!bookmarkName) return; // If the user cancels, do nothing
-
-      const updatedBookmarks = [
-        ...bookmarks,
-        { name: bookmarkName, cfi: currentLocation },
-      ];
-      setBookmarks(updatedBookmarks);
-      localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
-    }
-  };
-
   const goToBookmark = (cfi: string) => {
     renditionRef.current?.display(cfi);
   };
@@ -90,6 +77,10 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
     setBookmarks(updatedBookmarks);
     localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));
   };
+
+  // const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setBookmarksName(e.target.value);
+  // };
 
   return (
     <>
@@ -225,12 +216,21 @@ const EpubViewer: React.FC<EpubViewerProps> = ({ epubUrl }) => {
             >
               <HiArrowSmallLeft />
             </button>
-            <button
-              onClick={addBookmark}
-              className="rounded bg-lblue px-4 py-2 text-white"
-            >
-              Add Bookmark
-            </button>
+            <Modal>
+              <Modal.Open opens="add-bookmark">
+                <button className="rounded bg-lblue px-4 py-2 text-white">
+                  Add Bookmark
+                </button>
+              </Modal.Open>
+              <Modal.Window name="add-bookmark">
+                <AddBookmarkForm
+                  currentLocation={currentLocation ?? undefined}
+                  setBookmarks={setBookmarks}
+                  bookmarks={bookmarks}
+                />
+              </Modal.Window>
+            </Modal>
+
             <button
               onClick={handleNext}
               className="rounded bg-gray-700 px-4 py-2 text-white"

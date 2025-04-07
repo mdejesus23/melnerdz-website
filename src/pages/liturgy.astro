@@ -5,7 +5,7 @@ import EpubViewer from '@/components/EpubViewer';
 
 const title: string = `Liturgy of the hours | ${SITE.title}`;
 const description: string =
-  'Office of the readings for the Liturgy of the Hours. This is a collection of the readings for the Liturgy of the Hours, including the Office of Readings, Morning Prayer, Daytime Prayer, Evening Prayer, and Night Prayer.';
+  'The Liturgy of the Hours, also known as the Divine Office or the Work of God (Opus Dei), is the daily prayer of the Church.';
 ---
 
 <MainLayout
@@ -24,11 +24,19 @@ const description: string =
   liturgy={true}
 >
   <section class="mb-60">
-    <h1
-      class="mx-auto mb-20 flex items-center justify-center text-center font-headfont text-3xl font-bold text-lblue md:text-4xl"
+    <div
+      class="mb-20 flex flex-col items-center justify-center gap-4 text-center"
     >
-      Office Of The Readings
-    </h1>
+      <h1
+        class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold text-lblue md:text-4xl"
+      >
+        Ora et Labora
+      </h1>
+      <p class="max-w-[60rem] text-base text-neutral-400">
+        {description}
+      </p>
+    </div>
+
     <EpubViewer client:load epubUrl="/liturgy-of-hours.epub" />
   </section>
 </MainLayout>
