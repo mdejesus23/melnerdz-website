@@ -50,9 +50,10 @@ import NavLink from './ui/NavLink.astro';
 <nav
   id="navbar-collapse"
   class="transition-max-height bg-primary dark:bg-secondaryDark hidden max-h-0 w-full overflow-hidden duration-300"
-  aria-labelledby="hs-unstyled-collapse"
 >
-  <ul class="flex w-full flex-col items-center justify-between gap-10 py-4">
+  <ul
+    class="flex w-full flex-col items-center justify-between border-t border-neutral-50 border-opacity-55"
+  >
     {navLinks.map((link) => <NavLink title={link.title} url={link.url} />)}
   </ul>
 </nav>

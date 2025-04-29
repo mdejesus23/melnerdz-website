@@ -4,7 +4,7 @@ from tabulate import tabulate
 names = [
     "Karlo",
     "Elsa",
-    "Salve",
+    "Joey",
     "Maurine",
     "Magda",
     "Matthew & Maricon",
@@ -16,7 +16,6 @@ names = [
     "Melnard & Mitch",
     "Eduard",
     "Emily",
-    "chi",
     "Ken & Jeramay",
     "williza",
     "Migui",

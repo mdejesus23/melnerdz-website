@@ -5,17 +5,18 @@ import ExternalLink from './icons/ExternalLink.astro';
 interface NavLink {
   title: string;
   url: string;
+  mobile?: boolean;
 }
 
-const { title, url } = Astro.props;
+const { title, url, mobile = false } = Astro.props;
 
 const isActive = Astro.url.pathname === url;
 ---
 
-<li>
+<li class="w-full border-b border-neutral-50 border-opacity-55 px-8 py-5">
   <a
     href={title === 'Github' || title === 'CV' ? `${url}` : `${url}`}
-    class=`flex items-center gap-2 hover:text-lblue ${isActive ? 'text-lblue' : ''}`
+    class=`flex items-center gap-2 hover:text-lblue ${isActive ? 'text-lblue' : 'text-white'}`
     aria-label={title}
     target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
   >
