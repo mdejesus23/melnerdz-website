@@ -54,7 +54,11 @@ import NavLink from './ui/NavLink.astro';
   <ul
     class="flex w-full flex-col items-center justify-between border-t border-neutral-50 border-opacity-55"
   >
-    {navLinks.map((link) => <NavLink title={link.title} url={link.url} />)}
+    {
+      navLinks.map((link) => (
+        <NavLink title={link.title} url={link.url} isMobile={true} />
+      ))
+    }
   </ul>
 </nav>
 
