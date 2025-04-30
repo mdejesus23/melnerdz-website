@@ -5,7 +5,7 @@ author: Melnard De Jesus
 image:
   src: './images/saz.jpg'
   alt: 'Website main page'
-description: The Student Athlete Zone is a dynamic website built for a client, featuring responsive design, newsletter subscriptions, fuzzy search, and technical SEO, all powered by modern web technologies like Astro, Supabase, and TinaCMS.
+description: The Student Athlete Zone is a dynamic website built for a client, featuring responsive design, newsletter subscriptions, fuzzy search, technical SEO, and a chatbot powered by OpenAI, all integrated with modern web technologies like Astro, Supabase, and TinaCMS.
 slug: studentathletezone
 tags: ['coding', 'tips', 'technology']
 technology:
@@ -19,15 +19,19 @@ technology:
     'Supabase',
     'TinaCMS',
     'Astro Hybrid SSR',
+    'OpenAI',
+    'Supabase Edge Functions',
   ]
 link: 'https://studentathletezone.com/'
 repo: 'https://github.com/mdejesus23'
-shortDesc: The Student Athlete Zone is a feature-rich website developed for a client, incorporating responsive design, fuzzy search, pagination, technical SEO, and a hybrid SSR approach for optimized performance and user experience.
+shortDesc: The Student Athlete Zone is a feature-rich website developed for a client, incorporating responsive design, fuzzy search, pagination, technical SEO, a chatbot, and a hybrid SSR approach for optimized performance and user experience.
 ---
 
-The **Student Athlete Zone** is a dynamic and engaging platform developed for a client. This website leverages modern web technologies like Astro, Supabase, and TinaCMS to deliver a seamless user experience with efficient content management, search functionality, and high-performance features.
+The **Student Athlete Zone** is a dynamic and engaging platform developed for a client. This website leverages modern web technologies like Astro, Supabase, and TinaCMS to deliver a seamless user experience with efficient content management, search functionality, and high-performance features. Additionally, the site now features an interactive chatbot, powered by OpenAI, and an integrated Supabase Edge Function for real-time responses.
 
 ## Features:
+
+- <i class="fas fa-comments text-lblue"></i> **Chatbot Integration (OpenAI & Supabase Edge Function)**: Users can now interact with a chatbot powered by OpenAI for instant responses. The chatbot utilizes Supabase Edge Functions to fetch real-time data and enhance the conversation experience.
 
 - <i class="fas fa-mobile-alt text-lblue"></i> **Responsive Design**: Adapts seamlessly to various screen sizes, ensuring an optimal experience across all devices.
 
@@ -49,4 +53,4 @@ The **Student Athlete Zone** is a dynamic and engaging platform developed for a 
 
 _Note: This project is continuously evolving with additional pages, Markdown content, and feature enhancements to improve functionality and user engagement._
 
-Visit the live site: <a href="https://studentathletezone.com/" target="_blank"><u>Student Athlete Zone</u></a>
+Visit the live site: [Student Athlete Zone](https://studentathletezone.com/)

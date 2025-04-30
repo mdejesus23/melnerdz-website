@@ -39,6 +39,10 @@ const getTechColor = (tech: string) => {
       return 'bg-green-500 text-white';
     case 'netlify':
       return 'bg-blue-800 text-white';
+    case 'openai':
+      return 'bg-green-600 text-white';
+    case 'supabase edge functions':
+      return 'bg-teal-700 text-white';
     default:
       return 'bg-gray-300 text-black'; // fallback for unknown techs
   }
@@ -56,14 +60,14 @@ const getTechColor = (tech: string) => {
           <figure class="aspect-w-3 aspect-h-2">
             <a href={`/projects/${project.id}`}>
               <Image
-                class="mx-auto min-h-[13rem] rounded-md hidden md:block"
+                class="mx-auto hidden min-h-[13rem] rounded-md md:block"
                 width={400}
                 height={300}
                 src={project.data.image.src}
                 alt={project.data.image.alt}
               />
-                        <Image
-                class="mx-auto min-h-[13rem] rounded-t-md block md:hidden"
+              <Image
+                class="mx-auto block min-h-[13rem] rounded-t-md md:hidden"
                 width={500}
                 height={300}
                 src={project.data.image.src}
