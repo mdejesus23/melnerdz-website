@@ -1,0 +1,54 @@
+---
+import MainLayout from '@/layouts/MainLayout.astro';
+import { SITE } from '@/data/constant';
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+const prayers: CollectionEntry<'ibreviary'>[] = (
+  await getCollection('ibreviary')
+).sort((a, b) => {
+  return new Date(a.data.date).valueOf() - new Date(b.data.date).valueOf();
+});
+
+// console.log(prayers);
+---
+
+<MainLayout
+  title={`Ibreviar Readings | ${SITE.title}`}
+  meta="Browse daily breviary (Ibreviary) prayers including Morning and Evening readings."
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Ibreviary Daily Prayers',
+    description:
+      'Browse daily breviary prayers by date, including Morning and Evening readings.',
+    url: 'https://melnerdz.com/ibreviary',
+  }}
+>
+  <section class="mx-auto max-w-4xl px-4 py-10 text-white">
+    <h1 class="text-center font-headfont text-3xl font-bold md:text-4xl">
+      Ibreviar Daily Readings
+    </h1>
+    <p class="mb-8 mt-2 text-center font-medium">
+      Select a date and time (Morning/Evening) to read the prayer.
+    </p>
+
+    <ul class="space-y-4">
+      {
+        prayers.map((entry) => {
+          const path = `/ibreviary/${entry.id}`;
+          return (
+            <li>
+              <a
+                href={path}
+                class="block rounded-xl bg-gray-800 p-4 transition hover:bg-gray-700"
+              >
+                <strong>{entry.data.type}</strong> – {entry.data.date}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </section>
+</MainLayout>

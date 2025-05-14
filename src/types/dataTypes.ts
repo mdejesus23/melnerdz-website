@@ -24,6 +24,11 @@ export interface Blog {
   tags: string[];
 }
 
+export interface Prayer {
+  type: string;
+  date: Date;
+}
+
 export interface Page<T = any> {
   /** result */
   data: T[];

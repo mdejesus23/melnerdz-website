@@ -19,7 +19,7 @@ export const navLinks: NavLink[] = [
   },
   {
     title: 'CV',
-    url: '/mdejesus-resume.pdf',
+    url: '/melnard-de-jesus-resume.pdf',
   },
 ];
 

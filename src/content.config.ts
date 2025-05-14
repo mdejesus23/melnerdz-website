@@ -22,7 +22,7 @@ const projectsCollections = defineCollection({
 });
 
 const blogCollection = defineCollection({
-  loader: glob({ pattern: '**/index.md', base: './src/data/blogs' }), // Match 'index.md' in nested folders
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/data/blogs' }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -39,7 +39,17 @@ const blogCollection = defineCollection({
     }),
 });
 
+const prayersCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/data/ibreviary' }),
+  schema: ({}) =>
+    z.object({
+      type: z.string(),
+      date: z.date(),
+    }),
+});
+
 export const collections = {
   projects: projectsCollections,
   blogs: blogCollection,
+  ibreviary: prayersCollection,
 };
