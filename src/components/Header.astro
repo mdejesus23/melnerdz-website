@@ -25,7 +25,7 @@ import NavLink from './ui/NavLink.astro';
           }
         </ul>
       </div>
-      <button
+      <!-- <button
         id="mobile-menu"
         aria-controls="navbar-collapse"
         aria-label="Toggle navigation"
@@ -41,7 +41,12 @@ import NavLink from './ui/NavLink.astro';
             d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
           ></path></svg
         >
-      </button>
+      </button> -->
+      <div id="mobile-menu" class="container">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </div>
     </div>
   </nav>
 </header>
@@ -72,12 +77,14 @@ import NavLink from './ui/NavLink.astro';
 
     toggleButton.addEventListener('click', () => {
       if (mobileNav.classList.contains('hidden')) {
+        toggleButton.classList.add('change');
         mobileNav.classList.remove('hidden');
         // Setting max-height to a large value to animate the opening
         mobileNav.style.maxHeight = `${mobileNav.scrollHeight}px`;
       } else {
         // Animate closing by setting max-height to 0
         mobileNav.style.maxHeight = '0px';
+        toggleButton.classList.remove('change');
         mobileNav.addEventListener(
           'transitionend',
           () => {
