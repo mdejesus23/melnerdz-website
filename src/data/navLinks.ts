@@ -40,8 +40,8 @@ export const footerLinks: NavLink[] = [
     title: 'Codewars',
     url: 'https://www.codewars.com/users/mdejesus23',
   },
-  {
-    title: 'Liturgy',
-    url: '/liturgy',
-  },
+  // {
+  //   title: 'Liturgy',
+  //   url: '/liturgy',
+  // },
 ];
