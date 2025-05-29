@@ -3,6 +3,8 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import turncateString from '../utils/turncateString';
+import Icon from './ui/icons/Icon.astro';
+
 // Fetch projects data
 const allProjects: CollectionEntry<'projects'>[] = (
   await getCollection('projects')
@@ -50,9 +52,18 @@ const getTechColor = (tech: string) => {
 ---
 
 <section class="mt-10 min-h-full w-full md:mt-20">
-  <h2 class="mb-6 text-2xl font-bold">
-    Recent <span class="text-lblue">Projects</span>
-  </h2>
+  <div class="mb-6 flex items-center justify-between">
+    <h2 class="mb-6 text-2xl font-bold">
+      Recent <span class="text-lblue">Projects</span>
+    </h2>
+    <a
+      class="hover:text-lblue-500 flex items-center gap-x-1 text-lblue hover:underline"
+      href="/projects"
+      >View all Projects
+      <Icon name="arrowRight" />
+    </a>
+  </div>
+
   <ul class="flex flex-col gap-y-10">
     {
       allProjects.map((project) => (
