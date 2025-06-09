@@ -1,6 +1,6 @@
 ---
 title: E-Commerce with SolidStart & Snipcart
-pubDate: 2024-12-20
+pubDate: 2025-01-10
 author: Melnard De Jesus
 image:
   src: './images/dobbmayo.jpg'

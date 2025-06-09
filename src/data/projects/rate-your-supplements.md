@@ -1,6 +1,6 @@
 ---
 title: Rate Your Supplements
-pubDate: 2025-03-28
+pubDate: 2024-11-01
 author: Melnard De Jesus
 image:
   src: './images/rateyoursupplements.jpg'

@@ -1,6 +1,6 @@
 ---
 title: Bible themes App
-pubDate: 2025-04-01
+pubDate: 2024-10-01
 author: Melnard De Jesus
 image:
   src: './images/preparation-app.jpg'

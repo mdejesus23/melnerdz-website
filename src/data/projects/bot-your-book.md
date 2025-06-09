@@ -1,6 +1,6 @@
 ---
 title: Bot Your Book
-pubDate: 2025-03-28
+pubDate: 2024-12-05
 author: Melnard De Jesus
 image:
   src: './images/botyourbook.png'

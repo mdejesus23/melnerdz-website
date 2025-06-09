@@ -11,7 +11,7 @@ const allProjects: CollectionEntry<'projects'>[] = (
 )
   .sort(
     (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
-      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+      a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
   )
   .slice(0, 3);
 
