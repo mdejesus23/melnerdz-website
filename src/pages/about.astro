@@ -6,6 +6,7 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import Prose from '@/components/Prose.astro';
 import { Image } from 'astro:assets';
 import profilePicture from '@/images/mdj.png';
+import Animation from '@/components/Animation';
 
 const entry = await getEntry('personal', 'about');
 
@@ -16,8 +17,8 @@ if (!entry) {
 const typedEntry: CollectionEntry<'personal'> = entry;
 const { Content } = await render(typedEntry);
 
-const title = `Privacy Policy`;
-const description = `Read our privacy policy to learn how BotYourBook collects, uses, and protects your data while using our chatbot integration services.`;
+const title = `About Me`;
+const description = `Here's the summary of my expertise and experience as a Fullstack Developer`;
 ---
 
 <MainLayout
@@ -35,12 +36,15 @@ const description = `Read our privacy policy to learn how BotYourBook collects, 
   meta={description}
 >
   <section class="my-20 w-full px-4 md:px-8">
-    <div class="custom-container mx-auto flex flex-col justify-center md:py-10">
+    <div
+      class="custom-container mx-auto flex flex-col items-center justify-center md:py-10"
+    >
       <figure
         class="mx-auto mb-10 h-44 w-44 overflow-hidden rounded-full bg-projectDesc text-center md:h-60 md:w-60"
       >
         <Image src={profilePicture} alt="Profile picture" />
       </figure>
+      <!-- <Animation client:load /> -->
       <Prose>
         <Content />
       </Prose>

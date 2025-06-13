@@ -5,7 +5,7 @@
 @layer base {
   :root {
     --color-white: #f4edea;
-    --color-pblue: #12263a;
+    --color-pblue: #0f172a;
     --color-lblue: #06bcc1;
     --color-lorange: #f4d1ae;
     --color-project: #1e293b;
@@ -101,4 +101,17 @@
 
 .change .bar3 {
   transform: translateY(-9px) rotate(45deg);
+}
+
+/* Add to your global CSS */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
