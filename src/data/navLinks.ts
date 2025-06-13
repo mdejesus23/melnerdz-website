@@ -37,15 +37,11 @@ export const footerLinks: NavLink[] = [
     url: 'https://www.facebook.com/dejesusmelnard',
   },
   {
+    title: 'Onlinejob.ph',
+    url: 'https://www.onlinejobs.ph/jobseekers/info/1552795',
+  },
+  {
     title: 'Github',
     url: 'https://github.com/mdejesus23',
   },
-  {
-    title: 'Codewars',
-    url: 'https://www.codewars.com/users/mdejesus23',
-  },
-  // {
-  //   title: 'Liturgy',
-  //   url: '/liturgy',
-  // },
 ];
