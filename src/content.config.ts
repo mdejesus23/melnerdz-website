@@ -48,8 +48,17 @@ const prayersCollection = defineCollection({
     }),
 });
 
+const aboutMeCollection = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/data/personal' }),
+  schema: () =>
+    z.object({
+      title: z.string(),
+    }),
+});
+
 export const collections = {
   projects: projectsCollections,
   blogs: blogCollection,
   ibreviary: prayersCollection,
+  personal: aboutMeCollection,
 };

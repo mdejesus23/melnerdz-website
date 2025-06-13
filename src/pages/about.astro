@@ -1,0 +1,49 @@
+---
+import { getEntry, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import { ISPARTOF } from '@/data/constant';
+import MainLayout from '@/layouts/MainLayout.astro';
+import Prose from '@/components/Prose.astro';
+import { Image } from 'astro:assets';
+import profilePicture from '@/images/mdj.png';
+
+const entry = await getEntry('personal', 'about');
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+const typedEntry: CollectionEntry<'personal'> = entry;
+const { Content } = await render(typedEntry);
+
+const title = `Privacy Policy`;
+const description = `Read our privacy policy to learn how BotYourBook collects, uses, and protects your data while using our chatbot integration services.`;
+---
+
+<MainLayout
+  title={title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': `https://melnerdz.com/about`,
+    url: `https://melnerdz.com/about`,
+    name: `Todo Scout`,
+    description: description,
+    isPartOf: ISPARTOF,
+    inLanguage: 'en-US',
+  }}
+  meta={description}
+>
+  <section class="my-20 w-full px-4 md:px-8">
+    <div class="custom-container mx-auto flex flex-col justify-center md:py-10">
+      <figure
+        class="mx-auto mb-10 h-44 w-44 overflow-hidden rounded-full bg-projectDesc text-center md:h-60 md:w-60"
+      >
+        <Image src={profilePicture} alt="Profile picture" />
+      </figure>
+      <Prose>
+        <Content />
+      </Prose>
+    </div>
+  </section>
+</MainLayout>

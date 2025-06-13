@@ -18,9 +18,13 @@ export const navLinks: NavLink[] = [
     url: '/contact',
   },
   {
-    title: 'CV',
-    url: '/melnard-de-jesus-resume.pdf',
+    title: 'About Me',
+    url: '/about',
   },
+  // {
+  //   title: 'CV',
+  //   url: '/melnard-de-jesus-resume.pdf',
+  // },
 ];
 
 export const footerLinks: NavLink[] = [

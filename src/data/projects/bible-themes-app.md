@@ -5,7 +5,7 @@ author: Melnard De Jesus
 image:
   src: './images/preparation-app.jpg'
   alt: 'Bible themes app login page'
-description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, and email notifications using SendGrid.
+description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, Cloudinary file handling, and email notifications using SendGrid.
 slug: bible-themes-app
 tags:
   [
@@ -16,6 +16,7 @@ tags:
     'Node.js',
     'REST API',
     'SendGrid',
+    'Cloudinary',
   ]
 technology:
   [
@@ -29,10 +30,11 @@ technology:
     'JWT',
     'REST API',
     'SendGrid',
+    'Cloudinary',
   ]
 link: 'https://scriptures-app.netlify.app/'
 repo: 'https://github.com/mdejesus23/preparation-app'
-shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, SendGrid email notifications, and secure data handling.
+shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, Cloudinary file storage, SendGrid email notifications, and secure data handling.
 ---
 
 I've developed a full-stack <strong>Bible themes App</strong> for our church organization, built using the **MERN stack**. This application streamlines bible themes activities, making collaboration easier and more efficient.
@@ -58,6 +60,8 @@ I've developed a full-stack <strong>Bible themes App</strong> for our church org
 - <i class="fas fa-lock text-lblue"></i> JWT-Based Authentication: Authentication is enhanced with JSON Web Tokens (JWT), enabling secure, stateless user sessions and API communication.
 
 - <i class="fas fa-envelope text-lblue"></i> SendGrid Integration for Email Notifications: The app utilizes **SendGrid** to send automated email notifications for user actions such as account creation, password recovery, and other essential updates.
+
+- <i class="fas fa-cloud-upload-alt text-lblue"></i> Cloudinary for Media & EPUB Storage: All uploaded images and EPUB files are stored and managed via **Cloudinary**, ensuring optimized delivery and secure file handling.
 
 - <i class="fas fa-user-check text-lblue"></i> Test Credentials for Easy Access:
 
