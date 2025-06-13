@@ -6,7 +6,6 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import Prose from '@/components/Prose.astro';
 import { Image } from 'astro:assets';
 import profilePicture from '@/images/mdj.png';
-import Animation from '@/components/Animation';
 
 const entry = await getEntry('personal', 'about');
 
@@ -44,7 +43,6 @@ const description = `Here's the summary of my expertise and experience as a Full
       >
         <Image src={profilePicture} alt="Profile picture" />
       </figure>
-      <!-- <Animation client:load /> -->
       <Prose>
         <Content />
       </Prose>
