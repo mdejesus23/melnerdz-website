@@ -69,8 +69,6 @@ I've developed a full-stack <strong>Bible themes App</strong> for our church org
   - Password: <span class="text-lblue">Test1234</span>
   - Theme Passcode: <span class="text-lblue">asdf</span>
 
-  _Note: Hosted on the free tier of Render.com, so initial loading might take some time._
-
 ## Explore the App
 
 - Live Site: <a href="https://scriptures-themes.melnerdz.com/" target="_blank">Bible themes app</a>
