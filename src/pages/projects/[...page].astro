@@ -14,7 +14,7 @@ interface Props {
 }
 
 export async function getStaticPaths({ paginate }: any) {
-  const PROJECT_PER_PAGE: number = 3;
+  const PROJECT_PER_PAGE: number = 6;
   const allProjects: CollectionEntry<'projects'>[] = (
     await getCollection('projects')
   ).sort(
