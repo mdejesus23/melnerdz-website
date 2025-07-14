@@ -6,11 +6,12 @@ interface NavLink {
   title: string;
   url: string;
   isMobile?: boolean;
+  currentPath?: string;
 }
 
-const { title, url, isMobile = false } = Astro.props;
+const { title, url, currentPath, isMobile = false } = Astro.props;
 
-const isActive = Astro.url.pathname === url;
+const isActive = currentPath === url;
 ---
 
 <li

@@ -25,7 +25,11 @@ const testLogo = '< Nerdz />';
         <ul class="hidden space-x-6 font-medium sm:flex">
           {
             navLinks.map((link) => (
-              <NavLink title={link.title} url={link.url} />
+              <NavLink
+                title={link.title}
+                url={link.url}
+                currentPath={Astro.url.pathname}
+              />
             ))
           }
         </ul>
@@ -66,7 +70,12 @@ const testLogo = '< Nerdz />';
   >
     {
       navLinks.map((link) => (
-        <NavLink title={link.title} url={link.url} isMobile={true} />
+        <NavLink
+          title={link.title}
+          url={link.url}
+          isMobile={true}
+          currentPath={Astro.url.pathname}
+        />
       ))
     }
   </ul>
