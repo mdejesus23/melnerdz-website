@@ -5,7 +5,7 @@ media:
     output: src/data/blogs
     
 content:
-  - name: blog
+  - name: blogs
     label: Blogs
     type: collection
     path: src/data/blogs
