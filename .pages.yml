@@ -9,6 +9,8 @@ content:
     label: Blogs
     type: collection
     path: src/data/blogs
+    format: yaml-frontmatter
+    filename: index.md
     view:
       fields: [title, pubDate, slug]
     fields:
