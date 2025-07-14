@@ -8,7 +8,7 @@ content:
   - name: blog
     label: Blogs
     type: collection
-    path: src/data/blog
+    path: src/data/blogs
     view:
       fields: [title, pubDate, slug]
     fields:
