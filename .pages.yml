@@ -3,27 +3,53 @@ media:
     label: Media
     input: src/data/blogs
     output: src/data/blogs
-    
+
 content:
-  - name: blogs
-    label: Blogs
+  - name: posts
+    label: Posts
     type: collection
     path: src/data/blogs
     format: yaml-frontmatter
     filename: index.md
-    view:
-      fields: [title, pubDate, slug]
     fields:
-      - { name: title, label: Title, type: string }
-      - { name: pubDate, label: Published Date, type: date }
-      - { name: author, label: Author, type: string }
-      - { name: slug, label: Slug, type: string }
+      - name: title
+        label: Title
+        type: string
+
+      - name: pubDate
+        label: Published Date
+        type: date
+
+      - name: author
+        label: Author
+        type: string
+
+      - name: slug
+        label: Slug
+        type: string
+
       - name: image
         label: Image
         type: object
         fields:
-          - { name: src, label: Image Filepath, type: string, default: src/data/images }
-          - { name: alt, label: Alt Text, type: string }
-      - { name: description, label: Description, type: string }
-      - { name: technology, label: Technologies, type: string, list: true }
-      - { name: tags, label: Tags, type: string, list: true }
+          - name: src
+            label: Image Filepath
+            type: string
+            default: src/data/images
+          - name: alt
+            label: Alt Text
+            type: string
+
+      - name: description
+        label: Description
+        type: string
+
+      - name: technology
+        label: Technologies
+        type: string
+        list: true
+
+      - name: tags
+        label: Tags
+        type: string
+        list: true
