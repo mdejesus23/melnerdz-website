@@ -7,7 +7,7 @@ media:
 content:
   - name: blogs
     label: Blogs
-    type: file
+    type: collection
     path: src/data/blogs
     format: yaml-frontmatter
     filename: index.md
