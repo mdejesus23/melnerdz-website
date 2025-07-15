@@ -35,7 +35,7 @@ content:
           - name: src
             label: Image Filepath
             type: string
-            default: src/data/images
+            default: src/data/blogs/YYYY/MM/blog-slug/filename.jpg
           - name: alt
             label: Alt Text
             type: string
