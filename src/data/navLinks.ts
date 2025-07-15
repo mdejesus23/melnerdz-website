@@ -21,6 +21,10 @@ export const navLinks: NavLink[] = [
     title: 'About Me',
     url: '/about',
   },
+  {
+    title: 'Search',
+    url: '/search',
+  },
   // {
   //   title: 'CV',
   //   url: '/melnard-de-jesus-resume.pdf',

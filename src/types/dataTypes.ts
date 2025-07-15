@@ -63,3 +63,10 @@ export interface NavLink {
   title: string;
   url: string;
 }
+
+export interface SearchData {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+}
