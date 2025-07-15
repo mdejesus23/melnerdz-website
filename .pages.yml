@@ -5,9 +5,9 @@ media:
     output: src/data/blogs
 
 content:
-  - name: posts
-    label: Posts
-    type: collection
+  - name: blogs
+    label: Blogs
+    type: file
     path: src/data/blogs
     format: yaml-frontmatter
     filename: index.md
