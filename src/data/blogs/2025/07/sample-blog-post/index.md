@@ -8,6 +8,10 @@ image:
   alt: sample alt text
 description: Learn key strategies to build mental toughness for resilience,
   focus, and success in sports, work, and life.
+technology:
+  - "[]"
+tags:
+  - Catholic
 ---
 # Sample Blog Post
 
