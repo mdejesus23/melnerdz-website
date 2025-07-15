@@ -20,7 +20,7 @@ export interface Blog {
     alt: string;
   };
   description: string;
-  technology: string[];
+  technology?: string[];
   tags: string[];
 }
 
