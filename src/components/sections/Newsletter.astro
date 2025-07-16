@@ -1,5 +1,7 @@
 ---
 import NewsletterForm from '../forms/NewsletterFrom';
+const workerEndpoint = import.meta.env.WORKER_ENDPOINT;
+console.log('env variables', workerEndpoint);
 ---
 
 <section
@@ -13,5 +15,5 @@ import NewsletterForm from '../forms/NewsletterFrom';
       Get the latest updates on my blog, projects, and other tech-related stuff.
     </p>
   </div>
-  <NewsletterForm client:load />
+  <NewsletterForm client:load workerEndpoint={workerEndpoint} />
 </section>

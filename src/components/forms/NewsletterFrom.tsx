@@ -7,7 +7,11 @@ interface ToastMessage {
   message: string;
 }
 
-export default function NewsletterForm() {
+export default function NewsletterForm({
+  workerEndpoint,
+}: {
+  workerEndpoint: string;
+}) {
   const [email, setEmail] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -35,8 +39,21 @@ export default function NewsletterForm() {
       return;
     }
 
-    addToast('⚠️ This feature is under development..', 'info');
+    const response = await fetch(workerEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
 
+    if (!response.ok) {
+      addToast('Newsletter subscription failed. Please try again.', 'error');
+      setLoading(false);
+      return;
+    }
+
+    addToast('Subscribed successfully. Thank you!', 'success');
     setLoading(false);
   };
 
