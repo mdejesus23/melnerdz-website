@@ -13,8 +13,6 @@ technology: []
 
 ## A Time for Reflection and Renewal
 
-Ash Wednesday marks the beginning of Lent, a 40-day period of fasting, prayer, and almsgiving leading up to Easter Sunday. This sacred time mirrors Jesus' 40-day fast and His temptation in the desert, calling us to spiritual renewal and deeper faith.
-
 Ash Wednesday derives its name from the practice of placing ashes on the foreheads of the faithful in the shape of a cross. These ashes symbolize penance, humility, and a reminder of our mortality—echoing the biblical phrase:
 
 > _Remember that you are dust, and to dust you shall return._ (Genesis 3:19)

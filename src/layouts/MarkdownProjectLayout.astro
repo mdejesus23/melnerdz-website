@@ -5,6 +5,7 @@ import MainLayout from './MainLayout.astro';
 import Prose from '../components/Prose.astro';
 import { SITE, ISPARTOF } from '../data/constant';
 import { countWords } from '@/utils/countWords';
+import Newsletter from '@/components/sections/Newsletter.astro';
 
 interface Props {
   data: Project | Blog;
@@ -69,4 +70,5 @@ const readTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
       </Prose>
     </div>
   </section>
+  <Newsletter />
 </MainLayout>
