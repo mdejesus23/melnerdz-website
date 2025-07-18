@@ -22,22 +22,70 @@ const description: string =
   }}
   meta={description}
 >
-  <section>
-    <h1
-      class="mx-auto flex items-center justify-center text-center font-headfont text-3xl font-bold md:text-4xl"
-    >
-      Let's Connect
-    </h1>
+  <section class="mx-auto max-w-6xl px-4 py-12 md:px-6 lg:px-8">
+    <div class="mx-auto mb-20 max-w-[35rem]">
+      <h1 class="mb-8 text-center font-headfont text-3xl font-bold md:text-4xl">
+        Let's Connect
+      </h1>
 
-    <p class="mt-6 hidden text-center font-medium text-white md:block">
-      Feel free to reach out! Fill out the form below, and I'll get back to you
-      as soon as possible. Looking forward to hearing from you!
-    </p>
-    <p class="mt-6 block text-center font-medium text-white md:hidden">
-      Feel free to reach out! Fill out the form below. Looking forward to
-      hearing from you!
-    </p>
+      <p class="mb-6 text-center font-medium text-white">
+        Feel free to reach out! Fill out the form below, and I'll get back to
+        you as soon as possible. Looking forward to hearing from you!
+      </p>
+    </div>
 
-    <ContactForm />
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <!-- Left Column: Contact Details -->
+      <div class="space-y-6 text-white">
+        <div>
+          <h2 class="text-xl font-semibold">Email</h2>
+          <p class="text-lg">me@melnerdz.com</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Phone</h2>
+          <p class="text-lg">+63 977 639 3459</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Location</h2>
+          <p class="text-lg">Philippines (GMT+8)</p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Availability</h2>
+          <p class="text-lg">
+            Open to freelance and remote full-time opportunities
+          </p>
+        </div>
+        <div>
+          <h2 class="text-xl font-semibold">Socials</h2>
+          <ul class="space-y-2">
+            <li>
+              <a
+                href="https://github.com/mdejesus23"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                GitHub: @melnerdz
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/in/melnard-de-jesus-279132278"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                LinkedIn: /in/melnerdz
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right Column: Contact Form -->
+      <div>
+        <ContactForm />
+      </div>
+    </div>
   </section>
 </MainLayout>
