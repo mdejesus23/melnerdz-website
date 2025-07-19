@@ -6,10 +6,9 @@ slug: fatherhood-a-journey-of-grace
 image:
   src: src/data/blogs/2025/07/fatherhood-a-journey-of-grace/fatherhood-with-st-joseph.png
   alt: Fatherhood with St. Joseph image
-description: A heartfelt reflection on fatherhood from a man who rose above a
-  broken past through faith and community. This blog shares how true fatherhood
-  is not measured by success or provision, but by love, presence, and trust in
-  God—modeled after the example of St. Joseph.
+description: A reflection on fatherhood, showing how faith and community can
+  transform a broken past. True fatherhood is found in love, presence, and trust
+  in God—like St. Joseph.
 tags:
   - Saints
   - Reflection
