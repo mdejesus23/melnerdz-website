@@ -13,8 +13,6 @@ tags:
   - Saints
   - Reflection
 ---
-# **From Brokenness to Fatherhood: A Journey of Grace**
-
 I come from a broken family—a background that left deep wounds in my heart. Growing up, I wasn’t the best son to my mother. I felt lost and without direction. My teenage years were shaped by bad influences. I had friends involved in selling marijuana at school, some carried weapons, and many were often in trouble. With that kind of environment, I believed there was no hope for change in my life.
 
 But thanks be to God—He called us into a Christian community through our parish. It began with my mother’s conversion, and eventually, I found myself drawn in as well. At first, I felt out of place. Most of the people my age in the community seemed to come from whole, loving families—something I never had. But slowly, through their guidance and the work of God’s grace, I began to change.
