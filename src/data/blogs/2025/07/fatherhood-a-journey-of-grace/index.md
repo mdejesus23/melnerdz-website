@@ -23,7 +23,7 @@ The community taught me how to live differently. I began to understand what it m
 
 Often, as fathers, we measure our worth by what we do—how much we earn, what we can provide, or how successful we appear. And when we fall short because of life’s challenges or our own weaknesses, we feel like failures.
 
-But fatherhood is not defined by our ability to provide materially. Rather, it is rooted in our relationship with our children. Our presence, our guidance, our love—that’s what truly matters. These are the foundations of being a good father.
+But fatherhood is not defined by our ability to provide materially alone. Rather, it is rooted in our relationship with our children. Our presence, our guidance, our love—that’s what truly matters. These are the foundations of being a good father.
 
 Ultimately, God the Father is the true provider. We are only shadows of His perfect fatherhood. He is the one who meets all our children’s needs, even when we cannot. And in recognizing this, we are freed from the pressure of perfection and can embrace our role with humility and trust.
 
