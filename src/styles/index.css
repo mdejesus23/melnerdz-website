@@ -73,7 +73,7 @@
 
 .prose strong {
   /* color: white;  */
-  @apply text-lblue;
+  @apply text-projectDesc;
 }
 
 .prose a {

@@ -14,7 +14,7 @@ interface Props {
 }
 
 export async function getStaticPaths({ paginate }: any) {
-  const PROJECT_PER_PAGE: number = 6;
+  const PROJECT_PER_PAGE: number = 3;
   const allProjects: CollectionEntry<'projects'>[] = (
     await getCollection('projects')
   ).sort(
@@ -34,7 +34,7 @@ const title: string = `My Projects | ${SITE.title}`;
 const description: string = 'This is my project page.';
 
 const projectList = page.data;
-const totalPages = Math.ceil(page.total / 6);
+const totalPages = Math.ceil(page.total / 3);
 ---
 
 <MainLayout
@@ -68,36 +68,57 @@ const totalPages = Math.ceil(page.total / 6);
       project.
     </p>
 
-    <div
-      class="mt-12 grid grid-cols-1 gap-6 gap-y-9 sm:grid-cols-2 md:grid-cols-3"
-    >
-      {
-        projectList.map((project) => (
-          <li class="cursor-pointer list-none overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg">
-            <a
-              href={`/projects/${project.id}`}
-              class="cursor-pointer overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg"
-            >
-              <figure class="aspect-w-3 aspect-h-2">
-                <Image
-                  class="h-60 w-full sm:h-64 md:h-52"
-                  src={project.data.image.src}
-                  alt={project.data.image.alt}
-                />
-              </figure>
-              <article class="flex flex-col items-center justify-center px-2 py-6">
-                <h2 class="text-center font-headfont text-xl font-bold text-white transition duration-300 ease-in-out hover:text-lblue">
-                  {project.data.title}
-                </h2>
-                <p class="mx-1 mt-3 text-left font-medium text-projectDesc">
-                  {turncateString(project.data.shortDesc, 150)}
-                </p>
-              </article>
-            </a>
-          </li>
-        ))
-      }
-    </div>
+<div
+  class="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3"
+>
+  {
+    projectList.map((project) => (
+      <li
+        class="group relative list-none overflow-hidden rounded-xl bg-project shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl"
+      >
+        <a href={`/projects/${project.id}`} class="block h-full">
+          <!-- Image with gradient overlay -->
+          <figure class="relative h-56 overflow-hidden sm:h-64 md:h-52">
+            <Image
+              class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              src={project.data.image.src}
+              alt={project.data.image.alt}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+          </figure>
+
+          <!-- Content Section -->
+          <article class="flex flex-col justify-between px-5 py-6">
+            <div>
+              <h2 class="text-center font-headfont text-lg font-bold text-white transition duration-300 ease-in-out group-hover:text-lblue">
+                {project.data.title}
+              </h2>
+              <p class="mt-3 text-center text-sm font-medium text-projectDesc">
+                {turncateString(project.data.shortDesc, 120)}
+              </p>
+            </div>
+
+            <!-- Technologies -->
+            {
+              project.data.technology && project.data.technology.length > 0 && (
+                <ul class="mt-5 flex flex-wrap justify-center gap-2">
+                  {
+                    project.data.technology.map((tech: string) => (
+                      <li class="rounded-full border border-lblue/30 bg-lblue/10 px-3 py-1 text-xs font-medium text-lblue transition-colors duration-200 group-hover:bg-lblue/20">
+                        {tech}
+                      </li>
+                    ))
+                  }
+                </ul>
+              )
+            }
+          </article>
+        </a>
+      </li>
+    ))
+  }
+</div>
+
     <Pagination
       currentPage={page.currentPage}
       totalPages={totalPages}

@@ -1,11 +1,11 @@
 ---
-title: Empowering Ausome Parents – A Guide to Raising Children on the Spectrum
+title: Ausome Parents Blog Website
 pubDate: 2024-11-02
 author: Melnard De Jesus
 image:
   src: './images/ausome-parents-guide.png'
   alt: 'A loving parent holding hands with a child on the autism spectrum during a sunny day in the park'
-description: A comprehensive guide for parents raising children on the autism spectrum. Built with Next.js, TypeScript, PostgreSQL, and Cloudinary for image storage, this website features a secure admin dashboard for seamless blog content management.
+description: A blog website Built with Next.js, TypeScript, PostgreSQL, and Cloudinary for image storage, this website features a secure admin dashboard for seamless blog content management.
 technology:
   [
     'Next.js',
@@ -26,16 +26,6 @@ tags:
 link: 'https://ausome-parents.melnerdz.com/'
 repo: 'https://github.com/mdejesus23/ausome-parents'
 shortDesc: A parenting resource website for families with children on the autism spectrum, built with Next.js, Auth.js, and Cloudinary for optimized image storage.
----
-
-## Empowering Ausome Parents
-
-Parenting a child on the autism spectrum comes with its **unique joys and challenges**. As an **Ausome Parent**, your role is to **support your child’s journey**, **celebrate their strengths**, and create a nurturing home environment.
-
-This project not only serves as a **resource hub for parents**, but it also demonstrates a **modern, full-stack web application** designed for scalability, security, and **seamless media management**.
-
-> **Remember:** Every child with autism is unique. What works for one may not work for another, and that’s perfectly okay.
-
 ---
 
 ## 🛠 Technologies Behind the Project
