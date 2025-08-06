@@ -89,23 +89,25 @@ const getTechColor = (tech: string) => {
             </a>
           </figure>
           <article class="p-3 md:p-0">
-            <div class="flex flex-col items-center gap-x-5 gap-y-5 md:flex-row">
+            <div class="flex flex-1 flex-col items-center gap-x-5 gap-y-5 md:flex-row">
               <a href={`/projects/${project.id}`}>
-                <h3 class="text-center font-headfont text-xl font-bold text-gray-300 transition duration-300 ease-in-out hover:text-lblue">
+                <h3 class="w-full text-center font-headfont text-xl font-bold text-gray-300 transition duration-300 ease-in-out hover:text-lblue">
                   {project.data.title}
                 </h3>
               </a>
 
               {/* Tech stack */}
-              <ul class="flex max-w-[30rem] flex-wrap items-center justify-center gap-2">
-                {project.data.technology.map((tech) => (
-                  <li
-                    class={`rounded-full px-3 py-1 text-[0.6rem] font-medium ${getTechColor(tech)}`}
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+
+              {project.data.technology &&
+                project.data.technology.length > 0 && (
+                  <ul class="mt-5 flex flex-1 flex-wrap justify-center gap-2">
+                    {project.data.technology.map((tech: string) => (
+                      <li class="border-lblue/30 bg-lblue/10 group-hover:bg-lblue/20 rounded-full border px-3 py-1 text-xs font-medium text-lblue transition-colors duration-200">
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                )}
             </div>
             <p class="mx-1 mt-3 hidden text-gray-400 md:block">
               {project.data.description}
