@@ -1,5 +1,10 @@
 ---
 import { footerLinks } from '@/data/navLinks';
+
+// icons
+import Github from './ui/icons/Github.astro';
+import Facebook from './ui/icons/Facebook2.astro';
+import Rss from './ui/icons/Rss2.astro';
 ---
 
 <footer
@@ -11,7 +16,7 @@ import { footerLinks } from '@/data/navLinks';
     >
   </div>
 
-  <nav class="flex gap-4">
+  <nav class="flex items-center justify-center gap-2">
     {
       footerLinks.map((link) => (
         <a
@@ -19,7 +24,9 @@ import { footerLinks } from '@/data/navLinks';
           href={link.url}
           target="_blank"
         >
-          {link.title}
+          {link.title === 'Facebook' && <Facebook size={1.5} />}
+          {link.title === 'RSS' && <Rss size={1.5} />}
+          {link.title === 'Github' && <Github size={1.5} />}
         </a>
       ))
     }

@@ -3,6 +3,14 @@ import MainLayout from '../layouts/MainLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE, ISPARTOF } from '../data/constant';
 
+// icons
+import Email from '../components/ui/icons/Email.astro';
+import Github from '@/components/ui/icons/Github.astro';
+import LinkedIn from '@/components/ui/icons/LinkedIn.astro';
+import Phone from '@/components/ui/icons/Phone.astro';
+import Location from '@/components/ui/icons/Location.astro';
+import Work from '@/components/ui/icons/Work.astro';
+
 const title: string = `Contact Us | ${SITE.title}`;
 const description: string =
   'Contact page. Send me a message for any inquiries or job offer.';
@@ -37,45 +45,53 @@ const description: string =
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
       <!-- Left Column: Contact Details -->
       <div class="space-y-6 text-white">
-        <div>
-          <h2 class="text-xl font-semibold">Email</h2>
+        <div class="flex items-center gap-4">
+          <span class="text-lblue">
+            <Email size={2} />
+          </span>
           <p class="text-lg">me@melnerdz.com</p>
         </div>
-        <div>
-          <h2 class="text-xl font-semibold">Phone</h2>
+        <div class="flex items-center gap-4">
+          <span class="text-lblue">
+            <Phone size={2} />
+          </span>
           <p class="text-lg">+63 977 639 3459</p>
         </div>
-        <div>
-          <h2 class="text-xl font-semibold">Location</h2>
+        <div class="flex items-center gap-4">
+          <span class="text-lblue">
+            <Location size={2} />
+          </span>
           <p class="text-lg">Philippines (GMT+8)</p>
         </div>
-        <div>
-          <h2 class="text-xl font-semibold">Availability</h2>
+        <div class="flex items-center gap-4">
+          <span class="text-lblue">
+            <Work size={2} />
+          </span>
           <p class="text-lg">
             Open to freelance and remote full-time opportunities
           </p>
         </div>
         <div>
-          <h2 class="text-xl font-semibold">Socials</h2>
-          <ul class="space-y-2">
-            <li>
+          <h2 class="mb-2 text-xl font-semibold">Socials</h2>
+          <ul class="flex items-center gap-4">
+            <li class="text-lblue">
               <a
                 href="https://github.com/mdejesus23"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hover:underline"
               >
-                GitHub: @melnerdz
+                <Github size={2} />
               </a>
             </li>
-            <li>
+            <li class="text-lblue">
               <a
                 href="https://www.linkedin.com/in/melnard-de-jesus-279132278"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="hover:underline"
               >
-                LinkedIn: /in/melnerdz
+                <LinkedIn size={2} />
               </a>
             </li>
           </ul>

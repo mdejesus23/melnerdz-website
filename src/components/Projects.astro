@@ -14,41 +14,6 @@ const allProjects: CollectionEntry<'projects'>[] = (
       a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
   )
   .slice(0, 3);
-
-const getTechColor = (tech: string) => {
-  switch (tech.toLowerCase()) {
-    case 'mongodb':
-      return 'bg-green-600 text-white';
-    case 'express':
-      return 'bg-gray-700 text-white';
-    case 'react':
-      return 'bg-blue-500 text-white';
-    case 'node.js':
-      return 'bg-green-700 text-white';
-    case 'zustand':
-      return 'bg-indigo-600 text-white';
-    case 'react query':
-      return 'bg-teal-600 text-white';
-    case 'tailwindcss':
-      return 'bg-blue-700 text-white';
-    case 'jwt':
-      return 'bg-yellow-500 text-black';
-    case 'astrojs':
-      return 'bg-indigo-400 text-white';
-    case 'typescript':
-      return 'bg-blue-600 text-white';
-    case 'supabase':
-      return 'bg-green-500 text-white';
-    case 'netlify':
-      return 'bg-blue-800 text-white';
-    case 'openai':
-      return 'bg-green-600 text-white';
-    case 'supabase edge functions':
-      return 'bg-teal-700 text-white';
-    default:
-      return 'bg-gray-300 text-black'; // fallback for unknown techs
-  }
-};
 ---
 
 <section class="mt-10 min-h-full w-full md:mt-20">
