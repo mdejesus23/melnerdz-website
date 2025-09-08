@@ -8,6 +8,7 @@ const projectsCollections = defineCollection({
       title: z.string(),
       pubDate: z.date(),
       author: z.string(),
+      featured: z.boolean().optional(),
       image: z.object({
         src: image(),
         alt: z.string(),

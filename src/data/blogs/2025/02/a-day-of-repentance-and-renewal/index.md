@@ -1,5 +1,5 @@
 ---
-title: "Ash Wednesday: A Personal Reflection on Faith"
+title: 'Ash Wednesday: A Personal Reflection on Faith'
 pubDate: 2025-02-01
 author: Melnard
 slug: a-day-of-repentance-and-renewal
@@ -15,6 +15,7 @@ tags:
   - Faith
   - Reflection
 ---
+
 ## A Time for Reflection and Renewal
 
 Ash Wednesday derives its name from the practice of placing ashes on the foreheads of the faithful in the shape of a cross. These ashes symbolize penance, humility, and a reminder of our mortality—echoing the biblical phrase:

@@ -2,12 +2,21 @@
 title: Mythical Threads E-Commerce Website
 pubDate: 2024-12-10
 author: Melnard De Jesus
+featured: true
 image:
   src: './images/mythical-threads.png'
   alt: 'An elegant fashion website showcasing modern clothing inspired by myths and legends'
 description: An e-commerce website built with Astro.js, TypeScript, and TailwindCSS, integrated with Snipcart and Stripe for a seamless shopping and checkout experience.
 technology:
-  ['Astro.js', 'TypeScript', 'TailwindCSS', 'Snipcart', 'Stripe', 'Vercel']
+  [
+    'Astro.js',
+    'TypeScript',
+    'TailwindCSS',
+    'Snipcart',
+    'Stripe',
+    'PageCMS',
+    'Netlify',
+  ]
 tags:
   - ecommerce
   - fashion
@@ -28,7 +37,8 @@ The **Mythical Threads** website combines **static site generation** with modern
 - **TailwindCSS** – Delivers a clean, responsive, and modern design system tailored to e-commerce needs.
 - **Snipcart** – Adds a flexible shopping cart and checkout flow with minimal overhead.
 - **Stripe** – Powers secure and reliable payment processing worldwide.
-- **Vercel** – Provides fast global deployment and serverless scalability.
+- **PageCMS** – Enables simple, content-driven product and page management without complex setups.
+- **Netlify** – Provides fast global deployment and serverless scalability.
 
 ---
 
@@ -57,6 +67,14 @@ The **Mythical Threads** website combines **static site generation** with modern
 5. **Scalable & Future-Ready**
    - Easily extendable for **product categories, filtering, user accounts, or inventory management**.
    - Modular setup allows future CMS or headless backend integrations.
+
+---
+
+## 📊 Performance Insights
+
+To ensure top-notch performance, accessibility, and SEO, the website was tested with **Google Lighthouse**:
+
+![Lighthouse performance results for Mythical Threads](./images/mythicalthreads-lighthouse-results.png)
 
 ---
 

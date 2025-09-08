@@ -2,6 +2,7 @@
 title: Rate Your Supplements
 pubDate: 2024-11-01
 author: Melnard De Jesus
+featured: true
 image:
   src: './images/rateyoursupplements.jpg'
   alt: 'A person coding on a laptop'
