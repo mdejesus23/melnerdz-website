@@ -72,6 +72,6 @@ I've developed a full-stack <strong>Bible themes App</strong> for our church org
 
 ## Explore the App
 
-- Live Site: <a href="https://scriptures-themes.melnerdz.com/" target="_blank">Bible themes app</a>
+- Live Site: <a href="https://scriptures-app.netlify.app/" target="_blank">Bible themes app</a>
 - React App Source Code: <a href="https://github.com/mdejesus23/themes-preparation-app" target="_blank">GitHub Repository</a>
 - REST API Source Code: <a href="https://github.com/mdejesus23/prep-app" target="_blank">GitHub Repository</a>
