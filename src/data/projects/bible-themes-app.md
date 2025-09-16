@@ -18,6 +18,7 @@ tags:
     'REST API',
     'SendGrid',
     'Cloudinary',
+    'Docker',
   ]
 technology:
   [
@@ -32,10 +33,11 @@ technology:
     'REST API',
     'SendGrid',
     'Cloudinary',
+    'Docker',
   ]
 link: 'https://scriptures-app.netlify.app/'
 repo: 'https://github.com/mdejesus23/preparation-app'
-shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, Cloudinary file storage, SendGrid email notifications, and secure data handling.
+shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, Cloudinary file storage, SendGrid email notifications, secure data handling, and Docker containerization for streamlined development and deployment.
 ---
 
 I've developed a full-stack <strong>Bible themes App</strong> for our church organization, built using the **MERN stack**. This application streamlines bible themes activities, making collaboration easier and more efficient.
