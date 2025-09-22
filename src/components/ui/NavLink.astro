@@ -2,16 +2,7 @@
 import Download from './icons/Download.astro';
 import ExternalLink from './icons/ExternalLink.astro';
 
-interface NavLink {
-  title: string;
-  url: string;
-  isMobile?: boolean;
-  currentPath?: string;
-}
-
-const { title, url, currentPath, isMobile = false } = Astro.props;
-
-const isActive = currentPath === url;
+const { title, url, isMobile = false } = Astro.props;
 ---
 
 <li
@@ -20,8 +11,8 @@ const isActive = currentPath === url;
     : ''}
 >
   <a
-    href={title === 'Github' || title === 'CV' ? `${url}` : `${url}`}
-    class=`flex items-center gap-2 hover:text-lblue ${isActive ? 'text-lblue' : 'text-white'}`
+    href={url}
+    class="flex items-center gap-2 text-white hover:text-lblue"
     aria-label={title}
     target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
   >
@@ -30,3 +21,20 @@ const isActive = currentPath === url;
     {title === 'Github' && <ExternalLink />}
   </a>
 </li>
+
+<script>
+  function highlightActiveLink() {
+    const links = document.querySelectorAll('a[href]');
+    links.forEach((link) => {
+      link.classList.remove('text-lblue');
+      link.classList.add('text-white');
+      if (link.getAttribute('href') === window.location.pathname) {
+        link.classList.remove('text-white');
+        link.classList.add('text-lblue');
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', highlightActiveLink);
+  document.addEventListener('astro:after-swap', highlightActiveLink); // triggers after SPA nav
+</script>
