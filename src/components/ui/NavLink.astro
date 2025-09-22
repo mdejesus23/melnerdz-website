@@ -3,6 +3,7 @@ import Download from './icons/Download.astro';
 import ExternalLink from './icons/ExternalLink.astro';
 
 const { title, url, isMobile = false } = Astro.props;
+console.log('url', url);
 ---
 
 <li
@@ -23,12 +24,20 @@ const { title, url, isMobile = false } = Astro.props;
 </li>
 
 <script>
+  function normalize(path: string) {
+    // remove trailing slashes except root "/"
+    if (path === '/') return '/';
+    return path.replace(/\/+$/, '');
+  }
+
   function highlightActiveLink() {
     const links = document.querySelectorAll('a[href]');
+    const currentPath = normalize(window.location.pathname);
+
     links.forEach((link) => {
       link.classList.remove('text-lblue');
       link.classList.add('text-white');
-      if (link.getAttribute('href') === window.location.pathname) {
+      if (link.getAttribute('href') === currentPath) {
         link.classList.remove('text-white');
         link.classList.add('text-lblue');
       }
