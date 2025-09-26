@@ -19,7 +19,7 @@ export const handler = async (event: any) => {
     event.headers['remote-addr'];
 
   // Log the IP address (you can also save this to a database or external service if needed)
-  console.log(`Visitor IP: ${visitorIp}`);
+
 
   // Respond back with a success message
   return {

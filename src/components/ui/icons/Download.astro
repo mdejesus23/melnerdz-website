@@ -1,10 +1,17 @@
+---
+interface Props {
+  size?: number;
+}
+const { size = 1 } = Astro.props;
+---
+
 <svg
   fill="currentColor"
   stroke-width="0"
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 24 24"
-  height="1.5em"
-  width="1.5em"
+  height={`${size}em`}
+  width={`${size}em`}
   style="overflow: visible; color: currentcolor;"
   ><path
     fill="currentColor"
