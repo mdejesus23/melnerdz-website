@@ -9,11 +9,13 @@
     --color-lblue: #06bcc1;
     --color-lorange: #f4d1ae;
     --color-project: #1e293b;
-    --color-projectDesc: #a3b8cc;
+    --color-projectDesc: #36628b;
 
-    --font-logofont: 'Pacifico', cursive;
+    /* --font-logofont: 'Pacifico', cursive; */
     --font-headfont: 'Lora', serif;
     --font-bodyfont: 'Poppins', sans-serif;
+
+    --font-logofont: 'Bungee Inline', system-ui;
   }
 
   body {
