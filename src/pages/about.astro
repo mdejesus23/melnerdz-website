@@ -6,7 +6,6 @@ import MainLayout from '@/layouts/MainLayout.astro';
 import Prose from '@/components/Prose.astro';
 import { Image } from 'astro:assets';
 import profilePicture from '@/images/mdj.png';
-import Download from '@/components/ui/icons/Download.astro';
 
 const entry = await getEntry('personal', 'about');
 
@@ -28,33 +27,91 @@ const description = `Here's the summary of my expertise and experience as a Full
     '@type': 'WebPage',
     '@id': `https://melnerdz.com/about`,
     url: `https://melnerdz.com/about`,
-    name: `Todo Scout`,
+    name: `About Melnard`,
     description: description,
     isPartOf: ISPARTOF,
     inLanguage: 'en-US',
   }}
   meta={description}
 >
-  <section class="my-20 w-full px-4 md:px-8">
-    <div
-      class="custom-container mx-auto flex flex-col items-center justify-center md:py-10"
-    >
-      <figure
-        class="mx-auto mb-10 h-44 w-44 overflow-hidden rounded-full bg-projectDesc text-center md:h-60 md:w-60"
+  <section class="py-10 md:py-20">
+    <!-- Hero section -->
+    <div class="mb-16 flex flex-col items-center text-center">
+      <!-- Profile image -->
+      <div class="relative mb-8">
+        <div
+          class="border-accent/20 absolute -inset-4 animate-pulse-glow rounded-full border"
+        >
+        </div>
+        <figure
+          class="border-accent/30 relative h-40 w-40 overflow-hidden rounded-full border-2 bg-bg-secondary shadow-glow md:h-52 md:w-52"
+        >
+          <Image
+            src={profilePicture}
+            alt="Melnard De Jesus"
+            class="h-full w-full object-cover"
+          />
+        </figure>
+      </div>
+
+      <!-- Title and intro -->
+      <span
+        class="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent"
       >
-        <Image src={profilePicture} alt="Profile picture" />
-      </figure>
-      <div class="mt-2">
+        About Me
+      </span>
+      <h1 class="mb-4 font-headfont text-3xl font-bold md:text-5xl">
+        Melnard <span class="gradient-text">De Jesus</span>
+      </h1>
+      <p class="max-w-xl text-lg text-text-muted">
+        Full-Stack Web Developer passionate about creating elegant solutions to
+        complex problems
+      </p>
+
+      <!-- CTA -->
+      <div class="mt-8">
         <a
           href="/mdj-oct-2025.pdf"
-          @
           target="_blank"
-          class="hover:bg-lblue/90 flex items-center gap-2 rounded-full bg-lblue px-5 py-2 text-sm font-medium text-white transition"
+          class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-accent px-6 py-3 font-medium text-bg-primary transition-all duration-300 hover:shadow-glow"
         >
-          Download CV
-          <Download size={1.5} />
+          <span class="relative z-10">Download CV</span>
+          <svg
+            class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+            ></path>
+          </svg>
+          <div
+            class="absolute inset-0 -translate-x-full bg-accent-light transition-transform duration-300 group-hover:translate-x-0"
+          >
+          </div>
         </a>
       </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="flex items-center gap-4 py-8">
+      <div
+        class="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent"
+      >
+      </div>
+      <span class="bg-accent/50 h-1.5 w-1.5 rounded-full"></span>
+      <div
+        class="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent"
+      >
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="mx-auto max-w-3xl">
       <Prose>
         <Content />
       </Prose>

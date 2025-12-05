@@ -41,8 +41,8 @@ export const footerLinks: NavLink[] = [
     url: 'https://www.facebook.com/dejesusmelnard',
   },
   {
-    title: 'Onlinejob.ph',
-    url: 'https://www.onlinejobs.ph/jobseekers/info/1552795',
+    title: 'linkedin',
+    url: 'https://www.linkedin.com/in/melnard-de-jesus-279132278',
   },
   {
     title: 'Github',

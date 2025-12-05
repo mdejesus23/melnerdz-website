@@ -2,47 +2,54 @@
 import Download from './icons/Download.astro';
 import ExternalLink from './icons/ExternalLink.astro';
 
-const { title, url, isMobile = false } = Astro.props;
+interface Props {
+  title: string;
+  url: string;
+  isMobile?: boolean;
+  currentPath?: string;
+}
+
+const { title, url, isMobile = false, currentPath = '' } = Astro.props;
+
+// Normalize paths for comparison
+const normalizedUrl = url === '/' ? '/' : url.replace(/\/+$/, '');
+const normalizedPath = currentPath === '/' ? '/' : currentPath.replace(/\/+$/, '');
+const isActive = normalizedUrl === normalizedPath;
 ---
 
-<li
-  class={isMobile
-    ? 'w-full border-b border-neutral-50 border-opacity-5 px-6 py-5'
-    : ''}
->
+{isMobile ? (
+  <li class="w-full border-b border-border/50 px-6 py-4">
+    <a
+      href={url}
+      class:list={[
+        "flex items-center gap-2 text-lg font-medium transition-colors",
+        isActive ? "text-accent" : "text-white hover:text-accent"
+      ]}
+      aria-label={title}
+      target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
+    >
+      {title}
+      {title === 'CV' && <Download />}
+      {title === 'Github' && <ExternalLink />}
+    </a>
+  </li>
+) : (
   <a
     href={url}
-    class="flex items-center gap-2 text-white hover:text-lblue"
+    class:list={[
+      "relative px-4 py-2 text-sm font-medium transition-colors",
+      isActive ? "text-accent" : "text-text-muted hover:text-white"
+    ]}
     aria-label={title}
     target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
   >
     {title}
     {title === 'CV' && <Download />}
     {title === 'Github' && <ExternalLink />}
+    
+    <!-- Active indicator -->
+    {isActive && (
+      <span class="absolute bottom-0 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-accent"></span>
+    )}
   </a>
-</li>
-
-<script>
-  function normalize(path: string) {
-    // remove trailing slashes except root "/"
-    if (path === '/') return '/';
-    return path.replace(/\/+$/, '');
-  }
-
-  function highlightActiveLink() {
-    const links = document.querySelectorAll('a[href]');
-    const currentPath = normalize(window.location.pathname);
-
-    links.forEach((link) => {
-      link.classList.remove('text-lblue');
-      link.classList.add('text-white');
-      if (link.getAttribute('href') === currentPath) {
-        link.classList.remove('text-white');
-        link.classList.add('text-lblue');
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', highlightActiveLink);
-  document.addEventListener('astro:after-swap', highlightActiveLink); // triggers after SPA nav
-</script>
+)}

@@ -1,5 +1,29 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
 <div
-  class="prose:strong:font-bold prose:em:text-white prose:em:font-bold prose prose-h1:text-white prose-h2:text-white prose-h3:text-white prose-p:text-left prose-p:text-projectDesc prose-a:text-white prose-code:rounded-md prose-code:bg-neutral-500 prose-code:font-mono prose-code:text-gray-200 prose-li:text-projectDesc prose-img:rounded-xl"
+  class:list={[
+    'prose prose-invert max-w-none',
+    'prose-headings:font-headfont prose-headings:font-bold prose-headings:tracking-tight',
+    'prose-h1:text-white prose-h2:text-white prose-h3:text-white',
+    'prose-p:leading-relaxed prose-p:text-text-muted',
+    'prose-a:text-accent prose-a:no-underline prose-a:underline-offset-4 hover:prose-a:underline',
+    'prose-strong:font-semibold prose-strong:text-accent',
+    'prose-em:font-medium prose-em:text-white',
+    'prose-code:rounded-md prose-code:bg-bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-accent prose-code:before:content-none prose-code:after:content-none',
+    'prose-pre:rounded-xl prose-pre:border prose-pre:border-border prose-pre:bg-bg-secondary',
+    'prose-li:text-text-muted prose-li:marker:text-accent',
+    'prose-ol:pl-5 prose-ul:pl-5',
+    'prose-img:rounded-xl prose-img:border prose-img:border-border',
+    'prose-blockquote:bg-accent-muted/30 prose-blockquote:rounded-r-lg prose-blockquote:border-l-accent prose-blockquote:py-0.5 prose-blockquote:pl-4 prose-blockquote:not-italic',
+    'prose-hr:border-border',
+    className,
+  ]}
 >
   <slot />
 </div>

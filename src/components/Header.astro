@@ -1,111 +1,198 @@
 ---
-// import Logo from './ui/icons/Logo.astro';
 import { navLinks } from '@/data/navLinks';
-// import MenuClose from '@/components/ui/icons/MenuClose.astro';
-// import MenuOpen from '@/components/ui/icons/MenuOpen.astro';
 import NavLink from './ui/NavLink.astro';
+import MenuOpen from './ui/icons/MenuOpen.astro';
 
-const testLogo = 'Nerdz';
+const logoText = 'Nerdz';
 ---
 
 <header
-  class="mx-auto flex w-full max-w-5xl items-center justify-between bg-transparent px-6 py-4 xl:px-0"
+  id="main-header"
+  class="fixed left-0 right-0 top-0 z-50 transition-all duration-300"
 >
-  <!-- <Logo /> -->
-  <h1 class="text-3xl font-bold text-lblue md:text-4xl">
-    <a href="/" class="font-logofont">{testLogo}</a>
-  </h1>
-
-  <!-- Desktop navigation -->
-  <nav>
-    <div
-      class="flex flex-row items-center justify-between gap-y-4 py-4 xl:px-0"
+  <div
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8 xl:px-0"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="group relative z-10 font-logofont text-2xl font-bold tracking-tight transition-colors md:text-3xl"
     >
-      <div>
-        <ul class="hidden space-x-6 font-medium sm:flex">
-          {
-            navLinks.map((link) => (
-              <NavLink
-                title={link.title}
-                url={link.url}
-                currentPath={Astro.url.pathname}
-              />
-            ))
-          }
-        </ul>
-      </div>
-      <!-- <button
-        id="mobile-menu"
-        aria-controls="navbar-collapse"
-        aria-label="Toggle navigation"
-        class="block sm:hidden"
+      <span class="text-white transition-colors group-hover:text-accent"
+        >{logoText}</span
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6 flex-shrink-0 fill-current"
-          width="24"
-          viewBox="0 0 448 512"
-        >
-          <path
-            d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
-          ></path></svg
-        >
-      </button> -->
-      <div id="mobile-menu" class="container inline-block sm:hidden">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </div>
-    </div>
-  </nav>
+      <span class="text-accent">.</span>
+    </a>
+
+    <!-- Desktop navigation -->
+    <nav class="hidden items-center gap-1 sm:flex">
+      {
+        navLinks.map((link) => (
+          <NavLink
+            title={link.title}
+            url={link.url}
+            currentPath={Astro.url.pathname}
+          />
+        ))
+      }
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu"
+      class="bg-bg-secondary/50 hover:border-accent/50 relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-border transition-colors sm:hidden"
+      aria-controls="navbar-collapse"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <MenuOpen />
+    </button>
+  </div>
+
+  <!-- Background blur layer (appears on scroll) -->
+  <div
+    id="header-bg"
+    class="bg-bg-primary/0 absolute inset-0 -z-10 border-b border-transparent backdrop-blur-none transition-all duration-300"
+  >
+  </div>
 </header>
 
-<!-- mobile nav  -->
+<!-- Mobile navigation -->
 <nav
   id="navbar-collapse"
-  class="transition-max-height bg-primary dark:bg-secondaryDark hidden max-h-0 w-full overflow-hidden duration-300"
+  class="bg-bg-primary/95 fixed inset-0 z-40 flex translate-x-full flex-col backdrop-blur-xl transition-transform duration-300 ease-in-out"
 >
-  <ul
-    class="flex w-full flex-col items-center justify-between border-t border-neutral-50 border-opacity-5"
-  >
+  <div class="flex flex-1 flex-col items-center justify-center gap-6 p-8">
     {
-      navLinks.map((link) => (
-        <NavLink
-          title={link.title}
-          url={link.url}
-          isMobile={true}
-          currentPath={Astro.url.pathname}
-        />
+      navLinks.map((link, index) => (
+        <a
+          href={link.url}
+          class="nav-mobile-link text-2xl font-medium text-white transition-all duration-300 hover:text-accent"
+          style={`--delay: ${index * 50}ms`}
+        >
+          {link.title}
+        </a>
       ))
     }
-  </ul>
+  </div>
+
+  <!-- Social links in mobile menu -->
+  <div class="flex justify-center gap-6 border-t border-border p-8">
+    <a
+      href="https://github.com/mdejesus23"
+      target="_blank"
+      class="text-text-muted transition-colors hover:text-accent"
+    >
+      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+        ></path>
+      </svg>
+    </a>
+    <a
+      href="https://www.facebook.com/dejesusmelnard"
+      target="_blank"
+      class="text-text-muted transition-colors hover:text-accent"
+    >
+      <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+        ></path>
+      </svg>
+    </a>
+  </div>
 </nav>
 
 <script>
   document.addEventListener('astro:page-load', () => {
-    const toggleButton = document.getElementById(
-      'mobile-menu'
-    ) as HTMLButtonElement;
-    const mobileNav = document.getElementById('navbar-collapse') as HTMLElement;
+    const header = document.getElementById('main-header');
+    const headerBg = document.getElementById('header-bg');
+    const toggleButton = document.getElementById('mobile-menu');
+    const mobileNav = document.getElementById('navbar-collapse');
+    const mobileLinks = document.querySelectorAll('.nav-mobile-link');
 
-    toggleButton.addEventListener('click', () => {
-      if (mobileNav.classList.contains('hidden')) {
-        toggleButton.classList.add('change');
-        mobileNav.classList.remove('hidden');
-        // Setting max-height to a large value to animate the opening
-        mobileNav.style.maxHeight = `${mobileNav.scrollHeight}px`;
+    // Scroll effect for header
+    const handleScroll = () => {
+      if (!header || !headerBg) return;
+
+      if (window.scrollY > 50) {
+        headerBg.classList.remove(
+          'bg-bg-primary/0',
+          'backdrop-blur-none',
+          'border-transparent'
+        );
+        headerBg.classList.add(
+          'bg-bg-primary/80',
+          'backdrop-blur-xl',
+          'border-border'
+        );
       } else {
-        // Animate closing by setting max-height to 0
-        mobileNav.style.maxHeight = '0px';
-        toggleButton.classList.remove('change');
-        mobileNav.addEventListener(
-          'transitionend',
-          () => {
-            mobileNav.classList.add('hidden'); // Hide the element after the transition ends
-          },
-          { once: true }
+        headerBg.classList.add(
+          'bg-bg-primary/0',
+          'backdrop-blur-none',
+          'border-transparent'
+        );
+        headerBg.classList.remove(
+          'bg-bg-primary/80',
+          'backdrop-blur-xl',
+          'border-border'
         );
       }
-    });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Run on load
+
+    // Mobile menu toggle
+    if (toggleButton && mobileNav) {
+      toggleButton.addEventListener('click', () => {
+        const isOpen = !mobileNav.classList.contains('translate-x-full');
+
+        if (isOpen) {
+          // Close menu
+          toggleButton.classList.remove('change');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.add('translate-x-full');
+          document.body.style.overflow = '';
+        } else {
+          // Open menu
+          toggleButton.classList.add('change');
+          toggleButton.setAttribute('aria-expanded', 'true');
+          mobileNav.classList.remove('translate-x-full');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+
+      // Close menu when clicking a link
+      mobileLinks.forEach((link) => {
+        link.addEventListener('click', () => {
+          toggleButton.classList.remove('change');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          mobileNav.classList.add('translate-x-full');
+          document.body.style.overflow = '';
+        });
+      });
+    }
   });
 </script>
+
+<style>
+  .nav-mobile-link {
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideIn 0.3s ease-out forwards;
+    animation-delay: var(--delay);
+  }
+
+  #navbar-collapse:not(.translate-x-full) .nav-mobile-link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>

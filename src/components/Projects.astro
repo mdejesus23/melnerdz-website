@@ -3,83 +3,116 @@ import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import turncateString from '../utils/turncateString';
-import Icon from './ui/icons/Icon.astro';
 
 // Fetch projects data
-const allProjects: CollectionEntry<'projects'>[] =
-  await getCollection('projects');
-
+const allProjects: CollectionEntry<'projects'>[] = await getCollection('projects');
 const featuredProjects = allProjects.filter((project) => project.data.featured);
 ---
 
-<section class="mt-10 min-h-full w-full md:mt-20">
-  <div
-    class="mb-6 flex flex-col justify-between gap-2 md:flex-row md:items-center md:gap-0"
-  >
-    <h2 class="text-2xl font-bold">
-      Recent <span class="text-lblue">Projects</span>
-    </h2>
+<section id="projects" class="scroll-mt-20 py-20">
+  <!-- Section header -->
+  <div class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+    <div>
+      <span class="mb-2 inline-block text-sm font-medium uppercase tracking-widest text-accent">
+        Portfolio
+      </span>
+      <h2 class="font-headfont text-3xl font-bold md:text-4xl">
+        Recent <span class="gradient-text">Projects</span>
+      </h2>
+    </div>
     <a
-      class="hover:text-lblue-500 flex items-center gap-x-1 text-lblue hover:underline"
+      class="group inline-flex items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-accent"
       href="/projects"
-      >View all Projects
-      <Icon name="arrowRight" />
+    >
+      View all projects
+      <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
     </a>
   </div>
 
-  <ul class="flex flex-col gap-y-10">
+  <!-- Projects grid -->
+  <div class="flex flex-col gap-8">
     {
-      featuredProjects.map((project) => (
-        <li class="grid cursor-pointer items-center overflow-hidden rounded-sm bg-project shadow-projectCard transition-transform duration-300 hover:translate-y-1 hover:shadow-lg md:grid-cols-[15rem_1fr] md:gap-4 md:p-4">
-          <figure class="aspect-w-3 aspect-h-2">
-            <a href={`/projects/${project.id}`}>
+      featuredProjects.map((project, index) => (
+        <article 
+          class="group glass-card overflow-hidden rounded-2xl transition-all duration-300 hover-lift hover:border-accent/30"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <div class="grid items-stretch md:grid-cols-[280px_1fr] lg:grid-cols-[320px_1fr]">
+            <!-- Project image -->
+            <a 
+              href={`/projects/${project.id}`}
+              class="relative block aspect-video overflow-hidden md:aspect-auto md:h-full"
+            >
               <Image
-                class="mx-auto hidden min-h-[13rem] rounded-md md:block"
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 width={400}
                 height={300}
                 src={project.data.image.src}
                 alt={project.data.image.alt}
               />
-              <Image
-                class="mx-auto block min-h-[13rem] rounded-t-md md:hidden"
-                width={500}
-                height={300}
-                src={project.data.image.src}
-                alt={project.data.image.alt}
-              />
+              <!-- Gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-bg-primary/60 via-transparent to-transparent md:bg-gradient-to-r"></div>
+              
+              <!-- View project overlay -->
+              <div class="absolute inset-0 flex items-center justify-center bg-bg-primary/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <span class="flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-medium text-bg-primary">
+                  View Project
+                  <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </span>
+              </div>
             </a>
-          </figure>
-          <article class="p-3 md:p-0">
-            <div class="flex flex-1 flex-col items-center gap-x-5 gap-y-5 md:flex-row">
+            
+            <!-- Project details -->
+            <div class="flex flex-col justify-center p-6 md:p-8">
               <a href={`/projects/${project.id}`}>
-                <h3 class="w-full text-center font-headfont text-xl font-bold text-gray-300 transition duration-300 ease-in-out hover:text-lblue">
+                <h3 class="mb-3 font-headfont text-xl font-bold text-white transition-colors group-hover:text-accent md:text-2xl">
                   {project.data.title}
                 </h3>
               </a>
+              
+              <p class="mb-5 text-text-muted leading-relaxed line-clamp-2 md:line-clamp-3">
+                {project.data.description || turncateString(project.data.shortDesc, 180)}
+              </p>
 
               {/* Tech stack */}
-
-              {project.data.technology &&
-                project.data.technology.length > 0 && (
-                  <ul class="mt-5 flex flex-1 flex-wrap justify-center gap-2">
-                    {project.data.technology.map((tech: string) => (
-                      <li class="border-lblue/30 bg-lblue/10 group-hover:bg-lblue/20 rounded-full border px-3 py-1 text-xs font-medium text-lblue transition-colors duration-200">
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                )}
+              {project.data.technology && project.data.technology.length > 0 && (
+                <div class="flex flex-wrap gap-2">
+                  {project.data.technology.slice(0, 5).map((tech: string) => (
+                    <span class="rounded-full border border-accent/20 bg-accent-muted px-3 py-1 text-xs font-medium text-accent transition-colors group-hover:border-accent/40">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.data.technology.length > 5 && (
+                    <span class="rounded-full border border-border px-3 py-1 text-xs font-medium text-text-muted">
+                      +{project.data.technology.length - 5} more
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
-            <p class="mx-1 mt-3 hidden text-gray-400 md:block">
-              {project.data.description}
-            </p>
-
-            <p class="mx-1 mt-3 text-gray-400 md:hidden">
-              {turncateString(project.data.shortDesc, 150)}
-            </p>
-          </article>
-        </li>
+          </div>
+        </article>
       ))
     }
-  </ul>
+  </div>
 </section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

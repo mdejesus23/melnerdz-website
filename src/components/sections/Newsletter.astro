@@ -3,16 +3,52 @@ import NewsletterForm from '../forms/NewsletterFrom';
 const workerEndpoint = import.meta.env.WORKER_ENDPOINT;
 ---
 
-<section
-  class="min-h-ful mt-20 flex w-full flex-col items-center justify-between gap-4 md:flex-row"
->
-  <div class="w-full">
-    <h2 class="mb-6 text-2xl font-bold">
-      Subscribe to my <span class="text-lblue">Newsletters</span>
-    </h2>
-    <p class="mt-6 text-base leading-5 md:leading-6">
-      Get the latest updates on my blog, projects, and other tech-related stuff.
-    </p>
+<section class="py-20">
+  <div class="glass-card relative overflow-hidden rounded-3xl p-8 md:p-12">
+    <!-- Decorative elements -->
+    <div
+      class="bg-accent/10 absolute -right-20 -top-20 h-40 w-40 rounded-full blur-3xl"
+    >
+    </div>
+    <div
+      class="bg-accent/5 absolute -bottom-20 -left-20 h-40 w-40 rounded-full blur-3xl"
+    >
+    </div>
+
+    <div class="relative grid items-center gap-8 md:grid-cols-2 md:gap-12">
+      <!-- Content -->
+      <div>
+        <span
+          class="border-accent/30 mb-4 inline-flex items-center gap-2 rounded-full border bg-accent-muted px-4 py-1.5 text-sm font-medium text-accent"
+        >
+          <svg
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            ></path>
+          </svg>
+          Newsletter
+        </span>
+        <h2 class="mb-4 font-headfont text-2xl font-bold md:text-3xl">
+          Stay in the <span class="gradient-text">loop</span>
+        </h2>
+        <p class="leading-relaxed text-text-muted">
+          Get the latest updates on my blog, projects, and tech insights
+          delivered straight to your inbox. No spam, unsubscribe anytime.
+        </p>
+      </div>
+
+      <!-- Form -->
+      <div class="relative">
+        <NewsletterForm client:load workerEndpoint={workerEndpoint} />
+      </div>
+    </div>
   </div>
-  <NewsletterForm client:load workerEndpoint={workerEndpoint} />
 </section>

@@ -3,73 +3,110 @@ const isDev = import.meta.env.DEV;
 const emailString = import.meta.env.EMAIL_STRING;
 const redirectLink = isDev ? 'http://localhost:4321' : 'https://melnerdz.com';
 
-const autoResponseMessage: string = 'Thank you for your message!';
+const autoResponseMessage: string =
+  "Thank you for your message! I'll get back to you soon.";
 ---
 
 <form
-  class="mx-auto max-w-lg"
+  class="space-y-5"
   action=`https://formsubmit.co/${emailString}`
   method="POST"
 >
-  <!-- subject field -->
+  <!-- Hidden fields -->
   <input
     id="formSubject"
     type="hidden"
     name="_subject"
     value="User Message - Melnerdz Contact Form"
   />
-
-  <!-- for redirecting to thank you page -->
   <input type="hidden" name="_next" value=`${redirectLink}/thanks/` />
-
-  <!-- auto response  -->
   <input type="hidden" name="_autoresponse" value=`${autoResponseMessage}` />
 
-  <div class="mb-4">
-    <label for="name" class="mb-2 block font-bodyfont text-projectDesc"
-      >Name</label
-    >
+  <!-- Name field -->
+  <div>
+    <label for="name" class="mb-2 block text-sm font-medium text-white">
+      Name <span class="text-accent">*</span>
+    </label>
     <input
       required
       type="text"
       id="name"
       name="name"
-      class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
-      placeholder="Your Name"
+      class="bg-bg-primary/60 focus:border-accent/50 focus:ring-accent/20 w-full rounded-xl border border-border px-4 py-3 text-white placeholder-text-muted transition-all duration-300 focus:outline-none focus:ring-2"
+      placeholder="Your name"
     />
   </div>
 
-  <div class="mb-4">
-    <label for="email" class="mb-2 block font-bodyfont text-projectDesc"
-      >Email</label
-    >
+  <!-- Email field -->
+  <div>
+    <label for="email" class="mb-2 block text-sm font-medium text-white">
+      Email <span class="text-accent">*</span>
+    </label>
     <input
       required
       type="email"
       id="email"
       name="email"
-      class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
-      placeholder="Your Email"
+      class="bg-bg-primary/60 focus:border-accent/50 focus:ring-accent/20 w-full rounded-xl border border-border px-4 py-3 text-white placeholder-text-muted transition-all duration-300 focus:outline-none focus:ring-2"
+      placeholder="your@email.com"
     />
   </div>
 
-  <div class="mb-4">
-    <label for="message" class="mb-2 block font-bodyfont text-projectDesc"
-      >Message</label
-    >
+  <!-- Subject field (optional) -->
+  <div>
+    <label for="subject" class="mb-2 block text-sm font-medium text-white">
+      Subject
+    </label>
+    <input
+      type="text"
+      id="subject"
+      name="subject"
+      class="bg-bg-primary/60 focus:border-accent/50 focus:ring-accent/20 w-full rounded-xl border border-border px-4 py-3 text-white placeholder-text-muted transition-all duration-300 focus:outline-none focus:ring-2"
+      placeholder="What's this about?"
+    />
+  </div>
+
+  <!-- Message field -->
+  <div>
+    <label for="message" class="mb-2 block text-sm font-medium text-white">
+      Message <span class="text-accent">*</span>
+    </label>
     <textarea
       required
       id="message"
       name="message"
       rows="5"
-      class="w-full rounded-md border border-projectDesc bg-pblue px-4 py-2 text-projectDesc focus:outline-none focus:ring-2 focus:ring-lblue"
-      placeholder="Your Message"></textarea>
+      class="bg-bg-primary/60 focus:border-accent/50 focus:ring-accent/20 w-full resize-none rounded-xl border border-border px-4 py-3 text-white placeholder-text-muted transition-all duration-300 focus:outline-none focus:ring-2"
+      placeholder="Tell me about your project or inquiry..."></textarea>
   </div>
 
+  <!-- Submit button -->
   <button
     type="submit"
-    class="w-full rounded-md border-2 border-projectDesc px-4 py-2 font-semibold text-projectDesc transition-colors duration-300 hover:text-lblue"
+    class="group relative w-full overflow-hidden rounded-xl bg-accent py-3.5 font-medium text-bg-primary transition-all duration-300 hover:shadow-glow"
   >
-    Send Message
+    <span class="relative z-10 flex items-center justify-center gap-2">
+      Send Message
+      <svg
+        class="h-4 w-4 transition-transform group-hover:translate-x-1"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+      </svg>
+    </span>
+    <div
+      class="absolute inset-0 -translate-x-full bg-accent-light transition-transform duration-300 group-hover:translate-x-0"
+    >
+    </div>
   </button>
+
+  <p class="text-center text-xs text-text-muted">
+    I typically respond within 24-48 hours.
+  </p>
 </form>

@@ -2,23 +2,21 @@
 import '../styles/index.css';
 import MainHead from '../components/MainHead.astro';
 import Header from '../components/Header.astro';
-
-// import Header from '../components/Header.tsx';
 import Footer from '../components/Footer.astro';
 
-import Background from '@/components/Background';
-
-// fonts
-// Supports weights 100-700
-import '@fontsource-variable/montagu-slab';
-import '@fontsource/merriweather';
-// Supports weights 300-800
-import '@fontsource-variable/open-sans';
-import '@fontsource/pacifico';
-// Supports weights 400-700
-import '@fontsource-variable/lora';
-import '@fontsource/poppins';
-import '@fontsource/bungee-inline';
+// Modern fonts
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/500.css';
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/500.css';
+import '@fontsource/dm-sans/600.css';
+import '@fontsource/dm-sans/700.css';
+import '@fontsource/outfit/400.css';
+import '@fontsource/outfit/500.css';
+import '@fontsource/outfit/600.css';
+import '@fontsource/outfit/700.css';
 
 interface Props {
   title?: string;
@@ -38,14 +36,44 @@ const { title, meta, structuredData, liturgy } = Astro.props;
     meta={meta}
     structuredData={structuredData}
   />
-  <body class="min-h-screen bg-pblue font-bodyfont font-light text-white">
-    <!-- <Header client:load /> -->
-    {!liturgy && <Header />}
+  <body
+    class="relative min-h-screen overflow-x-hidden bg-bg-primary font-bodyfont text-white"
+  >
+    <!-- Background effects -->
+    <div class="fixed inset-0 -z-10">
+      <!-- Gradient spotlight from top -->
+      <div class="spotlight absolute inset-0"></div>
 
-    <main class="mx-auto my-10 min-h-screen max-w-5xl px-6 md:my-20 xl:px-0">
+      <!-- Grid pattern -->
+      <div class="grid-pattern absolute inset-0"></div>
+
+      <!-- Ambient glow orbs -->
+      <div
+        class="bg-accent/5 absolute -left-40 top-20 h-80 w-80 rounded-full blur-[120px]"
+      >
+      </div>
+      <div
+        class="bg-accent/5 absolute -right-40 top-1/2 h-96 w-96 rounded-full blur-[150px]"
+      >
+      </div>
+      <div
+        class="bg-accent/3 absolute -bottom-40 left-1/3 h-72 w-72 rounded-full blur-[100px]"
+      >
+      </div>
+
+      <!-- Noise overlay -->
+      <div class="noise-overlay absolute inset-0"></div>
+    </div>
+
+    <!-- {!liturgy && <Header />} -->
+    <Header />
+
+    <main
+      class="relative mx-auto my-10 min-h-screen max-w-6xl px-6 pt-10 md:my-16 lg:px-8 xl:px-0"
+    >
       <slot />
     </main>
-    {!liturgy && <Footer />}
-    <Background client:load />
+
+    <Footer />
   </body>
 </html>

@@ -12,22 +12,78 @@ const { prev, next, currentPage, totalPages, disablePrevious, disableNext } =
   Astro.props;
 ---
 
-<div class="mx-auto mt-20 flex w-80 items-center justify-center gap-x-9">
+<nav
+  class="mt-16 flex items-center justify-center gap-4"
+  aria-label="Pagination"
+>
+  <!-- Previous button -->
   <a
     href={prev || '#'}
-    class={`cursor-pointer text-center font-semibold text-lblue ${disablePrevious ? 'pointer-events-none text-gray-400' : ''}`}
+    class:list={[
+      'group flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300',
+      disablePrevious
+        ? 'border-border/50 text-text-muted/50 pointer-events-none cursor-not-allowed'
+        : 'bg-bg-secondary/50 hover:border-accent/50 border-border text-text-muted hover:text-accent',
+    ]}
     aria-disabled={disablePrevious}
   >
-    PREVIOUS
+    <svg
+      class:list={[
+        'h-4 w-4 transition-transform',
+        !disablePrevious && 'group-hover:-translate-x-1',
+      ]}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M15 19l-7-7 7-7"></path>
+    </svg>
+    Previous
   </a>
-  <span class="text-center text-sm font-medium text-gray-600">
-    Page {currentPage} of {totalPages}
-  </span>
+
+  <!-- Page indicator -->
+  <div class="flex items-center gap-2 px-4">
+    <span
+      class="rounded-full bg-accent px-3 py-1 text-sm font-bold text-bg-primary"
+    >
+      {currentPage}
+    </span>
+    <span class="text-text-muted">/</span>
+    <span class="text-sm text-text-muted">
+      {totalPages}
+    </span>
+  </div>
+
+  <!-- Next button -->
   <a
     href={next || '#'}
-    class={`cursor-pointer text-center font-semibold text-lblue ${disableNext ? 'pointer-events-none text-gray-400' : ''}`}
+    class:list={[
+      'group flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-300',
+      disableNext
+        ? 'border-border/50 text-text-muted/50 pointer-events-none cursor-not-allowed'
+        : 'bg-bg-secondary/50 hover:border-accent/50 border-border text-text-muted hover:text-accent',
+    ]}
     aria-disabled={disableNext}
   >
-    NEXT
+    Next
+    <svg
+      class:list={[
+        'h-4 w-4 transition-transform',
+        !disableNext && 'group-hover:translate-x-1',
+      ]}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 5l7 7-7 7"></path>
+    </svg>
   </a>
-</div>
+</nav>

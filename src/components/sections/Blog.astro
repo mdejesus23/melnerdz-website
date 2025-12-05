@@ -2,8 +2,6 @@
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
-import Divider from '../ui/Divider.astro';
-import Icon from '../../components/ui/icons/Icon.astro';
 
 const latestBlogs: CollectionEntry<'blogs'>[] = (await getCollection('blogs'))
   .sort(
@@ -11,61 +9,102 @@ const latestBlogs: CollectionEntry<'blogs'>[] = (await getCollection('blogs'))
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   )
   .slice(0, 3);
+
+// Format date helper
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+};
 ---
 
-<>
-  <Divider />
-  <section class="mt-10 grid min-h-full w-full items-center">
-    <div class="mb-6 flex items-center justify-between">
-      <h2 class="text-2xl font-bold">
-        Recent <span class="text-lblue">Blogs</span>
-      </h2>
-      <a
-        class="hover:text-lblue-500 flex items-center gap-x-1 text-lblue hover:underline"
-        href="/blogs"
-        >View all Post
-        <Icon name="arrowRight" />
-      </a>
-    </div>
+<section class="py-20">
+  <!-- Divider -->
+  <div class="mb-16 flex items-center gap-4">
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent"></div>
+    <span class="text-xs uppercase tracking-widest text-text-muted">Latest Posts</span>
+    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent"></div>
+  </div>
 
-    <ul class="grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-      {
-        latestBlogs.map((blog) => (
-          <li class="flex flex-col gap-y-2 rounded-md bg-project shadow-projectCard">
-            <a href={`/blogs/${blog.id}`}>
-              <figure class="aspect-w-3 aspect-h-2 overflow-hidden">
-                <Image
-                  class="mx-auto h-[15rem] rounded-t-md hidden lg:block"
-                  width={600}
-                  height={200}
-                  src={blog.data.image.src}
-                  alt={blog.data.image.alt}
-                />
-                <Image
-                  class="mx-auto h-[18rem] rounded-t-md hidden md:block lg:hidden"
-                  width={600}
-                  height={200}
-                  src={blog.data.image.src}
-                  alt={blog.data.image.alt}
-                />
-                <Image
-                  class="mx-auto rounded-t-md block sm:hidden"
-                  width={400}
-                  height={200}
-                  src={blog.data.image.src}
-                  alt={blog.data.image.alt}
-                />
-              </figure>
-            </a>
-            <article class="flex flex-col gap-y-2 p-2">
-              <h3 class="text-xl font-bold text-gray-200">
-                <a href={`/blogs/${blog.id}`}>{blog.data.title}</a>
+  <!-- Section header -->
+  <div class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+    <div>
+      <span class="mb-2 inline-block text-sm font-medium uppercase tracking-widest text-accent">
+        Blog
+      </span>
+      <h2 class="font-headfont text-3xl font-bold md:text-4xl">
+        Recent <span class="gradient-text">Articles</span>
+      </h2>
+    </div>
+    <a
+      class="group inline-flex items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-accent"
+      href="/blogs"
+    >
+      View all posts
+      <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
+  </div>
+
+  <!-- Blog cards grid -->
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    {
+      latestBlogs.map((blog, index) => (
+        <article 
+          class="group glass-card overflow-hidden rounded-2xl transition-all duration-300 hover-lift hover:border-accent/30"
+          style={`animation-delay: ${index * 100}ms`}
+        >
+          <a href={`/blogs/${blog.id}`} class="block">
+            <!-- Image -->
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <Image
+                class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                width={400}
+                height={250}
+                src={blog.data.image.src}
+                alt={blog.data.image.alt}
+              />
+              <!-- Gradient overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-bg-primary via-bg-primary/20 to-transparent"></div>
+              
+              <!-- Date badge -->
+              <div class="absolute bottom-3 left-3 rounded-full border border-border bg-bg-secondary/80 px-3 py-1 text-xs font-medium text-text-muted backdrop-blur-sm">
+                {formatDate(blog.data.pubDate)}
+              </div>
+            </div>
+            
+            <!-- Content -->
+            <div class="p-5">
+              <h3 class="mb-2 font-headfont text-lg font-bold text-white transition-colors group-hover:text-accent line-clamp-2">
+                {blog.data.title}
               </h3>
-              <p class="text-gray-400">{blog.data.description}</p>
-            </article>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-</>
+              <p class="text-sm text-text-muted leading-relaxed line-clamp-2">
+                {blog.data.description}
+              </p>
+              
+              <!-- Read more -->
+              <div class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity group-hover:opacity-100">
+                Read article
+                <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
