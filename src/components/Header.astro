@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import { navLinks } from '@/data/navLinks';
 import NavLink from './ui/NavLink.astro';
 import MenuOpen from './ui/icons/MenuOpen.astro';
+import NerdzLogo from '@/images/nerdz-logo.png';
 
 const logoText = 'Nerdz';
 ---
@@ -18,10 +20,7 @@ const logoText = 'Nerdz';
       href="/"
       class="group relative z-10 font-logofont text-2xl font-bold tracking-tight transition-colors md:text-3xl"
     >
-      <span class="text-white transition-colors group-hover:text-accent"
-        >{logoText}</span
-      >
-      <span class="text-accent">.</span>
+      <Image src={NerdzLogo} alt="Nerdz Logo" width={120} height={120} />
     </a>
 
     <!-- Desktop navigation -->
