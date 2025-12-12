@@ -38,23 +38,38 @@ const { title, meta, structuredData, liturgy } = Astro.props;
       structuredData={structuredData}
     />
 
-    <!-- Critical theme script -->
+    <!-- Critical theme script to prevent flash -->
     <script is:inline>
-      (function () {
+      // Apply theme immediately
+      function applyStoredTheme() {
         const theme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia(
-          '(prefers-color-scheme: dark)'
-        ).matches;
-        if (theme === 'dark' || (!theme && prefersDark)) {
+
+        if (theme === 'dark') {
           document.documentElement.classList.add('dark');
-        } else {
+        } else if (theme === 'light') {
           document.documentElement.classList.remove('dark');
+        } else {
+          // No theme set, use system preference
+          const prefersDark = window.matchMedia(
+            '(prefers-color-scheme: dark)'
+          ).matches;
+          if (prefersDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
         }
-      })();
+      }
+
+      // Apply on initial load
+      applyStoredTheme();
+
+      // Re-apply after view transitions (Astro navigation)
+      document.addEventListener('astro:after-swap', applyStoredTheme);
     </script>
   </head>
   <body
-    class="relative min-h-screen overflow-x-hidden bg-bg-primary font-bodyfont text-white dark:text-white"
+    class="relative min-h-screen overflow-x-hidden bg-bg-primary font-bodyfont text-white"
   >
     <!-- Background effects -->
     <div class="fixed inset-0 -z-10">

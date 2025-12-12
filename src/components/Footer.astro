@@ -1,8 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { footerLinks, navLinks } from '@/data/navLinks';
 import LinkedIn from './ui/icons/LinkedIn.astro';
-import NerdzLogo from '@/images/nerdz-logo.png';
 ---
 
 <footer class="bg-bg-secondary/30 relative border-t border-border">
@@ -10,7 +8,12 @@ import NerdzLogo from '@/images/nerdz-logo.png';
     <div class="grid gap-8 md:grid-cols-3 md:gap-12">
       <!-- Brand section -->
       <div class="md:col-span-1">
-        <Image src={NerdzLogo} alt="Nerdz Logo" width={120} height={120} />
+        <a
+          href="/"
+          class="font-logofont text-3xl font-bold tracking-tight text-white"
+        >
+          NERDZ
+        </a>
         <p class="mt-4 max-w-xs text-sm leading-relaxed text-text-muted">
           Full-Stack Web Developer focused on creating clean, fast, and scalable
           web solutions.
