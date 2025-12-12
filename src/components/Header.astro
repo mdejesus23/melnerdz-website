@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import { navLinks } from '@/data/navLinks';
 import NavLink from './ui/NavLink.astro';
 import MenuOpen from './ui/icons/MenuOpen.astro';
+import ThemeToggle from './ui/ThemeToggle.astro';
 import NerdzLogo from '@/images/nerdz-logo.png';
 
 const logoText = 'Nerdz';
@@ -34,18 +35,22 @@ const logoText = 'Nerdz';
           />
         ))
       }
+      <ThemeToggle />
     </nav>
 
-    <!-- Mobile menu button -->
-    <button
-      id="mobile-menu"
-      class="bg-bg-secondary/50 hover:border-accent/50 relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-border transition-colors sm:hidden"
-      aria-controls="navbar-collapse"
-      aria-label="Toggle navigation"
-      aria-expanded="false"
-    >
-      <MenuOpen />
-    </button>
+    <!-- Mobile menu button and theme toggle -->
+    <div class="flex items-center gap-2 sm:hidden">
+      <ThemeToggle />
+      <button
+        id="mobile-menu"
+        class="bg-bg-secondary/50 hover:border-accent/50 relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-border transition-colors"
+        aria-controls="navbar-collapse"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+      >
+        <MenuOpen />
+      </button>
+    </div>
   </div>
 
   <!-- Background blur layer (appears on scroll) -->

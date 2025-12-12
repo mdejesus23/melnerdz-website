@@ -4,7 +4,33 @@
 
 @layer base {
   :root {
-    /* Modern dark theme with warm amber accents */
+    /* Light theme with warm amber accents */
+    --color-white: #1c1917;
+    --color-bg-primary: #fafaf9;
+    --color-bg-secondary: #f5f5f4;
+    --color-bg-card: rgba(255, 255, 255, 0.6);
+    --color-accent: #f59e0b;
+    --color-accent-light: #fbbf24;
+    --color-accent-muted: rgba(245, 158, 11, 0.15);
+    --color-text-muted: #57534e;
+    --color-border: rgba(28, 25, 23, 0.15);
+    --color-glass: rgba(255, 255, 255, 0.7);
+
+    /* Legacy color mappings for compatibility */
+    --color-pblue: #fafaf9;
+    --color-lblue: #f59e0b;
+    --color-lorange: #fbbf24;
+    --color-project: rgba(255, 255, 255, 0.8);
+    --color-projectDesc: #57534e;
+
+    /* Typography */
+    --font-headfont: 'Playfair Display', serif;
+    --font-bodyfont: 'DM Sans', sans-serif;
+    --font-logofont: 'Outfit', sans-serif;
+  }
+
+  .dark {
+    /* Dark theme with warm amber accents */
     --color-white: #fafaf9;
     --color-bg-primary: #0c0a09;
     --color-bg-secondary: #1c1917;
@@ -22,11 +48,6 @@
     --color-lorange: #fbbf24;
     --color-project: rgba(28, 25, 23, 0.8);
     --color-projectDesc: #a8a29e;
-
-    /* Typography */
-    --font-headfont: 'Playfair Display', serif;
-    --font-bodyfont: 'DM Sans', sans-serif;
-    --font-logofont: 'Outfit', sans-serif;
   }
 
   * {

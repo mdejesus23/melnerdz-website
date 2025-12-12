@@ -30,14 +30,31 @@ const { title, meta, structuredData, liturgy } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-  <MainHead
-    liturgy={liturgy}
-    title={title}
-    meta={meta}
-    structuredData={structuredData}
-  />
+  <head>
+    <MainHead
+      liturgy={liturgy}
+      title={title}
+      meta={meta}
+      structuredData={structuredData}
+    />
+
+    <!-- Critical theme script -->
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia(
+          '(prefers-color-scheme: dark)'
+        ).matches;
+        if (theme === 'dark' || (!theme && prefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
+  </head>
   <body
-    class="relative min-h-screen overflow-x-hidden bg-bg-primary font-bodyfont text-white"
+    class="relative min-h-screen overflow-x-hidden bg-bg-primary font-bodyfont text-white dark:text-white"
   >
     <!-- Background effects -->
     <div class="fixed inset-0 -z-10">
