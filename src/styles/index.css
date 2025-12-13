@@ -7,21 +7,21 @@
     /* Light theme with warm amber accents */
     --color-white: #1c1917;
     --color-bg-primary: #fafaf9;
-    --color-bg-secondary: #f5f5f4;
-    --color-bg-card: rgba(255, 255, 255, 0.6);
+    --color-bg-secondary: #f0eeec;
+    --color-bg-card: rgba(255, 255, 255, 0.7);
     --color-accent: #f59e0b;
     --color-accent-light: #fbbf24;
-    --color-accent-muted: rgba(245, 158, 11, 0.15);
-    --color-text-muted: #57534e;
-    --color-border: rgba(28, 25, 23, 0.15);
-    --color-glass: rgba(255, 255, 255, 0.7);
+    --color-accent-muted: rgba(245, 158, 11, 0.12);
+    --color-text-muted: #64605c;
+    --color-border: rgba(28, 25, 23, 0.12);
+    --color-glass: rgba(255, 255, 255, 0.8);
 
     /* Legacy color mappings for compatibility */
     --color-pblue: #fafaf9;
     --color-lblue: #f59e0b;
     --color-lorange: #fbbf24;
     --color-project: rgba(255, 255, 255, 0.8);
-    --color-projectDesc: #57534e;
+    --color-projectDesc: #64605c;
 
     /* Typography */
     --font-headfont: 'Playfair Display', serif;
@@ -32,21 +32,21 @@
   .dark {
     /* Dark theme with warm amber accents */
     --color-white: #fafaf9;
-    --color-bg-primary: #0c0a09;
-    --color-bg-secondary: #1c1917;
-    --color-bg-card: rgba(28, 25, 23, 0.6);
+    --color-bg-primary: #0a0908;
+    --color-bg-secondary: #171412;
+    --color-bg-card: rgba(23, 20, 18, 0.7);
     --color-accent: #f59e0b;
     --color-accent-light: #fbbf24;
-    --color-accent-muted: rgba(245, 158, 11, 0.15);
+    --color-accent-muted: rgba(245, 158, 11, 0.12);
     --color-text-muted: #a8a29e;
-    --color-border: rgba(168, 162, 158, 0.15);
-    --color-glass: rgba(28, 25, 23, 0.7);
+    --color-border: rgba(168, 162, 158, 0.12);
+    --color-glass: rgba(23, 20, 18, 0.8);
 
     /* Legacy color mappings for compatibility */
-    --color-pblue: #0c0a09;
+    --color-pblue: #0a0908;
     --color-lblue: #f59e0b;
     --color-lorange: #fbbf24;
-    --color-project: rgba(28, 25, 23, 0.8);
+    --color-project: rgba(23, 20, 18, 0.8);
     --color-projectDesc: #a8a29e;
   }
 
@@ -56,6 +56,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
   }
 
   body {
@@ -71,6 +72,7 @@
   h6 {
     font-family: var(--font-headfont);
     @apply tracking-tight;
+    text-wrap: balance;
   }
 
   h1 {
@@ -83,6 +85,10 @@
 
   h3 {
     @apply text-xl font-semibold md:text-2xl;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   @media (min-width: 768px) {

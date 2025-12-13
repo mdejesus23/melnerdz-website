@@ -64,7 +64,7 @@ export default function NewsletterForm({
         <div className="relative flex-1">
           <input
             type="email"
-            className="w-full rounded-xl border border-[rgba(168,162,158,0.15)] bg-[rgba(12,10,9,0.6)] px-5 py-3.5 text-[#fafaf9] placeholder-[#a8a29e] transition-all duration-300 focus:border-[#f59e0b]/50 focus:outline-none focus:ring-2 focus:ring-[#f59e0b]/20"
+            className="bg-bg-secondary/60 focus:border-accent/50 focus:ring-accent/20 w-full rounded-xl border border-border px-5 py-3.5 text-white placeholder-text-muted backdrop-blur-sm transition-all duration-300 focus:outline-none focus:ring-2 dark:text-black"
             placeholder="Enter your email"
             value={email}
             onInput={(e) => setEmail((e.target as HTMLInputElement).value)}
@@ -72,7 +72,7 @@ export default function NewsletterForm({
         </div>
         <button
           type="submit"
-          className="group relative overflow-hidden rounded-xl bg-[#f59e0b] px-6 py-3.5 font-medium text-[#0c0a09] transition-all duration-300 hover:shadow-[0_0_30px_rgba(245,158,11,0.3)] disabled:opacity-50"
+          className="group relative overflow-hidden rounded-xl bg-accent px-6 py-3.5 font-medium text-bg-primary transition-all duration-300 hover:shadow-glow disabled:opacity-50"
           disabled={loading}
         >
           <span className="relative z-10 flex items-center justify-center gap-2">
@@ -115,11 +115,11 @@ export default function NewsletterForm({
               </>
             )}
           </span>
-          <div className="absolute inset-0 -translate-x-full bg-[#fbbf24] transition-transform duration-300 group-hover:translate-x-0" />
+          <div className="absolute inset-0 -translate-x-full bg-accent-light transition-transform duration-300 group-hover:translate-x-0" />
         </button>
       </form>
       {message && <p className="mt-3 text-sm text-red-400">{message}</p>}
-      <p className="mt-4 text-xs text-[#a8a29e]">
+      <p className="mt-4 text-xs text-text-muted">
         By subscribing, you agree to receive occasional updates. Unsubscribe
         anytime.
       </p>
