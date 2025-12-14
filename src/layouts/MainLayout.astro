@@ -3,6 +3,7 @@ import '../styles/index.css';
 import MainHead from '../components/MainHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import BackToTop from '../components/ui/BackToTop.astro';
 
 // Modern fonts
 import '@fontsource/playfair-display/400.css';
@@ -113,5 +114,6 @@ const { title, meta, structuredData, liturgy } = Astro.props;
     </main>
 
     <Footer />
+    <BackToTop />
   </body>
 </html>
