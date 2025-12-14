@@ -9,6 +9,7 @@ export interface OGImageOptions {
   tags?: string[];
   author?: string;
   pubDate?: Date;
+  imageBase64?: string; // Base64 encoded image data URL
 }
 
 interface OGTemplateProps {
@@ -19,6 +20,7 @@ interface OGTemplateProps {
   author: string;
   formattedDate: string;
   accentColor: string;
+  imageBase64?: string;
 }
 
 function OGTemplate({
@@ -29,6 +31,7 @@ function OGTemplate({
   author,
   formattedDate,
   accentColor,
+  imageBase64,
 }: OGTemplateProps): ReactNode {
   const displayTags = tags.slice(0, 4);
   const truncatedDescription = description && description.length > 120
@@ -43,34 +46,66 @@ function OGTemplate({
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: '#0a0a0a',
-        padding: '60px',
         position: 'relative',
         overflow: 'hidden',
       }}
     >
-      {/* Background gradient orbs */}
+      {/* Background image */}
+      {imageBase64 && (
+        <img
+          src={imageBase64}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+      )}
+
+      {/* Dark overlay for better text readability */}
       <div
         style={{
           position: 'absolute',
-          top: '-100px',
-          left: '-100px',
-          width: '400px',
-          height: '400px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 70%)',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: imageBase64
+            ? 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.85) 100%)'
+            : 'transparent',
         }}
       />
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '-150px',
-          right: '-100px',
-          width: '500px',
-          height: '500px',
-          borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(250, 204, 21, 0.1) 0%, transparent 70%)',
-        }}
-      />
+
+      {/* Background gradient orbs (only if no image) */}
+      {!imageBase64 && (
+        <>
+          <div
+            style={{
+              position: 'absolute',
+              top: '-100px',
+              left: '-100px',
+              width: '400px',
+              height: '400px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 70%)',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '-150px',
+              right: '-100px',
+              width: '500px',
+              height: '500px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(250, 204, 21, 0.1) 0%, transparent 70%)',
+            }}
+          />
+        </>
+      )}
 
       {/* Grid pattern overlay */}
       <div
@@ -85,167 +120,183 @@ function OGTemplate({
         }}
       />
 
-      {/* Header with type badge and site name */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '40px',
-        }}
-      >
-        {/* Type badge */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            backgroundColor: 'rgba(250, 204, 21, 0.15)',
-            border: '1px solid rgba(250, 204, 21, 0.3)',
-            borderRadius: '9999px',
-            padding: '8px 20px',
-          }}
-        >
-          <span
-            style={{
-              color: accentColor,
-              fontSize: '20px',
-              fontWeight: 700,
-              fontFamily: 'DM Sans',
-            }}
-          >
-            {typeLabel}
-          </span>
-        </div>
-
-        {/* Site name */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-          }}
-        >
-          <span
-            style={{
-              color: '#ffffff',
-              fontSize: '24px',
-              fontWeight: 700,
-              fontFamily: 'Playfair Display',
-            }}
-          >
-            Melnerdz
-          </span>
-        </div>
-      </div>
-
-      {/* Main content */}
+      {/* Content wrapper with padding */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          flex: 1,
-          justifyContent: 'center',
+          height: '100%',
+          width: '100%',
+          padding: '60px',
+          position: 'relative',
         }}
       >
-        {/* Title */}
-        <h1
+        {/* Header with type badge and site name */}
+        <div
           style={{
-            color: '#ffffff',
-            fontSize: title.length > 50 ? '48px' : '56px',
-            fontWeight: 700,
-            fontFamily: 'Playfair Display',
-            lineHeight: 1.2,
-            marginBottom: '24px',
-            maxWidth: '900px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '40px',
           }}
         >
-          {title}
-        </h1>
-
-        {/* Description */}
-        {truncatedDescription && (
-          <p
-            style={{
-              color: 'rgba(255, 255, 255, 0.7)',
-              fontSize: '24px',
-              fontFamily: 'DM Sans',
-              lineHeight: 1.5,
-              maxWidth: '800px',
-              marginBottom: '32px',
-            }}
-          >
-            {truncatedDescription}
-          </p>
-        )}
-      </div>
-
-      {/* Footer with tags and meta info */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-        }}
-      >
-        {/* Tags */}
-        {displayTags.length > 0 && (
+          {/* Type badge */}
           <div
             style={{
               display: 'flex',
-              gap: '12px',
-              flexWrap: 'wrap',
+              alignItems: 'center',
+              gap: '8px',
+              backgroundColor: 'rgba(250, 204, 21, 0.2)',
+              border: '1px solid rgba(250, 204, 21, 0.4)',
+              borderRadius: '9999px',
+              padding: '8px 20px',
             }}
           >
-            {displayTags.map((tag, index) => (
-              <span
-                key={index}
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  borderRadius: '8px',
-                  padding: '8px 16px',
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  fontSize: '16px',
-                  fontFamily: 'DM Sans',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
+            <span
+              style={{
+                color: accentColor,
+                fontSize: '20px',
+                fontWeight: 700,
+                fontFamily: 'DM Sans',
+              }}
+            >
+              {typeLabel}
+            </span>
           </div>
-        )}
 
-        {/* Author and date */}
+          {/* Site name */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+            }}
+          >
+            <span
+              style={{
+                color: '#ffffff',
+                fontSize: '24px',
+                fontWeight: 700,
+                fontFamily: 'Playfair Display',
+              }}
+            >
+              Melnerdz
+            </span>
+          </div>
+        </div>
+
+        {/* Main content */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'flex-end',
-            gap: '4px',
+            flex: 1,
+            justifyContent: 'center',
           }}
         >
-          <span
+          {/* Title */}
+          <h1
             style={{
-              color: accentColor,
-              fontSize: '18px',
-              fontWeight: 600,
-              fontFamily: 'DM Sans',
+              color: '#ffffff',
+              fontSize: title.length > 50 ? '48px' : '56px',
+              fontWeight: 700,
+              fontFamily: 'Playfair Display',
+              lineHeight: 1.2,
+              marginBottom: '24px',
+              maxWidth: '900px',
+              textShadow: imageBase64 ? '0 2px 10px rgba(0,0,0,0.5)' : 'none',
             }}
           >
-            {author}
-          </span>
-          {formattedDate && (
-            <span
+            {title}
+          </h1>
+
+          {/* Description */}
+          {truncatedDescription && (
+            <p
               style={{
-                color: 'rgba(255, 255, 255, 0.5)',
-                fontSize: '16px',
+                color: 'rgba(255, 255, 255, 0.85)',
+                fontSize: '24px',
                 fontFamily: 'DM Sans',
+                lineHeight: 1.5,
+                maxWidth: '800px',
+                marginBottom: '32px',
+                textShadow: imageBase64 ? '0 1px 5px rgba(0,0,0,0.5)' : 'none',
               }}
             >
-              {formattedDate}
-            </span>
+              {truncatedDescription}
+            </p>
           )}
+        </div>
+
+        {/* Footer with tags and meta info */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+          }}
+        >
+          {/* Tags */}
+          {displayTags.length > 0 && (
+            <div
+              style={{
+                display: 'flex',
+                gap: '12px',
+                flexWrap: 'wrap',
+              }}
+            >
+              {displayTags.map((tag, index) => (
+                <span
+                  key={index}
+                  style={{
+                    backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                    border: '1px solid rgba(255, 255, 255, 0.25)',
+                    borderRadius: '8px',
+                    padding: '8px 16px',
+                    color: 'rgba(255, 255, 255, 0.9)',
+                    fontSize: '16px',
+                    fontFamily: 'DM Sans',
+                  }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
+          {/* Author and date */}
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-end',
+              gap: '4px',
+            }}
+          >
+            <span
+              style={{
+                color: accentColor,
+                fontSize: '18px',
+                fontWeight: 600,
+                fontFamily: 'DM Sans',
+                textShadow: imageBase64 ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
+              }}
+            >
+              {author}
+            </span>
+            {formattedDate && (
+              <span
+                style={{
+                  color: 'rgba(255, 255, 255, 0.7)',
+                  fontSize: '16px',
+                  fontFamily: 'DM Sans',
+                  textShadow: imageBase64 ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
+                }}
+              >
+                {formattedDate}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -259,7 +310,8 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
     type = 'blog',
     tags = [],
     author = 'Melnard De Jesus',
-    pubDate
+    pubDate,
+    imageBase64,
   } = options;
 
   // Load fonts
@@ -288,6 +340,7 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
     author,
     formattedDate,
     accentColor,
+    imageBase64,
   });
 
   const svg = await satori(element as React.ReactNode, {
