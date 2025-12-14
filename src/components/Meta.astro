@@ -5,6 +5,19 @@ import faviconSvgSrc from '../images/logo.png';
 import faviconSrc from '../images/logo.png';
 import liturgyImg from '../images/liturgy.png';
 
+interface OGData {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+interface Props {
+  meta?: string;
+  structuredData?: object;
+  liturgy?: boolean;
+  ogData?: OGData;
+}
+
 // Default properties for the Meta component. These values are used if props are not provided.
 // 'meta' sets a default description meta tag to describe the page content.
 // 'structuredData' defines default structured data in JSON-LD format to enhance search engine understanding of the page (for SEO purposes).
@@ -20,6 +33,7 @@ const {
   meta = defaultProps.meta,
   structuredData = defaultProps.structuredData,
   liturgy = false,
+  ogData,
 } = Astro.props;
 
 // Define the metadata for your website and individual pages
@@ -27,15 +41,21 @@ const URL = `${Astro.site}`; // Set the website URL in astro.config.mjs
 const author = SITE.author;
 const canonical = Astro.url.href;
 // const basePath = Astro.url.pathname;
-const ogTitle = OG.title;
-const ogDescription = OG.description;
-const socialImageRes = await getImage({
-  src: liturgy ? liturgyImg : OG.image,
-  width: 1200,
-  height: 600,
-});
+const ogTitle = ogData?.title || OG.title;
+const ogDescription = ogData?.description || OG.description;
 
-const socialImage = Astro.url.origin + socialImageRes.src; // Get the full URL of the image (https://stackoverflow.com/a/9858694)
+// Use custom OG image if provided, otherwise fall back to default
+let socialImage: string;
+if (ogData?.image) {
+  socialImage = Astro.url.origin + ogData.image;
+} else {
+  const socialImageRes = await getImage({
+    src: liturgy ? liturgyImg : OG.image,
+    width: 1200,
+    height: 600,
+  });
+  socialImage = Astro.url.origin + socialImageRes.src;
+}
 
 // Generate and optimize the favicon images
 const faviconSvg = await getImage({

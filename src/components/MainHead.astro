@@ -5,11 +5,18 @@ import Meta from './Meta.astro';
 // component imports
 // import Seo from './Seo.astro';
 
+interface OGData {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
 interface Props {
   title?: string;
   meta?: string;
   structuredData?: object;
   liturgy?: boolean;
+  ogData?: OGData;
 }
 
 const {
@@ -17,6 +24,7 @@ const {
   meta,
   structuredData,
   liturgy,
+  ogData,
 } = Astro.props;
 ---
 
@@ -39,5 +47,5 @@ const {
   <title>{title}</title>
 
   <!-- Adding metadata to the HTML document -->
-  <Meta liturgy={liturgy} meta={meta} structuredData={structuredData} />
+  <Meta liturgy={liturgy} meta={meta} structuredData={structuredData} ogData={ogData} />
 </head>

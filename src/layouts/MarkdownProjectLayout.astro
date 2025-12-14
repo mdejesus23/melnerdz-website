@@ -20,6 +20,9 @@ const description: string = data.description;
 
 const wordCount = countWords(body || '');
 const readTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
+
+// Generate dynamic OG image path
+const ogImagePath = `/og/${collection}/${slug}.png`;
 ---
 
 <MainLayout
@@ -35,6 +38,11 @@ const readTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
     inLanguage: 'en-US',
   }}
   meta={description}
+  ogData={{
+    title: `${data.title} | ${SITE.title}`,
+    description: description,
+    image: ogImagePath,
+  }}
 >
   <section class="mx-auto max-w-screen-lg py-6">
     <h1 class="mb-4 text-center font-headfont text-3xl font-bold">
