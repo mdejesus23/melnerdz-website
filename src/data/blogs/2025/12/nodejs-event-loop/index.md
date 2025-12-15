@@ -1,6 +1,6 @@
 ---
 title: Understanding the Node.js Event Loop
-pubDate: 2025-12-14
+pubDate: 2025-12-15
 author: Melnard
 slug: nodejs-event-loop
 image:
@@ -35,32 +35,96 @@ As long as you don’t make the librarian read an entire book aloud (long synchr
 
 “Microtasks” are very small, high-priority jobs (mostly Promise callbacks). They run right after the current bit of JavaScript finishes, before the loop moves to the next big step. “Macrotasks” are the bigger scheduled items like timers or `setImmediate`.
 
+### Event Loop: What runs there?
+
+- All application code inside callback functions (i.e., non–top-level code) executes within the event loop.
+
+### Event-driven architecture
+
+- Node.js uses an event-driven model. As your application receives requests, it emits events.
+- The event loop picks up these events and invokes the associated callback functions.
+- In short: the event loop orchestrates when and how callbacks are processed.
+
+### Event loop phases
+
+1. Expired timer callbacks
+
+- Examples include callbacks from `setTimeout()` and `setInterval()` whose timers have expired.
+- If a timer expires while another phase is running, its callback will be executed only when the loop returns to the Timers phase.
+- Callbacks in each phase’s queue are processed one by one until the queue is empty; only then does the loop move to the next phase.
+
+2. I/O polling and I/O callbacks
+
+- Polling means checking for new I/O events that are ready and enqueueing their callbacks.
+- I/O mainly covers networking and file system operations. In typical Node apps, most of your code executes here because the bulk of the work involves I/O.
+
+3. `setImmediate` callbacks
+
+- `setImmediate` is a special timer for running callbacks right after the I/O poll and execution phase. This can be useful in advanced scenarios.
+
+4. Close callbacks
+
+- Handles “close” events, e.g., when a server or WebSocket shuts down. Often less critical for everyday use.
+
+### Two special queues: `process.nextTick` and microtasks
+
+- In addition to the four main phases, Node.js has the `nextTick` queue and the microtasks queue (primarily for resolved Promises).
+- If there are callbacks in either of these queues, they run immediately after the current phase finishes—without waiting for the entire loop to complete.
+- Example: If a Promise resolves while a timer callback is running, the Promise’s callback will run as soon as the current callback finishes, before the loop advances to the next phase.
+- The same applies to `process.nextTick()`. Use `nextTick` when you truly need a callback to run right after the current phase. It’s similar in spirit to `setImmediate`, but `setImmediate` runs after the I/O callbacks (Check phase), while `nextTick` runs sooner. Both are primarily for advanced use cases.
+
 ### The phases at a glance
 
-1. Timers: `setTimeout`, `setInterval`
-2. Pending callbacks: system operations
-3. Idle/prepare: internal
-4. Poll: new I/O events; executes I/O callbacks
-5. Check: `setImmediate`
-6. Close callbacks: `socket.on('close')`
+1. Timers (expired timer callbacks): `setTimeout`, `setInterval`
+2. I/O polling and callbacks: networking and filesystem I/O; executes ready I/O callbacks
+3. Check: `setImmediate` callbacks (run right after the I/O poll/execution phase)
+4. Close callbacks: e.g., server or WebSocket shutdown handlers
 
-Microtasks (Promises) run after each phase before moving on.
+Special queues processed after each phase:
+
+- `process.nextTick` queue (runs immediately after the current phase, before microtasks)
+- Microtasks queue (mostly resolved Promises)
 
 ### Visual timeline (simplified)
 
-Poll → run I/O callbacks
+Timers → run due `setTimeout`/`setInterval`
 
+↳ run `process.nextTick` callbacks
 ↳ run all microtasks (Promise `.then`)
+
+Poll → run I/O callbacks (network, filesystem)
+
+↳ run `process.nextTick` callbacks
+↳ run all microtasks
 
 Check → run `setImmediate`
 
+↳ run `process.nextTick` callbacks
 ↳ run all microtasks
 
-Timers → run due `setTimeout`/`setInterval`
+Close → run close callbacks (e.g., `socket.on('close')`)
 
+↳ run `process.nextTick` callbacks
 ↳ run all microtasks
 
-Repeat while there’s pending work.
+Repeat while there are pending timers or I/O tasks.
+
+### What is a “tick”?
+
+- A tick is one full cycle of the event loop.
+
+### When does the loop continue vs exit?
+
+- Node decides whether to continue to the next tick or exit by checking for pending timers or I/O tasks.
+- If none are pending, the application exits. If there are pending timers or I/O, the loop continues.
+- For example, when a Node.js HTTP server is listening, that constitutes an I/O task—so the event loop keeps running and continues accepting new requests. Similarly, reading/writing files keeps the loop alive until those operations complete.
+
+### Don’ts (performance and reliability)
+
+- Don’t use synchronous versions of functions in `fs`, `crypto`, and `zlib` inside callbacks.
+- Don’t perform complex, heavy computations on the main thread (e.g., deep nested loops).
+- Be cautious with JSON operations on very large objects.
+- Avoid overly complex regular expressions (e.g., nested quantifiers) that can cause catastrophic backtracking.
 
 ### Common pitfalls
 
