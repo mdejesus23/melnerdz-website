@@ -10,6 +10,16 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://melnerdz.com',
   integrations: [sitemap(), tailwind(), react(), mdx()],
+  vite: {
+    ssr: {
+      // @resvg/resvg-js uses native Node bindings (.node files)
+      // that need to be externalized from bundling
+      external: ['@resvg/resvg-js', '@resvg/resvg-js-linux-x64-gnu'],
+    },
+    optimizeDeps: {
+      exclude: ['@resvg/resvg-js'],
+    },
+  },
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
