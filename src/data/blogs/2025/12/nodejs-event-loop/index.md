@@ -4,7 +4,7 @@ pubDate: 2025-12-15
 author: Melnard
 slug: nodejs-event-loop
 image:
-  src: ./node.png
+  src: ./main.png
   alt: Node.js event loop illustration
 description: A practical, developer-friendly guide to how the Node.js event loop works, including phases, the microtask queue, timers, I/O callbacks, and common pitfalls.
 technology:

@@ -4,7 +4,7 @@ pubDate: 2025-12-14
 author: Melnard
 slug: nodejs-simple-rest-api-no-framework
 image:
-  src: ./restapi.png
+  src: ./main.png
   alt: Node.js REST API concept
 description: Step-by-step tutorial to build a minimal, production-minded REST API using only Node.js core modules—no Express—covering routing, JSON parsing, CORS, status codes, and error handling.
 technology:

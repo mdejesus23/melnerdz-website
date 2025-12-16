@@ -4,7 +4,7 @@ pubDate: 2025-12-14
 author: Melnard
 slug: python-snake-game-turtle-oop
 image:
-  src: ./python-snake.png
+  src: ./main.png
   alt: Python Turtle Snake Game
 description: Step-by-step tutorial to create the classic Snake game in Python using the Turtle graphics library, applying clean Object-Oriented design.
 technology:

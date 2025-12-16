@@ -4,7 +4,7 @@ pubDate: 2025-12-14
 author: Melnard
 slug: astrojs-tutorials
 image:
-  src: ./astro.png
+  src: ./main.png
   alt: Astro.js tutorials cover image
 description: A curated set of bite-size Astro.js tutorials—from project setup and content collections to islands, integrations, and deployment.
 technology:
