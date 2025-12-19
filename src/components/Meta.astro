@@ -1,9 +1,6 @@
 ---
 import { getImage } from 'astro:assets';
 import { OG, SEO, SITE } from '../data/constant';
-import faviconSvgSrc from '../images/logo.png';
-import faviconSrc from '../images/logo.png';
-import liturgyImg from '../images/liturgy.png';
 
 interface OGData {
   title?: string;
@@ -50,29 +47,15 @@ if (ogData?.image) {
   socialImage = Astro.url.origin + ogData.image;
 } else {
   const socialImageRes = await getImage({
-    src: liturgy ? liturgyImg : OG.image,
+    src: OG.image,
     width: 1200,
     height: 600,
   });
   socialImage = Astro.url.origin + socialImageRes.src;
 }
-
-// Generate and optimize the favicon images
-const faviconSvg = await getImage({
-  src: faviconSvgSrc,
-  format: 'webp',
-});
-
-const appleTouchIcon = await getImage({
-  src: faviconSrc,
-  width: 180,
-  height: 180,
-  format: 'png',
-});
 ---
 
-<!-- Inject structured data into the page if provided. This data is formatted as JSON-LD, a method recommended by Google for structured data pass:
-     https://developers.google.com/search/docs/advanced/structured-data/intro-structured-data -->{
+{
   structuredData && (
     <script
       is:inline
@@ -114,14 +97,32 @@ const appleTouchIcon = await getImage({
 
 <!-- Links to the webmanifest and sitemap -->
 <link rel="manifest" href="/manifest.json" />
-<!-- https://docs.astro.build/en/guides/integrations-guide/sitemap/ -->
 <link rel="sitemap" href="/sitemap-index.xml" />
 
 <!-- Links for favicons -->
-<link href="/favicon.ico" rel="icon" sizes="any" type="image/x-icon" />
-<link href={faviconSvg.src} rel="icon" type="image/png" sizes="any" />
-<meta name="mobile-web-app-capable" content="yes" />
-<link href={appleTouchIcon.src} rel="apple-touch-icon" />
-<link href={appleTouchIcon.src} rel="shortcut icon" />
+<!-- Standard favicon -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+<!-- PNG versions for modern browsers -->
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+
+<!-- Apple touch icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+<!-- Android icons -->
+<link
+  rel="icon"
+  type="image/png"
+  sizes="192x192"
+  href="/android-chrome-192x192.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="512x512"
+  href="/android-chrome-512x512.png"
+/>
+
 <!-- Set theme color -->
 <meta name="theme-color" content="#facc15" />
