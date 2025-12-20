@@ -1,0 +1,324 @@
+Now, in order to set the stage
+
+for the next couple of lectures,
+
+let's start by learning a bit about Node architecture.
+
+So let's represent that architecture here
+
+in terms of Node's dependencies,
+
+which are just a couple of libraries
+
+that Node depends on in order to work properly.
+
+So the Node run time has several dependencies,
+
+and the most important ones are
+
+the V8 (mumbles) engine and libuv.
+
+Now we said before that Node is a JavaScript run time
+
+based on Google's V8 engine, right?
+
+And so, that is why it appears here as a dependency.
+
+If it wasn't for V8, Node would have absolutely no
+
+way of understanding the JavaScript code that we write.
+
+And therefore, V8 is a fundamental part
+
+in the Node architecture.
+
+So again, the V8 engine is what converts JavaScript code
+
+into machine code that a computer can actually understand.
+
+Okay, but that alone is not enough to create a whole
+
+server side framework like Node.
+
+And so that is why we also have libuv in Node.
+
+And libuv is an open source library with a
+
+strong focus on asynchronous IO.
+
+So, input output.
+
+This layer is what gives Node access to the
+
+underlying computer operating system,
+
+file system, networking, and more.
+
+Besides that, libuv also implements two extremely
+
+important features of Node.JS
+
+which are the event loop and also the thread pool.
+
+And in simple terms, the event loop is responsible
+
+for handling easy tasks like executing call backs
+
+and network IO while the thread pool is for more heavy work
+
+like file access or compression or something like that.
+
+But you'll learn all about that,
+
+so about the event loop and the thread pool,
+
+in the next couple of videos.
+
+One important thing to note here
+
+is that libuv is actually completely written
+
+in C++ and not in JavaScript.
+
+And V8 itself, also uses C++ code besides JavaScript.
+
+So therefore, Node itself is a program written
+
+in C++ and JavaScript and not just in JavaScript
+
+as you might expect, right?
+
+Now the beauty of this is that Node.JS ties all
+
+these libraries together, no matter if written
+
+in C++ or JavaScript and then gives us
+
+developers access to their functions in pure JavaScript.
+
+So it really provides us with a very nice layer
+
+of abstraction in order to make our lives a lot easier
+
+instead of us like having to mess with C++ code.
+
+That would be a terrible experience, right?
+
+So again, this architecture allows us to write
+
+100 percent pure JavaScript code,
+
+running in Node.JS and still access functions like
+
+for file reading, which behind the scenes are
+
+actually implemented in libuv or
+
+other libraries in the C++ language.
+
+And speaking of other libraries,
+
+Node does actually not only rely on V8 and libuv,
+
+but also on http-parser for parsing http,
+
+c-ares or something like that for some DNS request stuff,
+
+OpenSSL for keptography, and also zlib for compression.
+
+And these are not that important to understand, alright?
+
+So in the end, when we have all these pieces nicely
+
+fit together, we end up with Node.JS ready to be used
+
+on the server side all four applications.
+
+And next up, you will learn more about threads
+
+in Node and the thread pool.
+
+So stay tuned for that one.
+
+
+Lecture thumbnail
+4:15 / 4:21
+So, remember that in the last lecture,
+
+we talked about the Node architecture,
+
+where two fundamental parts
+
+are the thread pool and the event loop.
+
+So in this lecture, you're gonna learn
+
+all about threads and a thread pool.
+
+And in the next one,
+
+we will then dive deep into the event loop.
+
+So, let's get started.
+
+So, first off, when we use Node on a computer,
+
+it means that there is a Node process
+
+running on that computer.
+
+And the process is just a program in execution.
+
+And we already learned that Node.js
+
+is basically a C++ program,
+
+which will therefore start a process when it's running.
+
+This is important because in Node,
+
+we actually have access to a process variable,
+
+which we're gonna use later in this course.
+
+Now in that process, Node.js runs
+
+in a so called, single thread.
+
+And a thread is basically just a sequence of instructions.
+
+But it's not important to deeply understand
+
+what a thread or a process is.
+
+That is more about computer science.
+
+Just imagine a thread as being a box
+
+where our code is executed in a computer's processor.
+
+Now, what is important to understand here,
+
+is the fact that Node runs in just one thread,
+
+which makes it easy to block Node applications.
+
+And this is something that we talked about before, actually.
+
+But it's something really, really important to remember
+
+because this is one of the unique features
+
+that Node.js brings to the table.
+
+So, again, if you run your Node application,
+
+it'll run in just a single thread.
+
+No matter if you have 10 users or 10 million users
+
+accessing your application at the same.
+
+And so you need to be very careful
+
+about not blocking that thread.
+
+And we will of course, take care of that
+
+throughout the project in this course.
+
+Moving on, let's now quickly understand
+
+exactly what happens in a single thread
+
+when you start your Node application.
+
+So when the program is initialized,
+
+all the top level code is executed,
+
+which means all the code that is
+
+not inside any callback function.
+
+Also, all the modules that your app needs are required
+
+and all the callbacks are registered,
+
+just like the ones that we used
+
+for our HTP server in the Node Farm App.
+
+Remember that?
+
+Then after all that, the event loop finally starts running.
+
+And again, more about the event in loop in the next video.
+
+What you need to know for now is that the event loop
+
+is where most of the work is done in your app.
+
+So, it's really the heart of the entire Node architecture.
+
+But here is the catch, some tasks are actually too heavy.
+
+They are too expensive to be executed in the event loop
+
+because they would then block the single thread.
+
+And so, that's where the thread pool comes in,
+
+which just like the event loop,
+
+is provided to Node.js by the libuv library
+
+that we talked about before.
+
+So, the thread pool gives us four additional threads
+
+that are completely separate from the main single thread.
+
+And we can actually configure it up to 128 threads.
+
+But usually, these four are enough.
+
+So these threads together formed a thread pool.
+
+And the event loop can then automatically
+
+offload heavy tasks to the thread pool.
+
+And all this happens automatically behind the scenes.
+
+It's not us developers who decide
+
+what goes to thread pool and what doesn't.
+
+Now, the expensive tasks that do get offloaded
+
+are all operations dealing with files,
+
+everything related to cryptography, like caching passwords,
+
+then all compression stuff, and also DNS lookups,
+
+which basically matches web domains
+
+to their corresponding real IP addresses.
+
+So this is the stuff that would
+
+most easily block the main thread.
+
+And so, Node takes care of automatically
+
+offloading them into the thread pool,
+
+where they don't block our event loop.
+
+And that is the most important thing
+
+that I want you to retain from this video.
+
+So, let's now move on and talk about the event loop itself.
