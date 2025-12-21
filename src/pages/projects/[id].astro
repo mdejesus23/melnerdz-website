@@ -22,9 +22,14 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const collection = entry.collection;
 const data: Project = entry.data; // ensure the data conforms to the Project interface
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
 ---
 
-<MarkdownProjectLayout slug={entry.id} data={data} collection={collection}>
+<MarkdownProjectLayout
+  slug={entry.id}
+  data={data}
+  collection={collection}
+  headings={headings}
+>
   <Content />
 </MarkdownProjectLayout>
