@@ -71,7 +71,7 @@ const ogImagePath = `/og/${collection}/${slug}.png`;
       {readTime} min read
     </p>
 
-    <div class="relative flex gap-10">
+    <div class="relative flex flex-col gap-10 lg:flex-row">
       <!-- Table of Contents - Left Sidebar -->
       {
         headings.length > 0 && (
@@ -84,14 +84,15 @@ const ogImagePath = `/og/${collection}/${slug}.png`;
       }
 
       <!-- Main Content -->
-      <div class="mx-auto flex max-w-prose flex-1 flex-col gap-5">
-        <figure class="mx-auto">
+      <div class="mx-auto flex w-full max-w-prose flex-1 flex-col gap-5">
+        <figure class="mx-auto w-full">
           <Image
             width={700}
             height={600}
             src={data.image.src}
             alt={data.image.alt}
-            class="rounded-md"
+            sizes="(max-width: 1024px) 100vw, 700px"
+            class="h-auto w-full rounded-md"
           />
         </figure>
         <Prose>
