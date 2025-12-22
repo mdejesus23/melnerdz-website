@@ -8,7 +8,9 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '../../../../');
 
-async function getImageAsBase64(imagePath: string): Promise<string | undefined> {
+async function getImageAsBase64(
+  imagePath: string,
+): Promise<string | undefined> {
   try {
     if (!imagePath) return undefined;
 
@@ -52,8 +54,10 @@ export const GET: APIRoute = async ({ props }) => {
 
   // Use filePath from the content entry to find the image in the same directory
   const filePath = (blog as { filePath?: string }).filePath;
+  console.log('Blog filePath:', filePath);
   if (filePath) {
     const imagePath = await findBlogImage(filePath);
+    console.log('Found blog image path:', imagePath);
     if (imagePath) {
       imageBase64 = await getImageAsBase64(imagePath);
     }

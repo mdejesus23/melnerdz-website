@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML and Css docs</title>
+    <link rel="stylesheet" href="styles/general.css" />
+    <link rel="stylesheet" href="styles/header.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="button-container button" id="menuButton" onclick="menuToggle()">
+        <div class="bar1 button"></div>
+        <div class="bar2 button"></div>
+        <div class="bar3 button"></div>
+      </div>
+    </header>
+      <div id="mySidenav" class="sidenav">
+            <a class="nav-link" href="#html-basics">HTML Basics</a>
+            <a class="nav-link" href="#html-syntax">HTML Syntax</a>
+            <a class="nav-link" href="#attributes">Attributes</a>
+            <a class="nav-link" href="#css-basics">CSS Basics</a>
+            <a class="nav-link" href="#css-syntax">CSS Syntax</a>
+            <a class="nav-link" href="#css-properties">CSS Properties</a>
+            <a class="nav-link" href="#css-values">CSS Values</a>
+            <a class="nav-link" href="#class-attributes">Class Attributes</a>
+            <a class="nav-link" href="#css-pseudo">CSS Pseudo-Class</a>
+            <a class="nav-link" href="#css-inter-prop">Intermediate CSS</a>
+            <a class="nav-link" href="#chrome-devtools">Chrome DevTools</a>
+            <a class="nav-link" href="#css-box-model">CSS Box Model</a>
+            <a class="nav-link" href="#text-style">Text Styles</a>
+            <a class="nav-link" href="#html-structure">The HTML Structure</a>
+            <a class="nav-link" href="#html-images">Images</a>
+            <a class="nav-link" href="#html-inputs">Inputs</a>
+            <a class="nav-link" href="#display-property">CSS Display Property</a>
+            <a class="nav-link" href="#reference">Reference</a>
+      </div>
+
+    <main id="main">
+      <h1>HTML and CSS Guide</h1>
+      <!--html basics section-->
+      <div class="id-locate" id="html-basics"></div>
+      <section>
+        <header>HTML Basics</header>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+  &lt;button&gt;<span class="text-code">Hello</span>&lt;/button&gt;
+  &lt;p&gt;<span class="text-code">This is a paragraph of text</span>&lt;/p&gt;
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Creates a button with the text "Hello" inside.</p>
+              <p>Creates a paragraph of text.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--html Syntax section-->
+      <div class="id-locate" id="html-syntax"></div>
+      <section>
+        <header>HTML Syntax</header>
+        <div class="heading-rule">
+          <p>Syntax = rules for writing HTML code (like grammar in English)</p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+  &lt;button&gt;<span class="text-code">Hello</span>&lt;/button&gt;
+
+
+    &lt;p&gt;<span class="text-code">paragraph of text</span>&lt;/p&gt;
+
+    &lt;p&gt;<span class="text-code">paragraph    of    text</span>&lt;/p&gt;
+      
+    &lt;p&gt;
+          <span class="text-code">paragraph of text</span>
+    &lt;/p&gt;
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <ol class="syntax-list">
+                <li>
+                  Elements should have an opening tag and a matching closing
+                  tag.
+                </li>
+                <li>
+                  In HTML, extra spaces and newlines are combined into 1 space.
+                </li>
+              </ol>
+              <div class="syntax-remarks text-container">
+                <p>All 3 examples will show the same result on the web page.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Attributes section-->
+      <div class="id-locate" id="attributes"></div>
+      <section>
+        <header>Attributes</header>
+        <div class="heading-rule">
+          <p>Attributes modify how an HTML element behaves.</p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+   &lt;a href=<span class="html-attribute">"https://youtube.com"</span>&gt;
+     <span class="text-code">Link to youtube</span>
+   &lt;/a&gt;
+
+   &lt;a href=<span class="html-attribute">"https://youtube.com"</span> target=<span class="html-attribute">"_blank"</span>&gt;
+     <span class="text-code">Link to youtube</span>
+   &lt;/a&gt;
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p><code>&lt;a&gt;</code> = link to another website</p>
+              <p>
+                <code>href</code> = modifies which website is opened when
+                clicking this link.
+              </p>
+              <p>
+                <code
+                  ><span class="html-tag">target</span>=<span
+                    class="html-attribute"
+                    >"_blank"</span
+                  ></code
+                >causes the link to be opened in a new tab.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--CSS basics section-->
+      <div class="id-locate" id="css-basics"></div>
+      <section>
+        <header>CSS Basics</header>
+        <div class="heading-rule">
+          <p>
+            One way of writing CSS code is using the
+            <code>&lt;style&gt;</code> HTML element.
+          </p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+  &lt;style&gt;
+      <span class="css-selector">button</span> {
+        background-color:<span class="html-attribute"> red;</span>
+        color:<span class="html-attribute"> white;</span>
+      }
+  &lt;/style&gt;
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Modifies all <code>&lt;button&gt;</code>s on the page.</p>
+              <p>Change background color to red.</p>
+              <p>Change text color to white.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--CSS Syntax section-->
+      <div class="id-locate" id="css-syntax"></div>
+      <section>
+        <header>CSS Syntax</header>
+        <div class="heading-rule">
+          <p>CSS Selector = which elements will be modified.</p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+    <span class="css-selector">button</span> {
+      background-color:<span class="html-attribute"> red;</span>
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>
+                all the styles for this selector must be placed inside<code
+                  >{...}</code
+                >
+              </p>
+              <p>
+                Property <code>background-color:</code> (what we're modifying)
+              </p>
+              <p>
+                Value <span class="html-attribute"> red;</span> (what we're
+                modifying the property to)
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--CSS Properties section-->
+      <div class="id-locate" id="css-properties"></div>
+      <section>
+        <header>CSS Properties</header>
+        <div class="heading-rule">
+          <p>Here are some common CSS properties we can use:</p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+
+    <span class="css-selector">button</span> {
+      background-color:<span class="html-attribute"> red;</span>
+
+
+
+      color: <span class="html-attribute"> white;</span>
+
+
+
+      height: <span class="html-attribute"> 36px;</span>
+
+
+      width: <span class="html-attribute"> 105px;</span>
+
+
+
+      border: <span class="html-attribute"> none;</span>
+      border-radius: <span class="html-attribute"> 2px;</span>
+      cursor: <span class="html-attribute"> pointer;</span>
+
+
+
+      border-color: <span class="html-attribute"> red;</span>
+      border-style: <span class="html-attribute"> solid;</span>
+
+
+          
+      border-width: <span class="html-attribute"> 1px;</span>
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Sets the <code>background color:</code> Common values:</p>
+              <ul>
+                <li>
+                  Color name: <span class="html-attribute">red</span>,
+                  <span class="html-attribute">white</span>,
+                  <span class="html-attribute">black</span>
+                </li>
+                <li>
+                  rgb value:
+                  <span class="html-attribute">rgb(0, 150, 255)</span>;
+                </li>
+                <li>Hex value: <span class="html-attribute">#0096FF</span></li>
+              </ul>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Sets the text <code>color:</code> Takes the same values as
+                background-color (color name, rgb, hex).
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>Set the height. Common values:</p>
+              <ul>
+                <li>Pixel value: <span class="html-attribute">36px</span></li>
+                <li>Percentage: <span class="html-attribute">50%</span></li>
+              </ul>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Sets the <code>width:</code> Takes the same values as height.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>Removes the <code>border:</code></p>
+              <p><code>border-radius:</code> Creates rounded corners</p>
+              <p>
+                Changes the mouse or <code>cursor:</code> when hovering over the
+                element.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>Sets the <code>border-color:</code></p>
+              <p>Sets the <code>border-style:</code> Common values:</p>
+              <ul>
+                <li>
+                  <span class="html-attribute">solid</span>
+                </li>
+                <li>
+                  <span class="html-attribute">dotted</span>
+                </li>
+                <li>
+                  <span class="html-attribute">dashed</span>
+                </li>
+              </ul>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p class="css-value">Sets the <code>border-width:</code></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--CSS Values section-->
+      <div class="id-locate" id="css-values"></div>
+      <section>
+        <header>CSS Values</header>
+        <div class="heading-rule">
+          <p>
+            Each CSS property has a set of values that are allowed (<code
+              >&lt;background-color&gt;</code
+            >
+            allows color values, <code>&lt;cursor&gt;</code> allows
+            <span class="html-attribute">solid</span>,
+            <span class="html-attribute">dotted</span>,
+            <span class="html-attribute">dashed</span>, etc.)
+          </p>
+        </div>
+        <div>
+          <p>Here are some categories of values that are useful to know:</p>
+        </div>
+        <div class="text-container">
+          <div class="text-container">
+            <p class="css-values-title">Color Values</p>
+            <ol>
+              <li>
+                A color name: <span class="html-attribute">red</span>,
+                <span class="html-attribute">white</span>,
+                <span class="html-attribute">black</span>
+              </li>
+              <li>
+                RGB value: <span class="html-attribute">rgb(0, 150, 255)</span>;
+                <p>
+                  RGB is a more precise way of measuring color. Every color can
+                  be created using a combination of red, green, and blue (RGB).
+                  In CSS, this is represented by
+                  <span class="html-attribute">rgb(...)</span>
+                </p>
+                <p>Each color has a min value = 0 and a max value = 255.</p>
+                <p><span class="html-attribute">rgb(0, 0, 0)</span>; = black</p>
+                <p>
+                  <span class="html-attribute">rgb(255, 255, 255)</span>; =
+                  white
+                </p>
+              </li>
+              <li>
+                Hex value
+                <p>Hex is another way to write RGB.</p>
+                <p><span class="html-attribute">#0096ff</span></p>
+                <ul>
+                  <li>
+                    Each character in Hex is base 16, which means it can have a
+                    value of 0, 1, 2, ... 8, 9, A, B, C, D, E, F (16 possible
+                    values).
+                  </li>
+                  <li>
+                    Using the first 2 characters, we can have 16 * 16 = 256
+                    possible values from 0 - 255:
+                    <p>00 = 0</p>
+                    <p>01 = 1</p>
+                    <p>0F = 15</p>
+                    <p>10 = 16</p>
+                    <p>11 = (1 * 16) + 1 = 17</p>
+                    <p>FF = (15 * 16) + 15 = 255</p>
+                  </li>
+                  <li>
+                    This is the same range as RGB (0 to 255), so the first 2
+                    characters in Hex are used to represent red, the second 2
+                    characters represent green, and the third 2 characters
+                    represent blue. Usually, it's easier to use a Hex to RGB
+                    calculator to convert.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                RGBA value:
+                <span class="html-attribute">rgba(0, 150, 255, 0.5)</span>;
+                <p>
+                  Same as RGB, except with an additional a-value (alpha value).
+                  The a-value determines how see-through the color is. 0 =
+                  complete see-through, 1 = solid color and not see-through, 0.5
+                  = 50% see-through.
+                </p>
+              </li>
+            </ol>
+          </div>
+          <p class="css-values-title">Measurement Values</p>
+          <ol>
+            <li>
+              Pixels: <span class="html-attribute">50px</span>,
+              <span class="html-attribute">100px</span>
+              <p>
+                Pixels (px) are a common unit of measurement in the digital
+                world.
+              </p>
+              <p>For example: a 4K screen is 3840px by 2160px.</p>
+            </li>
+            <li>
+              Percent: <span class="html-attribute">50%</span>,
+              <span class="html-attribute">100%</span>
+              <p>
+                A relative measurement. For example, <code>width</code>:
+                <span class="html-attribute">50%</span> means
+                <span class="html-attribute">50%</span> of the width of the page
+                (or if the element is inside another element,
+                <span class="html-attribute">50%</span> of the width of the
+                container element).
+              </p>
+            </li>
+            <li>
+              em / rem: <span class="html-attribute">1em</span>,
+              <span class="html-attribute">1rem</span>
+              <p>
+                Relative measurements that are useful for accessibility. em =
+                relative to the font-size of the element (<span
+                  class="html-attribute"
+                  >2em</span
+                >
+                means 2 times the font size). rem = relative to the font-size of
+                the page, which is 16px by default (<span class="html-attribute"
+                  >2rem</span
+                >
+                means 2 times the font size of the page = 2 * 16px = 32px by
+                default).
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!--class attribute-->
+      <div class="id-locate" id="class-attributes"></div>
+      <section>
+        <header>Class Attributes</header>
+        <div class="heading-rule">
+          <p>Class attribute = lets us target specific elements with CSS.</p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+    &lt;button class=<span class="html-attribute">"subscribe-button"</span>&gt;
+        <span class="text-code">SUBSCRIBE</span>
+    &lt;/button&gt;
+
+    <span class="css-selector">.subscribe-button</span> {
+        <span class="text-code">....</span>
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>
+                Add a class to an element. The class name (the text between the
+                <span class="html-attribute">"..."</span>) can be anything you
+                want, but no spaces.
+              </p>
+            </div>
+            <div class="text-container">
+              <p>
+                Target all elements on the page with
+                <code>class</code>=<span class="html-attribute"
+                  >"subscribe-button"</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!--Class attributes row 2 grid-->
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+    &lt;button class=<span class="html-attribute">"subscribe-button"</span>&gt;
+        <span class="text-code">SUBSCRIBE</span>
+    &lt;/button&gt;
+    &lt;button class=<span class="html-attribute">"subscribe-button"</span>&gt;
+        <span class="text-code">JOIN</span>
+    &lt;/button&gt;
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Multiple elements can have the same class</p>
+            </div>
+          </div>
+        </div>
+
+        <!--Class attributes row 3 grid-->
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+    &lt;button class=<span class="html-attribute">"youtube-button subscribe-button"</span>&gt;
+      <span class="text-code">SUBSCRIBE</span>
+    &lt;/button&gt;
+
+    <span class="css-selector">button</span> {
+      <span class="text-code">...</span>
+    }
+
+    <span class="css-selector">youtube-button</span> {
+      <span class="text-code">...</span>
+    }
+
+    <span class="css-selector">subscriber-button</span> {
+      <span class="text-code">...</span>
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>An element can have multiple classes, separated by space</p>
+            </div>
+            <div class="text-container">
+              Elements can be targeted by multiple CSS selectors. Here, all 3
+              CSS selectors will target the button above.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--CSS Pseudo-Class section-->
+      <div class="id-locate" id="css-pseudo"></div>
+      <section>
+        <header>CSS Pseudo-classes</header>
+        <div class="heading-rule"></div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+    <span class="css-selector">.subscribe-button:hover</span> {
+      ...
+    }
+
+    <span class="css-selector">.subscribe-button:active</span> {
+      ...
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>
+                These styles only apply when hovering over an element with
+                <code>class</code>=<span class="html-attribute"
+                  >"subscribe-button"</span
+                >
+              </p>
+            </div>
+            <div class="text-container">
+              <p>
+                These styles only apply when clicking on an element with
+                <code>class</code>=<span class="html-attribute"
+                  >"subscribe-button"</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Intermediate CSS Properties-->
+      <div class="id-locate" id="css-inter-prop"></div>
+      <section>
+        <header>Intermediate CSS Properties</header>
+        <div class="heading-rule"></div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+    <span class="css-selector">.subscribe-button:hover</span> {
+      opacity: <span class="html-attribute">0.5</span>;
+      opacity: <span class="html-attribute">0</span>;
+      opacity: <span class="html-attribute">1</span>;
+
+      transition: <span class="html-attribute">&lt;transition&gt; &lt;duration&gt;</span>;
+
+      transition: <span class="html-attribute">background-color 1s</span>;
+      transition: <span class="html-attribute">color 0.15s</span>;
+      transition: <span class="html-attribute">&lt;property1&gt; &lt;duration1&gt;</span>,
+          <span class="html-attribute">&lt;property2&gt; &lt;duration2&gt;</span>,
+          <span class="html-attribute">...</span>;
+      transition: <span class="html-attribute">background-color 0.15s</span>,
+          <span class="html-attribute">color 0.15s</span>;
+
+      box-shadow: <span class="html-attribute">&lt;h-position&gt; &lt;v-position&gt; &lt;blur&gt; &lt;color&gt;</span>;
+      box-shadow: <span class="html-attribute">3px 4px 5px black</span>;
+
+      box-shadow: <span class="html-attribute">3px 4px 0 gba(0, 0, 0, 0.15)</span>;
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Sets how see-through an element is: 0.5 = 50% see-through.</p>
+              <p>Sets how see-through an element is: 0.5 = 50% see-through.</p>
+              <p>1 = not see-through (this is the default value).</p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Transition smoothly when changing styles (often used when
+                hovering).
+              </p>
+              <p>Transition background color over 1 second.</p>
+              <p>Transition text color over 0.15 seconds.</p>
+              <p>
+                Transition multiple properties by separating them with a comma.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Transition both background color and text color over 0.15
+                seconds.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Creates a shadow that's 3px to the right of the element, 4px to
+                the bottom, with 5px of blur, and color of black.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Creates a shadow that's 3px to the right, 4px to the bottom,
+                with no blur, and a very faint black color.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Chrome DevTools section-->
+      <div class="id-locate" id="chrome-devtools"></div>
+      <section>
+        <header>Chrome DevTools</header>
+        <div class="heading-rule">
+          <p>
+            Lets us view (and modify) the HTML and CSS of a website directly in
+            the browser. To open the DevTools: right-click &gt; Inspect.
+          </p>
+        </div>
+        <img
+            id="chromedevImage"
+            class="img-chrome-devtools"
+            src="images/chrome-devtools-img.PNG"
+          />
+        <div id="myModal" class="chromedev-container modal">
+          <span id="closeBtn" class="close">&times;</span>
+          <img class="modal-content" id="modalImage">
+        </div>
+      </section>
+
+      <!--CSS Box Model-->
+      <div class="id-locate" id="css-box-model"></div>
+      <section>
+        <header>CSS Box Model</header>
+        <div class="heading-rule">
+          <ul>
+            <li>Determines how much space an element takes up.</li>
+            <li>Determines how far away elements are from each other.</li>
+          </ul>
+        </div>
+        <div class="box-model-grid">
+          <div class="margin-grid1 box-grid">
+            <p>1. Margin = space on the outside.</p>
+            <img class="box-model-img" src="images/margin-img.jpg" />
+          </div>
+          <div class="padding-grid2 box-grid">
+            <p>2. Padding = space on the inside.</p>
+            <img class="box-model-img" src="images/padding-img.jpg" />
+          </div>
+          <div class="border-grid3 box-grid">
+            <p>3. Border.</p>
+            <img class="box-model-img" src="images/border-img.jpg" />
+          </div>
+        </div>
+
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+
+    <span class="css-selector">.join.button</span> {
+      margin-right: <span class="html-attribute">10px</span>;
+      margin-left: <span class="html-attribute">10px</span>;
+      margin-top: <span class="html-attribute">10px</span>;
+      margin-bottom: <span class="html-attribute">10px</span>;
+
+      margin-right: <span class="html-attribute">-10px</span>;
+      
+      margin: <span class="html-attribute">10px</span>;
+      margin: <span class="html-attribute">10px 20px</span>;
+      margin: <span class="html-attribute">&lt;top&gt; &lt;left & right&gt; &lt;bottom&gt;</span>;
+      margin: <span class="html-attribute">&lt;top&gt; &lt;right&gt; &lt;bottom&gt; &lt;left&gt;</span>;
+
+      padding-right: <span class="html-attribute">10px</span>;
+      padding-left: <span class="html-attribute">10px</span>;
+      padding-top: <span class="html-attribute">10px</span>;
+      padding-bottom: <span class="html-attribute">10px</span>;
+
+      padding-right: <span class="html-attribute">-10px</span>;
+
+      padding: <span class="html-attribute">10px</span>;
+      padding: <span class="html-attribute">10px 20px</span>;
+      padding: <span class="html-attribute">&lt;top&gt; &lt;left & right&gt; &lt;bottom&gt;</span>;
+      padding: <span class="html-attribute">&lt;top&gt; &lt;right&gt; &lt;bottom&gt; &lt;left&gt;</span>;
+
+      border-width: <span class="html-attribute">1px</span>;
+      border-style: <span class="html-attribute">solid</span>;
+      border-color: <span class="html-attribute">red</span>;
+
+      border: <span class="html-attribute">&lt;width&gt; &lt;style&gt; &lt;color&gt;</span>;
+      border: <span class="html-attribute">1px solid red</span>;
+    
+    }
+              </code>
+            </pre>
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>
+                Add <span class="html-attribute">10px</span> of space on the
+                outside of the element.
+              </p>
+            </div>
+            <div class="text-container">
+              <p>
+                Normal <code>margin</code> pushes things away from an element.
+              </p>
+            </div>
+            <div class="text-container">
+              <p>
+                Negative <code>margin</code> pulls things towards an element.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Shorthand for adding <span class="html-attribute">10px</span> of
+                <code>margin</code> on all sides.
+              </p>
+              <p>
+                Add <span class="html-attribute">10px</span> of
+                <code>margin</code> top & bottom and
+                <span class="html-attribute">20px</span> left & right
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Add <span class="html-attribute">10px</span> of space on the
+                inside of the element.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>Negative <code>padding</code> has no effect.</p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Shorthand for adding <span class="html-attribute">10px</span> of
+                padding on all sides.
+              </p>
+              <p>
+                Add <span class="html-attribute">10px</span> of padding top &
+                bottom and <span class="html-attribute">20px</span> left & right
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>Sets the border width.</p>
+              <p>Sets the border style (to a solid color).</p>
+              <p>Sets the border color.</p>
+            </div>
+
+            <div class="text-container">
+              <p>Shorthand for the 3 properties above.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Text Styles-->
+      <div class="id-locate" id="text-style"></div>
+      <section>
+        <header>Text Styles</header>
+        <div class="heading-rule"></div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code-->
+            <pre>
+              <code>
+    <span class="css-selector">.title</span> {
+      font-family: <span class="html-attribute">Arial</span>;
+      font-family: <span class="html-attribute">Roboto, Verdana, Arial</span>;
+      
+
+      font-size: <span class="html-attribute">30px</span>;
+      font-weight: <span class="html-attribute">bold</span>;
+      font-weight: <span class="html-attribute">700</span>;
+
+
+      font-style: <span class="html-attribute">italic</span>;
+      text-align: <span class="html-attribute">center</span>;
+      line-height: <span class="html-attribute">24px</span>;
+      text-decoration: <span class="html-attribute">underline</span>;
+      text-decoration: <span class="html-attribute">none</span>;
+              </code>
+            </pre>
+            <!--end code-->
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Change the font.</p>
+              <p>
+                A font-stack: if Roboto is not available, it will fall back to
+                Verdana. If Verdana is not available it will fall back to Arial.
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>Change text size.</p>
+              <p>Change text thickness.</p>
+              <p>
+                Another way to specify font-weight. We can use:
+                <span class="html-attribute">100</span>,
+                <span class="html-attribute">200</span>,
+                <span class="html-attribute">300, ..., 900</span>. bold =
+                <span class="html-attribute">700</span>, reqular =
+                <span class="html-attribute">400</span>, semibold =
+                <span class="html-attribute">500</span>
+              </p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Other values we can use:
+                <span class="html-attribute">left, right, justified </span>
+              </p>
+              <p>Adjust space between lines of text.</p>
+              <p>Underlines the text.</p>
+              <p>Removes underline.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-container">
+          <p>
+            <code>&lt;p&gt;</code> by default have margin-top and margin-bottom.
+            A common practice is to
+          </p>
+        </div>
+        <div class="text-container">
+          <p>1. Reset the deault margins.</p>
+          <pre><code>
+    <span class="css-selector">p</span> {
+      margin-top: <span class="html-attribute">0</span>;
+      margin-bottom: <span class="html-attribute">0</span>;
+    }
+          </code></pre>
+        </div>
+
+        <div class="text-container">
+          <p>2. Then apply more precise margins.
+            <pre><code>
+    <span class="css-selector">p</span> {
+      margin-bottom: <span class="html-attribute">16px</span>;
+    }
+            </code></pre>
+          </p>
+        </div>
+
+        <div class="text-container">
+          Text Elements (also called Inline Elements)
+          <ul>
+            <li>
+              Text elements ( <code>&lt;strong&gt;, &lt;u&gt;, &lt;span&gt;, &lt;a&gt;</code>) appear within a line of text.
+              <p>this is a <code>&lt;strong&gt;</code> text element<code>&lt;/strong&gt;</code></p>
+              <p>Useful if we want to style only a part of the text.</p>
+            </li>
+            <li>
+              <code>&lt;span&gt;</code> is the most generic text element (it doesn't have any default styles.)
+            </li>
+            <li>
+              We can style text elements using a class:
+              <p>This is a <code>&lt;span class=</code><span class="css-selector">"shop-link"<code>></code></span>text element.<code>&lt;/span&gt;</code>
+            </li>
+        </div>
+            <pre><code>
+    <span class="css-selector">.shop-link</span> {
+      text-decoration: <span class="html-attribute">underline</span>;
+    }
+              </code></pre>
+          </ul>
+        
+      </section>
+
+      <!--The HTML Structure-->
+      <div class="id-locate" id="html-structure"></div>
+      <section>
+        <header>The HTML Structure</header>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code-->
+            <pre>
+              <code>
+  &lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+    &lt;head&gt;
+      <span class="text-code">...</span>
+    &lt;/head&gt;
+    &lt;body&gt;
+      <span class="text-code">...</span>
+  &lt;/html&gt;
+              </code>
+            </pre>
+            <!--end code-->
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Tells the browser to use a modern version of HTML.</p>
+            </div>
+            <div class="text-container">
+              <p><code>&lt;head&gt;</code> contains everything that's not visible like the title and description (a.k.a. metadata) as well as links to fonts and CSS stylesheets.</p>
+            </div>
+            <div class="text-container"><code>&lt;body&gt;</code> contains everything that's visible like buttons, texts, images, etc.</div>
+          </div>
+        </div>
+        <div class="text-container">
+          <p>Elements in the Head Section</p>
+        </div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code-->
+            <pre>
+              <code>
+    &lt;head&gt;
+      &lt;title&gt;<span class="text-code">Title in the tab.</span>&lt;/title&gt;
+
+      &lt;link rel= <span class="html-attribute">"preconnect"</span> <code>href=</code><span class="html-attribute">"https://fonts.googleapis.com"</span>&gt;
+      &lt;link rel= <span class="html-attribute">"preconnect"</span> <code>href=</code><span class="html-attribute">"https://fonts.gstatic.com"</span> <code>crossorigin</code>&gt;
+      &lt;link rel= <span class="html-attribute">"preconnect"</span> <code>href=</code><span class="html-attribute">"https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=sw
+        ap"</span>&gt;
+
+      &lt;link rel= <span class="html-attribute">"stylesheet"</span> <code>href=</code><span class="html-attribute">"styles.css"</span>&gt;
+    &lt;/head&gt;
+    
+              </code>
+            </pre>
+            <!--end code-->
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Sets the title in the tabs.</p>
+            </div>
+            <div class="text-container">
+              <p>Loads a font from Google onto the page. 1)Search "google fonts" in Google. 2) Pick the fonts and styles that you like. 3)Copy the code that Google provides into<code>&lt;head&gt;</code></p>
+            </div>
+            <div class="text-container">Loads a CSS file to the page.</div>
+          </div>
+        </div>
+
+        <div class="text-container">
+          <p>Filepaths</p>
+        </div>
+
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code-->
+            <pre>
+              <code>
+    
+      <code>href=</code><span class="html-attribute">"styles.css"</span>
+      <code>href=</code><span class="html-attribute">"fold1/styles.css"</span>
+
+      <code>href=</code><span class="html-attribute">"fold1/fold2/styles.css"</span>
+              </code>
+            </pre>
+            <!--end code-->
+          </div>
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>looks for a file called <span class="html-attribute">"styles.css"</span> beside the HTML file.</p>
+              <p>Looks for a folder called <span class="html-attribute">"fold1"</span>beside the HTML file then goes into the folder and looks for <span class="html-attribute">"styles.css"</span></p>
+              <p>Go into <span class="html-attribute">"fold1"</span>, go into <span class="html-attribute">"fold2"</span>, look for <span class="html-attribute">"styles.css"</span></p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+
+      <!--Images-->
+      <div class="id-locate" id="html-images"></div>
+      <section>
+        <header>Images</header>
+        <div class="heading-rule"></div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+      &lt;img src=<span class="html-attribute">"image.png"</span>&gt;
+      &lt;img src=<span class="html-attribute">"pics/image.png"</span>&gt;
+      &lt;img class=<span class="html-attribute">"image"</span> src=<span class="html-attribute">"pics/image.png"</span>&gt;
+      
+      <span class="css-selector">.image</span> {
+        width: <span class="html-attribute">300px</span>;
+        
+        height: <span class="html-attribute">300px</span>;
+        object-fit: <span class="html-attribute">cover</span>;
+
+        object-fit: <span class="html-attribute">contain</span>;
+
+        object-position: <span class="html-attribute">left</span>;
+        object-position: <span class="html-attribute">right</span>;
+        object-position: <span class="html-attribute">top</span>;
+        object-position: <span class="html-attribute">bottom</span>;
+      }
+              </code>
+            </pre>
+          </div>
+
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Loads an image <span class="html-attribute">image.png</span></p>
+              <p>Loads <span class="html-attribute">image.png</span> in the <span class="html-attribute">pics</span> folder.</p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Resizes the image to a width of <span class="html-attribute">300px</span>. Height will also resize to keep the image's dimensions.
+              </p>
+              <p>If both <span class="html-attribute">width</span> and <span class="html-attribute">height</span> are set, the image may stretch.</p>
+              <p>Enlarges the image to cover the entire <span class="html-attribute">width</span> * <span class="html-attribute">heigth</span> area without stretching or distorting.</p>
+              <p>
+                Shrinks the image so that it's contained in the <span class="html-attribute">width</span> * <span class="html-attribute">height</span> area.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Inputs-->
+      <div class="id-locate" id="html-inputs"></div>
+      <section>
+        <header>Inputs</header>
+        <div class="heading-rule"></div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+      &lt;inputs type=<span class="html-attribute">"text"</span>&gt;
+      &lt;inputs type=<span class="html-attribute">"text"</span> placeholder=<span class="html-attribute">"Search"</span>&gt;
+      &lt;inputs type=<span class="html-attribute">"checkbox"</span>&gt;
+      &lt;inputs class=<span class="html-attribute">"search-bar"</span> type=<span class="html-attribute">"text"</span>&gt;
+      
+
+      <span class="css-selector">.search-bar</span> {
+        font-size: <span class="html-attribute">30px</span>;
+      }
+
+      <span class="css-selector">.search-bar::placeholder</span> {
+        font-size: <span class="html-attribute">30px</span>;
+      }
+              </code>
+            </pre>
+          </div>
+
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Creates a text box.</p>
+              <p>Add a placeholder (a label) to the text box.</p>
+              <p>Creates a checkbox.</p>
+            </div>
+            <hr />
+            <div class="text-container">
+              <p>
+                Changes the font-size when typing into the text box.
+              </p>
+            </div>
+            <hr/>
+            <div class="text-container">
+              <p>
+                Changes the font-size of the placeholder.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--CSS Display Property-->
+      <div class="id-locate" id="display-property"></div>
+      <section>
+        <header>CSS Display Property</header>
+        <div class="heading-rule"></div>
+        <div class="grid-container">
+          <div class="grid-item1">
+            <!--Code section-->
+            <pre>
+              <code>
+      <span class="css-selector">.element</span> {
+        display: <span class="html-attribute">block</span>;
+        display: <span class="html-attribute">inline-block</span>;
+        vertical-align: <span class="html-attribute">middle</span>;
+        display: <span class="html-attribute">inline</span>;
+      }
+              </code>
+            </pre>
+          </div>
+
+          <div class="grid-item2">
+            <div class="text-container">
+              <p>Element will take up the entire line in its container.</p>
+              <p>Element will only take up as much space as needed.</p>
+              <p>Determines vertical alignment of inline-block elements.</p>
+              <p>Element will appear within a line of text (a text element).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!--Reference Section(last)-->
+      <div class="id-locate" id="reference"></div>
+      <section>
+        <header>Reference</header>
+        <div class="text-container">
+          <ul>
+            <li>
+              All the document in this page is taken from this <a href="https://drive.google.com/file/d/1cCRhbmRzRnJO_2PO-nLlz8VdTjhZZPzr/view?usp=sharing" target="_blank" class="reference-link">file</a>.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+
+
+    </main>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>
