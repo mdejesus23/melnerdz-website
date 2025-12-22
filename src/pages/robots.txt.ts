@@ -40,9 +40,6 @@ Allow: /
 User-agent: *
 Allow: /
 
-User-agent: *
-Allow: /
-
 Sitemap: ${sitemapURL.href}
 `;
 
