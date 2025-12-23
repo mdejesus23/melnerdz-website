@@ -2,7 +2,7 @@
 title: Mythical Threads E-Commerce Website
 pubDate: 2024-12-10
 author: Melnard De Jesus
-featured: true
+featured: false
 image:
   src: './images/mythical-threads.png'
   alt: 'An elegant fashion website showcasing modern clothing inspired by myths and legends'
