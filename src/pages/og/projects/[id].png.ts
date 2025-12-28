@@ -8,7 +8,9 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '../../../../');
 
-async function getImageAsBase64(imagePath: string): Promise<string | undefined> {
+async function getImageAsBase64(
+  imagePath: string,
+): Promise<string | undefined> {
   try {
     if (!imagePath) return undefined;
 
@@ -34,7 +36,9 @@ async function findProjectImage(filePath: string): Promise<string | undefined> {
 
     if (frontmatterMatch) {
       // Look for image.src in the frontmatter
-      const srcMatch = frontmatterMatch[1].match(/src:\s*['"]?([^'"}\n]+)['"]?/);
+      const srcMatch = frontmatterMatch[1].match(
+        /src:\s*['"]?([^'"}\n]+)['"]?/,
+      );
       if (srcMatch) {
         const imageSrcPath = srcMatch[1].trim();
         // Handle relative paths like './images/foo.png'
@@ -91,6 +95,18 @@ export const GET: APIRoute = async ({ props }) => {
     headers: {
       'Content-Type': 'image/png',
       'Cache-Control': 'public, max-age=31536000, immutable',
+      'X-Content-Type-Options': 'nosniff',
+    },
+  });
+};
+
+// Some crawlers use HEAD to check content type. Provide explicit handler.
+export const HEAD: APIRoute = async () => {
+  return new Response(null, {
+    headers: {
+      'Content-Type': 'image/png',
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      'X-Content-Type-Options': 'nosniff',
     },
   });
 };
