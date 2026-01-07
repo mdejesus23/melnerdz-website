@@ -2,6 +2,7 @@
 title: Ausome Parents Blog Website
 pubDate: 2024-11-02
 author: Melnard De Jesus
+featured: true
 image:
   src: './images/ausome-parents-guide.png'
   alt: 'A loving parent holding hands with a child on the autism spectrum during a sunny day in the park'
