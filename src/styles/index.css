@@ -51,8 +51,8 @@ code:not(pre code) {
     --color-accent: #f59e0b;
     --color-accent-light: #fbbf24;
     --color-accent-muted: rgba(245, 158, 11, 0.12);
-    --color-text-muted: #64605c;
-    --color-border: rgba(28, 25, 23, 0.12);
+    --color-text-muted: #57534e;
+    --color-border: rgba(28, 25, 23, 0.25);
     --color-glass: rgba(255, 255, 255, 0.8);
 
     /* Legacy color mappings for compatibility */
@@ -60,7 +60,7 @@ code:not(pre code) {
     --color-lblue: #f59e0b;
     --color-lorange: #fbbf24;
     --color-project: rgba(255, 255, 255, 0.8);
-    --color-projectDesc: #64605c;
+    --color-projectDesc: #57534e;
 
     /* Typography */
     --font-headfont: 'Playfair Display', serif;
@@ -77,8 +77,8 @@ code:not(pre code) {
     --color-accent: #f59e0b;
     --color-accent-light: #fbbf24;
     --color-accent-muted: rgba(245, 158, 11, 0.12);
-    --color-text-muted: #a8a29e;
-    --color-border: rgba(168, 162, 158, 0.12);
+    --color-text-muted: #d6d3d1;
+    --color-border: rgba(168, 162, 158, 0.3);
     --color-glass: rgba(23, 20, 18, 0.8);
 
     /* Legacy color mappings for compatibility */
@@ -86,7 +86,7 @@ code:not(pre code) {
     --color-lblue: #f59e0b;
     --color-lorange: #fbbf24;
     --color-project: rgba(23, 20, 18, 0.8);
-    --color-projectDesc: #a8a29e;
+    --color-projectDesc: #d6d3d1;
   }
 
   * {

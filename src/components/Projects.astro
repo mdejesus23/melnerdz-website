@@ -105,9 +105,10 @@ const featuredProjects = allProjects.filter((project) => project.data.featured);
                 <a
                   href={`/projects/${project.id}`}
                   class="group/link inline-flex items-center gap-2 text-sm font-medium text-text-muted transition-colors hover:text-accent"
+                  aria-label={`View ${project.data.title} project details`}
                 >
                   <span class="relative">
-                    Learn more
+                    View project
                     <span class="absolute -bottom-0.5 left-0 h-px w-0 bg-accent transition-all duration-300 group-hover/link:w-full"></span>
                   </span>
                   <svg class="h-4 w-4 transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
