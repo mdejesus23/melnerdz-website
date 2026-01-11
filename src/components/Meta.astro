@@ -10,7 +10,7 @@ interface OGData {
 
 interface Props {
   meta?: string;
-  structuredData?: object;
+  structuredData?: object | object[];
   liturgy?: boolean;
   ogData?: OGData;
 }
@@ -55,13 +55,22 @@ if (ogData?.image) {
 ---
 
 {
-  structuredData && (
-    <script
-      is:inline
-      type="application/ld+json"
-      set:html={JSON.stringify(structuredData)}
-    />
-  )
+  structuredData &&
+    (Array.isArray(structuredData) ? (
+      structuredData.map((data) => (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(data)}
+        />
+      ))
+    ) : (
+      <script
+        is:inline
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+      />
+    ))
 }
 <!-- Define the character set, description, author, and viewport settings -->
 <meta charset="utf-8" />

@@ -7,6 +7,7 @@ import { SITE, ISPARTOF } from '../data/constant';
 import { countWords } from '@/utils/countWords';
 import Newsletter from '@/components/sections/Newsletter.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
+import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 
 interface Heading {
   depth: number;
@@ -31,20 +32,86 @@ const readTime = Math.ceil(wordCount / 200); // Assuming 200 words per minute
 
 // Generate dynamic OG image path
 const ogImagePath = `/og/${collection}/${slug}.png`;
+
+// Breadcrumbs data
+const collectionLabel = collection === 'blogs' ? 'Blogs' : 'Projects';
+const collectionHref = `/${collection}`;
+
+const breadcrumbItems = [
+  { label: 'Home', href: '/' },
+  { label: collectionLabel, href: collectionHref },
+  { label: data.title },
+];
+
+// Determine if this is an article (blog) or a web page (project)
+const isArticle = collection === 'blogs';
+const pageType = isArticle ? 'Article' : 'WebPage';
+
+// Build page schema based on type
+const pageSchema = isArticle
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      '@id': `${SITE.url}/${collection}/${slug}`,
+      url: `${SITE.url}/${collection}/${slug}`,
+      headline: data.title,
+      description: description,
+      image: `${SITE.url}${ogImagePath}`,
+      datePublished: data.pubDate ? new Date(data.pubDate).toISOString() : undefined,
+      author: {
+        '@type': 'Person',
+        name: SITE.author,
+        url: SITE.url,
+      },
+      publisher: {
+        '@type': 'Person',
+        name: SITE.author,
+        url: SITE.url,
+      },
+      isPartOf: ISPARTOF,
+      inLanguage: 'en-US',
+    }
+  : {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${SITE.url}/${collection}/${slug}`,
+      url: `${SITE.url}/${collection}/${slug}`,
+      name: `${data.title} | Melnerdz website`,
+      description: description,
+      isPartOf: ISPARTOF,
+      inLanguage: 'en-US',
+    };
+
+// Breadcrumbs structured data (JSON-LD)
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: SITE.url,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: collectionLabel,
+      item: `${SITE.url}${collectionHref}`,
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: data.title,
+      item: `${SITE.url}/${collection}/${slug}`,
+    },
+  ],
+};
 ---
 
 <MainLayout
   title={title}
-  structuredData={{
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    '@id': `https://melnerdz.com/${collection}/${slug}`,
-    url: `https://melnerdz.com/${collection}/${slug}`,
-    name: `${data.title} | Melnerdz website`,
-    description: description,
-    isPartOf: ISPARTOF,
-    inLanguage: 'en-US',
-  }}
+  structuredData={[pageSchema, breadcrumbSchema]}
   meta={description}
   ogData={{
     title: `${data.title} | ${SITE.title}`,
@@ -53,6 +120,7 @@ const ogImagePath = `/og/${collection}/${slug}.png`;
   }}
 >
   <section class="mx-auto max-w-screen-xl py-6">
+    <Breadcrumbs items={breadcrumbItems} />
     <h1 class="mb-4 text-center font-headfont text-3xl font-bold">
       {data.title}
     </h1>
