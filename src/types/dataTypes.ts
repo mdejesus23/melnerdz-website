@@ -11,6 +11,11 @@ export interface Project {
   tags: string[];
 }
 
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
 export interface Blog {
   title: string;
   pubDate: Date;
@@ -22,6 +27,7 @@ export interface Blog {
   description: string;
   technology?: string[];
   tags: string[];
+  faqs?: FAQ[];
 }
 
 export interface Prayer {

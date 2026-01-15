@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const collection = entry.collection;
 
-const data: Blog = entry.data; // ensure the data conforms to the Project interface
+const data = entry.data;
 const { Content, headings } = await render(entry);
 ---
 

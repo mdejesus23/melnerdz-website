@@ -8,6 +8,7 @@ import { Image } from 'astro:assets';
 import profilePicture from '@/images/mdj.png';
 
 const entry = await getEntry('personal', 'about');
+const canonical = Astro.url.href;
 
 if (!entry) {
   return Astro.redirect('/404');
@@ -25,8 +26,8 @@ const description = `Here's the summary of my expertise and experience as a Full
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': `https://melnerdz.com/about`,
-    url: `https://melnerdz.com/about`,
+    '@id': canonical,
+    url: canonical,
     name: `About Melnard`,
     description: description,
     isPartOf: ISPARTOF,

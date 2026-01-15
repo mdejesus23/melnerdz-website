@@ -14,6 +14,21 @@ tags:
   - frontend
   - tutorial
   - beginner
+faqs:
+  - question: What's the difference between scope and closure?
+    answer: Scope determines where variables are accessible in your code. A closure is when a function remembers variables from its outer scope even after that scope has finished executing.
+  - question: Do all functions create closures?
+    answer: Technically yes, but we only call it a "closure" when the function actually uses variables from an outer scope. If it doesn't reference any outer variables, the closure is empty/unused.
+  - question: Are closures slow?
+    answer: Closures have minimal performance impact. The memory overhead is usually negligible unless you're creating thousands of closures or closing over large data structures.
+  - question: How do I debug closures?
+    answer: Use browser DevTools - set a breakpoint inside the function, check the "Scope" panel to see all variables in the closure. You can also use console.dir(functionName) to inspect the function's internal properties.
+  - question: Why use closures instead of global variables?
+    answer: Closures provide encapsulation and prevent naming conflicts. Global variables can be accessed and modified anywhere, making code unpredictable. Closures give you controlled access to data.
+  - question: Can closures access variables after the outer function returns?
+    answer: Yes! That's the whole point of closures. The inner function keeps a reference to the outer variables, so they remain accessible even after the outer function has finished executing.
+  - question: What's the difference between closure and this?
+    answer: Closures capture variables from the lexical scope (where code is written). "this" is determined by how a function is called (execution context). They're completely different mechanisms.
 ---
 
 Imagine you're baking cookies and you have a secret family recipe. Even when you take the cookies to a friend's house, they still taste like your family's recipe—not your friend's. Closures work similarly: a function "remembers" the variables from where it was created, even when it's executed somewhere else.
@@ -714,28 +729,3 @@ let module = (function() {
   };
 })();
 ```
-
----
-
-FAQ
-
-Q: What's the difference between scope and closure?
-A: Scope determines where variables are accessible in your code. A closure is when a function remembers variables from its outer scope even after that scope has finished executing.
-
-Q: Do all functions create closures?
-A: Technically yes, but we only call it a "closure" when the function actually uses variables from an outer scope. If it doesn't reference any outer variables, the closure is empty/unused.
-
-Q: Are closures slow?
-A: Closures have minimal performance impact. The memory overhead is usually negligible unless you're creating thousands of closures or closing over large data structures.
-
-Q: How do I debug closures?
-A: Use browser DevTools: set a breakpoint inside the function, check the "Scope" panel to see all variables in the closure. You can also use `console.dir(functionName)` to inspect the function's internal properties.
-
-Q: Why use closures instead of global variables?
-A: Closures provide encapsulation and prevent naming conflicts. Global variables can be accessed and modified anywhere, making code unpredictable. Closures give you controlled access to data.
-
-Q: Can closures access variables after the outer function returns?
-A: Yes! That's the whole point of closures. The inner function keeps a reference to the outer variables, so they remain accessible even after the outer function has finished executing.
-
-Q: What's the difference between closure and `this`?
-A: Closures capture variables from the lexical scope (where code is written). `this` is determined by how a function is called (execution context). They're completely different mechanisms.

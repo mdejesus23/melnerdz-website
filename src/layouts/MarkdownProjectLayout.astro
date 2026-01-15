@@ -8,6 +8,7 @@ import { countWords } from '@/utils/countWords';
 import Newsletter from '@/components/sections/Newsletter.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
+import FaqAccordion from '@/components/FaqAccordion.astro';
 
 interface Heading {
   depth: number;
@@ -24,6 +25,8 @@ interface Props {
 }
 
 const { data, slug, collection, body, headings = [] }: Props = Astro.props;
+
+const canonical = Astro.url.href;
 const title: string = `${data.title} | ${SITE.title}`;
 const description: string = data.description;
 
@@ -47,17 +50,39 @@ const breadcrumbItems = [
 const isArticle = collection === 'blogs';
 const pageType = isArticle ? 'Article' : 'WebPage';
 
+// Get FAQs from blog data (if available)
+const faqs = isArticle && 'faqs' in data ? (data as Blog).faqs : undefined;
+
+// Build FAQ schema for SEO (if FAQs exist)
+const faqSchema =
+  faqs && faqs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer,
+          },
+        })),
+      }
+    : null;
+
 // Build page schema based on type
 const pageSchema = isArticle
   ? {
       '@context': 'https://schema.org',
       '@type': 'Article',
-      '@id': `${SITE.url}/${collection}/${slug}`,
-      url: `${SITE.url}/${collection}/${slug}`,
+      '@id': canonical,
+      url: canonical,
       headline: data.title,
       description: description,
       image: `${SITE.url}${ogImagePath}`,
-      datePublished: data.pubDate ? new Date(data.pubDate).toISOString() : undefined,
+      datePublished: data.pubDate
+        ? new Date(data.pubDate).toISOString()
+        : undefined,
       author: {
         '@type': 'Person',
         name: SITE.author,
@@ -74,8 +99,8 @@ const pageSchema = isArticle
   : {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
-      '@id': `${SITE.url}/${collection}/${slug}`,
-      url: `${SITE.url}/${collection}/${slug}`,
+      '@id': canonical,
+      url: canonical,
       name: `${data.title} | Melnerdz website`,
       description: description,
       isPartOf: ISPARTOF,
@@ -103,7 +128,7 @@ const breadcrumbSchema = {
       '@type': 'ListItem',
       position: 3,
       name: data.title,
-      item: `${SITE.url}/${collection}/${slug}`,
+      item: canonical,
     },
   ],
 };
@@ -111,7 +136,11 @@ const breadcrumbSchema = {
 
 <MainLayout
   title={title}
-  structuredData={[pageSchema, breadcrumbSchema]}
+  structuredData={[
+    pageSchema,
+    breadcrumbSchema,
+    ...(faqSchema ? [faqSchema] : []),
+  ]}
   meta={description}
   ogData={{
     title: `${data.title} | ${SITE.title}`,
@@ -166,6 +195,7 @@ const breadcrumbSchema = {
         <Prose>
           <slot />
         </Prose>
+        {faqs && faqs.length > 0 && <FaqAccordion faqs={faqs} />}
       </div>
     </div>
   </section>

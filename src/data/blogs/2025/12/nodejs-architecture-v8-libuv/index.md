@@ -15,6 +15,17 @@ tags:
   - node.js
   - backend
   - architecture
+faqs:
+  - question: Is Node.js truly single-threaded?
+    answer: Your JavaScript code runs on a single main thread, but Node uses additional threads behind the scenes (the thread pool) for heavy operations. You can also use Worker Threads for CPU-intensive tasks.
+  - question: Why is Node.js written in C++ and not just JavaScript?
+    answer: JavaScript alone cannot access low-level system resources like files or network sockets. C++ (via Libuv) provides this access, and Node.js wraps it in a friendly JavaScript API.
+  - question: Can I increase the thread pool size?
+    answer: Yes. Set process.env.UV_THREADPOOL_SIZE before requiring any modules. The maximum is 128 threads, but 4 is usually sufficient.
+  - question: What's the difference between the event loop and thread pool?
+    answer: The event loop runs on the main thread and handles lightweight async operations (callbacks, network I/O). The thread pool runs heavy operations (file I/O, crypto) on separate threads to avoid blocking the main thread.
+  - question: Should I use synchronous functions in Node.js?
+    answer: Only during initialization (top-level code). Never use sync functions in callbacks, request handlers, or anywhere that could block the event loop during runtime.
 ---
 
 Have you ever wondered what makes Node.js tick? How can JavaScript—a language designed for browsers—suddenly read files, create servers, and handle thousands of connections? The answer lies in Node's powerful architecture.
@@ -369,22 +380,3 @@ crypto.pbkdf2('password', 'salt', 100000, 64, 'sha512', (err, key) => {
 - The **thread pool** (4 threads by default) handles heavy operations
 - File I/O, crypto, compression, and DNS use the thread pool
 - The **event loop** handles callbacks, timers, and network I/O
-
----
-
-FAQ
-
-Q: Is Node.js truly single-threaded?
-A: Your JavaScript code runs on a single main thread, but Node uses additional threads behind the scenes (the thread pool) for heavy operations. You can also use Worker Threads for CPU-intensive tasks.
-
-Q: Why is Node.js written in C++ and not just JavaScript?
-A: JavaScript alone cannot access low-level system resources like files or network sockets. C++ (via Libuv) provides this access, and Node.js wraps it in a friendly JavaScript API.
-
-Q: Can I increase the thread pool size?
-A: Yes. Set `process.env.UV_THREADPOOL_SIZE` before requiring any modules. The maximum is 128 threads, but 4 is usually sufficient.
-
-Q: What's the difference between the event loop and thread pool?
-A: The event loop runs on the main thread and handles lightweight async operations (callbacks, network I/O). The thread pool runs heavy operations (file I/O, crypto) on separate threads to avoid blocking the main thread.
-
-Q: Should I use synchronous functions in Node.js?
-A: Only during initialization (top-level code). Never use sync functions in callbacks, request handlers, or anywhere that could block the event loop during runtime.

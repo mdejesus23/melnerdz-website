@@ -16,6 +16,15 @@ tags:
   - backend
   - tutorial
   - beginner
+faqs:
+  - question: What's the difference between events and callbacks?
+    answer: A callback is a function you pass to be called later. An event is a signal that something happened, and multiple listeners can respond to it. Events use callbacks, but add the ability to have many subscribers.
+  - question: Are events synchronous or asynchronous?
+    answer: The emit() method is synchronous - all listeners run immediately in order. But listeners can start async operations. The event loop handles truly async behavior.
+  - question: Can I use async/await with EventEmitter?
+    answer: EventEmitter itself is callback-based, but you can use events.once() which returns a Promise. Use "const { once } = require('events'); const [data] = await once(emitter, 'data');"
+  - question: How many listeners is too many?
+    answer: Node.js warns at 10 listeners for a single event (possible memory leak). If you legitimately need more, use setMaxListeners(). But first ask - do you really need that many?
 ---
 
 Imagine a restaurant kitchen. The chef doesn't stand at the door waiting for each customer to order. Instead, waiters take orders and shout them to the kitchen. The chef listens for these "order events" and starts cooking when they hear one.
@@ -446,28 +455,5 @@ emitter2.emit('ready'); // Works!
 - Events enable loose coupling between different parts of your app
 - Always handle the 'error' event to prevent crashes
 - Clean up listeners to avoid memory leaks
-
-### FAQ
-
-**Q: What's the difference between events and callbacks?**
-A: A callback is a function you pass to be called later. An event is a signal that something happened, and multiple listeners can respond to it. Events use callbacks, but add the ability to have many subscribers.
-
-**Q: Are events synchronous or asynchronous?**
-A: The `emit()` method is synchronous - all listeners run immediately in order. But listeners can start async operations. The event loop handles truly async behavior.
-
-**Q: Can I use async/await with EventEmitter?**
-A: EventEmitter itself is callback-based, but you can use `events.once()` which returns a Promise:
-
-```js
-const { once } = require('events');
-
-async function waitForEvent(emitter) {
-  const [data] = await once(emitter, 'data');
-  console.log('Received:', data);
-}
-```
-
-**Q: How many listeners is too many?**
-A: Node.js warns at 10 listeners for a single event (possible memory leak). If you legitimately need more, use `setMaxListeners()`. But first ask: do you really need that many?
 
 Further reading: [Node.js Events documentation](https://nodejs.org/api/events.html)

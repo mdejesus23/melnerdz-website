@@ -6,6 +6,7 @@ import { SITE, ISPARTOF } from '../data/constant';
 import Blog from '../components/sections/Blog.astro';
 import Newsletter from '../components/sections/Newsletter.astro';
 
+const canonical = Astro.url.href;
 const title: string = `${SITE.title}`;
 const description: string =
   'A versatile Full-Stack Web Developer with deep expertise in HTML, CSS, JavaScript, and hands-on experience with Node.js, Express.js, React, and Astro.';
@@ -16,8 +17,8 @@ const description: string =
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com',
-    url: 'https://melnerdz.com',
+    '@id': canonical,
+    url: canonical,
     name: 'Melnerdz website',
     description: description,
     isPartOf: ISPARTOF,

@@ -15,6 +15,15 @@ tags:
   - frontend
   - tutorial
   - beginner
+faqs:
+  - question: Are ES6 classes just syntactic sugar over prototypes?
+    answer: Yes, under the hood, ES6 classes still use JavaScript's prototype-based inheritance. The class syntax just provides a cleaner, more familiar way to work with it.
+  - question: Should I always use classes for OOP in JavaScript?
+    answer: Not necessarily. JavaScript is flexible—you can also use factory functions, object composition, or plain objects. Classes are great when you need inheritance and a clear structure.
+  - question: Can I use classes in all browsers?
+    answer: ES6 classes are supported in all modern browsers. For older browsers (IE11), you'd need a transpiler like Babel.
+  - question: What's the difference between class fields and constructor assignments?
+    answer: Class fields are declared outside the constructor and can have default values. Both approaches work, but class fields are cleaner for properties that don't depend on constructor arguments.
 ---
 
 Imagine you're running a bakery. Instead of writing instructions for each individual cake from scratch, you create a recipe template that tells you: "Every cake needs flour, sugar, eggs, and a baking method." That template is like a **class**—a blueprint for creating objects.
@@ -413,36 +422,6 @@ const config = {
 // Multiple users - class makes sense
 class User {
   /* ... */
-}
-```
-
-### FAQ
-
-**Q: Are ES6 classes just syntactic sugar over prototypes?**
-
-Yes, under the hood, ES6 classes still use JavaScript's prototype-based inheritance. The `class` syntax just provides a cleaner, more familiar way to work with it.
-
-**Q: Should I always use classes for OOP in JavaScript?**
-
-Not necessarily. JavaScript is flexible—you can also use factory functions, object composition, or plain objects. Classes are great when you need inheritance and a clear structure.
-
-**Q: Can I use classes in all browsers?**
-
-ES6 classes are supported in all modern browsers. For older browsers (IE11), you'd need a transpiler like Babel.
-
-**Q: What's the difference between `class` fields and constructor assignments?**
-
-Class fields are declared outside the constructor and can have default values. Both approaches work, but class fields are cleaner for properties that don't depend on constructor arguments.
-
-```js
-class Example {
-  // Class field with default
-  count = 0;
-
-  constructor(name) {
-    // Constructor assignment for parameters
-    this.name = name;
-  }
 }
 ```
 

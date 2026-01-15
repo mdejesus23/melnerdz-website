@@ -14,6 +14,15 @@ tags:
   - node.js
   - backend
   - tutorial
+faqs:
+  - question: What's the difference between module.exports and exports?
+    answer: They initially point to the same object. Use module.exports when replacing the entire export; use exports.something when adding properties. If you reassign exports = {}, it breaks the reference.
+  - question: Should I use require() or import?
+    answer: For new projects, ES Modules (import) is the modern standard. For existing Node.js projects or tutorials, require() (CommonJS) is still widely used. Both work in Node.js.
+  - question: Why does require() find modules in parent node_modules folders?
+    answer: This allows shared dependencies between projects and supports monorepo structures. Node.js walks up the directory tree until it finds the module.
+  - question: Can I require JSON files?
+    answer: Yes. const data = require('./data.json') automatically parses the JSON and returns a JavaScript object.
 ---
 
 Imagine you're building with LEGO blocks. Each block has a specific purpose, and you snap them together to create something bigger. In Node.js, modules work the same way—they're reusable pieces of code that you connect to build your application.
@@ -355,19 +364,3 @@ node index.js
 - Core modules don't need installation; npm modules do
 - Local file paths must start with `./` or `../`
 - Modules are cached—requiring twice returns the same instance
-
----
-
-FAQ
-
-Q: What's the difference between `module.exports` and `exports`?
-A: They initially point to the same object. Use `module.exports` when replacing the entire export; use `exports.something` when adding properties. If you reassign `exports = {}`, it breaks the reference.
-
-Q: Should I use require() or import?
-A: For new projects, ES Modules (`import`) is the modern standard. For existing Node.js projects or tutorials, `require()` (CommonJS) is still widely used. Both work in Node.js.
-
-Q: Why does require() find modules in parent node_modules folders?
-A: This allows shared dependencies between projects and supports monorepo structures. Node.js walks up the directory tree until it finds the module.
-
-Q: Can I require JSON files?
-A: Yes. `const data = require('./data.json')` automatically parses the JSON and returns a JavaScript object.

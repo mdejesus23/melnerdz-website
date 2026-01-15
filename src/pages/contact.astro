@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE, ISPARTOF } from '../data/constant';
 
+const canonical = Astro.url.href;
 const title: string = `Contact | ${SITE.title}`;
 const description: string =
   'Get in touch with me for any inquiries, collaborations, or job opportunities.';
@@ -13,8 +14,8 @@ const description: string =
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com/contact',
-    url: 'https://melnerdz.com/contact',
+    '@id': canonical,
+    url: canonical,
     name: 'Contact | Melnerdz',
     description: description,
     isPartOf: ISPARTOF,

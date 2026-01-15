@@ -2,6 +2,8 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { SITE, ISPARTOF } from '../data/constant';
 
+const canonical = Astro.url.href;
+
 const title: string = `Search | ${SITE.title}`;
 const description: string =
   'Search page. Find articles, blog posts, or projects from the site.';
@@ -12,8 +14,8 @@ const description: string =
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com/search',
-    url: 'https://melnerdz.com/search',
+    '@id': canonical,
+    url: canonical,
     name: 'Search | Melnerdz website',
     description: description,
     isPartOf: ISPARTOF,

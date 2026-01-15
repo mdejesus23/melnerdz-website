@@ -1,6 +1,34 @@
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
 import type { ReactNode } from 'react';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Cache fonts in memory to avoid repeated file reads
+let fontsCache: { dmSans: ArrayBuffer; dmSansBold: ArrayBuffer; playfair: ArrayBuffer } | null = null;
+
+async function loadFonts() {
+  if (fontsCache) return fontsCache;
+
+  const fontsDir = path.resolve(__dirname, '../../public/fonts/og');
+
+  const [dmSans, dmSansBold, playfair] = await Promise.all([
+    fs.readFile(path.join(fontsDir, 'DMSans-Regular.ttf')),
+    fs.readFile(path.join(fontsDir, 'DMSans-Bold.ttf')),
+    fs.readFile(path.join(fontsDir, 'PlayfairDisplay-Bold.ttf')),
+  ]);
+
+  fontsCache = {
+    dmSans: new Uint8Array(dmSans).buffer,
+    dmSansBold: new Uint8Array(dmSansBold).buffer,
+    playfair: new Uint8Array(playfair).buffer,
+  };
+
+  return fontsCache;
+}
 
 export interface OGImageOptions {
   title: string;
@@ -314,12 +342,8 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
     imageBase64,
   } = options;
 
-  // Load fonts
-  const [dmSansRegular, dmSansBold, playfairBold] = await Promise.all([
-    fetch('https://cdn.jsdelivr.net/fontsource/fonts/dm-sans@latest/latin-400-normal.ttf').then(res => res.arrayBuffer()),
-    fetch('https://cdn.jsdelivr.net/fontsource/fonts/dm-sans@latest/latin-700-normal.ttf').then(res => res.arrayBuffer()),
-    fetch('https://cdn.jsdelivr.net/fontsource/fonts/playfair-display@latest/latin-700-normal.ttf').then(res => res.arrayBuffer()),
-  ]);
+  // Load fonts from local cache
+  const fonts = await loadFonts();
 
   const formattedDate = pubDate
     ? new Date(pubDate).toLocaleDateString('en-US', {
@@ -349,19 +373,19 @@ export async function generateOGImage(options: OGImageOptions): Promise<Buffer> 
     fonts: [
       {
         name: 'DM Sans',
-        data: dmSansRegular,
+        data: fonts.dmSans,
         weight: 400,
         style: 'normal',
       },
       {
         name: 'DM Sans',
-        data: dmSansBold,
+        data: fonts.dmSansBold,
         weight: 700,
         style: 'normal',
       },
       {
         name: 'Playfair Display',
-        data: playfairBold,
+        data: fonts.playfair,
         weight: 700,
         style: 'normal',
       },

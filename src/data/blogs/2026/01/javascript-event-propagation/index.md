@@ -16,6 +16,19 @@ tags:
   - frontend
   - browser
   - tutorial
+faqs:
+  - question: Should I use capturing or bubbling?
+    answer: Use bubbling (the default) for 99% of cases. Capturing is rarely needed and is typically used for intercepting events before they reach their targets.
+  - question: Why use event delegation instead of attaching listeners directly?
+    answer: Delegation uses less memory, works with dynamically added elements, and centralizes your event handling logic. It's especially powerful for lists or grids with many items.
+  - question: What's the difference between stopPropagation() and preventDefault()?
+    answer: stopPropagation() stops the event from traveling to other elements. preventDefault() prevents the browser's default action (like following a link) but the event still propagates normally.
+  - question: Can I stop an event during the capturing phase?
+    answer: Yes, calling stopPropagation() during capture prevents the event from reaching the target and bubbling back up.
+  - question: What happens if I call both stopPropagation() and preventDefault()?
+    answer: Both take effect independently - the event stops propagating AND the default action is prevented. There's also a shorthand "return false" (but only in some contexts - not recommended).
+  - question: How do I remove an event listener?
+    answer: Use removeEventListener() with the exact same function reference and options. Anonymous functions can't be removed, so use named functions or store references.
 ---
 
 When you click a button nested inside a div, which element "hears" the click first? Understanding event propagation is crucial for building interactive web applications and avoiding mysterious bugs.
@@ -449,25 +462,3 @@ element.addEventListener('click', (event) => {
 ```
 
 Use browser DevTools to see all listeners on an element: Right-click → Inspect → Event Listeners tab.
-
----
-
-FAQ
-
-Q: Should I use capturing or bubbling?
-A: Use bubbling (the default) for 99% of cases. Capturing is rarely needed and is typically used for intercepting events before they reach their targets.
-
-Q: Why use event delegation instead of attaching listeners directly?
-A: Delegation uses less memory, works with dynamically added elements, and centralizes your event handling logic. It's especially powerful for lists or grids with many items.
-
-Q: What's the difference between `stopPropagation()` and `preventDefault()`?
-A: `stopPropagation()` stops the event from traveling to other elements. `preventDefault()` prevents the browser's default action (like following a link) but the event still propagates normally.
-
-Q: Can I stop an event during the capturing phase?
-A: Yes, calling `stopPropagation()` during capture prevents the event from reaching the target and bubbling back up.
-
-Q: What happens if I call both `stopPropagation()` and `preventDefault()`?
-A: Both take effect independently—the event stops propagating AND the default action is prevented. There's also a shorthand: `return false` (but only in some contexts—not recommended).
-
-Q: How do I remove an event listener?
-A: Use `removeEventListener()` with the exact same function reference and options. Anonymous functions can't be removed, so use named functions or store references.

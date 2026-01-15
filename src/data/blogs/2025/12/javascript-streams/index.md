@@ -15,6 +15,15 @@ tags:
   - javascript
   - tutorial
   - performance
+faqs:
+  - question: Are Node.js streams the same as Web Streams?
+    answer: They're similar in concept but have different APIs. Node.js streams use EventEmitter patterns, while Web Streams use async iterators and ReadableStream/WritableStream classes.
+  - question: Can I use streams with async/await?
+    answer: Yes. In Node.js, readable streams are async iterables. Use "for await...of" to consume them cleanly.
+  - question: How do I know what chunk size to use?
+    answer: The default (64KB for files) works well for most cases. Smaller chunks reduce memory but may slow things down; larger chunks are faster but use more memory.
+  - question: What if I need to process the entire file before outputting?
+    answer: Then streams might not be the right tool. Collect chunks into an array and join them, or use fs.readFile() for smaller files.
 ---
 
 Imagine you're drinking from a water fountain versus waiting for someone to fill an entire bucket and hand it to you. Streams are like drinking from the fountain—you get water immediately, bit by bit, instead of waiting for the whole thing.
@@ -296,19 +305,3 @@ for await (const chunk of readable) {
 - Always handle errors and call `.end()` on writable streams
 - Web browsers have their own Streams API for fetch responses
 - For most large file operations, streams are the right choice
-
----
-
-FAQ
-
-Q: Are Node.js streams the same as Web Streams?
-A: They're similar in concept but have different APIs. Node.js streams use EventEmitter patterns, while Web Streams use async iterators and ReadableStream/WritableStream classes.
-
-Q: Can I use streams with async/await?
-A: Yes. In Node.js, readable streams are async iterables. Use `for await...of` to consume them cleanly.
-
-Q: How do I know what chunk size to use?
-A: The default (64KB for files) works well for most cases. Smaller chunks reduce memory but may slow things down; larger chunks are faster but use more memory.
-
-Q: What if I need to process the entire file before outputting?
-A: Then streams might not be the right tool. Collect chunks into an array and join them, or use `fs.readFile()` for smaller files.

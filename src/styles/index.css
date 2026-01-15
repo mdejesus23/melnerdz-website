@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/DMSans-VariableFont_opsz,wght.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Outfit';
+  src: url('/fonts/Outfit-VariableFont_wght.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Playfair Display';
+  src: url('/fonts/PlayfairDisplay-VariableFont_wght.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Code block theming tweaks for light/dark modes */
 /* Force dark background for all code blocks in both light and dark modes */
 pre,
@@ -23,8 +47,8 @@ pre code {
 
 /* Override any inline styles from Shiki dual themes */
 pre[data-theme],
-pre[data-theme="light"],
-pre[data-theme="dark"] {
+pre[data-theme='light'],
+pre[data-theme='dark'] {
   background-color: #0f172a !important;
 }
 

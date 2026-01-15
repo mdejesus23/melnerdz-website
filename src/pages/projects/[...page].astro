@@ -9,6 +9,7 @@ import { SITE, ISPARTOF } from '../../data/constant';
 import turncateString from '../../utils/turncateString';
 import Newsletter from '../../components/sections/Newsletter.astro';
 
+const canonical = Astro.url.href;
 interface Props {
   page: Page;
 }
@@ -40,8 +41,8 @@ const totalPages = Math.ceil(page.total / 6);
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com/projects',
-    url: 'https://melnerdz.com/projects',
+    '@id': canonical,
+    url: canonical,
     name: 'Projects | Melnerdz',
     description: description,
     isPartOf: ISPARTOF,

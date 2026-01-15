@@ -15,6 +15,13 @@ tags:
   - node.js
   - backend
   - performance
+faqs:
+  - question: Is Node.js truly single-threaded?
+    answer: Your JavaScript runs on a single main thread, but Node uses other threads under the hood (libuv thread pool, OS) for I/O. You can also use worker_threads for CPU-bound tasks.
+  - question: Why do Promises run "sooner" than setTimeout(0)?
+    answer: Promise callbacks are microtasks and run at the end of the current turn before the loop continues to the next phase where timers live.
+  - question: Can I guarantee setImmediate always before/after setTimeout(0)?
+    answer: No. The relative order can vary based on context (polling state, platform). Prefer Promises for deterministic microtask ordering.
 ---
 
 The Node.js event loop is the heartbeat of the runtime. It lets single-threaded JavaScript feel “multitasked” by rapidly taking turns running tiny pieces of work.
@@ -182,16 +189,3 @@ Explanation: The synchronous logs run first (A, D). Then the microtask from the 
 If your server feels “stuck,” check for long synchronous loops or JSON/string operations on large objects. Profilers (`node --prof`, Chrome DevTools) can reveal hotspots.
 
 Further reading: Node.js docs on event loop, libuv guide.
-
-—
-
-FAQ
-
-Q: Is Node.js truly single-threaded?
-A: Your JavaScript runs on a single main thread, but Node uses other threads under the hood (libuv thread pool, OS) for I/O. You can also use `worker_threads` for CPU-bound tasks.
-
-Q: Why do Promises run “sooner” than `setTimeout(0)`?
-A: Promise callbacks are microtasks and run at the end of the current turn before the loop continues to the next phase where timers live.
-
-Q: Can I guarantee `setImmediate` always before/after `setTimeout(0)`?
-A: No. The relative order can vary based on context (polling state, platform). Prefer Promises for deterministic microtask ordering.

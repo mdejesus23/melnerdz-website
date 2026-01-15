@@ -14,6 +14,13 @@ tags:
   - tutorial
   - beginner
   - algorithms
+faqs:
+  - question: Why use recursion when loops exist?
+    answer: Some problems are naturally recursive (like navigating folders or tree structures). The code becomes simpler and easier to understand. But for simple counting, loops are usually better.
+  - question: What is "stack overflow"?
+    answer: Each recursive call uses memory. Too many calls uses too much memory and crashes. JavaScript typically allows around 10,000-20,000 recursive calls.
+  - question: How do I know what the base case should be?
+    answer: Ask yourself - "What's the simplest version of this problem that I can answer immediately?" For countdown, it's when n reaches 0 or less.
 ---
 
 To understand recursion, you must first understand recursion.
@@ -342,16 +349,5 @@ function goodCountdown(n) {
 - Every recursive function needs a **base case** (when to stop) and a **recursive case** (when to continue)
 - The recursive case must move toward the base case (usually by subtracting)
 - Think of recursion as solving a big problem by solving smaller versions of the same problem
-
-### FAQ
-
-**Q: Why use recursion when loops exist?**
-A: Some problems are naturally recursive (like navigating folders or tree structures). The code becomes simpler and easier to understand. But for simple counting, loops are usually better.
-
-**Q: What is "stack overflow"?**
-A: Each recursive call uses memory. Too many calls uses too much memory and crashes. JavaScript typically allows around 10,000-20,000 recursive calls.
-
-**Q: How do I know what the base case should be?**
-A: Ask yourself: "What's the simplest version of this problem that I can answer immediately?" For countdown, it's when n reaches 0 or less.
 
 Further reading: [MDN - Recursion](https://developer.mozilla.org/en-US/docs/Glossary/Recursion)

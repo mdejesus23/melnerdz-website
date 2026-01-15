@@ -14,6 +14,21 @@ tags:
   - frontend
   - tutorial
   - beginner
+faqs:
+  - question: What's the difference between null and undefined?
+    answer: undefined means a variable hasn't been assigned a value yet. null is an intentional assignment representing "no value." Use null when you explicitly want to indicate absence of a value.
+  - question: Why does typeof null return "object"?
+    answer: This is a bug from JavaScript's early days that can't be fixed due to backward compatibility. Always check for null explicitly using value === null.
+  - question: How do I check if a variable is an array?
+    answer: Use Array.isArray(variable). Don't use typeof because it returns "object" for arrays.
+  - question: What happens when I compare two objects?
+    answer: JavaScript compares them by reference, not by their content. Two objects with identical properties are not equal unless they reference the same object in memory.
+  - question: Should I use const for objects if they're mutable?
+    answer: Yes! const prevents reassignment of the variable, but you can still modify the object's properties. This is actually good practice - it prevents accidental reassignment while allowing property changes.
+  - question: How do I create a true copy of an object with nested properties?
+    answer: Use structuredClone() (modern browsers) or JSON.parse(JSON.stringify(obj)) for simple objects. For complex objects with functions, use a library like Lodash's _.cloneDeep().
+  - question: What's the difference between == and ===?
+    answer: "== does type coercion (converts types before comparing), while === checks both value and type. Always use === to avoid unexpected behavior."
 ---
 
 Imagine you're organizing items in your room. Some items are simple and can't be broken down further—like a pencil or a book. Others are containers that hold multiple items—like a backpack or a drawer. JavaScript data types work similarly: some are simple values (primitives), and others are containers that can hold complex data (non-primitives).
@@ -630,28 +645,3 @@ console.log(isEmptyValue("hello")); // false
 - Don't use `==` for comparisons (use `===` to avoid type coercion)
 - Don't assume shallow copy works for nested structures
 - Don't use JSON for deep copying objects with functions or special types
-
----
-
-FAQ
-
-Q: What's the difference between `null` and `undefined`?
-A: `undefined` means a variable hasn't been assigned a value yet. `null` is an intentional assignment representing "no value." Use `null` when you explicitly want to indicate absence of a value.
-
-Q: Why does `typeof null` return "object"?
-A: This is a bug from JavaScript's early days that can't be fixed due to backward compatibility. Always check for null explicitly: `value === null`.
-
-Q: How do I check if a variable is an array?
-A: Use `Array.isArray(variable)`. Don't use `typeof` because it returns `"object"` for arrays.
-
-Q: What happens when I compare two objects?
-A: JavaScript compares them by reference, not by their content. Two objects with identical properties are not equal unless they reference the same object in memory.
-
-Q: Should I use `const` for objects if they're mutable?
-A: Yes! `const` prevents reassignment of the variable, but you can still modify the object's properties. This is actually good practice—it prevents accidental reassignment while allowing property changes.
-
-Q: How do I create a true copy of an object with nested properties?
-A: Use `structuredClone()` (modern browsers) or `JSON.parse(JSON.stringify(obj))` for simple objects. For complex objects with functions, use a library like Lodash's `_.cloneDeep()`.
-
-Q: What's the difference between `==` and `===`?
-A: `==` does type coercion (converts types before comparing), while `===` checks both value and type. Always use `===` to avoid unexpected behavior.

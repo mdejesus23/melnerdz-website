@@ -9,6 +9,8 @@ import { SITE, ISPARTOF } from '../../data/constant';
 import Newsletter from '../../components/sections/Newsletter.astro';
 import turncateString from '../../utils/turncateString';
 
+const canonical = Astro.url.href;
+
 interface Props {
   page: Page;
 }
@@ -45,8 +47,8 @@ const formatDate = (date: Date) => {
   structuredData={{
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    '@id': 'https://melnerdz.com/blogs',
-    url: 'https://melnerdz.com/blogs',
+    '@id': canonical,
+    url: canonical,
     name: 'Blog | Melnerdz',
     isPartOf: ISPARTOF,
     inLanguage: 'en-US',
