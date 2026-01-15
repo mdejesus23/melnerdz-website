@@ -8,7 +8,11 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Cache fonts in memory to avoid repeated file reads
-let fontsCache: { dmSans: ArrayBuffer; dmSansBold: ArrayBuffer; playfair: ArrayBuffer } | null = null;
+let fontsCache: {
+  dmSans: ArrayBuffer;
+  dmSansBold: ArrayBuffer;
+  playfair: ArrayBuffer;
+} | null = null;
 
 async function loadFonts() {
   if (fontsCache) return fontsCache;
@@ -62,9 +66,10 @@ function OGTemplate({
   imageBase64,
 }: OGTemplateProps): ReactNode {
   const displayTags = tags.slice(0, 4);
-  const truncatedDescription = description && description.length > 120
-    ? description.substring(0, 120) + '...'
-    : description;
+  const truncatedDescription =
+    description && description.length > 120
+      ? description.substring(0, 120) + '...'
+      : description;
 
   return (
     <div
@@ -118,7 +123,8 @@ function OGTemplate({
               width: '400px',
               height: '400px',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 70%)',
+              background:
+                'radial-gradient(circle, rgba(250, 204, 21, 0.15) 0%, transparent 70%)',
             }}
           />
           <div
@@ -129,7 +135,8 @@ function OGTemplate({
               width: '500px',
               height: '500px',
               borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(250, 204, 21, 0.1) 0%, transparent 70%)',
+              background:
+                'radial-gradient(circle, rgba(250, 204, 21, 0.1) 0%, transparent 70%)',
             }}
           />
         </>
@@ -143,7 +150,8 @@ function OGTemplate({
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
@@ -318,7 +326,9 @@ function OGTemplate({
                   color: 'rgba(255, 255, 255, 0.7)',
                   fontSize: '16px',
                   fontFamily: 'DM Sans',
-                  textShadow: imageBase64 ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
+                  textShadow: imageBase64
+                    ? '0 1px 3px rgba(0,0,0,0.5)'
+                    : 'none',
                 }}
               >
                 {formattedDate}
@@ -331,74 +341,86 @@ function OGTemplate({
   );
 }
 
-export async function generateOGImage(options: OGImageOptions): Promise<Buffer> {
-  const {
-    title,
-    description,
-    type = 'blog',
-    tags = [],
-    author = 'Melnard De Jesus',
-    pubDate,
-    imageBase64,
-  } = options;
+export async function generateOGImage(
+  options: OGImageOptions,
+): Promise<Buffer> {
+  try {
+    const {
+      title,
+      description,
+      type = 'blog',
+      tags = [],
+      author = 'Melnard De Jesus',
+      pubDate,
+      imageBase64,
+    } = options;
 
-  // Load fonts from local cache
-  const fonts = await loadFonts();
+    // Load fonts from local cache with timeout
+    const fonts = await Promise.race([
+      loadFonts(),
+      new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Font loading timeout')), 5000),
+      ),
+    ]);
 
-  const formattedDate = pubDate
-    ? new Date(pubDate).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
-    : '';
+    const formattedDate = pubDate
+      ? new Date(pubDate).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })
+      : '';
 
-  const typeLabel = type === 'blog' ? 'Blog Post' : 'Project';
-  const accentColor = '#facc15'; // Yellow accent from theme
+    const typeLabel = type === 'blog' ? 'Blog Post' : 'Project';
+    const accentColor = '#facc15'; // Yellow accent from theme
 
-  const element = OGTemplate({
-    title,
-    description,
-    typeLabel,
-    tags,
-    author,
-    formattedDate,
-    accentColor,
-    imageBase64,
-  });
+    const element = OGTemplate({
+      title,
+      description,
+      typeLabel,
+      tags,
+      author,
+      formattedDate,
+      accentColor,
+      imageBase64,
+    });
 
-  const svg = await satori(element as React.ReactNode, {
-    width: 1200,
-    height: 630,
-    fonts: [
-      {
-        name: 'DM Sans',
-        data: fonts.dmSans,
-        weight: 400,
-        style: 'normal',
+    const svg = await satori(element as React.ReactNode, {
+      width: 1200,
+      height: 630,
+      fonts: [
+        {
+          name: 'DM Sans',
+          data: fonts.dmSans,
+          weight: 400,
+          style: 'normal',
+        },
+        {
+          name: 'DM Sans',
+          data: fonts.dmSansBold,
+          weight: 700,
+          style: 'normal',
+        },
+        {
+          name: 'Playfair Display',
+          data: fonts.playfair,
+          weight: 700,
+          style: 'normal',
+        },
+      ],
+    });
+
+    const resvg = new Resvg(svg, {
+      fitTo: {
+        mode: 'width',
+        value: 1200,
       },
-      {
-        name: 'DM Sans',
-        data: fonts.dmSansBold,
-        weight: 700,
-        style: 'normal',
-      },
-      {
-        name: 'Playfair Display',
-        data: fonts.playfair,
-        weight: 700,
-        style: 'normal',
-      },
-    ],
-  });
+    });
 
-  const resvg = new Resvg(svg, {
-    fitTo: {
-      mode: 'width',
-      value: 1200,
-    },
-  });
-
-  const pngData = resvg.render();
-  return pngData.asPng();
+    const pngData = resvg.render();
+    return pngData.asPng();
+  } catch (error) {
+    console.error('Error generating OG image:', error);
+    throw error;
+  }
 }

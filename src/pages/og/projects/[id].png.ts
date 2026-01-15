@@ -14,12 +14,19 @@ async function getImageAsBase64(
   try {
     if (!imagePath) return undefined;
 
-    const imageBuffer = await fs.readFile(imagePath);
+    // Add timeout to image reading to prevent hanging
+    const imageBuffer = await Promise.race([
+      fs.readFile(imagePath),
+      new Promise<Buffer>((_, reject) =>
+        setTimeout(() => reject(new Error('Image read timeout')), 2000),
+      ),
+    ]);
+
     const ext = path.extname(imagePath).toLowerCase().slice(1);
     const mimeType = ext === 'jpg' ? 'jpeg' : ext;
     return `data:image/${mimeType};base64,${imageBuffer.toString('base64')}`;
   } catch (error) {
-    console.error('Error reading image:', error);
+    console.warn('Error reading image, continuing without it:', error);
     return undefined;
   }
 }
@@ -68,36 +75,41 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const GET: APIRoute = async ({ props }) => {
-  const { project } = props;
+  try {
+    const { project } = props;
 
-  let imageBase64: string | undefined;
+    let imageBase64: string | undefined;
 
-  // Use filePath from the content entry to find the image in the same directory
-  const filePath = (project as { filePath?: string }).filePath;
-  if (filePath) {
-    const imagePath = await findProjectImage(filePath);
-    if (imagePath) {
-      imageBase64 = await getImageAsBase64(imagePath);
+    // Use filePath from the content entry to find the image in the same directory
+    const filePath = (project as { filePath?: string }).filePath;
+    if (filePath) {
+      const imagePath = await findProjectImage(filePath);
+      if (imagePath) {
+        imageBase64 = await getImageAsBase64(imagePath);
+      }
     }
+
+    const png = await generateOGImage({
+      title: project.data.title,
+      description: project.data.shortDesc || project.data.description,
+      type: 'project',
+      tags: project.data.technology?.slice(0, 4) || project.data.tags,
+      author: project.data.author,
+      pubDate: project.data.pubDate,
+      imageBase64,
+    });
+
+    return new Response(new Uint8Array(png), {
+      headers: {
+        'Content-Type': 'image/png',
+        'Cache-Control': 'public, max-age=31536000, immutable',
+        'X-Content-Type-Options': 'nosniff',
+      },
+    });
+  } catch (error) {
+    console.error('OG Image generation error:', error);
+    return new Response('Error generating OG image', { status: 500 });
   }
-
-  const png = await generateOGImage({
-    title: project.data.title,
-    description: project.data.shortDesc || project.data.description,
-    type: 'project',
-    tags: project.data.technology?.slice(0, 4) || project.data.tags,
-    author: project.data.author,
-    pubDate: project.data.pubDate,
-    imageBase64,
-  });
-
-  return new Response(new Uint8Array(png), {
-    headers: {
-      'Content-Type': 'image/png',
-      'Cache-Control': 'public, max-age=31536000, immutable',
-      'X-Content-Type-Options': 'nosniff',
-    },
-  });
 };
 
 // Some crawlers use HEAD to check content type. Provide explicit handler.
