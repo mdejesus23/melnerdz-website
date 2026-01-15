@@ -7,23 +7,69 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Cache font in memory to avoid repeated file reads
-let fontCache: ArrayBuffer | null = null;
+// Cache fonts in memory to avoid repeated file reads
+interface FontCache {
+  dmSansRegular: ArrayBuffer | null;
+  dmSansBold: ArrayBuffer | null;
+  playfairDisplayBold: ArrayBuffer | null;
+}
 
-async function loadFont(): Promise<ArrayBuffer> {
-  if (fontCache) return fontCache;
+const fontCache: FontCache = {
+  dmSansRegular: null,
+  dmSansBold: null,
+  playfairDisplayBold: null,
+};
 
+async function loadFonts(): Promise<{
+  dmSansRegular: ArrayBuffer;
+  dmSansBold: ArrayBuffer;
+  playfairDisplayBold: ArrayBuffer;
+}> {
   try {
-    const fontPath = path.resolve(
-      __dirname,
-      '../../public/fonts/og/DMSans-Regular.ttf',
-    );
-    const fontBuffer = await fs.readFile(fontPath);
-    fontCache = new Uint8Array(fontBuffer).buffer;
-    return fontCache;
+    // Load all fonts in parallel
+    const [dmSansRegular, dmSansBold, playfairDisplayBold] = await Promise.all([
+      fontCache.dmSansRegular
+        ? Promise.resolve(fontCache.dmSansRegular)
+        : fs
+            .readFile(
+              path.resolve(
+                __dirname,
+                '../../public/fonts/og/DMSans-Regular.ttf',
+              ),
+            )
+            .then((buffer) => {
+              fontCache.dmSansRegular = new Uint8Array(buffer).buffer;
+              return fontCache.dmSansRegular;
+            }),
+      fontCache.dmSansBold
+        ? Promise.resolve(fontCache.dmSansBold)
+        : fs
+            .readFile(
+              path.resolve(__dirname, '../../public/fonts/og/DMSans-Bold.ttf'),
+            )
+            .then((buffer) => {
+              fontCache.dmSansBold = new Uint8Array(buffer).buffer;
+              return fontCache.dmSansBold;
+            }),
+      fontCache.playfairDisplayBold
+        ? Promise.resolve(fontCache.playfairDisplayBold)
+        : fs
+            .readFile(
+              path.resolve(
+                __dirname,
+                '../../public/fonts/og/PlayfairDisplay-Bold.ttf',
+              ),
+            )
+            .then((buffer) => {
+              fontCache.playfairDisplayBold = new Uint8Array(buffer).buffer;
+              return fontCache.playfairDisplayBold;
+            }),
+    ]);
+
+    return { dmSansRegular, dmSansBold, playfairDisplayBold };
   } catch (error) {
-    console.error('Error loading font:', error);
-    throw new Error('Failed to load font file');
+    console.error('Error loading fonts:', error);
+    throw new Error('Failed to load font files');
   }
 }
 
@@ -186,7 +232,7 @@ function OGTemplate({
                 color: accentColor,
                 fontSize: '20px',
                 fontWeight: 700,
-                fontFamily: 'sans-serif',
+                fontFamily: 'DMSans',
               }}
             >
               {typeLabel}
@@ -206,7 +252,7 @@ function OGTemplate({
                 color: '#ffffff',
                 fontSize: '24px',
                 fontWeight: 700,
-                fontFamily: 'serif',
+                fontFamily: 'PlayfairDisplay',
               }}
             >
               Melnerdz
@@ -229,7 +275,7 @@ function OGTemplate({
               color: '#ffffff',
               fontSize: title.length > 50 ? '48px' : '56px',
               fontWeight: 700,
-              fontFamily: 'serif',
+              fontFamily: 'PlayfairDisplay',
               lineHeight: 1.2,
               marginBottom: '24px',
               maxWidth: '900px',
@@ -245,7 +291,7 @@ function OGTemplate({
               style={{
                 color: 'rgba(255, 255, 255, 0.85)',
                 fontSize: '24px',
-                fontFamily: 'sans-serif',
+                fontFamily: 'DMSans',
                 lineHeight: 1.5,
                 maxWidth: '800px',
                 marginBottom: '32px',
@@ -284,7 +330,7 @@ function OGTemplate({
                     padding: '8px 16px',
                     color: 'rgba(255, 255, 255, 0.9)',
                     fontSize: '16px',
-                    fontFamily: 'sans-serif',
+                    fontFamily: 'DMSans',
                   }}
                 >
                   {tag}
@@ -307,7 +353,7 @@ function OGTemplate({
                 color: accentColor,
                 fontSize: '18px',
                 fontWeight: 600,
-                fontFamily: 'sans-serif',
+                fontFamily: 'DMSans',
                 textShadow: imageBase64 ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
               }}
             >
@@ -318,7 +364,7 @@ function OGTemplate({
                 style={{
                   color: 'rgba(255, 255, 255, 0.7)',
                   fontSize: '16px',
-                  fontFamily: 'sans-serif',
+                  fontFamily: 'DMSans',
                   textShadow: imageBase64
                     ? '0 1px 3px rgba(0,0,0,0.5)'
                     : 'none',
@@ -370,8 +416,8 @@ export async function generateOGImage(
       imageBase64,
     });
 
-    // Load the single font needed for satori
-    const font = await loadFont();
+    // Load all fonts needed for satori
+    const fonts = await loadFonts();
 
     // Add timeout to satori call
     const svgPromise = satori(element as React.ReactNode, {
@@ -379,9 +425,21 @@ export async function generateOGImage(
       height: 630,
       fonts: [
         {
-          name: 'sans-serif',
-          data: font,
+          name: 'DMSans',
+          data: fonts.dmSansRegular,
           weight: 400,
+          style: 'normal',
+        },
+        {
+          name: 'DMSans',
+          data: fonts.dmSansBold,
+          weight: 700,
+          style: 'normal',
+        },
+        {
+          name: 'PlayfairDisplay',
+          data: fonts.playfairDisplayBold,
+          weight: 700,
           style: 'normal',
         },
       ],

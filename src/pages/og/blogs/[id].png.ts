@@ -23,6 +23,9 @@ async function getImageAsBase64(
       ),
     ]);
 
+    const originalSize = imageBuffer.length;
+    console.log(`Original image size: ${(originalSize / 1024).toFixed(2)}KB`);
+
     // Compress image using sharp to reduce file size
     // Resize to max 600px width (OG images are 1200x630, but we can scale down)
     // and apply aggressive compression
@@ -36,9 +39,21 @@ async function getImageAsBase64(
       ),
     ]);
 
+    const compressedSize = compressedBuffer.length;
+    const compressionRatio = (
+      (1 - compressedSize / originalSize) *
+      100
+    ).toFixed(2);
+    console.log(
+      `Compressed image size: ${(compressedSize / 1024).toFixed(2)}KB (${compressionRatio}% reduction)`,
+    );
+
     // Limit compressed image size to prevent memory issues (max 200KB)
     if (compressedBuffer.length > 200 * 1024) {
-      console.warn('Compressed image still too large, skipping:', imagePath);
+      console.warn(
+        `Compressed image still too large (${(compressedSize / 1024).toFixed(2)}KB > 200KB), skipping:`,
+        imagePath,
+      );
       return undefined;
     }
 
@@ -90,6 +105,13 @@ export const GET: APIRoute = async ({ props }) => {
       console.log('Found blog image path:', imagePath);
       if (imagePath) {
         imageBase64 = await getImageAsBase64(imagePath);
+        if (imageBase64) {
+          console.log('✓ Image successfully compressed and embedded');
+        } else {
+          console.log(
+            '⚠ Image compression resulted in undefined (likely too large)',
+          );
+        }
       }
     }
 
