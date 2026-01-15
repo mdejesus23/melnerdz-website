@@ -7,31 +7,24 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Cache fonts in memory to avoid repeated file reads
-let fontsCache: {
-  dmSans: ArrayBuffer;
-  dmSansBold: ArrayBuffer;
-  playfair: ArrayBuffer;
-} | null = null;
+// Cache font in memory to avoid repeated file reads
+let fontCache: ArrayBuffer | null = null;
 
-async function loadFonts() {
-  if (fontsCache) return fontsCache;
+async function loadFont(): Promise<ArrayBuffer> {
+  if (fontCache) return fontCache;
 
-  const fontsDir = path.resolve(__dirname, '../../public/fonts/og');
-
-  const [dmSans, dmSansBold, playfair] = await Promise.all([
-    fs.readFile(path.join(fontsDir, 'DMSans-Regular.ttf')),
-    fs.readFile(path.join(fontsDir, 'DMSans-Bold.ttf')),
-    fs.readFile(path.join(fontsDir, 'PlayfairDisplay-Bold.ttf')),
-  ]);
-
-  fontsCache = {
-    dmSans: new Uint8Array(dmSans).buffer,
-    dmSansBold: new Uint8Array(dmSansBold).buffer,
-    playfair: new Uint8Array(playfair).buffer,
-  };
-
-  return fontsCache;
+  try {
+    const fontPath = path.resolve(
+      __dirname,
+      '../../public/fonts/og/DMSans-Regular.ttf',
+    );
+    const fontBuffer = await fs.readFile(fontPath);
+    fontCache = new Uint8Array(fontBuffer).buffer;
+    return fontCache;
+  } catch (error) {
+    console.error('Error loading font:', error);
+    throw new Error('Failed to load font file');
+  }
 }
 
 export interface OGImageOptions {
@@ -193,7 +186,7 @@ function OGTemplate({
                 color: accentColor,
                 fontSize: '20px',
                 fontWeight: 700,
-                fontFamily: 'DM Sans',
+                fontFamily: 'sans-serif',
               }}
             >
               {typeLabel}
@@ -213,7 +206,7 @@ function OGTemplate({
                 color: '#ffffff',
                 fontSize: '24px',
                 fontWeight: 700,
-                fontFamily: 'Playfair Display',
+                fontFamily: 'serif',
               }}
             >
               Melnerdz
@@ -236,7 +229,7 @@ function OGTemplate({
               color: '#ffffff',
               fontSize: title.length > 50 ? '48px' : '56px',
               fontWeight: 700,
-              fontFamily: 'Playfair Display',
+              fontFamily: 'serif',
               lineHeight: 1.2,
               marginBottom: '24px',
               maxWidth: '900px',
@@ -252,7 +245,7 @@ function OGTemplate({
               style={{
                 color: 'rgba(255, 255, 255, 0.85)',
                 fontSize: '24px',
-                fontFamily: 'DM Sans',
+                fontFamily: 'sans-serif',
                 lineHeight: 1.5,
                 maxWidth: '800px',
                 marginBottom: '32px',
@@ -291,7 +284,7 @@ function OGTemplate({
                     padding: '8px 16px',
                     color: 'rgba(255, 255, 255, 0.9)',
                     fontSize: '16px',
-                    fontFamily: 'DM Sans',
+                    fontFamily: 'sans-serif',
                   }}
                 >
                   {tag}
@@ -314,7 +307,7 @@ function OGTemplate({
                 color: accentColor,
                 fontSize: '18px',
                 fontWeight: 600,
-                fontFamily: 'DM Sans',
+                fontFamily: 'sans-serif',
                 textShadow: imageBase64 ? '0 1px 3px rgba(0,0,0,0.5)' : 'none',
               }}
             >
@@ -325,7 +318,7 @@ function OGTemplate({
                 style={{
                   color: 'rgba(255, 255, 255, 0.7)',
                   fontSize: '16px',
-                  fontFamily: 'DM Sans',
+                  fontFamily: 'sans-serif',
                   textShadow: imageBase64
                     ? '0 1px 3px rgba(0,0,0,0.5)'
                     : 'none',
@@ -355,14 +348,6 @@ export async function generateOGImage(
       imageBase64,
     } = options;
 
-    // Load fonts from local cache with timeout
-    const fonts = await Promise.race([
-      loadFonts(),
-      new Promise<never>((_, reject) =>
-        setTimeout(() => reject(new Error('Font loading timeout')), 5000),
-      ),
-    ]);
-
     const formattedDate = pubDate
       ? new Date(pubDate).toLocaleDateString('en-US', {
           year: 'numeric',
@@ -385,30 +370,29 @@ export async function generateOGImage(
       imageBase64,
     });
 
-    const svg = await satori(element as React.ReactNode, {
+    // Load the single font needed for satori
+    const font = await loadFont();
+
+    // Add timeout to satori call
+    const svgPromise = satori(element as React.ReactNode, {
       width: 1200,
       height: 630,
       fonts: [
         {
-          name: 'DM Sans',
-          data: fonts.dmSans,
+          name: 'sans-serif',
+          data: font,
           weight: 400,
-          style: 'normal',
-        },
-        {
-          name: 'DM Sans',
-          data: fonts.dmSansBold,
-          weight: 700,
-          style: 'normal',
-        },
-        {
-          name: 'Playfair Display',
-          data: fonts.playfair,
-          weight: 700,
           style: 'normal',
         },
       ],
     });
+
+    const svg = await Promise.race([
+      svgPromise,
+      new Promise<string>((_, reject) =>
+        setTimeout(() => reject(new Error('Satori rendering timeout')), 10000),
+      ),
+    ]);
 
     const resvg = new Resvg(svg, {
       fitTo: {
@@ -420,7 +404,9 @@ export async function generateOGImage(
     const pngData = resvg.render();
     return pngData.asPng();
   } catch (error) {
-    console.error('Error generating OG image:', error);
-    throw error;
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    console.error('Error generating OG image:', errorMessage);
+    console.error('Full error:', error);
+    throw new Error(`Failed to generate OG image: ${errorMessage}`);
   }
 }
