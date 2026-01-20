@@ -1,4 +1,4 @@
-import ogImageSrc from '@/images/nerdz-dark.png';
+import ogImageSrc from '@/images/og-image.svg';
 
 export const SITE = {
   title: 'Melnerdz',
