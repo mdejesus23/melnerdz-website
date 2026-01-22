@@ -22,6 +22,19 @@ export default function NewsletterForm({
     setToasts((prev) => [...prev, { id, message, type }]);
   };
 
+  const validateEmail = (email: string): string | null => {
+    if (!email.trim()) {
+      return 'Please enter an email address.';
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return 'Please enter a valid email address.';
+    }
+
+    return null;
+  };
+
   const removeToast = (id: string) => {
     setToasts((prev) => prev.filter((toast) => toast.id !== id));
   };
@@ -30,14 +43,15 @@ export default function NewsletterForm({
     e: React.FormEvent<HTMLFormElement>,
   ): Promise<void> => {
     e.preventDefault();
-    setLoading(true);
     setMessage('');
 
-    if (!email) {
-      setMessage('⚠️ Please enter a valid email address.');
-      setLoading(false);
+    const validationError = validateEmail(email);
+    if (validationError) {
+      setMessage(validationError);
       return;
     }
+
+    setLoading(true);
 
     const response = await fetch(workerEndpoint, {
       method: 'POST',
