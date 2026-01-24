@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import Projects from '../components/Projects.astro';
 import { SITE, ISPARTOF } from '../data/constant';
 import Blog from '../components/sections/Blog.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
 import Newsletter from '../components/sections/Newsletter.astro';
 
 const canonical = Astro.url.href;
@@ -29,5 +30,6 @@ const description: string =
   <Hero />
   <Projects />
   <Blog />
+  <Testimonials />
   <Newsletter />
 </MainLayout>

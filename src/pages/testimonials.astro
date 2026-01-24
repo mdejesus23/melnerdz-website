@@ -1,0 +1,146 @@
+---
+import { ISPARTOF } from '@/data/constant';
+import MainLayout from '@/layouts/MainLayout.astro';
+import { testimonials, TESTIMONIALS_PROFILE_URL } from '@/data/testimonials';
+
+const canonical = Astro.url.href;
+const title = 'Testimonials';
+const description = 'Read what clients say about working with Melnard De Jesus - verified reviews and feedback from real projects.';
+---
+
+<MainLayout
+  title={title}
+  structuredData={{
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': canonical,
+    url: canonical,
+    name: 'Client Testimonials',
+    description: description,
+    isPartOf: ISPARTOF,
+    inLanguage: 'en-US',
+  }}
+  meta={description}
+>
+  <section class="py-10 md:py-20">
+    <!-- Hero section -->
+    <div class="mb-16 flex flex-col items-center text-center">
+      <!-- Icon -->
+      <div class="relative mb-8">
+        <div class="absolute -inset-4 animate-pulse-glow rounded-full border border-accent/20"></div>
+        <div class="relative flex h-24 w-24 items-center justify-center rounded-full border-2 border-accent/30 bg-bg-secondary shadow-glow md:h-32 md:w-32">
+          <svg class="h-12 w-12 text-accent md:h-16 md:w-16" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Title and intro -->
+      <span class="mb-4 inline-block text-sm font-medium uppercase tracking-widest text-accent">
+        Client Feedback
+      </span>
+      <h1 class="mb-4 font-headfont text-3xl font-bold md:text-5xl">
+        What Clients <span class="gradient-text">Say</span>
+      </h1>
+      <p class="max-w-xl text-lg text-text-muted">
+        Real feedback from clients I've had the pleasure of working with
+      </p>
+
+      <!-- CTA to verified reviews -->
+      <div class="mt-8">
+        <a
+          href={TESTIMONIALS_PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-accent px-6 py-3 font-medium text-bg-primary transition-all duration-300 hover:shadow-glow"
+        >
+          <span class="relative z-10">View Verified Reviews</span>
+          <svg
+            class="relative z-10 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            ></path>
+          </svg>
+          <div class="absolute inset-0 -translate-x-full bg-accent-light transition-transform duration-300 group-hover:translate-x-0"></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="flex items-center gap-4 py-8">
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent"></div>
+      <span class="h-1.5 w-1.5 rounded-full bg-accent/50"></span>
+      <div class="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent"></div>
+    </div>
+
+    <!-- Testimonials grid -->
+    <div class="mx-auto max-w-5xl">
+      <div class="grid gap-6 md:grid-cols-2 lg:gap-8">
+        {
+          testimonials.map((testimonial, index) => (
+            <article
+              class="group relative overflow-hidden rounded-2xl border border-border/50 bg-bg-card/50 p-6 backdrop-blur-sm transition-all duration-500 hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5 md:p-8"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <!-- Quote icon -->
+              <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
+                <svg class="h-6 w-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+
+              <!-- Content -->
+              <p class="mb-6 text-base leading-relaxed text-text-muted md:text-lg">
+                "{testimonial.content}"
+              </p>
+
+              <!-- Author -->
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="font-headfont text-lg font-semibold text-white">{testimonial.name}</p>
+                  <p class="text-sm text-text-muted">{testimonial.date}</p>
+                </div>
+                <!-- Stars -->
+                <div class="flex gap-0.5">
+                  {[...Array(5)].map(() => (
+                    <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="mt-12 text-center">
+        <p class="mb-4 text-text-muted">
+          Want to see more reviews? Check out my verified profile on OnlineJobs.ph
+        </p>
+        <a
+          href={TESTIMONIALS_PROFILE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center gap-2 rounded-full border border-border/50 bg-bg-secondary/30 px-6 py-3 text-sm font-medium text-text-muted backdrop-blur-sm transition-all duration-300 hover:border-accent/30 hover:text-accent"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+          Visit OnlineJobs.ph Profile
+          <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
