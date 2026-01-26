@@ -24,12 +24,14 @@ import LogoImageForLight from '@/images/nerdz-light.png';
         width={150}
         alt="Nerdz Logo"
         class="h-12 w-auto dark:hidden md:h-16"
+        loading="eager"
       />
       <Image
         src={LogoImageForDark}
         alt="Nerdz Logo"
         width={150}
         class="hidden h-12 w-auto dark:block md:h-16"
+        loading="eager"
       />
     </a>
 
@@ -132,23 +134,23 @@ import LogoImageForLight from '@/images/nerdz-light.png';
         headerBg.classList.remove(
           'bg-bg-primary/0',
           'backdrop-blur-none',
-          'border-transparent'
+          'border-transparent',
         );
         headerBg.classList.add(
           'bg-bg-primary/80',
           'backdrop-blur-xl',
-          'border-border'
+          'border-border',
         );
       } else {
         headerBg.classList.add(
           'bg-bg-primary/0',
           'backdrop-blur-none',
-          'border-transparent'
+          'border-transparent',
         );
         headerBg.classList.remove(
           'bg-bg-primary/80',
           'backdrop-blur-xl',
-          'border-border'
+          'border-border',
         );
       }
     };

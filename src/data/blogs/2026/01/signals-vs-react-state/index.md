@@ -20,6 +20,17 @@ tags:
   - performance
   - tutorial
   - react
+faqs:
+  - question: Can I use Signals in React?
+    answer: Not officially. There are experimental libraries like @preact/signals-react, but they work against React's design philosophy. If you want Signals, consider Preact or Solid.js instead.
+  - question: Are Signals always faster than React?
+    answer: For fine-grained updates, yes. But React's concurrent features (Suspense, Transitions) offer different performance benefits like better perceived performance during data fetching.
+  - question: Will React adopt Signals?
+    answer: The React team has expressed that Signals don't align with their vision. React is exploring other optimizations like the React Compiler (formerly React Forget) that automatically memoizes components.
+  - question: Should I migrate my React app to Signals?
+    answer: Probably not for existing apps. The ecosystem, tooling, and team familiarity often outweigh raw performance gains. Consider Signals for new projects where they make sense.
+  - question: How do Signals handle async data?
+    answer: Most Signal implementations have companion primitives for async data (like Solid's createResource or Angular's toSignal(observable)). They integrate well with Promises and observables.
 ---
 
 If you've been following the frontend ecosystem lately, you've probably noticed a lot of buzz around **Signals**. From Solid.js to Preact, Angular, and even proposals for vanilla JavaScript - Signals are everywhere. But what exactly are they, and how do they compare to React's tried-and-true `useState` and `useReducer`?
@@ -351,21 +362,3 @@ The frontend world isn't abandoning React state anytime soon, but Signals are cl
 - Choose based on your project's performance needs and team expertise
 - Keep an eye on the TC39 Signals proposal
 
----
-
-### FAQs
-
-**Can I use Signals in React?**
-Not officially. There are experimental libraries like `@preact/signals-react`, but they work against React's design philosophy. If you want Signals, consider Preact or Solid.js instead.
-
-**Are Signals always faster than React?**
-For fine-grained updates, yes. But React's concurrent features (Suspense, Transitions) offer different performance benefits like better perceived performance during data fetching.
-
-**Will React adopt Signals?**
-The React team has expressed that Signals don't align with their vision. React is exploring other optimizations like the React Compiler (formerly React Forget) that automatically memoizes components.
-
-**Should I migrate my React app to Signals?**
-Probably not for existing apps. The ecosystem, tooling, and team familiarity often outweigh raw performance gains. Consider Signals for new projects where they make sense.
-
-**How do Signals handle async data?**
-Most Signal implementations have companion primitives for async data (like Solid's `createResource` or Angular's `toSignal(observable)`). They integrate well with Promises and observables.
