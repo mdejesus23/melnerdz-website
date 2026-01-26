@@ -68,14 +68,29 @@ async function getImageAsBase64(
   }
 }
 
+// Maximum source image size to process (1MB) - larger images are skipped
+// to prevent memory issues and timeouts on serverless platforms
+const MAX_SOURCE_IMAGE_SIZE = 1024 * 1024;
+
 // Find the main.png image in the blog directory
+// Returns undefined if image doesn't exist or is too large to process safely
 async function findBlogImage(filePath: string): Promise<string | undefined> {
   const fullFilePath = path.join(projectRoot, filePath);
   const blogDir = path.dirname(fullFilePath);
   const imagePath = path.join(blogDir, 'main.png');
 
   try {
-    await fs.access(imagePath);
+    const stats = await fs.stat(imagePath);
+
+    // Skip images that are too large to process safely
+    if (stats.size > MAX_SOURCE_IMAGE_SIZE) {
+      console.log(
+        `Skipping large image (${(stats.size / 1024).toFixed(0)}KB > ${MAX_SOURCE_IMAGE_SIZE / 1024}KB):`,
+        imagePath,
+      );
+      return undefined;
+    }
+
     return imagePath;
   } catch {
     return undefined;

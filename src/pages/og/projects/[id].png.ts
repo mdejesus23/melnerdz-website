@@ -1,12 +1,17 @@
 import type { APIRoute, GetStaticPaths } from 'astro';
 import { getCollection } from 'astro:content';
 import { generateOGImage } from '../../../utils/ogImage';
+import sharp from 'sharp';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, '../../../../');
+
+// Maximum source image size to process (1MB) - larger images are skipped
+// to prevent memory issues and timeouts on serverless platforms
+const MAX_SOURCE_IMAGE_SIZE = 1024 * 1024;
 
 async function getImageAsBase64(
   imagePath: string,
@@ -22,16 +27,40 @@ async function getImageAsBase64(
       ),
     ]);
 
-    const ext = path.extname(imagePath).toLowerCase().slice(1);
-    const mimeType = ext === 'jpg' ? 'jpeg' : ext;
-    return `data:image/${mimeType};base64,${imageBuffer.toString('base64')}`;
+    const originalSize = imageBuffer.length;
+    console.log(`Original image size: ${(originalSize / 1024).toFixed(2)}KB`);
+
+    // Compress image using sharp to reduce file size
+    const compressedBuffer = await Promise.race([
+      sharp(imageBuffer)
+        .resize(600, 400, { fit: 'cover', withoutEnlargement: true })
+        .png({ quality: 70, progressive: true })
+        .toBuffer(),
+      new Promise<Buffer>((_, reject) =>
+        setTimeout(() => reject(new Error('Image compression timeout')), 3000),
+      ),
+    ]);
+
+    const compressedSize = compressedBuffer.length;
+    console.log(`Compressed image size: ${(compressedSize / 1024).toFixed(2)}KB`);
+
+    // Limit compressed image size to prevent memory issues (max 200KB)
+    if (compressedBuffer.length > 200 * 1024) {
+      console.warn(
+        `Compressed image still too large (${(compressedSize / 1024).toFixed(2)}KB > 200KB), skipping`,
+      );
+      return undefined;
+    }
+
+    return `data:image/png;base64,${compressedBuffer.toString('base64')}`;
   } catch (error) {
-    console.warn('Error reading image, continuing without it:', error);
+    console.warn('Error reading/compressing image, continuing without it:', error);
     return undefined;
   }
 }
 
 // Find the image file for a project by parsing the original markdown file
+// Returns undefined if image doesn't exist or is too large to process safely
 async function findProjectImage(filePath: string): Promise<string | undefined> {
   const fullFilePath = path.join(projectRoot, filePath);
   const projectDir = path.dirname(fullFilePath);
@@ -51,7 +80,17 @@ async function findProjectImage(filePath: string): Promise<string | undefined> {
         // Handle relative paths like './images/foo.png'
         const imagePath = path.join(projectDir, imageSrcPath);
         try {
-          await fs.access(imagePath);
+          const stats = await fs.stat(imagePath);
+
+          // Skip images that are too large to process safely
+          if (stats.size > MAX_SOURCE_IMAGE_SIZE) {
+            console.log(
+              `Skipping large image (${(stats.size / 1024).toFixed(0)}KB > ${MAX_SOURCE_IMAGE_SIZE / 1024}KB):`,
+              imagePath,
+            );
+            return undefined;
+          }
+
           return imagePath;
         } catch {
           // Image not found at specified path
