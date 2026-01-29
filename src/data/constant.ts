@@ -7,7 +7,7 @@ export const SITE = {
     'Explore my portfolio showcasing modern, user-friendly web applications. Specializing in front-end and full-stack development with a focus on responsive design, performance, and functionality.',
   description_short:
     'Portfolio of a web developer specializing in modern and robust applications.',
-  url: 'https://melnerdz.dev', // Replace with your portfolio URL
+  url: 'https://melnerdz.com', // Replace with your portfolio URL
   author: 'Melnard De Jesus', // Replace with your name
 };
 
