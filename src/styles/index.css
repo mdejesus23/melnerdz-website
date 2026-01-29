@@ -74,6 +74,7 @@ code:not(pre code) {
     --color-bg-card: rgba(255, 255, 255, 0.7);
     --color-accent: #f59e0b;
     --color-accent-light: #fbbf24;
+    --color-accent-foreground: #b45309; /* amber-700: 4.9:1 contrast on light bg */
     --color-accent-muted: rgba(245, 158, 11, 0.12);
     --color-text-muted: #57534e;
     --color-border: rgba(28, 25, 23, 0.25);
@@ -100,6 +101,7 @@ code:not(pre code) {
     --color-bg-card: rgba(23, 20, 18, 0.7);
     --color-accent: #f59e0b;
     --color-accent-light: #fbbf24;
+    --color-accent-foreground: #fbbf24; /* amber-400: excellent contrast on dark bg */
     --color-accent-muted: rgba(245, 158, 11, 0.12);
     --color-text-muted: #d6d3d1;
     --color-border: rgba(168, 162, 158, 0.3);
@@ -173,11 +175,11 @@ code:not(pre code) {
 
 /* Prose styling */
 .prose strong {
-  @apply font-semibold text-accent;
+  @apply font-semibold text-accent-foreground;
 }
 
 .prose a {
-  @apply text-accent underline-offset-4 hover:underline;
+  @apply text-accent-foreground underline-offset-4 hover:underline;
 }
 
 /* Mobile menu animation */
