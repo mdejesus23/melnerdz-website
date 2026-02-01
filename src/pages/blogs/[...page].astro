@@ -98,9 +98,24 @@ const formatDate = (date: Date) => {
 
               <!-- Content -->
               <div class="p-5">
-                <h2 class="mb-2 font-headfont text-lg font-bold text-white transition-colors group-hover:text-accent line-clamp-2">
-                  {article.data.title}
-                </h2>
+                <div class="flex items-start justify-between gap-2">
+                  <h2 class="mb-2 font-headfont text-lg font-bold text-white transition-colors group-hover:text-accent line-clamp-2">
+                    {article.data.title}
+                  </h2>
+                  <button
+                    class="bookmark-btn flex-shrink-0 p-1 text-text-muted transition-colors hover:text-accent"
+                    data-article-id={article.id}
+                    data-article-title={article.data.title}
+                    aria-label="Bookmark article"
+                  >
+                    <svg class="bookmark-icon h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                    </svg>
+                    <svg class="bookmark-icon-filled hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                    </svg>
+                  </button>
+                </div>
                 <p class="text-sm text-text-muted leading-relaxed line-clamp-2">
                   {turncateString(article.data.description, 120)}
                 </p>
@@ -141,4 +156,96 @@ const formatDate = (date: Date) => {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .bookmark-btn.bookmarked {
+    color: var(--color-accent);
+  }
+
+  .bookmark-btn.bookmarked .bookmark-icon {
+    display: none;
+  }
+
+  .bookmark-btn.bookmarked .bookmark-icon-filled {
+    display: block;
+  }
 </style>
+
+<script>
+  interface BookmarkItem {
+    id: string;
+    title: string;
+  }
+
+  function initBookmarks() {
+    const STORAGE_KEY = 'melnerdz-bookmarked-articles';
+
+    function getBookmarks(): BookmarkItem[] {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return [];
+        const parsed = JSON.parse(stored);
+        // Handle legacy format (array of strings)
+        if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === 'string') {
+          return parsed.map((id: string) => ({ id, title: id }));
+        }
+        return parsed;
+      } catch {
+        return [];
+      }
+    }
+
+    function saveBookmarks(bookmarks: BookmarkItem[]) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(bookmarks));
+      // Dispatch event for other components (like header panel)
+      window.dispatchEvent(new CustomEvent('bookmarks-updated', { detail: bookmarks }));
+    }
+
+    function toggleBookmark(articleId: string, articleTitle: string): boolean {
+      const bookmarks = getBookmarks();
+      const index = bookmarks.findIndex(b => b.id === articleId);
+
+      if (index > -1) {
+        bookmarks.splice(index, 1);
+        saveBookmarks(bookmarks);
+        return false;
+      } else {
+        bookmarks.push({ id: articleId, title: articleTitle });
+        saveBookmarks(bookmarks);
+        return true;
+      }
+    }
+
+    function isBookmarked(articleId: string): boolean {
+      return getBookmarks().some(b => b.id === articleId);
+    }
+
+    function updateButtonState(button: HTMLButtonElement, bookmarked: boolean) {
+      button.classList.toggle('bookmarked', bookmarked);
+      button.setAttribute('aria-label', bookmarked ? 'Remove bookmark' : 'Bookmark article');
+    }
+
+    // Initialize bookmark buttons
+    const bookmarkButtons = document.querySelectorAll<HTMLButtonElement>('.bookmark-btn');
+
+    bookmarkButtons.forEach((button) => {
+      const articleId = button.dataset.articleId;
+      const articleTitle = button.dataset.articleTitle || articleId;
+      if (!articleId) return;
+
+      // Set initial state
+      updateButtonState(button, isBookmarked(articleId));
+
+      // Handle click
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const isNowBookmarked = toggleBookmark(articleId, articleTitle!);
+        updateButtonState(button, isNowBookmarked);
+      });
+    });
+  }
+
+  // Run on initial load and after view transitions
+  initBookmarks();
+  document.addEventListener('astro:after-swap', initBookmarks);
+</script>

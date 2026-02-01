@@ -46,11 +46,59 @@ import LogoImageForLight from '@/images/nerdz-light.png';
           />
         ))
       }
+      <!-- Bookmarks button -->
+      <button
+        id="bookmarks-toggle"
+        class="bg-bg-secondary/50 hover:border-accent/50 relative ml-1 flex h-10 w-10 items-center justify-center rounded-full border border-border text-text-muted transition-colors hover:text-accent"
+        aria-label="View bookmarks"
+        aria-expanded="false"
+      >
+        <svg
+          class="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+        </svg>
+        <span
+          id="bookmarks-count"
+          class="absolute -right-1 -top-1 hidden h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-black"
+        ></span>
+      </button>
       <ThemeToggle />
     </nav>
 
     <!-- Mobile menu button and theme toggle -->
     <div class="flex items-center gap-2 sm:hidden">
+      <!-- Mobile bookmarks button -->
+      <button
+        id="bookmarks-toggle-mobile"
+        class="bg-bg-secondary/50 hover:border-accent/50 relative flex h-10 w-10 items-center justify-center rounded-full border border-border text-text-muted transition-colors hover:text-accent"
+        aria-label="View bookmarks"
+        aria-expanded="false"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+        </svg>
+        <span
+          id="bookmarks-count-mobile"
+          class="absolute -right-1 -top-1 hidden h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-black"
+        ></span>
+      </button>
       <ThemeToggle />
       <button
         id="mobile-menu"
@@ -122,13 +170,253 @@ import LogoImageForLight from '@/images/nerdz-light.png';
   </div>
 </nav>
 
+<!-- Bookmarks slide-out panel -->
+<div
+  id="bookmarks-panel"
+  class="z-99 fixed right-0 top-0 z-50 h-full w-full max-w-sm translate-x-full bg-bg-primary backdrop-blur-xl transition-transform duration-300 ease-in-out"
+>
+  <!-- Panel header -->
+  <div class="flex items-center justify-between border-b border-border p-6">
+    <div class="flex items-center gap-3">
+      <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+      </svg>
+      <h2 class="text-text-primary font-headfont text-lg font-bold">
+        Bookmarks
+      </h2>
+    </div>
+    <button
+      id="bookmarks-close"
+      class="hover:border-accent/50 hover:text-text-primary flex h-8 w-8 items-center justify-center rounded-full border border-border text-text-muted transition-colors"
+      aria-label="Close bookmarks"
+    >
+      <svg
+        class="h-4 w-4"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Bookmarks list -->
+  <div id="bookmarks-list" class="flex-1 overflow-y-auto p-4">
+    <!-- Populated by JavaScript -->
+  </div>
+
+  <!-- Empty state -->
+  <div
+    id="bookmarks-empty"
+    class="hidden flex-1 flex-col items-center justify-center p-8 text-center"
+  >
+    <svg
+      class="text-text-muted/30 mb-4 h-16 w-16"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="1"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path>
+    </svg>
+    <p class="text-text-muted">No bookmarks yet</p>
+    <p class="text-text-muted/70 mt-1 text-sm">Save articles to read later</p>
+  </div>
+</div>
+
+<!-- Bookmarks overlay -->
+<div
+  id="bookmarks-overlay"
+  class="fixed inset-0 z-40 hidden bg-black/50 backdrop-blur-sm"
+>
+</div>
+
 <script>
+  interface BookmarkItem {
+    id: string;
+    title: string;
+  }
+
   document.addEventListener('astro:page-load', () => {
     const header = document.getElementById('main-header');
     const headerBg = document.getElementById('header-bg');
     const toggleButton = document.getElementById('mobile-menu');
     const mobileNav = document.getElementById('navbar-collapse');
     const mobileLinks = document.querySelectorAll('.nav-mobile-link');
+
+    // Bookmarks panel elements
+    const bookmarksToggle = document.getElementById('bookmarks-toggle');
+    const bookmarksToggleMobile = document.getElementById(
+      'bookmarks-toggle-mobile',
+    );
+    const bookmarksPanel = document.getElementById('bookmarks-panel');
+    const bookmarksOverlay = document.getElementById('bookmarks-overlay');
+    const bookmarksClose = document.getElementById('bookmarks-close');
+    const bookmarksList = document.getElementById('bookmarks-list');
+    const bookmarksEmpty = document.getElementById('bookmarks-empty');
+    const bookmarksCount = document.getElementById('bookmarks-count');
+    const bookmarksCountMobile = document.getElementById(
+      'bookmarks-count-mobile',
+    );
+
+    const STORAGE_KEY = 'melnerdz-bookmarked-articles';
+
+    // Get bookmarks from localStorage
+    function getBookmarks(): BookmarkItem[] {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (!stored) return [];
+        const parsed = JSON.parse(stored);
+        // Handle legacy format (array of strings)
+        if (
+          Array.isArray(parsed) &&
+          parsed.length > 0 &&
+          typeof parsed[0] === 'string'
+        ) {
+          return parsed.map((id: string) => ({ id, title: id }));
+        }
+        return parsed;
+      } catch {
+        return [];
+      }
+    }
+
+    // Save bookmarks to localStorage
+    function saveBookmarks(bookmarks: BookmarkItem[]) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(bookmarks));
+      renderBookmarks();
+    }
+
+    // Remove a bookmark
+    function removeBookmark(articleId: string) {
+      const bookmarks = getBookmarks();
+      const filtered = bookmarks.filter((b) => b.id !== articleId);
+      saveBookmarks(filtered);
+      // Update any bookmark buttons on the page
+      const btn = document.querySelector(
+        `.bookmark-btn[data-article-id="${articleId}"]`,
+      );
+      if (btn) {
+        btn.classList.remove('bookmarked');
+        btn.setAttribute('aria-label', 'Bookmark article');
+      }
+    }
+
+    // Update bookmark count badge
+    function updateCount() {
+      const count = getBookmarks().length;
+      [bookmarksCount, bookmarksCountMobile].forEach((el) => {
+        if (el) {
+          if (count > 0) {
+            el.textContent = count.toString();
+            el.classList.remove('hidden');
+            el.classList.add('flex');
+          } else {
+            el.classList.add('hidden');
+            el.classList.remove('flex');
+          }
+        }
+      });
+    }
+
+    // Render bookmarks list
+    function renderBookmarks() {
+      const bookmarks = getBookmarks();
+      updateCount();
+
+      if (!bookmarksList || !bookmarksEmpty) return;
+
+      if (bookmarks.length === 0) {
+        bookmarksList.classList.add('hidden');
+        bookmarksEmpty.classList.remove('hidden');
+        bookmarksEmpty.classList.add('flex');
+        return;
+      }
+
+      bookmarksList.classList.remove('hidden');
+      bookmarksEmpty.classList.add('hidden');
+      bookmarksEmpty.classList.remove('flex');
+
+      bookmarksList.innerHTML = bookmarks
+        .map(
+          (bookmark) => `
+        <div class="bookmark-item group mb-3 flex items-center gap-3 rounded-xl border border-border bg-bg-secondary/50 p-3 transition-colors hover:border-accent/30">
+          <a href="/blogs/${bookmark.id}" class="flex-1 min-w-0">
+            <p class="font-medium text-text-primary truncate group-hover:text-accent transition-colors">${bookmark.title}</p>
+            <p class="text-xs text-text-muted truncate">/blogs/${bookmark.id}</p>
+          </a>
+          <button
+            class="bookmark-remove flex-shrink-0 p-1.5 text-text-muted transition-colors hover:text-red-400"
+            data-id="${bookmark.id}"
+            aria-label="Remove bookmark"
+          >
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+        </div>
+      `,
+        )
+        .join('');
+
+      // Add remove handlers
+      bookmarksList.querySelectorAll('.bookmark-remove').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const id = (btn as HTMLButtonElement).dataset.id;
+          if (id) removeBookmark(id);
+        });
+      });
+
+      // Close panel when clicking a bookmark link
+      bookmarksList.querySelectorAll('.bookmark-item a').forEach((link) => {
+        link.addEventListener('click', () => {
+          closeBookmarksPanel();
+        });
+      });
+    }
+
+    // Toggle bookmarks panel
+    function openBookmarksPanel() {
+      if (!bookmarksPanel || !bookmarksOverlay) return;
+      renderBookmarks();
+      bookmarksPanel.classList.remove('translate-x-full');
+      bookmarksOverlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      bookmarksToggle?.setAttribute('aria-expanded', 'true');
+      bookmarksToggleMobile?.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeBookmarksPanel() {
+      if (!bookmarksPanel || !bookmarksOverlay) return;
+      bookmarksPanel.classList.add('translate-x-full');
+      bookmarksOverlay.classList.add('hidden');
+      document.body.style.overflow = '';
+      bookmarksToggle?.setAttribute('aria-expanded', 'false');
+      bookmarksToggleMobile?.setAttribute('aria-expanded', 'false');
+    }
+
+    // Event listeners for bookmarks panel
+    bookmarksToggle?.addEventListener('click', openBookmarksPanel);
+    bookmarksToggleMobile?.addEventListener('click', openBookmarksPanel);
+    bookmarksClose?.addEventListener('click', closeBookmarksPanel);
+    bookmarksOverlay?.addEventListener('click', closeBookmarksPanel);
+
+    // Listen for bookmark updates from other pages
+    window.addEventListener('bookmarks-updated', () => {
+      renderBookmarks();
+    });
+
+    // Initialize count on load
+    updateCount();
 
     // Scroll effect for header
     const handleScroll = () => {
@@ -192,6 +480,16 @@ import LogoImageForLight from '@/images/nerdz-light.png';
         });
       });
     }
+
+    // Close bookmarks panel on escape key
+    document.addEventListener('keydown', (e) => {
+      if (
+        e.key === 'Escape' &&
+        !bookmarksPanel?.classList.contains('translate-x-full')
+      ) {
+        closeBookmarksPanel();
+      }
+    });
   });
 </script>
 
@@ -213,5 +511,21 @@ import LogoImageForLight from '@/images/nerdz-light.png';
       opacity: 1;
       transform: translateX(0);
     }
+  }
+
+  /* Bookmarks panel */
+  #bookmarks-panel {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--color-border);
+  }
+
+  #bookmarks-list {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .bookmark-item a {
+    text-decoration: none;
   }
 </style>
