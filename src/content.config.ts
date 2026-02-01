@@ -9,10 +9,14 @@ const projectsCollections = defineCollection({
       pubDate: z.date(),
       author: z.string(),
       featured: z.boolean().optional(),
-      image: z.object({
-        src: image(),
-        alt: z.string(),
-      }),
+      images: z
+        .array(
+          z.object({
+            src: image(),
+            alt: z.string(),
+          }),
+        )
+        .min(1),
       description: z.string(),
       technology: z.array(z.string()),
       tags: z.array(z.string()),

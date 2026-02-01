@@ -3,9 +3,9 @@ title: Rate Your Supplements
 pubDate: 2024-11-01
 author: Melnard De Jesus
 featured: true
-image:
-  src: './images/rateyoursupplements.jpg'
-  alt: 'A person coding on a laptop'
+images:
+  - src: './images/rateyoursupplements.jpg'
+    alt: 'A person coding on a laptop'
 description: Rate Your Supplements is a high-performance SSR Astro website integrated with Supabase, allowing users to review and rate supplements effortlessly. With a vast database of over 200,000 supplement records, the platform offers lightning-fast search capabilities powered by optimized queries, search vectors, and indexing. A custom RAG-powered chatbot enhances the user experience with factual, real-time answers. Built for speed, security, and usability, the platform sets a new standard for supplement reviews.
 tags: ['coding', 'tips', 'technology']
 technology:

@@ -9,7 +9,6 @@ import Newsletter from '@/components/sections/Newsletter.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import Breadcrumbs from '@/components/ui/Breadcrumbs.astro';
 import FaqAccordion from '@/components/FaqAccordion.astro';
-import ImageCarousel from '@/components/ImageCarousel.astro';
 
 interface Heading {
   depth: number;
@@ -184,20 +183,14 @@ const breadcrumbSchema = {
       <!-- Main Content -->
       <div class="mx-auto flex w-full max-w-prose flex-1 flex-col gap-5">
         <figure class="mx-auto w-full">
-          {
-            !isArticle && 'images' in data ? (
-              <ImageCarousel images={(data as Project).images} />
-            ) : (
-              <Image
-                width={700}
-                height={600}
-                src={(data as Blog).image.src}
-                alt={(data as Blog).image.alt}
-                sizes="(max-width: 1024px) 100vw, 700px"
-                class="h-auto w-full rounded-md"
-              />
-            )
-          }
+          <Image
+            width={700}
+            height={600}
+            src={(data as Blog).image.src}
+            alt={(data as Blog).image.alt}
+            sizes="(max-width: 1024px) 100vw, 700px"
+            class="h-auto w-full rounded-md"
+          />
         </figure>
         <Prose>
           <slot />

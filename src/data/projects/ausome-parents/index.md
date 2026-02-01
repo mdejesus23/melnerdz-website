@@ -3,9 +3,13 @@ title: Ausome Parents Blog Website
 pubDate: 2024-11-02
 author: Melnard De Jesus
 featured: true
-image:
-  src: './images/ausome-parents-guide.png'
-  alt: 'A loving parent holding hands with a child on the autism spectrum during a sunny day in the park'
+images:
+  - src: './images/ausome-parents-guide.png'
+    alt: 'A loving parent holding hands with a child on the autism spectrum during a sunny day in the park'
+  - src: './images/ausome-parents-guide2.png'
+    alt: 'A loving parent holding hands with a child on the autism spectrum'
+  - src: './images/ausome-parents-guide3.png'
+    alt: 'A loving parent holding hands with a child on the autism spectrum'
 description: A blog website Built with Next.js, TypeScript, PostgreSQL, and Cloudinary for image storage, this website features a secure admin dashboard for seamless blog content management.
 technology:
   [

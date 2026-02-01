@@ -50,8 +50,8 @@ const featuredProjects = allProjects.filter((project) => project.data.featured);
                 class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 width={450}
                 height={340}
-                src={project.data.image.src}
-                alt={project.data.image.alt}
+                src={project.data.images[0].src}
+                alt={project.data.images[0].alt}
               />
               <!-- Gradient overlay -->
               <div class="absolute inset-0 bg-gradient-to-t from-bg-primary/80 via-bg-primary/20 to-transparent md:bg-gradient-to-r md:from-transparent md:via-transparent md:to-bg-primary/30"></div>

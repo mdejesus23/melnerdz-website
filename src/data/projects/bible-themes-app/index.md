@@ -3,9 +3,9 @@ title: Bible themes App
 pubDate: 2024-10-01
 author: Melnard De Jesus
 featured: true
-image:
-  src: './images/preparation-app.jpg'
-  alt: 'Bible themes app login page'
+images:
+  - src: './images/preparation-app.jpg'
+    alt: 'Bible themes app login page'
 description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, Cloudinary file handling, and email notifications using SendGrid.
 slug: bible-themes-app
 tags:

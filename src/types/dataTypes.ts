@@ -1,11 +1,13 @@
+export interface ProjectImage {
+  src: any;
+  alt: string;
+}
+
 export interface Project {
   title: string;
   pubDate: Date;
   author: string;
-  image: {
-    src: any;
-    alt: string;
-  };
+  images: ProjectImage[];
   description: string;
   technology: string[];
   tags: string[];
