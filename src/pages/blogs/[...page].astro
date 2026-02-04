@@ -103,7 +103,7 @@ const formatDate = (date: Date) => {
                     {article.data.title}
                   </h2>
                   <button
-                    class="bookmark-btn flex-shrink-0 p-1 text-text-muted transition-colors hover:text-accent"
+                    class="bookmark-btn tooltip flex-shrink-0 p-1 text-text-muted transition-colors hover:text-accent"
                     data-article-id={article.id}
                     data-article-title={article.data.title}
                     aria-label="Bookmark article"
@@ -112,8 +112,9 @@ const formatDate = (date: Date) => {
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
                     </svg>
                     <svg class="bookmark-icon-filled hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                      <path d="M5 5a2 2 0 012-2h10a2 2v16l-7-3.5L5 21V5z" />
                     </svg>
+                    <span class="tooltiptext">Bookmark article</span>
                   </button>
                 </div>
                 <p class="text-sm text-text-muted leading-relaxed line-clamp-2">
@@ -167,6 +168,34 @@ const formatDate = (date: Date) => {
 
   .bookmark-btn.bookmarked .bookmark-icon-filled {
     display: block;
+  }
+
+  /* Tooltip styles */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-muted);
+    text-align: center;
+    border-radius: 4px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
   }
 </style>
 
@@ -222,6 +251,11 @@ const formatDate = (date: Date) => {
     function updateButtonState(button: HTMLButtonElement, bookmarked: boolean) {
       button.classList.toggle('bookmarked', bookmarked);
       button.setAttribute('aria-label', bookmarked ? 'Remove bookmark' : 'Bookmark article');
+
+      const tooltip = button.querySelector('.tooltiptext');
+      if (tooltip) {
+        tooltip.textContent = bookmarked ? 'Remove bookmark' : 'Bookmark article';
+      }
     }
 
     // Initialize bookmark buttons
