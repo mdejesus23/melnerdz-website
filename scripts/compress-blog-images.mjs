@@ -10,7 +10,7 @@ const projectRoot = path.resolve(__dirname, '..');
 async function compressBlogImages() {
   const blogImagesPattern = path.join(
     projectRoot,
-    'src/data/blogs/2026/02/javascript-memory-management/main.png',
+    'src/data/blogs/2026/02/javascript-splice-slice-array-methods/main.png',
   );
 
   const images = await glob(blogImagesPattern);

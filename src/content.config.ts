@@ -41,6 +41,13 @@ const blogCollection = defineCollection({
       description: z.string(),
       technology: z.array(z.string()).optional(),
       tags: z.array(z.string()),
+      series: z
+        .object({
+          name: z.string(), // Series identifier (e.g., "astro-portfolio-tutorial")
+          title: z.string(), // Display title (e.g., "Astro.js Portfolio Tutorial")
+          part: z.number(), // Part number in the series (1, 2, 3...)
+        })
+        .optional(),
       faqs: z
         .array(
           z.object({
