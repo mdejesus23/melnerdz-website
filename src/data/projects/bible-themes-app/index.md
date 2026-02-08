@@ -4,7 +4,11 @@ pubDate: 2024-10-01
 author: Melnard De Jesus
 featured: true
 images:
-  - src: './images/preparation-app.jpg'
+  - src: './images/preparation-app.png'
+    alt: 'Bible themes app login page'
+  - src: './images/preparation-app-2.png'
+    alt: 'Bible themes app login page'
+  - src: './images/preparation-app-3.png'
     alt: 'Bible themes app login page'
 description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, Cloudinary file handling, and email notifications using SendGrid.
 slug: bible-themes-app
@@ -35,7 +39,7 @@ technology:
     'Cloudinary',
     'Docker',
   ]
-link: 'https://scriptures-app.netlify.app/'
+link: 'https://scriptures-themes.melnerdz.com/'
 repo: 'https://github.com/mdejesus23/preparation-app'
 shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, Cloudinary file storage, SendGrid email notifications, secure data handling, and Docker containerization for streamlined development and deployment.
 ---
@@ -74,6 +78,6 @@ I've developed a full-stack <strong>Bible themes App</strong> for our church org
 
 ## Explore the App
 
-- Live Site: <a href="https://scriptures-app.netlify.app/" target="_blank">Bible themes app</a>
+- Live Site: <a href="https://scriptures-themes.melnerdz.com/" target="_blank">Bible themes app</a>
 - React App Source Code: <a href="https://github.com/mdejesus23/themes-preparation-app" target="_blank">GitHub Repository</a>
 - REST API Source Code: <a href="https://github.com/mdejesus23/prep-app" target="_blank">GitHub Repository</a>
