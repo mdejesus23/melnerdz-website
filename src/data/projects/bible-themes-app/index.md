@@ -10,7 +10,7 @@ images:
     alt: 'Bible themes app login page'
   - src: './images/preparation-app-3.png'
     alt: 'Bible themes app login page'
-description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, Cloudinary file handling, and email notifications using SendGrid.
+description: A MERN stack web application designed for managing Bible themes in our church. It offers secure CRUD functionality, state management, REST API integration, responsive design, Cloudinary file handling, and email notifications using SendGrid. Deployed on DigitalOcean Droplet with Nginx reverse proxy, SSL certificates via Certbot, and Docker containerization.
 slug: bible-themes-app
 tags:
   [
@@ -38,10 +38,13 @@ technology:
     'SendGrid',
     'Cloudinary',
     'Docker',
+    'DigitalOcean',
+    'Nginx',
+    'Certbot',
   ]
 link: 'https://scriptures-themes.melnerdz.com/'
 repo: 'https://github.com/mdejesus23/preparation-app'
-shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, Cloudinary file storage, SendGrid email notifications, secure data handling, and Docker containerization for streamlined development and deployment.
+shortDesc: MERN stack web app for managing bible themes activities, featuring authentication, REST API integration, JWT-based security, Cloudinary file storage, SendGrid email notifications, secure data handling, and Docker containerization. Deployed on DigitalOcean Droplet with Nginx reverse proxy and SSL certificates via Certbot.
 ---
 
 I've developed a full-stack <strong>Bible themes App</strong> for our church organization, built using the **MERN stack**. This application streamlines bible themes activities, making collaboration easier and more efficient.
@@ -69,6 +72,8 @@ I've developed a full-stack <strong>Bible themes App</strong> for our church org
 - <i class="fas fa-envelope text-lblue"></i> SendGrid Integration for Email Notifications: The app utilizes **SendGrid** to send automated email notifications for user actions such as account creation, password recovery, and other essential updates.
 
 - <i class="fas fa-cloud-upload-alt text-lblue"></i> Cloudinary for Media & EPUB Storage: All uploaded images and EPUB files are stored and managed via **Cloudinary**, ensuring optimized delivery and secure file handling.
+
+- <i class="fas fa-server text-lblue"></i> Production Deployment: The application is deployed on a **DigitalOcean Droplet** with **Nginx** as a reverse proxy, **Certbot** for SSL certificate management, and **Docker** for containerized deployment, ensuring scalability, security, and reliability.
 
 - <i class="fas fa-user-check text-lblue"></i> Test Credentials for Easy Access:
 
