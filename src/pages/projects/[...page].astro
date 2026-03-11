@@ -21,7 +21,7 @@ export async function getStaticPaths({ paginate }: any) {
   ).sort(
     (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
       b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
+  ).filter((proj) => !proj.data.isDraft);
 
   return paginate(allProjects || [], {
     pageSize: PROJECT_PER_PAGE,

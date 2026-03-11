@@ -8,10 +8,12 @@ import MarkdownProjectLayout from '../../layouts/MarkdownProjectLayout.astro';
 export async function getStaticPaths() {
   const allProjects: CollectionEntry<'projects'>[] = (
     await getCollection('projects')
-  ).sort(
-    (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
-      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
+  )
+    .sort(
+      (a: CollectionEntry<'projects'>, b: CollectionEntry<'projects'>) =>
+        b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+    )
+    .filter((proj) => !proj.data.isDraft);
 
   return allProjects.map((entry) => ({
     params: { id: entry.id },

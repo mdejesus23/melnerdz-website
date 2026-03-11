@@ -6,6 +6,7 @@ const projectsCollections = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
+      isDraft: z.boolean().optional(),
       pubDate: z.date(),
       author: z.string(),
       featured: z.boolean().optional(),
