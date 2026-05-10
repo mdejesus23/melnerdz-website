@@ -6,7 +6,7 @@ import turncateString from '../utils/turncateString';
 
 // Fetch projects data
 const allProjects: CollectionEntry<'projects'>[] = await getCollection('projects');
-const featuredProjects = allProjects.filter((project) => project.data.featured);
+const featuredProjects = allProjects.filter((project) => project.data.featured).sort((a,b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 ---
 
 <section id="projects" class="scroll-mt-24 py-16 md:py-24">
