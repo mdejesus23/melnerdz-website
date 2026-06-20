@@ -1,11 +1,6 @@
 ---
-import { Image } from 'astro:assets';
 import { footerLinks, navLinks } from '@/data/navLinks';
 import LinkedIn from './ui/icons/LinkedIn.astro';
-
-// images
-import LogoImageForDark from '@/images/nerdz-dark.png';
-import LogoImageForLight from '@/images/nerdz-light.png';
 ---
 
 <footer
@@ -22,17 +17,13 @@ import LogoImageForLight from '@/images/nerdz-light.png';
       <!-- Brand section -->
       <div class="md:col-span-5 lg:col-span-4">
         <!-- Logo -->
-        <a href="/" class="relative z-10">
-          <Image
-            src={LogoImageForLight}
-            alt="Nerdz Logo"
-            class="h-12 w-auto dark:hidden md:h-16"
-          />
-          <Image
-            src={LogoImageForDark}
-            alt="Nerdz Logo"
-            class="hidden h-12 w-auto dark:block md:h-16"
-          />
+        <a
+          href="/"
+          class="inline-flex items-center gap-1 font-logofont text-2xl font-bold tracking-tight"
+        >
+          <span class="text-accent">&lt;</span>
+          <span class="text-white">nerdz</span>
+          <span class="text-accent">/&gt;</span>
         </a>
         <p class="mt-4 max-w-sm text-sm leading-relaxed text-text-muted">
           Full-Stack Web Developer focused on creating clean, fast, and scalable
@@ -177,15 +168,6 @@ import LogoImageForLight from '@/images/nerdz-light.png';
       <p class="text-sm text-text-muted">
         &copy; <span id="copyright"></span>
         <span class="font-medium text-white">melnerdz.com</span>
-      </p>
-      <p class="text-xs text-text-muted">
-        Crafted with ☕ & code using <a
-          href="https://astro.build"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-medium text-accent-foreground transition-colors hover:underline"
-          >Astro</a
-        >
       </p>
     </div>
   </div>

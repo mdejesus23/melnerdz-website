@@ -38,34 +38,12 @@ const { title, meta, structuredData, liturgy, ogData } = Astro.props;
       ogData={ogData}
     />
 
-    <!-- Critical theme script to prevent flash -->
+    <!-- Always dark -->
     <script is:inline>
-      // Apply theme immediately
-      function applyStoredTheme() {
-        const theme = localStorage.getItem('theme');
-
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else {
-          // No theme set, use system preference
-          const prefersDark = window.matchMedia(
-            '(prefers-color-scheme: dark)'
-          ).matches;
-          if (prefersDark) {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        }
-      }
-
-      // Apply on initial load
-      applyStoredTheme();
-
-      // Re-apply after view transitions (Astro navigation)
-      document.addEventListener('astro:after-swap', applyStoredTheme);
+      document.documentElement.classList.add('dark');
+      document.addEventListener('astro:after-swap', () => {
+        document.documentElement.classList.add('dark');
+      });
     </script>
   </head>
   <body

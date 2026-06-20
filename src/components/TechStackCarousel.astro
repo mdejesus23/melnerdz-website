@@ -1,0 +1,65 @@
+---
+const row1 = [
+  'TypeScript',
+  'JavaScript',
+  'React',
+  'Next.js',
+  'Astro',
+  'Node.js',
+  'Express.js',
+  'Nest.js',
+  'Python',
+  'Flask',
+  'FastAPI',
+  'Tailwind CSS',
+];
+
+const row2 = [
+  'PostgreSQL',
+  'MongoDB',
+  'Supabase',
+  'MySQL',
+  'Redis',
+  'Docker',
+  'GraphQL',
+  'REST API',
+  'OpenAI',
+  'Stripe',
+  'Git',
+  'Linux',
+];
+---
+
+<div class="relative w-full overflow-hidden py-2">
+  <!-- Fade edges -->
+  <div
+    class="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-bg-primary to-transparent"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-bg-primary to-transparent"
+  >
+  </div>
+
+  <!-- Row 1 — scrolls left -->
+  <div class="animate-marquee mb-3 flex w-max gap-3">
+    {
+      [...row1, ...row1].map((tech) => (
+        <span class="inline-flex items-center whitespace-nowrap rounded-full border border-border/50 bg-bg-secondary/50 px-4 py-2 text-sm font-medium text-text-muted backdrop-blur-sm transition-colors duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-accent">
+          {tech}
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- Row 2 — scrolls right -->
+  <div class="animate-marquee-reverse flex w-max gap-3">
+    {
+      [...row2, ...row2].map((tech) => (
+        <span class="inline-flex items-center whitespace-nowrap rounded-full border border-border/50 bg-bg-secondary/50 px-4 py-2 text-sm font-medium text-text-muted backdrop-blur-sm transition-colors duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-accent">
+          {tech}
+        </span>
+      ))
+    }
+  </div>
+</div>

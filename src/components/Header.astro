@@ -1,13 +1,7 @@
 ---
-import { Image } from 'astro:assets';
 import { navLinks } from '@/data/navLinks';
 import NavLink from './ui/NavLink.astro';
 import MenuOpen from './ui/icons/MenuOpen.astro';
-import ThemeToggle from './ui/ThemeToggle.astro';
-
-// images
-import LogoImageForDark from '@/images/nerdz-dark.png';
-import LogoImageForLight from '@/images/nerdz-light.png';
 ---
 
 <header
@@ -18,21 +12,10 @@ import LogoImageForLight from '@/images/nerdz-light.png';
     class="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-8 xl:px-0"
   >
     <!-- Logo -->
-    <a href="/" class="relative z-10">
-      <Image
-        src={LogoImageForLight}
-        width={150}
-        alt="Nerdz Logo"
-        class="h-12 w-auto dark:hidden md:h-16"
-        loading="eager"
-      />
-      <Image
-        src={LogoImageForDark}
-        alt="Nerdz Logo"
-        width={150}
-        class="hidden h-12 w-auto dark:block md:h-16"
-        loading="eager"
-      />
+    <a href="/" class="relative z-10 flex items-center gap-1 font-logofont text-xl font-bold tracking-tight">
+      <span class="text-accent">&lt;</span>
+      <span class="text-white">nerdz</span>
+      <span class="text-accent">/&gt;</span>
     </a>
 
     <!-- Desktop navigation -->
@@ -70,10 +53,9 @@ import LogoImageForLight from '@/images/nerdz-light.png';
           class="absolute -right-1 -top-1 hidden h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-black"
         ></span>
       </button>
-      <ThemeToggle />
     </nav>
 
-    <!-- Mobile menu button and theme toggle -->
+    <!-- Mobile menu button -->
     <div class="flex items-center gap-2 sm:hidden">
       <!-- Mobile bookmarks button -->
       <button
@@ -99,7 +81,6 @@ import LogoImageForLight from '@/images/nerdz-light.png';
           class="absolute -right-1 -top-1 hidden h-4 w-4 items-center justify-center rounded-full bg-accent text-[10px] font-bold text-black"
         ></span>
       </button>
-      <ThemeToggle />
       <button
         id="mobile-menu"
         class="bg-bg-secondary/50 hover:border-accent/50 relative z-10 flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-full border border-border transition-colors"

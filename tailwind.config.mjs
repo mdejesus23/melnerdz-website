@@ -18,6 +18,11 @@ export default {
         'text-muted': 'var(--color-text-muted)',
         border: 'var(--color-border)',
         glass: 'var(--color-glass)',
+        subtle: 'var(--color-subtle)',
+        muted: 'var(--color-muted)',
+        danger: 'var(--color-danger)',
+        success: 'var(--color-success)',
+        warning: 'var(--color-warning)',
         // Legacy mappings
         pblue: 'var(--color-pblue)',
         lblue: 'var(--color-lblue)',
@@ -31,12 +36,12 @@ export default {
         bodyfont: ['var(--font-bodyfont)'],
       },
       boxShadow: {
-        glow: '0 0 30px rgba(245, 158, 11, 0.2)',
-        'glow-lg': '0 0 60px rgba(245, 158, 11, 0.3)',
+        glow: '0 0 30px rgba(94, 106, 210, 0.25)',
+        'glow-lg': '0 0 60px rgba(94, 106, 210, 0.35)',
         card: '0 4px 20px rgba(0, 0, 0, 0.3)',
         'card-hover': '0 8px 40px rgba(0, 0, 0, 0.4)',
         projectCard:
-          '0 4px 8px rgba(245, 158, 11, 0.15), 0 2px 4px rgba(0, 0, 0, 0.2)',
+          '0 4px 8px rgba(94, 106, 210, 0.15), 0 2px 4px rgba(0, 0, 0, 0.2)',
       },
       typography: () => ({
         DEFAULT: {
