@@ -54,6 +54,9 @@ const { title, meta, structuredData, liturgy, ogData } = Astro.props;
       <!-- Gradient spotlight from top -->
       <div class="spotlight absolute inset-0"></div>
 
+      <!-- Interactive cursor-following glow -->
+      <div id="cursor-glow" class="cursor-glow absolute inset-0"></div>
+
       <!-- Grid pattern -->
       <div class="grid-pattern absolute inset-0 opacity-50"></div>
 
@@ -92,5 +95,61 @@ const { title, meta, structuredData, liturgy, ogData } = Astro.props;
 
     <Footer />
     <BackToTop />
+
+    <!-- Cursor-following glow tracker -->
+    <script is:inline>
+      document.addEventListener('astro:page-load', () => {
+        (() => {
+          const reduceMotion = window.matchMedia(
+            '(prefers-reduced-motion: reduce)',
+          ).matches;
+          const finePointer = window.matchMedia('(pointer: fine)').matches;
+          if (reduceMotion || !finePointer) return;
+
+          const glow = document.getElementById('cursor-glow');
+          if (!glow) return;
+
+          // Target = latest mouse position; current = smoothed position.
+          let targetX = window.innerWidth / 2;
+          let targetY = window.innerHeight / 2;
+          let currentX = targetX;
+          let currentY = targetY;
+          let visible = false;
+          let raf = 0;
+
+          const render = () => {
+            // Ease current toward target for a trailing, fluid feel.
+            currentX += (targetX - currentX) * 0.12;
+            currentY += (targetY - currentY) * 0.12;
+            glow.style.setProperty('--glow-x', currentX + 'px');
+            glow.style.setProperty('--glow-y', currentY + 'px');
+            raf = requestAnimationFrame(render);
+          };
+
+          window.addEventListener(
+            'pointermove',
+            (e) => {
+              targetX = e.clientX;
+              targetY = e.clientY;
+              if (!visible) {
+                visible = true;
+                glow.style.opacity = '1';
+              }
+              if (!raf) raf = requestAnimationFrame(render);
+            },
+            { passive: true },
+          );
+
+          window.addEventListener('blur', () => {
+            glow.style.opacity = '0';
+            visible = false;
+            if (raf) {
+              cancelAnimationFrame(raf);
+              raf = 0;
+            }
+          });
+        })();
+      });
+    </script>
   </body>
 </html>
