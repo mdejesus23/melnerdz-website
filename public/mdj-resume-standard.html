@@ -15,40 +15,40 @@
 
       body {
         font-family: 'Georgia', serif;
-        font-size: 11pt;
-        line-height: 1.5;
+        font-size: 10pt;
+        line-height: 1.4;
         color: #111;
         background: #fff;
-        max-width: 780px;
-        margin: 40px auto;
-        padding: 0 40px;
+        max-width: 800px;
+        margin: 32px auto;
+        padding: 0 36px;
       }
 
       /* ── Header ── */
       header {
         text-align: center;
         border-bottom: 2px solid #111;
-        padding-bottom: 10px;
-        margin-bottom: 18px;
+        padding-bottom: 8px;
+        margin-bottom: 14px;
       }
 
       header h1 {
-        font-size: 22pt;
+        font-size: 20pt;
         letter-spacing: 2px;
         text-transform: uppercase;
         font-weight: bold;
       }
 
       header p.title {
-        font-size: 11pt;
+        font-size: 10.5pt;
         letter-spacing: 1px;
         color: #444;
         margin-top: 2px;
       }
 
       header .contact {
-        margin-top: 8px;
-        font-size: 10pt;
+        margin-top: 6px;
+        font-size: 9pt;
         color: #222;
       }
 
@@ -60,28 +60,46 @@
         text-decoration: underline;
       }
       header .contact span {
-        margin: 0 6px;
+        margin: 0 5px;
         color: #999;
+      }
+
+      /* ── Two-column layout ── */
+      .layout {
+        display: flex;
+        gap: 26px;
+        align-items: flex-start;
+      }
+
+      .main {
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .sidebar {
+        flex: 0 0 210px;
+        border-left: 1px solid #ccc;
+        padding-left: 20px;
       }
 
       /* ── Section ── */
       section {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
       }
 
       section h2 {
-        font-size: 10.5pt;
+        font-size: 9.5pt;
         text-transform: uppercase;
         letter-spacing: 1.5px;
         border-bottom: 1px solid #aaa;
         padding-bottom: 3px;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
         font-family: 'Georgia', serif;
       }
 
       /* ── Experience ── */
       .job {
-        margin-bottom: 14px;
+        margin-bottom: 11px;
       }
 
       .job-header {
@@ -94,76 +112,77 @@
 
       .job-header .role {
         font-weight: bold;
-        font-size: 11pt;
+        font-size: 10.5pt;
       }
 
       .job-header .dates {
-        font-size: 10pt;
+        font-size: 9pt;
         color: #444;
         white-space: nowrap;
       }
 
       .job-company {
-        font-size: 10.5pt;
+        font-size: 9.5pt;
         color: #333;
         font-style: italic;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
       }
 
       .job ul {
-        padding-left: 18px;
-        margin-top: 4px;
+        padding-left: 16px;
+        margin-top: 3px;
       }
 
       .job ul li {
-        margin-bottom: 3px;
-        font-size: 10.5pt;
+        margin-bottom: 2px;
+        font-size: 9.5pt;
       }
 
       /* ── Education ── */
-      .edu-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        flex-wrap: wrap;
+      .edu-item {
+        margin-bottom: 10px;
       }
 
-      .edu-header .degree {
+      .edu-item .degree {
         font-weight: bold;
+        font-size: 9.5pt;
       }
-      .edu-header .dates {
-        font-size: 10pt;
+      .edu-item .dates {
+        font-size: 8.5pt;
         color: #444;
       }
-
       .edu-institution {
         font-style: italic;
         color: #333;
-        font-size: 10.5pt;
+        font-size: 9pt;
       }
-
       .edu-note {
-        font-size: 10.5pt;
+        font-size: 9pt;
         color: #333;
       }
 
-      /* ── Skills ── */
-      .skills-grid {
-        display: grid;
-        grid-template-columns: 160px 1fr;
-        gap: 5px 10px;
-        font-size: 10.5pt;
+      /* ── Skills (sidebar) ── */
+      .skill-group {
+        margin-bottom: 9px;
       }
 
-      .skills-grid .label {
+      .skill-group .label {
         font-weight: bold;
+        font-size: 9.5pt;
+        display: block;
+        margin-bottom: 1px;
+      }
+
+      .skill-group .value {
+        font-size: 9pt;
+        color: #222;
       }
 
       /* ── Print ── */
       @media print {
         body {
           margin: 0;
-          padding: 20px 40px;
+          padding: 18px 34px;
           max-width: 100%;
         }
         a {
@@ -191,178 +210,170 @@
       </p>
     </header>
 
-    <!-- Work Experience -->
-    <section>
-      <h2>Work Experience</h2>
+    <div class="layout">
+      <!-- Main column -->
+      <div class="main">
+        <!-- Work Experience -->
+        <section>
+          <h2>Work Experience</h2>
 
-      <div class="job">
-        <div class="job-header">
-          <span class="role"
-            >Full-Stack Developer (Independent Contractor)</span
-          >
-          <span class="dates">Dec 2025 – Present</span>
-        </div>
-        <div class="job-company">dar.dev, Inc. — Quinlan, TX, USA</div>
-        <ul>
-          <li>
-            Deliver full-stack web development services across client projects.
-          </li>
-          <li>
-            Perform general programming and software development tasks as
-            directed.
-          </li>
-          <li>
-            Handle database administration, DevOps, infrastructure setup, and
-            hosting management.
-          </li>
-          <li>
-            Collaborate and coordinate with other team members on ongoing
-            projects.
-          </li>
-        </ul>
+          <div class="job">
+            <div class="job-header">
+              <span class="role"
+                >Full-Stack Developer (Independent Contractor)</span
+              >
+              <span class="dates">Dec 2025 – Present</span>
+            </div>
+            <div class="job-company">dar.dev, Inc. — Quinlan, TX, USA</div>
+            <ul>
+              <li>
+                Deliver full-stack web development services across client
+                projects.
+              </li>
+              <li>
+                Handle database administration, DevOps, infrastructure setup,
+                and hosting management.
+              </li>
+              <li>
+                Collaborate and coordinate with other team members on ongoing
+                projects.
+              </li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-header">
+              <span class="role">Junior Backend Engineer (Contract)</span>
+              <span class="dates">Oct 2025 – Dec 2025</span>
+            </div>
+            <div class="job-company">Conexus Technology, LLC</div>
+            <ul>
+              <li>
+                Collaborated with product managers and stakeholders to clarify
+                and refine backend software requirements.
+              </li>
+              <li>
+                Translated requirements into high-level technical designs,
+                architecture diagrams, and backend specifications.
+              </li>
+              <li>
+                Developed, maintained, and optimized backend services and APIs
+                as part of the core application stack.
+              </li>
+              <li>
+                Troubleshot and resolved problems related to backend code,
+                integrations, and system design.
+              </li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-header">
+              <span class="role">Full-stack Developer</span>
+              <span class="dates">Oct 2024 – Oct 2025</span>
+            </div>
+            <div class="job-company">
+              Inkful Borders Publishing LLC — Michigan, USA
+            </div>
+            <ul>
+              <li>
+                Built and maintained scalable web applications using MERN stack,
+                Next.js, Astro, and TypeScript, focusing on performance and SEO.
+              </li>
+              <li>
+                Implemented Incremental Static Regeneration (ISR) with advanced
+                caching for dynamic content updates at static performance.
+              </li>
+              <li>
+                Leveraged Supabase for authentication, real-time data, and
+                role-based access control, with secure Edge Functions.
+              </li>
+              <li>
+                Integrated Stripe for payment processing, including webhook
+                setup for payment events and automated workflows.
+              </li>
+            </ul>
+          </div>
+
+          <div class="job">
+            <div class="job-header">
+              <span class="role">Junior Software Developer</span>
+              <span class="dates">Jan 2024 – May 2024</span>
+            </div>
+            <div class="job-company">
+              Robot-hub Corp. — Auckland, New Zealand
+            </div>
+            <ul>
+              <li>
+                Designed, developed, and maintained scalable backend services
+                using AWS Lambda and related AWS services.
+              </li>
+              <li>
+                Implemented AWS Textract to extract text and data from documents;
+                debugged and monitored using AWS CloudWatch.
+              </li>
+              <li>
+                Built front-end interfaces with jQuery and leveraged MySQL for
+                querying and data manipulation.
+              </li>
+            </ul>
+          </div>
+        </section>
       </div>
 
-      <div class="job">
-        <div class="job-header">
-          <span class="role">Junior Backend Engineer (Contract)</span>
-          <span class="dates">Oct 2025 – Dec 2025</span>
-        </div>
-        <div class="job-company">Conexus Technology, LLC</div>
-        <ul>
-          <li>
-            Collaborate with product managers, engineers, and stakeholders to
-            clarify and refine backend software requirements.
-          </li>
-          <li>
-            Translate requirements into high-level technical designs,
-            architecture diagrams, and backend specifications.
-          </li>
-          <li>
-            Develop, maintain, and optimize backend services and APIs as part of
-            the core application stack.
-          </li>
-          <li>
-            Guide and support other developers throughout the implementation
-            process, helping unblock technical issues.
-          </li>
-          <li>
-            Troubleshoot and resolve problems related to backend code,
-            integrations, and system design.
-          </li>
-          <li>
-            Ensure tasks and features are delivered according to agreed
-            timelines, development schedules, and sprint goals.
-          </li>
-        </ul>
-      </div>
+      <!-- Right sidebar -->
+      <aside class="sidebar">
+        <!-- Skills -->
+        <section>
+          <h2>Skills</h2>
+          <div class="skill-group">
+            <span class="label">Languages</span>
+            <span class="value">JavaScript, TypeScript, Python, Node.js</span>
+          </div>
+          <div class="skill-group">
+            <span class="label">Frontend</span>
+            <span class="value"
+              >React.js, Next.js, Astro, Solid.js, jQuery, HTML, CSS, Tailwind
+              CSS, TinaCMS</span
+            >
+          </div>
+          <div class="skill-group">
+            <span class="label">Backend</span>
+            <span class="value"
+              >Node.js, Express.js, Supabase (Auth / DB / Edge Functions),
+              Stripe, OpenAI API, Anthropic API, MCP</span
+            >
+          </div>
+          <div class="skill-group">
+            <span class="label">Databases</span>
+            <span class="value">PostgreSQL, MySQL, MongoDB, Supabase</span>
+          </div>
+          <div class="skill-group">
+            <span class="label">DevOps &amp; Tools</span>
+            <span class="value"
+              >Docker, Git, GitHub, AWS Lambda, AWS Textract, AWS
+              CloudWatch</span
+            >
+          </div>
+          <div class="skill-group">
+            <span class="label">Operating Systems</span>
+            <span class="value">ArchLinux, Windows (WSL)</span>
+          </div>
+        </section>
 
-      <div class="job">
-        <div class="job-header">
-          <span class="role">Full-stack Developer</span>
-          <span class="dates">Oct 2024 – Oct 2025 · Full-time</span>
-        </div>
-        <div class="job-company">
-          Inkful Borders Publishing LLC — Michigan, USA
-        </div>
-        <ul>
-          <li>
-            Built and maintained scalable web applications using MERN stack,
-            Next.js, Astro, and TypeScript, focusing on performance,
-            maintainability, and SEO.
-          </li>
-          <li>
-            Implemented Incremental Static Regeneration (ISR) with advanced
-            caching strategies to enable dynamic content updates while
-            preserving static performance.
-          </li>
-          <li>
-            Leveraged Supabase for authentication, real-time data, database
-            management, and role-based access control.
-          </li>
-          <li>
-            Created and deployed Supabase Edge Functions for secure, low-latency
-            server-side logic.
-          </li>
-          <li>
-            Integrated Stripe for payment processing, including webhook setup
-            for payment events and automated workflows.
-          </li>
-        </ul>
-      </div>
-
-      <div class="job">
-        <div class="job-header">
-          <span class="role">Junior Software Developer</span>
-          <span class="dates">Jan 2024 – May 2024 · Full-time</span>
-        </div>
-        <div class="job-company">
-          Robot-hub Corp. — Wellesley Street, Auckland 1141
-        </div>
-        <ul>
-          <li>
-            Designed, developed, and maintained scalable backend services using
-            AWS Lambda and related AWS services.
-          </li>
-          <li>
-            Implemented AWS Textract solutions to extract text and data from
-            documents.
-          </li>
-          <li>Debugged and monitored code using AWS CloudWatch.</li>
-          <li>
-            Built front-end interfaces with jQuery to ensure smooth,
-            user-friendly navigation.
-          </li>
-          <li>
-            Leveraged MySQL for querying and data manipulation across various
-            application functionalities.
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section>
-      <h2>Education</h2>
-      <div class="edu-header">
-        <span class="degree">Associate Degree in Information Technology</span>
-        <span class="dates">Jun 2012 – Jun 2014</span>
-      </div>
-      <div class="edu-institution">
-        International Electronics and Technical Institute
-      </div>
-      <div class="edu-note">2-year course · Graduate</div>
-    </section>
-
-    <!-- Skills -->
-    <section>
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <span class="label">Languages</span>
-        <span>JavaScript, TypeScript, Python, Node.js</span>
-
-        <span class="label">Frontend</span>
-        <span
-          >React.js, Next.js, Astro, Solid.js, jQuery, HTML, CSS, Tailwind CSS,
-          TinaCMS</span
-        >
-
-        <span class="label">Backend</span>
-        <span
-          >Node.js, Express.js, Supabase (Auth / DB / Edge Functions), Stripe,
-          OpenAI API</span
-        >
-
-        <span class="label">Databases</span>
-        <span>PostgreSQL, MySQL, MongoDB, Supabase</span>
-
-        <span class="label">DevOps &amp; Tools</span>
-        <span
-          >Docker, Git, GitHub, AWS Lambda, AWS Textract, AWS CloudWatch</span
-        >
-
-        <span class="label">Operating Systems</span>
-        <span>ArchLinux, Windows (WSL)</span>
-      </div>
-    </section>
+        <!-- Education -->
+        <section>
+          <h2>Education</h2>
+          <div class="edu-item">
+            <div class="degree">Associate Degree in Information Technology</div>
+            <div class="dates">Jun 2012 – Jun 2014</div>
+            <div class="edu-institution">
+              International Electronics and Technical Institute
+            </div>
+            <div class="edu-note">2-year course · Graduate</div>
+          </div>
+        </section>
+      </aside>
+    </div>
   </body>
 </html>
