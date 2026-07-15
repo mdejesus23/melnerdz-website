@@ -1,32 +1,55 @@
 ---
+import AstroIcon from './ui/icons/tech/Astro.astro';
+import DockerIcon from './ui/icons/tech/Docker.astro';
+import GitIcon from './ui/icons/tech/Git.astro';
+import MongoIcon from './ui/icons/tech/Mongo.astro';
+import NestIcon from './ui/icons/tech/Nest.astro';
+import NextIcon from './ui/icons/tech/Next.astro';
+import NodeIcon from './ui/icons/tech/Node.astro';
+import OpenAiIcon from './ui/icons/tech/OpenAi.astro';
+import PostgresIcon from './ui/icons/tech/Postgres.astro';
+import PythonIcon from './ui/icons/tech/Python.astro';
+import ReactIcon from './ui/icons/tech/React.astro';
+import RedisIcon from './ui/icons/tech/Redis.astro';
+import SupabaseIcon from './ui/icons/tech/Supabase.astro';
+import TypescriptIcon from './ui/icons/tech/Typescript.astro';
+
+// Map a tech name to its brand icon.
+const iconMap: Record<string, (typeof ReactIcon) | undefined> = {
+  TypeScript: TypescriptIcon,
+  React: ReactIcon,
+  'Next.js': NextIcon,
+  Astro: AstroIcon,
+  'Node.js': NodeIcon,
+  'Nest.js': NestIcon,
+  Python: PythonIcon,
+  PostgreSQL: PostgresIcon,
+  MongoDB: MongoIcon,
+  Supabase: SupabaseIcon,
+  Redis: RedisIcon,
+  Docker: DockerIcon,
+  OpenAI: OpenAiIcon,
+  Git: GitIcon,
+};
+
 const row1 = [
   'TypeScript',
-  'JavaScript',
   'React',
   'Next.js',
   'Astro',
   'Node.js',
-  'Express.js',
   'Nest.js',
   'Python',
-  'Flask',
-  'FastAPI',
-  'Tailwind CSS',
 ];
 
 const row2 = [
   'PostgreSQL',
   'MongoDB',
   'Supabase',
-  'MySQL',
   'Redis',
   'Docker',
-  'GraphQL',
-  'REST API',
   'OpenAI',
-  'Stripe',
   'Git',
-  'Linux',
 ];
 ---
 
@@ -44,22 +67,45 @@ const row2 = [
   <!-- Row 1 — scrolls left -->
   <div class="animate-marquee mb-3 flex w-max gap-3">
     {
-      [...row1, ...row1].map((tech) => (
-        <span class="inline-flex items-center whitespace-nowrap rounded-full border border-border/50 bg-bg-secondary/50 px-4 py-2 text-sm font-medium text-text-muted backdrop-blur-sm transition-colors duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-accent">
-          {tech}
-        </span>
-      ))
+      [...row1, ...row1].map((tech) => {
+        const Icon = iconMap[tech];
+        return (
+          <span class="border-border/50 bg-bg-secondary/50 hover:border-accent/40 hover:bg-accent/10 inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium text-text-muted backdrop-blur-sm transition-colors duration-200 hover:text-accent">
+            {Icon && (
+              <span class="tech-icon inline-flex">
+                <Icon />
+              </span>
+            )}
+            {tech}
+          </span>
+        );
+      })
     }
   </div>
 
   <!-- Row 2 — scrolls right -->
   <div class="animate-marquee-reverse flex w-max gap-3">
     {
-      [...row2, ...row2].map((tech) => (
-        <span class="inline-flex items-center whitespace-nowrap rounded-full border border-border/50 bg-bg-secondary/50 px-4 py-2 text-sm font-medium text-text-muted backdrop-blur-sm transition-colors duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-accent">
-          {tech}
-        </span>
-      ))
+      [...row2, ...row2].map((tech) => {
+        const Icon = iconMap[tech];
+        return (
+          <span class="border-border/50 bg-bg-secondary/50 hover:border-accent/40 hover:bg-accent/10 inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2 text-sm font-medium text-text-muted backdrop-blur-sm transition-colors duration-200 hover:text-accent">
+            {Icon && (
+              <span class="tech-icon inline-flex">
+                <Icon />
+              </span>
+            )}
+            {tech}
+          </span>
+        );
+      })
     }
   </div>
 </div>
+
+<style>
+  .tech-icon :global(svg) {
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+</style>
