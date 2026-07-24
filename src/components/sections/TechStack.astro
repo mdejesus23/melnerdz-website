@@ -1,0 +1,76 @@
+---
+import AstroIcon from '../ui/icons/tech/Astro.astro';
+import ClaudeIcon from '../ui/icons/tech/Claude.astro';
+import DockerIcon from '../ui/icons/tech/Docker.astro';
+import GitIcon from '../ui/icons/tech/Git.astro';
+import MongoIcon from '../ui/icons/tech/Mongo.astro';
+import NestIcon from '../ui/icons/tech/Nest.astro';
+import NextIcon from '../ui/icons/tech/Next.astro';
+import NodeIcon from '../ui/icons/tech/Node.astro';
+import OpenAiIcon from '../ui/icons/tech/OpenAi.astro';
+import PostgresIcon from '../ui/icons/tech/Postgres.astro';
+import PythonIcon from '../ui/icons/tech/Python.astro';
+import ReactIcon from '../ui/icons/tech/React.astro';
+import RedisIcon from '../ui/icons/tech/Redis.astro';
+import SupabaseIcon from '../ui/icons/tech/Supabase.astro';
+import TypescriptIcon from '../ui/icons/tech/Typescript.astro';
+
+const stack = [
+  { name: 'TypeScript', Icon: TypescriptIcon },
+  { name: 'React', Icon: ReactIcon },
+  { name: 'Next.js', Icon: NextIcon },
+  { name: 'Astro', Icon: AstroIcon },
+  { name: 'Node.js', Icon: NodeIcon },
+  { name: 'Nest.js', Icon: NestIcon },
+  { name: 'Python', Icon: PythonIcon },
+  { name: 'PostgreSQL', Icon: PostgresIcon },
+  { name: 'MongoDB', Icon: MongoIcon },
+  { name: 'Supabase', Icon: SupabaseIcon },
+  { name: 'Redis', Icon: RedisIcon },
+  { name: 'Docker', Icon: DockerIcon },
+  { name: 'OpenAI', Icon: OpenAiIcon },
+  { name: 'Claude', Icon: ClaudeIcon },
+  { name: 'Git', Icon: GitIcon },
+];
+---
+
+<section class="py-16 md:py-24">
+  <div class="container-page">
+    <div class="mb-10">
+      <p class="eyebrow">Tech Stack</p>
+      <h2 class="mt-2 text-2xl font-bold text-white md:text-3xl">
+        Technologies I Use
+      </h2>
+    </div>
+
+    <div
+      class="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8"
+    >
+      {
+        stack.map(({ name, Icon }) => (
+          <div class="tech-tile flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-card px-3 py-3 transition-colors hover:border-accent">
+            <span class="tech-icon inline-flex shrink-0">
+              <Icon />
+            </span>
+            <span class="truncate text-xs font-medium text-white">{name}</span>
+          </div>
+        ))
+      }
+
+      <a
+        href="/about"
+        class="flex items-center justify-center gap-2 rounded-lg border border-border bg-bg-card px-3 py-3 transition-colors hover:border-accent"
+      >
+        <span class="text-text-muted" aria-hidden="true">•••</span>
+        <span class="text-xs font-medium text-white">More</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tech-icon :global(svg) {
+    height: 1.1rem;
+    width: 1.1rem;
+  }
+</style>

@@ -34,11 +34,9 @@ async function getProjects() {
 }
 
 export async function GET() {
-  const posts = await getPosts();
+  // Blog rendering is disabled, so blog entries are left out of the index to
+  // avoid surfacing links to pages that are no longer built.
   const projects = await getProjects();
 
-  // Combine the posts and journals into one array
-  const allData = [...posts, ...projects];
-
-  return Response.json(allData, { status: 200 });
+  return Response.json([...projects], { status: 200 });
 }

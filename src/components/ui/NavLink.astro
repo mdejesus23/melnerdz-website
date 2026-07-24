@@ -1,55 +1,35 @@
 ---
-import Download from './icons/Download.astro';
-import ExternalLink from './icons/ExternalLink.astro';
-
 interface Props {
   title: string;
   url: string;
-  isMobile?: boolean;
   currentPath?: string;
 }
 
-const { title, url, isMobile = false, currentPath = '' } = Astro.props;
+const { title, url, currentPath = '' } = Astro.props;
 
 // Normalize paths for comparison
 const normalizedUrl = url === '/' ? '/' : url.replace(/\/+$/, '');
-const normalizedPath = currentPath === '/' ? '/' : currentPath.replace(/\/+$/, '');
-const isActive = normalizedUrl === normalizedPath;
+const normalizedPath =
+  currentPath === '/' ? '/' : currentPath.replace(/\/+$/, '');
+const isActive =
+  normalizedUrl === '/'
+    ? normalizedPath === '/'
+    : normalizedPath === normalizedUrl ||
+      normalizedPath.startsWith(`${normalizedUrl}/`);
 ---
 
-{isMobile ? (
-  <li class="w-full border-b border-border/50 px-6 py-4">
-    <a
-      href={url}
-      class:list={[
-        "flex items-center gap-2 text-lg font-medium transition-colors",
-        isActive ? "text-accent" : "text-white hover:text-accent"
-      ]}
-      aria-label={title}
-      target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
-    >
-      {title}
-      {title === 'CV' && <Download />}
-      {title === 'Github' && <ExternalLink />}
-    </a>
-  </li>
-) : (
-  <a
-    href={url}
-    class:list={[
-      "relative px-4 py-2 text-sm font-medium transition-colors",
-      isActive ? "text-accent" : "text-text-muted hover:text-white"
-    ]}
-    aria-label={title}
-    target={title === 'Github' || title === 'CV' ? '_blank' : '_self'}
-  >
-    {title}
-    {title === 'CV' && <Download />}
-    {title === 'Github' && <ExternalLink />}
-    
-    <!-- Active indicator -->
-    {isActive && (
-      <span class="absolute bottom-0 left-1/2 h-0.5 w-4 -translate-x-1/2 rounded-full bg-accent"></span>
-    )}
-  </a>
-)}
+<a
+  href={url}
+  aria-current={isActive ? 'page' : undefined}
+  class:list={[
+    'relative px-3 py-2 text-sm font-medium transition-colors lg:px-4',
+    isActive ? 'text-white' : 'text-text-muted hover:text-white',
+  ]}
+>
+  {title}
+  {
+    isActive && (
+      <span class="absolute -bottom-0.5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-accent" />
+    )
+  }
+</a>

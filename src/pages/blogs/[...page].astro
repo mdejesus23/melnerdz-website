@@ -1,9 +1,7 @@
 ---
 import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
 import MainLayout from '../../layouts/MainLayout.astro';
 import Pagination from '../../components/Pagination.astro';
-import type { CollectionEntry } from 'astro:content';
 import type { Page } from '../../types/dataTypes';
 import { SITE, ISPARTOF } from '../../data/constant';
 import Newsletter from '../../components/sections/Newsletter.astro';
@@ -15,21 +13,16 @@ interface Props {
   page: Page;
 }
 
-export async function getStaticPaths({ paginate }: any) {
-  const POSTS_PER_PAGE: number = 6;
-  const posts: CollectionEntry<'blogs'>[] = (await getCollection('blogs')).sort(
-    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
-  );
-  return paginate(posts || [], {
-    pageSize: POSTS_PER_PAGE,
-  });
+export async function getStaticPaths() {
+  // Blog rendering is disabled — content files are kept but no routes are built.
+  return [];
 }
 
-const { page } = Astro.props;
+const { page } = Astro.props as any;
 const title: string = `Blog | ${SITE.title}`;
 const description: string = 'Explore my latest articles and insights on web development.';
 
-const articles = page.data;
+const articles: any[] = page.data;
 const totalPages = Math.ceil(page.total / 6);
 
 // Format date helper

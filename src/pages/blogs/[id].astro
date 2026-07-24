@@ -1,25 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import type { Blog } from '../../types/dataTypes';
 import { render } from 'astro:content';
 import MarkdownBlogLayout from '../../layouts/MarkdownBlogLayout.astro';
 
 export async function getStaticPaths() {
-  const allBlogs: CollectionEntry<'blogs'>[] = (
-    await getCollection('blogs')
-  ).sort(
-    (a: CollectionEntry<'blogs'>, b: CollectionEntry<'blogs'>) =>
-      b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-  );
-
-  return allBlogs.map((entry) => ({
-    params: { id: entry.id },
-    props: { entry },
-  }));
+  // Blog rendering is disabled — content files are kept but no routes are built.
+  return [];
 }
 
-const { entry } = Astro.props;
+const { entry } = Astro.props as any;
 const collection = entry.collection;
 
 const data = entry.data;

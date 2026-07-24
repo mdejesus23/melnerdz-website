@@ -10,8 +10,8 @@ export const navLinks: NavLink[] = [
     url: '/projects',
   },
   {
-    title: 'Blogs',
-    url: '/blogs',
+    title: 'About Me',
+    url: '/about',
   },
   {
     title: 'Testimonials',
@@ -21,35 +21,23 @@ export const navLinks: NavLink[] = [
     title: 'Contact',
     url: '/contact',
   },
-  {
-    title: 'About Me',
-    url: '/about',
-  },
-  {
-    title: 'Search',
-    url: '/search',
-  },
-  // {
-  //   title: 'CV',
-  //   url: '/melnard-de-jesus-resume.pdf',
-  // },
 ];
 
 export const footerLinks: NavLink[] = [
   {
-    title: 'RSS',
-    url: '/rss.xml',
-  },
-  {
-    title: 'Facebook',
-    url: 'https://www.facebook.com/dejesusmelnard',
+    title: 'Github',
+    url: 'https://github.com/mdejesus23',
   },
   {
     title: 'linkedin',
     url: 'https://www.linkedin.com/in/melnard-de-jesus-279132278',
   },
   {
-    title: 'Github',
-    url: 'https://github.com/mdejesus23',
+    title: 'Facebook',
+    url: 'https://www.facebook.com/dejesusmelnard',
+  },
+  {
+    title: 'Email',
+    url: 'mailto:hello@melnerdz.com',
   },
 ];

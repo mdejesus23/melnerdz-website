@@ -15,6 +15,9 @@ export default {
         'accent-light': 'var(--color-accent-light)',
         'accent-foreground': 'var(--color-accent-foreground)',
         'accent-muted': 'var(--color-accent-muted)',
+        primary: 'var(--color-primary)',
+        'primary-hover': 'var(--color-primary-hover)',
+        'primary-foreground': 'var(--color-primary-foreground)',
         'text-muted': 'var(--color-text-muted)',
         border: 'var(--color-border)',
         glass: 'var(--color-glass)',
@@ -36,12 +39,11 @@ export default {
         bodyfont: ['var(--font-bodyfont)'],
       },
       boxShadow: {
-        glow: '0 0 30px rgba(94, 106, 210, 0.25)',
-        'glow-lg': '0 0 60px rgba(94, 106, 210, 0.35)',
-        card: '0 4px 20px rgba(0, 0, 0, 0.3)',
-        'card-hover': '0 8px 40px rgba(0, 0, 0, 0.4)',
-        projectCard:
-          '0 4px 8px rgba(94, 106, 210, 0.15), 0 2px 4px rgba(0, 0, 0, 0.2)',
+        glow: '0 1px 2px rgba(15, 23, 42, 0.06)',
+        'glow-lg': '0 12px 28px rgba(15, 23, 42, 0.08)',
+        card: '0 1px 3px rgba(15, 23, 42, 0.06)',
+        'card-hover': '0 12px 28px rgba(15, 23, 42, 0.1)',
+        projectCard: '0 1px 3px rgba(15, 23, 42, 0.06)',
       },
       typography: () => ({
         DEFAULT: {
@@ -56,11 +58,10 @@ export default {
         },
       }),
       animation: {
-        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+        'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
         'fade-in': 'fade-in 0.6s ease-out forwards',
-        'slide-in-right': 'slide-in-right 0.8s ease-out forwards',
+        'slide-in-right': 'slide-in-right 0.7s ease-out forwards',
         float: 'float 6s ease-in-out infinite',
-        'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
       },
     },
     screens: {
