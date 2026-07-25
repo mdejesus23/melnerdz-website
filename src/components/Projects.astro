@@ -17,7 +17,7 @@ const sortByDate = (
 const featured = allProjects.filter((project) => project.data.featured);
 const featuredProjects = (featured.length ? featured : allProjects)
   .sort(sortByDate)
-  .slice(0, 4);
+  .slice(0, 3);
 ---
 
 <section id="projects" class="scroll-mt-20 bg-bg-secondary py-16 md:py-24">
@@ -44,13 +44,16 @@ const featuredProjects = (featured.length ? featured : allProjects)
           stroke="currentColor"
           stroke-width="2"
         >
-          <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
       </a>
     </div>
 
     <!-- Cards -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {
         featuredProjects.map((project) => (
           <article class="hover-lift group overflow-hidden rounded-xl border border-border bg-bg-card">
