@@ -28,34 +28,38 @@ const { title, meta, structuredData, liturgy, ogData, fullWidth } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <script
-      is:inline
-      defer
-      src="https://cloud.umami.is/script.js"
-      data-website-id="e0da0de5-9cf3-4c9d-af46-957fd58158c5"></script>
+<html lang="en" class="dark">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <MainHead
-      liturgy={liturgy}
-      title={title}
-      meta={meta}
-      structuredData={structuredData}
-      ogData={ogData}
-    />
+  <script
+    is:inline
+    defer
+    src="https://cloud.umami.is/script.js"
+    data-website-id="e0da0de5-9cf3-4c9d-af46-957fd58158c5"></script>
 
-    <!-- Theme init: light by default, honours a stored preference (no flash) -->
-    <script is:inline>
-      (() => {
-        const isDark = localStorage.getItem('theme') === 'dark';
+  <MainHead
+    liturgy={liturgy}
+    title={title}
+    meta={meta}
+    structuredData={structuredData}
+    ogData={ogData}
+  />
+
+  <!-- Theme init: dark by default, honours a stored preference (no flash).
+         `<html>` ships with `class="dark"`, so this only ever needs to strip it
+         for a visitor who explicitly chose light. -->
+  <script is:inline>
+    (() => {
+      const applyTheme = () => {
+        const isDark = localStorage.getItem('theme') !== 'light';
         document.documentElement.classList.toggle('dark', isDark);
-      })();
-      document.addEventListener('astro:after-swap', () => {
-        const isDark = localStorage.getItem('theme') === 'dark';
-        document.documentElement.classList.toggle('dark', isDark);
-      });
-    </script>
-  </head>
+      };
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
+    })();
+  </script>
+
   <body
     class="min-h-screen overflow-x-hidden bg-bg-primary font-bodyfont text-white"
   >

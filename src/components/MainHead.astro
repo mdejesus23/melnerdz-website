@@ -30,15 +30,26 @@ const {
 
 <head>
   <ClientRouter />
-  <meta charset="utf-8" />
 
   <!-- Preconnect to external domains -->
   <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
   <link rel="preconnect" href="https://cloud.umami.is" crossorigin />
 
   <!-- Preload critical fonts -->
-  <link rel="preload" href="/fonts/DMSans-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/PlayfairDisplay-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin />
+  <link
+    rel="preload"
+    href="/fonts/DMSans-VariableFont_opsz,wght.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
+  <link
+    rel="preload"
+    href="/fonts/PlayfairDisplay-VariableFont_wght.woff2"
+    as="font"
+    type="font/woff2"
+    crossorigin
+  />
 
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -61,10 +72,14 @@ const {
   </noscript>
 
   <link rel="sitemap" href="/sitemap-index.xml" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="generator" content={Astro.generator} />
   <title>{title}</title>
 
   <!-- Adding metadata to the HTML document -->
-  <Meta liturgy={liturgy} meta={meta} structuredData={structuredData} ogData={ogData} />
+  <Meta
+    liturgy={liturgy}
+    meta={meta}
+    structuredData={structuredData}
+    ogData={ogData}
+  />
 </head>
