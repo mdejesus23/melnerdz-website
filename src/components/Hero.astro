@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import profilePicture from '../images/mdj.png';
+import profilePicture from '../images/mdj.jpg';
 
 const socials = [
   {
@@ -60,7 +60,10 @@ const socials = [
             stroke="currentColor"
             stroke-width="2"
           >
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
         </a>
 
@@ -80,14 +83,15 @@ const socials = [
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            ></path>
           </svg>
         </a>
       </div>
 
       <!-- Social row -->
       <div
-        class="mt-10 flex animate-fade-in-up items-center gap-5 opacity-0 delay-400"
+        class="delay-400 mt-10 flex animate-fade-in-up items-center gap-5 opacity-0"
       >
         <span class="text-sm font-medium text-text-muted">Let's connect</span>
         <div class="flex items-center gap-4">
@@ -100,7 +104,11 @@ const socials = [
                 aria-label={social.label}
                 class="text-text-muted transition-colors hover:text-accent"
               >
-                <svg class="h-[18px] w-[18px]" fill="currentColor" viewBox="0 0 24 24">
+                <svg
+                  class="h-[18px] w-[18px]"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path d={social.path} />
                 </svg>
               </a>
@@ -121,7 +129,8 @@ const socials = [
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path>
             </svg>
           </a>
         </div>
