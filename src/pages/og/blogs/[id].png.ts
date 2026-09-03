@@ -98,8 +98,12 @@ async function findBlogImage(filePath: string): Promise<string | undefined> {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Blog rendering is disabled — no blog OG images are generated.
-  return [];
+  const blogs = await getCollection('blogs');
+
+  return blogs.map((blog) => ({
+    params: { id: blog.id },
+    props: { blog },
+  }));
 };
 
 export const GET: APIRoute = async ({ props }) => {

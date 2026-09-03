@@ -1,12 +1,26 @@
 import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import sanitizeHtml from 'sanitize-html';
+import MarkdownIt from 'markdown-it';
+const parser = new MarkdownIt();
 
 export async function GET(context) {
-  // Blog rendering is disabled — the feed is intentionally empty for now.
+  const blog = await getCollection('blogs');
+
   return rss({
-    title: 'Melnerdz',
-    description: 'Portfolio of Melnard De Jesus, fullstack web developer.',
+    title: 'Melnerdz Blog',
+    description: 'A blog about spirituality, technology, and life.',
     site: context.site,
-    items: [],
+    items: blog.map((post) => ({
+      // title: post.data.title,
+      // pubDate: post.data.pubDate
+      // description: post.data.description,
+      link: `/blogs/${post.id}/`,
+      content: sanitizeHtml(parser.render(post.body), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img']),
+      }),
+      ...post.data,
+    })),
     customData: `<language>en-us</language>`,
   });
 }

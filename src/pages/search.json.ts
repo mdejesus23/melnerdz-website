@@ -8,7 +8,8 @@ async function getPosts() {
   );
 
   return posts.map((post) => ({
-    slug: post.data.slug,
+    // the /blogs/[id] route is built from the entry id, not the frontmatter slug
+    slug: post.id,
     collection: post.collection,
     title: post.data.title,
     description: post.data.description,
@@ -34,9 +35,11 @@ async function getProjects() {
 }
 
 export async function GET() {
-  // Blog rendering is disabled, so blog entries are left out of the index to
-  // avoid surfacing links to pages that are no longer built.
+  const posts = await getPosts();
   const projects = await getProjects();
 
-  return Response.json([...projects], { status: 200 });
+  // Combine the posts and journals into one array
+  const allData = [...posts, ...projects];
+
+  return Response.json(allData, { status: 200 });
 }

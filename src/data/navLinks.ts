@@ -10,6 +10,10 @@ export const navLinks: NavLink[] = [
     url: '/projects',
   },
   {
+    title: 'Blogs',
+    url: '/blogs',
+  },
+  {
     title: 'About Me',
     url: '/about',
   },
