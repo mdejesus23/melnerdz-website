@@ -1,0 +1,55 @@
+---
+const freeCodeCampProfile =
+  'https://www.freecodecamp.org/fcc69c5ebd6-1f6c-4cb6-ae75-581d60d74072';
+const javascriptCertification =
+  'https://www.freecodecamp.org/certification/fcc69c5ebd6-1f6c-4cb6-ae75-581d60d74072/javascript-algorithms-and-data-structures';
+---
+
+<section class="py-14 md:py-16">
+  <div class="container-page">
+    <div
+      class="flex flex-col gap-6 rounded-xl border border-border bg-bg-card p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8"
+    >
+      <div>
+        <p class="eyebrow">Certifications &amp; Learning</p>
+        <h2 class="mt-2 text-2xl font-bold text-white md:text-3xl">
+          freeCodeCamp Certifications
+        </h2>
+        <p class="mt-3 max-w-2xl text-base leading-relaxed text-text-muted">
+          <a
+            href={javascriptCertification}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-medium text-white underline decoration-accent underline-offset-4 transition-colors hover:text-accent"
+          >
+            Legacy JavaScript Algorithms and Data Structures V7
+          </a>
+        </p>
+      </div>
+
+      <div class="flex shrink-0 flex-col gap-3 sm:items-start">
+        <a
+          href={freeCodeCampProfile}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-hover"
+        >
+          View all certifications
+          <svg
+            class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M7 17L17 7M8 7h9v9"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
