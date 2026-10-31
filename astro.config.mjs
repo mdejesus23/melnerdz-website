@@ -10,6 +10,10 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://melnerdz.com',
   integrations: [sitemap(), tailwind(), react(), mdx()],
+  experimental: {
+    // Lets `.svg` imports be used as inline components (stable in Astro 5.7+)
+    svg: true,
+  },
   vite: {
     ssr: {
       // @resvg/resvg-js uses native Node bindings (.node files)

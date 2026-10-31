@@ -3,20 +3,24 @@ import { navLinks } from '@/data/navLinks';
 import NavLink from './ui/NavLink.astro';
 import ThemeToggle from './ui/ThemeToggle.astro';
 import MenuOpen from './ui/icons/MenuOpen.astro';
+import { Image } from 'astro:assets';
+import NerdzLogo from '@/images/nerdz-logo.svg';
 ---
 
 <header
   id="main-header"
-  class="fixed left-0 right-0 top-0 z-50 border-b border-transparent bg-bg-primary/80 backdrop-blur-md transition-colors duration-300"
+  class="bg-bg-primary/80 fixed left-0 right-0 top-0 z-50 border-b border-transparent backdrop-blur-md transition-colors duration-300"
 >
   <div class="container-page flex h-16 items-center justify-between gap-4">
     <!-- Logo -->
-    <a
-      href="/"
-      class="font-logofont text-2xl font-bold tracking-tight text-white"
-      aria-label="Melnard De Jesus — home"
-    >
-      MJ
+    <a href="/" class="flex items-center" aria-label="Melnard De Jesus — home">
+      <Image
+        src={NerdzLogo}
+        alt="NERDZ"
+        height={32}
+        class="h-8 w-auto"
+        loading="eager"
+      />
     </a>
 
     <!-- Desktop navigation (centred) -->
