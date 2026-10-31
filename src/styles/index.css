@@ -18,6 +18,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Fredoka';
+  src: url('/fonts/Fredoka-VariableFont_wdth,wght.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito-VariableFont_wght.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Code blocks keep a dark surface in both themes for readability */
 pre,
 pre.astro-code,
@@ -92,8 +108,8 @@ code:not(pre code) {
     --color-projectDesc: #64748b;
 
     /* Typography — geometric sans throughout, matching the design */
-    --font-headfont: 'Outfit', sans-serif;
-    --font-bodyfont: 'DM Sans', sans-serif;
+    --font-headfont: 'Fredoka', sans-serif;
+    --font-bodyfont: 'Nunito', sans-serif;
     --font-logofont: 'Outfit', sans-serif;
   }
 
@@ -216,7 +232,10 @@ code:not(pre code) {
 
 /* Dotted decoration used beside the hero image */
 .dot-grid {
-  background-image: radial-gradient(var(--color-border) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(
+    var(--color-border) 1.5px,
+    transparent 1.5px
+  );
   background-size: 16px 16px;
 }
 
