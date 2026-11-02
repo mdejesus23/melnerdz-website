@@ -1,6 +1,5 @@
 ---
 import { navLinks } from '@/data/navLinks';
-import { Image } from 'astro:assets';
 import NerdzLogo from '@/images/nerdz-logo.svg';
 
 const socials = [
@@ -35,13 +34,7 @@ const linkColumns = [navLinks.slice(0, half), navLinks.slice(half)];
           href="/"
           class="font-logofont text-2xl font-bold tracking-tight text-white"
         >
-          <Image
-            src={NerdzLogo}
-            alt="NERDZ"
-            height={32}
-            class="h-8 w-auto"
-            loading="eager"
-          />
+          <NerdzLogo class="h-8 w-auto" aria-hidden="true" />
         </a>
         <p class="mt-3 max-w-xs text-sm leading-relaxed text-text-muted">
           Building clean, functional and impactful digital experiences.

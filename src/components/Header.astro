@@ -3,7 +3,6 @@ import { navLinks } from '@/data/navLinks';
 import NavLink from './ui/NavLink.astro';
 import ThemeToggle from './ui/ThemeToggle.astro';
 import MenuOpen from './ui/icons/MenuOpen.astro';
-import { Image } from 'astro:assets';
 import NerdzLogo from '@/images/nerdz-logo.svg';
 ---
 
@@ -14,13 +13,7 @@ import NerdzLogo from '@/images/nerdz-logo.svg';
   <div class="container-page flex h-16 items-center justify-between gap-4">
     <!-- Logo -->
     <a href="/" class="flex items-center" aria-label="Melnard De Jesus — home">
-      <Image
-        src={NerdzLogo}
-        alt="NERDZ"
-        height={32}
-        class="h-8 w-auto"
-        loading="eager"
-      />
+      <NerdzLogo class="h-8 w-auto" aria-hidden="true" />
     </a>
 
     <!-- Desktop navigation (centred) -->
